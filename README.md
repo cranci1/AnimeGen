@@ -1,5 +1,6 @@
-# pic-re
+# AnimeGen
 
-pic-re it's a simple app made in swift. This app is made using the [pic.re api](https://doc.pic.re/), its just made to save/generate images.
+<h1>THIS APP CONTAINS ADULT CONTENTS</h1>
 
-(there is no app icon, and I don't think I'll aver add it)
+AnimeGen it's a simple app made in swift. This app is made using the [pic.re api](https://doc.pic.re/), [waifu.im api](https://docs.waifu.im/), [nekos.best api](https://docs.nekos.best/), [waifu.pics api](https://waifu.pics/docs), its just made to save/generate images.
+
