@@ -10,24 +10,28 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          bundle install
-          bundle exec pod install
+    - name: Install Bundler
+      run: |
+        gem install bundler
 
-      - name: Build IPA
-        run: |
-          xcodebuild -workspace pic-re.xcworkspace -scheme YourScheme -configuration Release -destination 'generic/platform=iOS' build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-          xcodebuild -exportArchive -archivePath build/YourScheme.xcarchive -exportPath build -exportOptionsPlist exportOptions.plist
+    - name: Install dependencies
+      run: |
+        bundle install
+        bundle exec pod install
 
-      - name: Rename IPA
-        run: mv build/YourScheme.ipa build/AnimeGen.ipa
+    - name: Build IPA
+      run: |
+        xcodebuild -workspace pic-re.xcworkspace -scheme AnimeGen -configuration Release -destination 'generic/platform=iOS' build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+        xcodebuild -exportArchive -archivePath build/YourScheme.xcarchive -exportPath build -exportOptionsPlist exportOptions.plist
 
-      - name: Upload IPA
-        uses: actions/upload-artifact@v2
-        with:
-          name: AnimeGen-IPA
-          path: build/AnimeGen.ipa
+    - name: Rename IPA
+      run: mv build/AnimeGen.ipa build/AnimeGen.ipa
+
+    - name: Upload IPA
+      uses: actions/upload-artifact@v2
+      with:
+        name: AnimeGen-IPA
+        path: build/AnimeGen.ipa
