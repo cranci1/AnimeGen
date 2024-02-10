@@ -187,17 +187,7 @@ class ViewController: UIViewController {
     
     @objc func apiSegmentChanged() {
         let selectedIndex = apiSegmentedControl.selectedSegmentIndex
-
-        if selectedIndex == 1 {
-            let alertController = UIAlertController(title: "Warning", message: "waifu.im contains adult content.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .destructive) { _ in
-                self.loadImageAndTagsFromSelectedAPI()
-            }
-            alertController.addAction(okAction)
-            present(alertController, animated: true, completion: nil)
-        } else {
             loadImageAndTagsFromSelectedAPI()
-        }
     }
 
 
@@ -372,7 +362,7 @@ class ViewController: UIViewController {
     func loadImageAndTagsFromWaifuIm() {
           startLoadingIndicator()
 
-          let apiEndpoint = "https://api.waifu.im/search?is_nsfw=true"
+          let apiEndpoint = "https://api.waifu.im/search?"
 
           guard let url = URL(string: apiEndpoint) else {
               print("Invalid URL")
