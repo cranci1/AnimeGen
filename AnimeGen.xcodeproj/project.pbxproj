@@ -7,41 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13D25BE32B3D84A400C27AB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D25BE22B3D84A400C27AB7 /* AppDelegate.swift */; };
-		13D25BE52B3D84A400C27AB7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D25BE42B3D84A400C27AB7 /* SceneDelegate.swift */; };
-		13D25BE72B3D84A400C27AB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D25BE62B3D84A400C27AB7 /* ViewController.swift */; };
-		13D25BEA2B3D84A400C27AB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D25BE82B3D84A400C27AB7 /* Main.storyboard */; };
-		13D25BEC2B3D84A700C27AB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13D25BEB2B3D84A700C27AB7 /* Assets.xcassets */; };
-		13D25BEF2B3D84A700C27AB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D25BED2B3D84A700C27AB7 /* LaunchScreen.storyboard */; };
+		130A80532B78C02E0028985F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A80522B78C02E0028985F /* AppDelegate.swift */; };
+		130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A80542B78C02E0028985F /* SceneDelegate.swift */; };
+		130A80572B78C02E0028985F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130A80562B78C02E0028985F /* ViewController.swift */; };
+		130A805A2B78C02E0028985F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A80582B78C02E0028985F /* Main.storyboard */; };
+		130A805C2B78C0300028985F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130A805B2B78C0300028985F /* Assets.xcassets */; };
+		130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A805D2B78C0300028985F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		137069782B780F5400FB8887 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		1370696C2B780F5400FB8887 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
-		13D25BDF2B3D84A400C27AB7 /* pic-re.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pic-re.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13D25BE22B3D84A400C27AB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		13D25BE42B3D84A400C27AB7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		13D25BE62B3D84A400C27AB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		13D25BE92B3D84A400C27AB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		13D25BEB2B3D84A700C27AB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		13D25BEE2B3D84A700C27AB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		13D25BF02B3D84A700C27AB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		130A804F2B78C02E0028985F /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		130A80522B78C02E0028985F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		130A80542B78C02E0028985F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		130A80562B78C02E0028985F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		130A80592B78C02E0028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		130A805B2B78C0300028985F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		130A805E2B78C0300028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		130A80602B78C0300028985F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		13D25BDC2B3D84A400C27AB7 /* Frameworks */ = {
+		130A804C2B78C02E0028985F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,82 +37,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1370696B2B780F5400FB8887 /* Frameworks */ = {
+		130A80462B78C02E0028985F = {
 			isa = PBXGroup;
 			children = (
-				1370696C2B780F5400FB8887 /* Intents.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		13D25BD62B3D84A400C27AB7 = {
-			isa = PBXGroup;
-			children = (
-				13D25BE12B3D84A400C27AB7 /* pic-re */,
-				1370696B2B780F5400FB8887 /* Frameworks */,
-				13D25BE02B3D84A400C27AB7 /* Products */,
+				130A80512B78C02E0028985F /* AnimeGen */,
+				130A80502B78C02E0028985F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		13D25BE02B3D84A400C27AB7 /* Products */ = {
+		130A80502B78C02E0028985F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13D25BDF2B3D84A400C27AB7 /* pic-re.app */,
+				130A804F2B78C02E0028985F /* AnimeGen.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		13D25BE12B3D84A400C27AB7 /* pic-re */ = {
+		130A80512B78C02E0028985F /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
-				13D25BE22B3D84A400C27AB7 /* AppDelegate.swift */,
-				13D25BE42B3D84A400C27AB7 /* SceneDelegate.swift */,
-				13D25BE62B3D84A400C27AB7 /* ViewController.swift */,
-				13D25BE82B3D84A400C27AB7 /* Main.storyboard */,
-				13D25BEB2B3D84A700C27AB7 /* Assets.xcassets */,
-				13D25BED2B3D84A700C27AB7 /* LaunchScreen.storyboard */,
-				13D25BF02B3D84A700C27AB7 /* Info.plist */,
+				130A80522B78C02E0028985F /* AppDelegate.swift */,
+				130A80542B78C02E0028985F /* SceneDelegate.swift */,
+				130A80562B78C02E0028985F /* ViewController.swift */,
+				130A80582B78C02E0028985F /* Main.storyboard */,
+				130A805B2B78C0300028985F /* Assets.xcassets */,
+				130A805D2B78C0300028985F /* LaunchScreen.storyboard */,
+				130A80602B78C0300028985F /* Info.plist */,
 			);
-			path = "pic-re";
+			path = AnimeGen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13D25BDE2B3D84A400C27AB7 /* pic-re */ = {
+		130A804E2B78C02E0028985F /* AnimeGen */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13D25BF32B3D84A700C27AB7 /* Build configuration list for PBXNativeTarget "pic-re" */;
+			buildConfigurationList = 130A80632B78C0300028985F /* Build configuration list for PBXNativeTarget "AnimeGen" */;
 			buildPhases = (
-				13D25BDB2B3D84A400C27AB7 /* Sources */,
-				13D25BDC2B3D84A400C27AB7 /* Frameworks */,
-				13D25BDD2B3D84A400C27AB7 /* Resources */,
-				137069782B780F5400FB8887 /* Embed App Extensions */,
+				130A804B2B78C02E0028985F /* Sources */,
+				130A804C2B78C02E0028985F /* Frameworks */,
+				130A804D2B78C02E0028985F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "pic-re";
-			productName = "pic-re";
-			productReference = 13D25BDF2B3D84A400C27AB7 /* pic-re.app */;
+			name = AnimeGen;
+			productName = AnimeGen;
+			productReference = 130A804F2B78C02E0028985F /* AnimeGen.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		13D25BD72B3D84A400C27AB7 /* Project object */ = {
+		130A80472B78C02E0028985F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					13D25BDE2B3D84A400C27AB7 = {
+					130A804E2B78C02E0028985F = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 13D25BDA2B3D84A400C27AB7 /* Build configuration list for PBXProject "pic-re" */;
+			buildConfigurationList = 130A804A2B78C02E0028985F /* Build configuration list for PBXProject "AnimeGen" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -134,55 +110,55 @@
 				en,
 				Base,
 			);
-			mainGroup = 13D25BD62B3D84A400C27AB7;
-			productRefGroup = 13D25BE02B3D84A400C27AB7 /* Products */;
+			mainGroup = 130A80462B78C02E0028985F;
+			productRefGroup = 130A80502B78C02E0028985F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13D25BDE2B3D84A400C27AB7 /* pic-re */,
+				130A804E2B78C02E0028985F /* AnimeGen */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		13D25BDD2B3D84A400C27AB7 /* Resources */ = {
+		130A804D2B78C02E0028985F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13D25BEF2B3D84A700C27AB7 /* LaunchScreen.storyboard in Resources */,
-				13D25BEC2B3D84A700C27AB7 /* Assets.xcassets in Resources */,
-				13D25BEA2B3D84A400C27AB7 /* Main.storyboard in Resources */,
+				130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */,
+				130A805C2B78C0300028985F /* Assets.xcassets in Resources */,
+				130A805A2B78C02E0028985F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		13D25BDB2B3D84A400C27AB7 /* Sources */ = {
+		130A804B2B78C02E0028985F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13D25BE72B3D84A400C27AB7 /* ViewController.swift in Sources */,
-				13D25BE32B3D84A400C27AB7 /* AppDelegate.swift in Sources */,
-				13D25BE52B3D84A400C27AB7 /* SceneDelegate.swift in Sources */,
+				130A80572B78C02E0028985F /* ViewController.swift in Sources */,
+				130A80532B78C02E0028985F /* AppDelegate.swift in Sources */,
+				130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		13D25BE82B3D84A400C27AB7 /* Main.storyboard */ = {
+		130A80582B78C02E0028985F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				13D25BE92B3D84A400C27AB7 /* Base */,
+				130A80592B78C02E0028985F /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		13D25BED2B3D84A700C27AB7 /* LaunchScreen.storyboard */ = {
+		130A805D2B78C0300028985F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				13D25BEE2B3D84A700C27AB7 /* Base */,
+				130A805E2B78C0300028985F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -190,7 +166,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		13D25BF12B3D84A700C27AB7 /* Debug */ = {
+		130A80612B78C0300028985F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -251,7 +227,7 @@
 			};
 			name = Debug;
 		};
-		13D25BF22B3D84A700C27AB7 /* Release */ = {
+		130A80622B78C0300028985F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -306,22 +282,20 @@
 			};
 			name = Release;
 		};
-		13D25BF42B3D84A700C27AB7 /* Debug */ = {
+		130A80642B78C0300028985F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "pic-re/pic-re.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "pic-re/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = AnimeGen;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save images on your gallery.";
+				INFOPLIST_FILE = AnimeGen/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -330,7 +304,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.cranci.pic-re";
+				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -338,22 +312,21 @@
 			};
 			name = Debug;
 		};
-		13D25BF52B3D84A700C27AB7 /* Release */ = {
+		130A80652B78C0300028985F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "pic-re/pic-re.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "pic-re/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = AnimeGen;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need permission to save images on your gallery.";
+				INFOPLIST_FILE = AnimeGen/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -362,8 +335,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.cranci.pic-re";
+				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -373,25 +347,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13D25BDA2B3D84A400C27AB7 /* Build configuration list for PBXProject "pic-re" */ = {
+		130A804A2B78C02E0028985F /* Build configuration list for PBXProject "AnimeGen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13D25BF12B3D84A700C27AB7 /* Debug */,
-				13D25BF22B3D84A700C27AB7 /* Release */,
+				130A80612B78C0300028985F /* Debug */,
+				130A80622B78C0300028985F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13D25BF32B3D84A700C27AB7 /* Build configuration list for PBXNativeTarget "pic-re" */ = {
+		130A80632B78C0300028985F /* Build configuration list for PBXNativeTarget "AnimeGen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13D25BF42B3D84A700C27AB7 /* Debug */,
-				13D25BF52B3D84A700C27AB7 /* Release */,
+				130A80642B78C0300028985F /* Debug */,
+				130A80652B78C0300028985F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 13D25BD72B3D84A400C27AB7 /* Project object */;
+	rootObject = 130A80472B78C02E0028985F /* Project object */;
 }

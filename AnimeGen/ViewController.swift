@@ -1,3 +1,10 @@
+//
+//  ViewController.swift
+//  AnimeGen
+//
+//  Created by cranci on 11/02/24.
+//
+
 import UIKit
 import MobileCoreServices
 import WebKit
@@ -48,8 +55,8 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalToConstant: 340),
-            imageView.heightAnchor.constraint(equalToConstant: 420)
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8), // 80% of the screen width
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55) // 50% of the screen height
         ])
 
         // Add API selection segmented control
@@ -434,22 +441,21 @@ class ViewController: UIViewController {
 
           task.resume()
       }
+    
 
     @objc func shareButtonTapped() {
         guard let currentImage = imageView.image else {
-            return
-        }
-        
-        guard let appIcon = UIImage(named: "test") else {
+            print("No image available for sharing.")
             return
         }
 
-        let customTitle = "AnimeGen"
-
-        let shareController = UIActivityViewController(activityItems: [customTitle, appIcon, currentImage], applicationActivities: nil)
-        shareController.popoverPresentationController?.sourceView = view
-        present(shareController, animated: true, completion: nil)
-    }
+        let shareController = UIActivityViewController(
+            activityItems: [currentImage],
+            applicationActivities: nil
+        )
+            shareController.popoverPresentationController?.sourceView = view
+            present(shareController, animated: true, completion: nil)
+        }
 
 
     @objc func refreshButtonTapped() {
