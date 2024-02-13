@@ -193,7 +193,6 @@ class ViewController: UIViewController {
     }
     
     @objc func apiSegmentChanged() {
-        let selectedIndex = apiSegmentedControl.selectedSegmentIndex
             loadImageAndTagsFromSelectedAPI()
     }
 
@@ -617,43 +616,6 @@ class ViewController: UIViewController {
                 self.imageView.image = newImage
                 self.animateImageChange(with: newImage)
                 self.stopLoadingIndicator()
-            }
-        }
-
-        task.resume()
-    }
-
-    func loadTagsFromPicRe(completion: @escaping ([String]) -> Void) {
-        let apiEndpoint = "https://pic.re/image"
-
-        guard let url = URL(string: apiEndpoint) else {
-            print("Invalid URL")
-            completion([])
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-                completion([])
-                return
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("Invalid HTTP response")
-                completion([])
-                return
-            }
-
-            if let imageTagsString = httpResponse.allHeaderFields["image_tags"] as? String {
-                let tags = imageTagsString.components(separatedBy: ",")
-                completion(tags)
-            } else {
-                print("No image tags found in response headers.")
-                completion([])
             }
         }
 
