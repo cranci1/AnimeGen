@@ -7,16 +7,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
     - name: Set up Xcode
-      uses: actions/setup-xcode@v2.5.2
-      with:
-        xcode-version: '13.2.1'
+      run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app/Contents/Developer
 
     - name: Make ipabuild.sh executable
       run: chmod +x ipabuild.sh
