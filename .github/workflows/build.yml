@@ -30,12 +30,12 @@ jobs:
       run: echo "::set-output name=body::$(git log --format='%s' -n 1)"
 
     - name: Create GitHub Release
-      uses: marvinpinto/action-automatic-releases@v1.2.1
+      uses: softprops/action-gh-release@v1
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        automatic_release_tag: "latest"
-        prerelease: true
-        title: "Release ${{ github.sha }}"
         files: |
-          AnimeGen.ipa
+          YourApp.ipa
+        tag_name: ${{ github.sha }}
+        name: Release ${{ github.sha }}
         body: ${{ steps.generate_release_body.outputs.body }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
