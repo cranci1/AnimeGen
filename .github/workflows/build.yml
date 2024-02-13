@@ -37,28 +37,15 @@ jobs:
       with:
         name: ipa-artifact
 
-    - name: Create Release
-      uses: actions/github-script@v5
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        script: |
-          const fs = require('fs');
-          const content = fs.readFileSync('AnimeGen.ipa');
-          const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-          
-          const release = await octokit.repos.createRelease({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            tag_name: process.env.GITHUB_REF,
-            name: `Release ${process.env.GITHUB_REF}`,
-            body: `Release notes for ${process.env.GITHUB_REF}`,
-            draft: false,
-            prerelease: false
-          });
+        node-version: '14'
 
-          await octokit.repos.uploadReleaseAsset({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            release_id: release.data.id,
-            name: 'AnimeGen.ipa',
-            data: content
-          });
+    - name: Install GitHub CLI
+      run: npm install -g gh
+
+    - name: Create Release
+      run: |
+        gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+        gh release create ${{ github.ref }} './AnimeGen.ipa' --title "Release ${{ github.ref }}" --notes "Release notes for ${{ github.ref }}" --draft false --prerelease false
