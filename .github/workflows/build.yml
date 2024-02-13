@@ -23,7 +23,7 @@ jobs:
       run: ./ipabuild.sh
 
     - name: Archive .ipa
-      run: mv build/YourApp.ipa $GITHUB_WORKSPACE/YourApp.ipa
+      run: mv build/AnimeGen.ipa $GITHUB_WORKSPACE/AnimeGen.ipa
 
     - name: Generate Release Body
       id: generate_release_body
