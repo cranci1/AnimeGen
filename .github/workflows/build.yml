@@ -14,9 +14,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Xcode
-      uses: actions/setup-xcode@v2
+      uses: actions/setup-xcode@v2.5.2
       with:
-        xcode-version: '13'
+        xcode-version: '13.2.1'
 
     - name: Make ipabuild.sh executable
       run: chmod +x ipabuild.sh
