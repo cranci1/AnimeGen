@@ -1,4 +1,4 @@
-name: Build and Publish IPA
+name: Build IPA
 
 on:
   push:
@@ -21,21 +21,3 @@ jobs:
 
     - name: Run ipabuild.sh
       run: ./ipabuild.sh
-
-    - name: Archive .ipa
-      run: mv build/AnimeGen.ipa $GITHUB_WORKSPACE/AnimeGen.ipa
-
-    - name: Generate Release Body
-      id: generate_release_body
-      run: echo "::set-output name=body::$(git log --format='%s' -n 1)"
-
-    - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          AnimeGen.ipa
-        tag_name: ${{ github.sha }}
-        name: Release ${{ github.sha }}
-        body: ${{ steps.generate_release_body.outputs.body }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
