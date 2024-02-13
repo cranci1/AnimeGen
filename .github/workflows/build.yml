@@ -37,24 +37,13 @@ jobs:
       with:
         name: ipa-artifact
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
+        node-version: '14'
 
-    - name: Upload IPA to Release
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./AnimeGen.ipa
-        asset_name: AnimeGen.ipa
-        asset_content_type: application/octet-stream
+    - name: Install automatic-releases
+      run: npm install -g automatic-releases
+
+    - name: Create Release
+      run: automatic-releases --token ${{ secrets.GITHUB_TOKEN }} --files './AnimeGen.ipa' --tag ${{ github.ref }} --title "Release ${{ github.ref }}" --prerelease false
