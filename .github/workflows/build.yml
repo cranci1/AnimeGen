@@ -33,7 +33,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          YourApp.ipa
+          AnimeGen.ipa
         tag_name: ${{ github.sha }}
         name: Release ${{ github.sha }}
         body: ${{ steps.generate_release_body.outputs.body }}
