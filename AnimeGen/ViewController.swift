@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     var lastImage: UIImage?
     var tagsLabel: UILabel!
     
-    var apiSegmentedControl: UISegmentedControl!
+    var apiButton: UIButton!
     
     var currentImageURL: String?
     
@@ -55,23 +55,32 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8), // 80% of the screen width
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55) // 50% of the screen height
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55)
         ])
 
-        // Add API selection segmented control
-        apiSegmentedControl = UISegmentedControl(items: ["pic.re", "waifu.im", "nekos.best", "waifu.pics"])
-        apiSegmentedControl.selectedSegmentIndex = 0
-        apiSegmentedControl.addTarget(self, action: #selector(apiSegmentChanged), for: .valueChanged)
-        apiSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(apiSegmentedControl)
 
-        // Set constraints for the segmented control
+        apiButton = UIButton(type: .system)
+        apiButton.setTitle("pic.re", for: .normal)
+        apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
+        apiButton.translatesAutoresizingMaskIntoConstraints = false
+
+        // Set background color and corner radius for the API button
+        apiButton.backgroundColor = UIColor.darkGray // You can replace UIColor.blue with the color you prefer
+        apiButton.layer.cornerRadius = 10 // Adjust the corner radius as needed
+
+        // Set text color for the button
+        apiButton.setTitleColor(UIColor.white, for: .normal)
+
+        view.addSubview(apiButton)
+
+        // Set constraints for the API button
         NSLayoutConstraint.activate([
-            apiSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            apiSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            apiButton.heightAnchor.constraint(equalToConstant: 40), // Adjust the height as needed
+            apiButton.widthAnchor.constraint(equalToConstant: 120) // Adjust the width as needed
         ])
-        
         
         let webButton = UIButton(type: .system)
         let webIcon = UIImage(systemName: "safari.fill")?
@@ -184,7 +193,7 @@ class ViewController: UIViewController {
 
         // Set constraints for tagsLabel
         NSLayoutConstraint.activate([
-            tagsLabel.topAnchor.constraint(equalTo: apiSegmentedControl.bottomAnchor, constant: 16),
+            tagsLabel.topAnchor.constraint(equalTo: apiButton.bottomAnchor, constant: 16),
             tagsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
@@ -198,18 +207,17 @@ class ViewController: UIViewController {
 
 
     func loadImageAndTagsFromSelectedAPI() {
-        switch apiSegmentedControl.selectedSegmentIndex {
-        case 0:
-            // Load from pic.re
+        guard let title = apiButton.title(for: .normal) else {
+            return
+        }
+        switch title {
+        case "pic.re":
             loadImageAndTagsFromPicRe()
-        case 1:
-            // Load from waifu.im
+        case "waifu.im":
             loadImageAndTagsFromWaifuIm()
-        case 2:
-            // Load from nekos.best
+        case "nekos.best":
             loadImageAndTagsFromNekosBest()
-        case 3:
-            // Load from waifu.pics
+        case "waifu.pics":
             loadImageFromWaifuPics()
         default:
             break
@@ -431,9 +439,6 @@ class ViewController: UIViewController {
                           print("Failed to extract necessary data from JSON.")
                           self.stopLoadingIndicator()
                       }
-                  } catch {
-                      print("Error parsing JSON: \(error)")
-                      self.stopLoadingIndicator()
                   }
               }
           }
@@ -458,22 +463,51 @@ class ViewController: UIViewController {
 
 
     @objc func refreshButtonTapped() {
-        switch apiSegmentedControl.selectedSegmentIndex {
-        case 0:
+        guard let title = apiButton.title(for: .normal) else {
+            return
+        }
+
+        switch title {
+        case "pic.re":
             lastImage = imageView.image
             loadImageAndTagsFromPicRe()
-        case 1:
+        case "waifu.im":
             lastImage = imageView.image
             loadImageAndTagsFromWaifuIm()
-        case 2:
+        case "nekos.best":
             lastImage = imageView.image
             loadImageAndTagsFromNekosBest()
-        case 3:
+        case "waifu.pics":
             lastImage = imageView.image
             loadImageFromWaifuPics()
         default:
             break
         }
+    }
+
+    
+    @objc func apiButtonTapped() {
+        // Create a UIAlertController with options
+        let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
+
+        // Add actions for each API option
+        let apiOptions = ["pic.re", "waifu.im", "nekos.best", "waifu.pics"]
+        for option in apiOptions {
+            let action = UIAlertAction(title: option, style: .default) { _ in
+                self.apiButton.setTitle(option, for: .normal)
+                self.loadImageAndTagsFromSelectedAPI()
+            }
+            alertController.addAction(action)
+        }
+
+        // Add cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        // Present the UIAlertController
+        alertController.popoverPresentationController?.sourceView = apiButton
+        alertController.popoverPresentationController?.sourceRect = apiButton.bounds
+        present(alertController, animated: true, completion: nil)
     }
 
     @objc func heartButtonTapped() {
