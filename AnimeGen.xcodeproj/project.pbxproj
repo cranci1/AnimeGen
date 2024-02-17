@@ -13,6 +13,13 @@
 		130A805A2B78C02E0028985F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A80582B78C02E0028985F /* Main.storyboard */; };
 		130A805C2B78C0300028985F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130A805B2B78C0300028985F /* Assets.xcassets */; };
 		130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A805D2B78C0300028985F /* LaunchScreen.storyboard */; };
+		13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBD2B80D380009BF17E /* ImageExtensions.swift */; };
+		13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBF2B80D396009BF17E /* UIExtensions.swift */; };
+		13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC42B80D5A6009BF17E /* pic-re.swift */; };
+		13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC62B80D5B9009BF17E /* waifu-im.swift */; };
+		13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC82B80D5C2009BF17E /* nekos-best.swift */; };
+		13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910ECA2B80D5C8009BF17E /* waifu-pics.swift */; };
+		13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13910ECE2B80D90D009BF17E /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,12 @@
 		130A805B2B78C0300028985F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		130A805E2B78C0300028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130A80602B78C0300028985F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13910EBD2B80D380009BF17E /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		13910EBF2B80D396009BF17E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		13910EC42B80D5A6009BF17E /* pic-re.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
+		13910EC62B80D5B9009BF17E /* waifu-im.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
+		13910EC82B80D5C2009BF17E /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
+		13910ECA2B80D5C8009BF17E /* waifu-pics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +70,37 @@
 		130A80512B78C02E0028985F /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
+				13910ECC2B80D61F009BF17E /* Extensions */,
+				13910EC32B80D595009BF17E /* APIs */,
 				130A80522B78C02E0028985F /* AppDelegate.swift */,
 				130A80542B78C02E0028985F /* SceneDelegate.swift */,
-				130A80562B78C02E0028985F /* ViewController.swift */,
-				130A80582B78C02E0028985F /* Main.storyboard */,
 				130A805B2B78C0300028985F /* Assets.xcassets */,
+				130A80582B78C02E0028985F /* Main.storyboard */,
 				130A805D2B78C0300028985F /* LaunchScreen.storyboard */,
+				130A80562B78C02E0028985F /* ViewController.swift */,
 				130A80602B78C0300028985F /* Info.plist */,
 			);
 			path = AnimeGen;
+			sourceTree = "<group>";
+		};
+		13910EC32B80D595009BF17E /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				13910EC42B80D5A6009BF17E /* pic-re.swift */,
+				13910EC62B80D5B9009BF17E /* waifu-im.swift */,
+				13910ECA2B80D5C8009BF17E /* waifu-pics.swift */,
+				13910EC82B80D5C2009BF17E /* nekos-best.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		13910ECC2B80D61F009BF17E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				13910EBD2B80D380009BF17E /* ImageExtensions.swift */,
+				13910EBF2B80D396009BF17E /* UIExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +119,9 @@
 			dependencies = (
 			);
 			name = AnimeGen;
+			packageProductDependencies = (
+				13910ECE2B80D90D009BF17E /* SDWebImage */,
+			);
 			productName = AnimeGen;
 			productReference = 130A804F2B78C02E0028985F /* AnimeGen.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +150,9 @@
 				Base,
 			);
 			mainGroup = 130A80462B78C02E0028985F;
+			packageReferences = (
+				13910ECD2B80D90D009BF17E /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 130A80502B78C02E0028985F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,
 				130A80572B78C02E0028985F /* ViewController.swift in Sources */,
 				130A80532B78C02E0028985F /* AppDelegate.swift in Sources */,
 				130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */,
+				13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */,
+				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
+				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
+				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,
+				13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +414,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		13910ECD2B80D90D009BF17E /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13910ECE2B80D90D009BF17E /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13910ECD2B80D90D009BF17E /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 130A80472B78C02E0028985F /* Project object */;
 }
