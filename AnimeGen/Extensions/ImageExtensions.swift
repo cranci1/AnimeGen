@@ -21,5 +21,10 @@ extension UIImage {
 
         return images
     }
+    
+    var imageData: Data? {
+        return self.sd_imageData()
+    }
+    
 }
 

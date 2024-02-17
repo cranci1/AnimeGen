@@ -272,29 +272,32 @@ class ViewController: UIViewController {
     }
 
     @objc func heartButtonTapped() {
-        // Ensure imageView.image is not nil
         guard let image = imageView.image else {
             return
         }
 
-        // Check if the image is a GIF using CGImageSource
-        if let data = image.jpegData(compressionQuality: 1.0),
+        if let data = image.imageData,
            let source = CGImageSourceCreateWithData(data as CFData, nil),
            let utType = CGImageSourceGetType(source),
            UTTypeConformsTo(utType, kUTTypeGIF) {
 
-            // Image is a GIF, save the original image
-            DispatchQueue.main.async {
-                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            PHPhotoLibrary.shared().performChanges {
+                let creationRequest = PHAssetCreationRequest.forAsset()
+                creationRequest.addResource(with: .photo, data: data, options: nil)
+            } completionHandler: { (success, error) in
+                if success {
+                    print("GIF image saved to Photos library")
+                    self.animateFeedback()
+                } else {
+                    print("Error saving GIF image: \(error?.localizedDescription ?? "")")
+                }
             }
             return
         }
 
-        // Image is not a GIF, convert to JPEG format
         if let imageData = image.jpegData(compressionQuality: 1.0),
             let uiImage = UIImage(data: imageData) {
 
-            // Save the converted image
             DispatchQueue.main.async {
                 UIImageWriteToSavedPhotosAlbum(uiImage, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
