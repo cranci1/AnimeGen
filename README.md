@@ -11,3 +11,4 @@ Its Made to support any iOS/iPadOS device running iOS 13+
 
 - [SDWebImage](https://github.com/SDWebImage/SDWebImage) (.gif images saves for the gallery)
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
+- [Nekidev](https://github.com/Nekidev/anime-api) (Helped me finding the Htmai api)
