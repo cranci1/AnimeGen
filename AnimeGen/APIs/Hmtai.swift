@@ -2,7 +2,7 @@
 //  Hmtai.swift
 //  AnimeGen
 //
-//  Created by Francesco on 17/02/24.
+//  Created by cranci on 17/02/24.
 //
 
 import UIKit
