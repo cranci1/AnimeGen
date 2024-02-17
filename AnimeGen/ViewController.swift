@@ -189,11 +189,6 @@ class ViewController: UIViewController {
         loadImageAndTagsFromSelectedAPI()
     }
     
-    @objc func apiSegmentChanged() {
-            loadImageAndTagsFromSelectedAPI()
-    }
-
-
     func loadImageAndTagsFromSelectedAPI() {
         guard let title = apiButton.title(for: .normal) else {
             return
