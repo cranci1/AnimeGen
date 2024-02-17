@@ -6,3 +6,7 @@ AnimeGen is an app made in Swift. This app is developed using the [pic.re api](h
 
 ## Compatibility
 Its Made to support any iOS/iPadOS device running iOS 13+
+
+## Third Party Softwares
+
+- [SDWebImage](https://github.com/SDWebImage/SDWebImage)
