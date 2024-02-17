@@ -10,4 +10,4 @@ Its Made to support any iOS/iPadOS device running iOS 13+
 ## Third Party Softwares
 
 - [SDWebImage](https://github.com/SDWebImage/SDWebImage) (.gif images saves for the gallery)
-- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Base)
+- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
