@@ -13,6 +13,7 @@
 		130A805A2B78C02E0028985F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A80582B78C02E0028985F /* Main.storyboard */; };
 		130A805C2B78C0300028985F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130A805B2B78C0300028985F /* Assets.xcassets */; };
 		130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A805D2B78C0300028985F /* LaunchScreen.storyboard */; };
+		138661232B81216D0062AC91 /* Hmtai.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661222B81216D0062AC91 /* Hmtai.swift */; };
 		13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBD2B80D380009BF17E /* ImageExtensions.swift */; };
 		13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBF2B80D396009BF17E /* UIExtensions.swift */; };
 		13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC42B80D5A6009BF17E /* pic-re.swift */; };
@@ -31,6 +32,7 @@
 		130A805B2B78C0300028985F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		130A805E2B78C0300028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130A80602B78C0300028985F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		138661222B81216D0062AC91 /* Hmtai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hmtai.swift; sourceTree = "<group>"; };
 		13910EBD2B80D380009BF17E /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		13910EBF2B80D396009BF17E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		13910EC42B80D5A6009BF17E /* pic-re.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				13910EC62B80D5B9009BF17E /* waifu-im.swift */,
 				13910ECA2B80D5C8009BF17E /* waifu-pics.swift */,
 				13910EC82B80D5C2009BF17E /* nekos-best.swift */,
+				138661222B81216D0062AC91 /* Hmtai.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				130A80532B78C02E0028985F /* AppDelegate.swift in Sources */,
 				130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */,
 				13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */,
+				138661232B81216D0062AC91 /* Hmtai.swift in Sources */,
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
 				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
 				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,

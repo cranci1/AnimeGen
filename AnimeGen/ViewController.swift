@@ -207,6 +207,8 @@ class ViewController: UIViewController {
             loadImageAndTagsFromNekosBest()
         case "waifu.pics":
             loadImageFromWaifuPics()
+        case "Hmtai":
+            loadImagesFromHmtai()
         default:
             break
         }
@@ -245,6 +247,9 @@ class ViewController: UIViewController {
         case "waifu.pics":
             lastImage = imageView.image
             loadImageFromWaifuPics()
+        case "Hmtai":
+            lastImage = imageView.image
+            loadImagesFromHmtai()
         default:
             break
         }
@@ -254,7 +259,7 @@ class ViewController: UIViewController {
     @objc func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
 
-        let apiOptions = ["pic.re", "waifu.im", "nekos.best", "waifu.pics"]
+        let apiOptions = ["Hmtai", "waifu.pics", "nekos.best", "waifu.im", "pic.re"]
         for option in apiOptions {
             let action = UIAlertAction(title: option, style: .default) { _ in
                 self.apiButton.setTitle(option, for: .normal)
