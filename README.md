@@ -7,12 +7,12 @@ Its Made to support any iOS/iPadOS device running iOS 13+
 
 ## Supported APIs
 
-- [pic.re api](https://doc.pic.re/)
-- [waifu.im api](https://docs.waifu.im/) 
-- [nekos.best api](https://docs.nekos.best/)
-- [waifu.pics api](https://waifu.pics/docs) 
-- [Hmtai api](https://hmtai.hatsunia.cfd/endpoints)
-- [Nekos api](https://nekosapi.com/docs)
+- [pic.re api](https://doc.pic.re/) SFW
+- [waifu.im api](https://docs.waifu.im/) SFW/NSFW
+- [nekos.best api](https://docs.nekos.best/) SFW
+- [waifu.pics api](https://waifu.pics/docs) SFW/NSFW
+- [Hmtai api](https://hmtai.hatsunia.cfd/endpoints) SFW/NSFW
+- [Nekos api](https://nekosapi.com/docs) SFW/NSFW
 
 ## Third Party Softwares
 
