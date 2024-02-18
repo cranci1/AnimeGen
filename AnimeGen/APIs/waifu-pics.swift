@@ -12,10 +12,20 @@ extension ViewController {
     func loadImageFromWaifuPics() {
         startLoadingIndicator()
 
-        let categories = ["waifu", "neko", "shinobu", "cuddle", "hug", "kiss", "lick", "pat", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
-        let randomCategory2 = categories.randomElement() ?? "waifu"
+        let categories: [String]
+        let endpointPrefix: String
 
-        let apiEndpoint = "https://api.waifu.pics/sfw/\(randomCategory2)"
+        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+            categories = ["waifu", "neko", "trap", "blowjob"]
+            endpointPrefix = "https://api.waifu.pics/nsfw/"
+        } else {
+            categories = ["waifu", "neko", "shinobu", "cuddle", "hug", "kiss", "lick", "pat", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
+            endpointPrefix = "https://api.waifu.pics/sfw/"
+        }
+
+        let randomCategory = categories.randomElement() ?? "waifu"
+
+        let apiEndpoint = "\(endpointPrefix)\(randomCategory)"
 
         guard let url = URL(string: apiEndpoint) else {
             print("Invalid URL")
@@ -41,7 +51,6 @@ extension ViewController {
 
                     if let imageData = try? Data(contentsOf: imageUrl) {
                         if imageUrlString.lowercased().hasSuffix(".gif") {
-                            
                             if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
                                 self.imageView.image = animatedImage
                                 self.animateImageChange(with: animatedImage)
@@ -49,7 +58,6 @@ extension ViewController {
                                 print("Failed to create animated image from GIF data.")
                             }
                         } else {
-
                             if let newImage = UIImage(data: imageData) {
                                 self.imageView.image = newImage
                                 self.animateImageChange(with: newImage)
@@ -58,11 +66,9 @@ extension ViewController {
                             }
                         }
 
-                        let category2 = randomCategory2
-                        
                         self.currentImageURL = imageUrlString
 
-                        self.updateUIWithTags([category2])
+                        self.updateUIWithTags([randomCategory])
 
                         self.stopLoadingIndicator()
                     } else {

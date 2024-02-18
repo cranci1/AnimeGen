@@ -12,10 +12,21 @@ extension ViewController {
     func loadImageAndTagsFromNekosapi() {
         startLoadingIndicator()
         
-        let rating = ["safe", "suggestive"]
-        let randomrating = rating.randomElement() ?? "safe"
+        var ratings: [String] = ["safe"]
 
-        let apiEndpoint = "https://api.nekosapi.com/v3/images/random?limit=1&rating=\(randomrating)"
+        if UserDefaults.standard.bool(forKey: "enablesuggestiveCont") {
+            ratings.append("suggestive")
+        }
+        if UserDefaults.standard.bool(forKey: "enableBorderlineCont") {
+            ratings.append("borderline")
+        }
+        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+            ratings.append("explicit")
+        }
+
+        let randomRating = ratings.randomElement() ?? "safe"
+
+        let apiEndpoint = "https://api.nekosapi.com/v3/images/random?limit=1&rating=\(randomRating)"
         
         guard let url = URL(string: apiEndpoint) else {
             print("Invalid URL")

@@ -12,10 +12,21 @@ extension ViewController {
     func loadImagesFromHmtai() {
         startLoadingIndicator()
 
-        let categories3 = ["wave","wink","tea","bonk","punch","poke","bully","pat","kiss","kick","blush","feed","smug","hug","cuddle","cry","cringe","slap","five","glomp","happy","hold","nom","smile","throw","lick","bite","dance","boop","sleep","like","kill","tickle","nosebleed","threaten","depression","wolf_arts","jahy_arts","neko_arts","coffee_arts","wallpaper","mobileWallpaper"]
+        let categories3: [String]
+        let endpointPrefix: String
+
+        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+            // If explicit content is enabled, include NSFW categories
+            categories3 = ["ass","anal","bdsm","classic","cum","creampie","manga","femdom","hentai","incest","masturbation","public","ero","orgy","elves","yuri","pantsu","pussy","glasses","cuckold","blowjob","boobjob","handjob","footjob","boobs","thighs","ahegao","uniform","gangbang","tentacles","gif","nsfwNeko","nsfwMobileWallpaper","zettaiRyouiki"]
+            endpointPrefix = "https://hmtai.hatsunia.cfd/nsfw/"
+        } else {
+            categories3 = ["wave", "wink", "tea", "bonk", "punch", "poke", "bully", "pat", "kiss", "kick", "blush", "feed", "smug", "hug", "cuddle", "cry", "cringe", "slap", "five", "glomp", "happy", "hold", "nom", "smile", "throw", "lick", "bite", "dance", "boop", "sleep", "like", "kill", "tickle", "nosebleed", "threaten", "depression", "wolf_arts", "jahy_arts", "neko_arts", "coffee_arts", "wallpaper", "mobileWallpaper"]
+            endpointPrefix = "https://hmtai.hatsunia.cfd/sfw/"
+        }
+
         let randomCategory3 = categories3.randomElement() ?? "pat"
 
-        let apiEndpoint = "https://hmtai.hatsunia.cfd/sfw/\(randomCategory3)"
+        let apiEndpoint = "\(endpointPrefix)\(randomCategory3)"
 
         guard let url = URL(string: apiEndpoint) else {
             print("Invalid URL")
@@ -41,7 +52,6 @@ extension ViewController {
 
                     if let imageData = try? Data(contentsOf: imageUrl) {
                         if imageUrlString.lowercased().hasSuffix(".gif") {
-                            
                             if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 2.0) {
                                 self.imageView.image = animatedImage
                                 self.animateImageChange(with: animatedImage)
@@ -49,7 +59,6 @@ extension ViewController {
                                 print("Failed to create animated image from GIF data.")
                             }
                         } else {
-
                             if let newImage = UIImage(data: imageData) {
                                 self.imageView.image = newImage
                                 self.animateImageChange(with: newImage)
@@ -80,4 +89,3 @@ extension ViewController {
     }
     
 }
-

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import MobileCoreServices
 
 import WebKit
@@ -16,6 +17,8 @@ import Photos
 class ViewController: UIViewController {
 
     var imageView: UIImageView!
+    
+    var settingsButton: UIButton!
     
     var refreshButton: UIButton!
     var heartButton: UIButton!
@@ -31,6 +34,8 @@ class ViewController: UIViewController {
     var apiButton: UIButton!
     
     var currentImageURL: String?
+    
+    var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +84,22 @@ class ViewController: UIViewController {
             apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             apiButton.heightAnchor.constraint(equalToConstant: 40),
             apiButton.widthAnchor.constraint(equalToConstant: 120)
+        ])
+        
+        settingsButton = UIButton(type: .system)
+        let settingsIcon = UIImage(systemName: "gear")?
+            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+        settingsButton.setImage(settingsIcon, for: .normal)
+        settingsButton.tintColor = .systemGray
+        settingsButton.setTitleColor(.white, for: .normal)
+        settingsButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
+        settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(settingsButton)
+
+        NSLayoutConstraint.activate([
+            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
         ])
         
         let webButton = UIButton(type: .system)
@@ -315,6 +336,13 @@ class ViewController: UIViewController {
         if let lastImage = lastImage {
             animateImageChange(with: lastImage)
         }
+    }
+    
+    @objc func settingsButtonTapped() {
+        let settingsPage = SettingsPage()
+        let hostingController = UIHostingController(rootView: settingsPage)
+
+        present(hostingController, animated: true, completion: nil)
     }
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
