@@ -70,9 +70,6 @@ struct SettingsPage: View {
                     NavigationLink(destination: AboutPage()) {
                         Text("About")
                     }
-                    NavigationLink(destination: LicensePage()) {
-                        Text("License")
-                    }
                 }
             }
             .navigationBarTitle("Settings")
