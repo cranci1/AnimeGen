@@ -21,4 +21,4 @@ Its Made to support any iOS/iPadOS device running iOS 13+
 ## Help
 
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
-- [Nekidev](https://github.com/Nekidev/anime-api) (Helped me finding the Htmai api)
+- [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
