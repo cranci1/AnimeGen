@@ -19,7 +19,6 @@ extension ViewController {
         var components = URLComponents(string: apiEndpoint)
         components?.queryItems = [
             URLQueryItem(name: "is_nsfw", value: isNSFW ? "true" : "false")
-            // Add more query parameters as needed
         ]
 
         guard let url = components?.url else {
@@ -67,6 +66,8 @@ extension ViewController {
                         if let data = try? Data(contentsOf: imageUrl), let newImage = UIImage(data: data) {
                             self.imageView.image = newImage
                             self.animateImageChange(with: newImage)
+                            
+                            self.tagsLabel.isHidden = false
 
                             self.updateUIWithTags(tags)
 

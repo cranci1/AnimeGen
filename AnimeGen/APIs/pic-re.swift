@@ -64,6 +64,7 @@ extension ViewController {
              }
 
              DispatchQueue.main.async {
+                 self.tagsLabel.isHidden = false
                  self.imageView.image = newImage
                  self.animateImageChange(with: newImage)
                  self.stopLoadingIndicator()

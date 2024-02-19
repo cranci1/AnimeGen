@@ -12,6 +12,7 @@ struct SettingsPage: View {
     // Features
     @State private var animations = UserDefaults.standard.bool(forKey: "enableAnimations")
     @State private var tags = UserDefaults.standard.bool(forKey: "enableTags")
+    @State private var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     
     // Content
     @State private var suggestiveCont = UserDefaults.standard.bool(forKey: "enablesuggestiveCont")
@@ -35,6 +36,13 @@ struct SettingsPage: View {
                         set: { newValue in
                             self.tags = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableTags")
+                        }
+                    ))
+                    Toggle("Display nekos.moe Tags", isOn: Binding(
+                        get: { self.moetags },
+                        set: { newValue in
+                            self.moetags = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableMoeTags")
                         }
                     ))
                 }

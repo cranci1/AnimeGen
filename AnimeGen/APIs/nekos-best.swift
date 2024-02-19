@@ -61,6 +61,7 @@ extension ViewController {
 
                         if let data = try? Data(contentsOf: imageUrl), let newImage = UIImage(data: data) {
                             self.imageView.image = newImage
+                            self.tagsLabel.isHidden = false
                             self.animateImageChange(with: newImage)
                             self.updateUIWithTags([], author: author, category: category)
                             self.stopLoadingIndicator()

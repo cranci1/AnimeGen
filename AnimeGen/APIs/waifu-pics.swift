@@ -68,6 +68,8 @@ extension ViewController {
 
                         self.currentImageURL = imageUrlString
 
+                        self.tagsLabel.isHidden = false
+                        
                         self.updateUIWithTags([randomCategory])
 
                         self.stopLoadingIndicator()

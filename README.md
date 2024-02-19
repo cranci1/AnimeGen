@@ -13,6 +13,27 @@ Its Made to support any iOS/iPadOS device running iOS 13+
 - [waifu.pics api](https://waifu.pics/docs) SFW/NSFW
 - [Hmtai api](https://hmtai.hatsunia.cfd/endpoints) SFW/NSFW
 - [Nekos api](https://nekosapi.com/docs) SFW/NSFW
+- [Nekos.moe](https://docs.nekos.moe) SFW/NSFW
+
+<table>
+<tr>
+        <th>Working APIs</th>
+        <th>Type</th>
+</tr>
+<tr><td>
+        
+| APIs                | Type  | Working |
+| ------------------- | ----- | :--------: |
+| Pic.re              | SFW      |   :white_check_mark:       |
+| Waifu.im            | SFW/NSFW |   :white_check_mark:       |
+| Nekos.best          | SFW      |   :white_check_mark:       |
+| Waifu.pics          | SFW/NSFW |   :white_check_mark:       |
+| Hmtai               | SFW/NSFW |   :white_check_mark:      |
+| Nekos api           | SFW/NSFW |   :white_check_mark:       |
+| Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
+
+</table>
+
 
 ## Third Party Softwares
 

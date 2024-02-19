@@ -25,6 +25,7 @@
 		13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC82B80D5C2009BF17E /* nekos-best.swift */; };
 		13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910ECA2B80D5C8009BF17E /* waifu-pics.swift */; };
 		13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13910ECE2B80D90D009BF17E /* SDWebImage */; };
+		13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE98BF2B828B8000379AB7 /* nekosmoe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		13910EC62B80D5B9009BF17E /* waifu-im.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
 		13910EC82B80D5C2009BF17E /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
 		13910ECA2B80D5C8009BF17E /* waifu-pics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
+		13BE98BF2B828B8000379AB7 /* nekosmoe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosmoe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				13910EC82B80D5C2009BF17E /* nekos-best.swift */,
 				138661222B81216D0062AC91 /* Hmtai.swift */,
 				138661242B8136DC0062AC91 /* nekosapi.swift */,
+				13BE98BF2B828B8000379AB7 /* nekosmoe.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,
 				13877B192B82001800251A60 /* SettingsPage.swift in Sources */,
+				13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */,
 				130A80572B78C02E0028985F /* ViewController.swift in Sources */,
 				130A80532B78C02E0028985F /* AppDelegate.swift in Sources */,
 				130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */,
