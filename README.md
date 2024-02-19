@@ -5,7 +5,7 @@ AnimeGen is an app made in Swift. This app is developed using public APIs. The a
 ## Compatibility
 Its Made to support any iOS/iPadOS device running iOS 13+
 
-## Supported APIs
+## APIs
 
 - [pic.re api](https://doc.pic.re/) SFW
 - [waifu.im api](https://docs.waifu.im/) SFW/NSFW
@@ -18,7 +18,6 @@ Its Made to support any iOS/iPadOS device running iOS 13+
 <table>
 <tr>
         <th>Working APIs</th>
-        <th>Type</th>
 </tr>
 <tr><td>
         
