@@ -24,7 +24,7 @@ struct SettingsPage: View {
         NavigationView {
             Form {
                 Section(header: Text("Features")) {
-                    Toggle("Use Animation", isOn: Binding(
+                    Toggle("Use Animations", isOn: Binding(
                         get: { self.animations },
                         set: { newValue in
                             self.animations = newValue
@@ -73,7 +73,7 @@ struct SettingsPage: View {
                         }
                     ))
                 }
-                
+                                
                 Section(header: Text("About AnimeGen")) {
                     NavigationLink(destination: AboutPage()) {
                         Text("About")

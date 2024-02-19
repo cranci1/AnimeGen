@@ -48,7 +48,7 @@ struct AboutPage: View {
                 Section(header: Text("Privacy"), footer: Text("AnimeGen prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to save an image, it will only be stored locally in their device's gallery. We are committed to ensuring a secure and private experience for our users.")) {
                     
                     HStack {
-                        Text("Review code")
+                        Text("Review the code")
                     }
                     .onTapGesture {
                         if let url = URL(string: "https://github.com/cranci1/AnimeGen/tree/main") {
