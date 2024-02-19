@@ -1,0 +1,22 @@
+# Working APIs
+
+<table>
+<tr>
+        <th>Supported Launchers</th>
+        <th>Supported Clients</th>
+</tr>
+<tr><td>
+        
+| Launcher            | Supported           |
+| ------------------- | :-----------------: |
+| Minecraft Launcher  | :white_check_mark:  |
+| Tlauncher           | :white_check_mark:  |
+| Tlauncher Legacy    | :white_check_mark:  |
+| GDLauncher          | :white_check_mark:  |
+| Prism Launcher      | :white_check_mark:  |
+| MultiMC             | :white_check_mark:  |
+| Modrinth            | :white_check_mark:  |
+| CourseForge         | :white_check_mark:  |
+| ATLauncher          | :white_check_mark:  |
+
+</table>
