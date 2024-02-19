@@ -6,7 +6,7 @@
 </tr>
 <tr><td>
         
-| Launcher            | Supported           |
+| APIs            | Working           |
 | ------------------- | :-----------------: |
 | Pic.re  | :white_check_mark:  |
 | Waifu.im           | :white_check_mark:  |
