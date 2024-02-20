@@ -1,6 +1,4 @@
 # AnimeGen
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcranci1%2FAnimeGen.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcranci1%2FAnimeGen?ref=badge_shield)
-
 
 AnimeGen is an app made in Swift. This app is developed using public APIs. The app purpose is to save, generate, and share images.
 
@@ -44,7 +42,3 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
-
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcranci1%2FAnimeGen.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcranci1%2FAnimeGen?ref=badge_large)
