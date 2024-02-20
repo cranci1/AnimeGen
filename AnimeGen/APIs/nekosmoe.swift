@@ -61,16 +61,12 @@ extension ViewController {
 
                         if moetags {
                             if let tagsArray = firstImage["tags"] as? [String] {
-                                // Print tags for debugging
-                                print("Tags: \(tagsArray)")
 
-                                // Update UI with tags
                                 self.updateUIWithTags(tagsArray)
 
                                 var newComponents = URLComponents(string: "https://nekos.moe/thumbnail/\(imageId ?? "")")
                                 newComponents?.queryItems = [
                                     URLQueryItem(name: "tags", value: tagsArray.joined(separator: ","))
-                                    // Add more query parameters as needed
                                 ]
 
                                 guard let newUrl = newComponents?.url else {
@@ -92,10 +88,6 @@ extension ViewController {
                                             self.imageView.image = newImage
                                             self.animateImageChange(with: newImage)
 
-                                            // Continue with the rest of your code here
-                                            // Add any additional logic or UI updates you need
-
-                                            // Temporarily hide the tag label when using nekos.moe API
                                             self.tagsLabel.isHidden = true
 
                                             self.stopLoadingIndicator()
@@ -112,7 +104,6 @@ extension ViewController {
                                 self.stopLoadingIndicator()
                             }
                         } else {
-                            // Load the image without tags
                             var newComponents = URLComponents(string: "https://nekos.moe/thumbnail/\(imageId ?? "")")
 
                             guard let newUrl = newComponents?.url else {
@@ -134,10 +125,6 @@ extension ViewController {
                                         self.imageView.image = newImage
                                         self.animateImageChange(with: newImage)
 
-                                        // Continue with the rest of your code here
-                                        // Add any additional logic or UI updates you need
-
-                                        // Temporarily hide the tag label when using nekos.moe API
                                         self.tagsLabel.isHidden = true
 
                                         self.stopLoadingIndicator()
