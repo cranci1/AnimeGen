@@ -22,6 +22,9 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 | Nekos api           | SFW/NSFW |   :white_check_mark:       |
 | Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
 
+> [!Note]
+> The working status is going to be update only if reported the api being down (not working)
+
 </table>
 
 ## APIs Credits
