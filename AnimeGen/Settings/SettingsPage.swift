@@ -84,3 +84,9 @@ struct SettingsPage: View {
         }
     }
 }
+
+struct SettingsPage_Preview: PreviewProvider {
+    static var previews: some View {
+        SettingsPage()
+    }
+}
