@@ -79,6 +79,12 @@ struct SettingsPage: View {
                         Text("About")
                     }
                 }
+                
+                Section(header: Text("Licence")) {
+                    NavigationLink(destination: LicensePage()) {
+                        Text("License")
+                    }
+                }
             }
             .navigationBarTitle("Settings")
         }
@@ -88,5 +94,6 @@ struct SettingsPage: View {
 struct SettingsPage_Preview: PreviewProvider {
     static var previews: some View {
         SettingsPage()
+            .preferredColorScheme(.dark)
     }
 }
