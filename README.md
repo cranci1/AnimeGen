@@ -27,7 +27,6 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 > [!Note]
 > The working status is going to be update only if reported the api being down (not working)
 
-
 ## APIs Credits
 
 - [pic.re api](https://doc.pic.re/)
