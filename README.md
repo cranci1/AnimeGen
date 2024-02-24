@@ -45,3 +45,28 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
+
+
+## Build
+
+Want to build the app your self? No problem, by cloning this repo and running the ipadbuild.sh file you can build your own ipa of the app!
+
+Clone the repo:
+
+```
+git clone https://github.com/cranci1/AnimeGen
+```
+
+Navige to the directory:
+
+```
+cd AnimeGen
+```
+
+Run the script:
+
+```
+./ipabuild.sh
+```
+
+If the build was succeful then in the directory of AnimeGen you should see a "build" folder with inside a folder "DerivedDataApp" and the AnimeGen.ipa file. You are now done!
