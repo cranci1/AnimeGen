@@ -69,4 +69,4 @@ Run the script:
 ./ipabuild.sh
 ```
 
-If the build was successful, then in the AnimeGen directory, you should see a "build" folder with a subfolder "DerivedDataApp" and the AnimeGen.ipa file. You are now done!
+If the build was successful, you should see a "build" folder with a subfolder "DerivedDataApp" and the AnimeGen.ipa file in the AnimeGen directory. You are now done! Just use any IPA installer like TrollStore, AlStore, Scarlet, ESign or sideloadly to install the IPA on the desired device.
