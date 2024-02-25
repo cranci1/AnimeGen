@@ -26,6 +26,8 @@
 		13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910ECA2B80D5C8009BF17E /* waifu-pics.swift */; };
 		13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13910ECE2B80D90D009BF17E /* SDWebImage */; };
 		13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE98BF2B828B8000379AB7 /* nekosmoe.swift */; };
+		13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC95072B8BA40100B5705E /* ApiPage.swift */; };
+		13CC950A2B8BA43600B5705E /* API.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13CC95092B8BA43600B5705E /* API.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		13910EC82B80D5C2009BF17E /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
 		13910ECA2B80D5C8009BF17E /* waifu-pics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
 		13BE98BF2B828B8000379AB7 /* nekosmoe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosmoe.swift; sourceTree = "<group>"; };
+		13CC95072B8BA40100B5705E /* ApiPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPage.swift; sourceTree = "<group>"; };
+		13CC95092B8BA43600B5705E /* API.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = API.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				13877B182B82001800251A60 /* SettingsPage.swift */,
 				13877B1D2B82024A00251A60 /* AboutPage.swift */,
 				13877B212B8233B800251A60 /* LicensePage.swift */,
+				13CC95072B8BA40100B5705E /* ApiPage.swift */,
+				13CC95092B8BA43600B5705E /* API.xcassets */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 			files = (
 				130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */,
 				130A805C2B78C0300028985F /* Assets.xcassets in Resources */,
+				13CC950A2B8BA43600B5705E /* API.xcassets in Resources */,
 				130A805A2B78C02E0028985F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +228,7 @@
 				138661252B8136DC0062AC91 /* nekosapi.swift in Sources */,
 				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,
 				13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */,
+				13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +392,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -416,7 +424,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

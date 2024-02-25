@@ -78,13 +78,16 @@ struct SettingsPage: View {
                     NavigationLink(destination: AboutPage()) {
                         Text("About")
                     }
-                }
-                
-                Section(header: Text("Licence")) {
+
                     NavigationLink(destination: LicensePage()) {
                         Text("License")
                     }
+                
+                    NavigationLink(destination: ApiPage()) {
+                        Text("APIs credits")
+                    }
                 }
+                
             }
             .navigationBarTitle("Settings")
         }
