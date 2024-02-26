@@ -29,11 +29,14 @@ struct ApiPage: View {
             ScrollView {
                 VStack(spacing: 10) {
                     ForEach(0..<apiData.count, id: \.self) { index in
-                        if index % 2 == 0 {
-                            HStack(spacing: 45) {
+                        if index % 3 == 0 {
+                            HStack(spacing: 20) {
                                 apiItem(index: index)
                                 if index + 1 < apiData.count {
                                     apiItem(index: index + 1)
+                                }
+                                if index + 2 < apiData.count {
+                                    apiItem(index: index + 2)
                                 }
                             }
                         }
@@ -55,7 +58,7 @@ struct ApiPage: View {
                 Image(data.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 120)
+                    .frame(height: 80)
                     .cornerRadius(10)
 
                 Text(data.apiName)
