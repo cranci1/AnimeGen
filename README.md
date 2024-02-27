@@ -18,14 +18,14 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 | Waifu.im            | SFW/NSFW |   :white_check_mark:       |
 | Nekos.best          | SFW      |   :white_check_mark:       |
 | Waifu.pics          | SFW/NSFW |   :white_check_mark:       |
-| Hmtai               | SFW/NSFW |   ❌     |
+| Hmtai               | SFW/NSFW |   :warning:                |
 | Nekos api           | SFW/NSFW |   :white_check_mark:       |
 | Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
 
 </table>
 
-> [!Note]
-> The working status is going to be update only if reported the api being down (not working)
+> [!Important]
+> The Hmtai api uses "cdn.discordapp.com/attachments" links, they are currently marked as "This content is no longer available.", so most of the images wont work.
 
 ## APIs Credits
 

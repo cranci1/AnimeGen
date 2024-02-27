@@ -8,7 +8,7 @@
 import UIKit
 
 extension ViewController {
-    
+
     func loadImagesFromHmtai() {
         startLoadingIndicator()
 
@@ -16,7 +16,7 @@ extension ViewController {
         let endpointPrefix: String
 
         if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
-            categories3 = ["ass","anal","bdsm","classic","cum","creampie","manga","femdom","hentai","incest","masturbation","public","ero","orgy","elves","yuri","pantsu","pussy","glasses","cuckold","blowjob","boobjob","handjob","footjob","boobs","thighs","ahegao","uniform","gangbang","tentacles","gif","nsfwNeko","nsfwMobileWallpaper","zettaiRyouiki"]
+            categories3 = ["ass", "anal", "bdsm", "classic", "cum", "creampie", "manga", "femdom", "hentai", "incest", "masturbation", "public", "ero", "orgy", "elves", "yuri", "pantsu", "pussy", "glasses", "cuckold", "blowjob", "boobjob", "handjob", "footjob", "boobs", "thighs", "ahegao", "uniform", "gangbang", "tentacles", "gif", "nsfwNeko", "nsfwMobileWallpaper", "zettaiRyouiki"]
             endpointPrefix = "https://hmtai.hatsunia.cfd/nsfw/"
         } else {
             categories3 = ["wave", "wink", "tea", "bonk", "punch", "poke", "bully", "pat", "kiss", "kick", "blush", "feed", "smug", "hug", "cuddle", "cry", "cringe", "slap", "five", "glomp", "happy", "hold", "nom", "smile", "throw", "lick", "bite", "dance", "boop", "sleep", "like", "kill", "tickle", "nosebleed", "threaten", "depression", "wolf_arts", "jahy_arts", "neko_arts", "coffee_arts", "wallpaper", "mobileWallpaper"]
@@ -36,7 +36,7 @@ extension ViewController {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Error: \(error)")
+                    print("Error loading image data: \(error.localizedDescription)")
                     self.stopLoadingIndicator()
                     return
                 }
@@ -47,38 +47,37 @@ extension ViewController {
                     return
                 }
 
-                if let data = data, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let imageUrlString = jsonResponse["url"] as? String, let imageUrl = URL(string: imageUrlString) {
+                if let jsonResponse = try? JSONSerialization.jsonObject(with: data ?? Data(), options: []) as? [String: Any],
+                   let imageUrlString = jsonResponse["url"] as? String,
+                   let imageUrl = URL(string: imageUrlString) {
+                    print("Image URL: \(imageUrlString)")
 
-                    if let imageData = try? Data(contentsOf: imageUrl) {
-                        if imageUrlString.lowercased().hasSuffix(".gif") {
-                            if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 2.0) {
-                                self.imageView.image = animatedImage
-                                self.animateImageChange(with: animatedImage)
-                            } else {
-                                print("Failed to create animated image from GIF data.")
+                    let imageDataTask = URLSession.shared.dataTask(with: imageUrl) { (imageData, _, imageError) in
+                        DispatchQueue.main.async {
+                            if let imageError = imageError {
+                                print("Error loading image data: \(imageError.localizedDescription)")
+                                self.stopLoadingIndicator()
+                                return
                             }
-                        } else {
-                            if let newImage = UIImage(data: imageData) {
+
+                            if let imageData = imageData, let newImage = UIImage(data: imageData) {
                                 self.imageView.image = newImage
                                 self.animateImageChange(with: newImage)
+
+                                let category3 = randomCategory3
+                                self.tagsLabel.isHidden = false
+                                self.currentImageURL = imageUrlString
+                                self.updateUIWithTags([category3])
+
+                                self.stopLoadingIndicator()
                             } else {
-                                print("Failed to load image data.")
+                                print("Invalid image content or link issue.")
+                                self.loadImagesFromHmtai()
                             }
                         }
-
-                        let category3 = randomCategory3
-                        
-                        self.tagsLabel.isHidden = false
-                        
-                        self.currentImageURL = imageUrlString
-
-                        self.updateUIWithTags([category3])
-
-                        self.stopLoadingIndicator()
-                    } else {
-                        print("Failed to load image data.")
-                        self.stopLoadingIndicator()
                     }
+
+                    imageDataTask.resume()
                 } else {
                     print("Failed to parse JSON response or missing necessary data.")
                     self.stopLoadingIndicator()
@@ -88,5 +87,5 @@ extension ViewController {
 
         task.resume()
     }
-    
+
 }
