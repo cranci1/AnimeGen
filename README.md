@@ -18,7 +18,7 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 | Waifu.im            | SFW/NSFW |   :white_check_mark:       |
 | Nekos.best          | SFW      |   :white_check_mark:       |
 | Waifu.pics          | SFW/NSFW |   :white_check_mark:       |
-| Hmtai               | SFW/NSFW |   :white_check_mark:      |
+| Hmtai               | SFW/NSFW |   ❌     |
 | Nekos api           | SFW/NSFW |   :white_check_mark:       |
 | Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
 
