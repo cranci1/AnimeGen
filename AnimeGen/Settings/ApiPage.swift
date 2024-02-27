@@ -58,7 +58,7 @@ struct ApiPage: View {
                 Image(data.imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 80)
+                    .frame(height: 100)
                     .cornerRadius(10)
 
                 Text(data.apiName)

@@ -53,6 +53,10 @@ class ViewController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(rewindButtonTapped))
         swipeRight.direction = .right
         view.addGestureRecognizer(swipeRight)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(settingsButtonTapped))
+        swipeDown.direction = .down
+        view.addGestureRecognizer(swipeDown)
 
         view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
 
