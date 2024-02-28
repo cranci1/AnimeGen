@@ -49,7 +49,7 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 
 ## Build
 
-Want to build the app yourself? No problem, by cloning this repo and running the ipadbuild.sh file, you can build your own IPA of the app!
+Want to build the app yourself? No problem, by cloning this repo and running the ipadbuild.sh file, you can build your own IPA of the app! You can also modify the app as you like!
 
 Clone the repo:
 
