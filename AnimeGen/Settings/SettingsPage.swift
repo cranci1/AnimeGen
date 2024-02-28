@@ -86,6 +86,10 @@ struct SettingsPage: View {
                     NavigationLink(destination: ApiPage()) {
                         Text("APIs credits")
                     }
+                    
+                    NavigationLink(destination: IconPage().environmentObject(IconNames())) {
+                        Text("Change AppIcon")
+                    }
                 }
                 
             }

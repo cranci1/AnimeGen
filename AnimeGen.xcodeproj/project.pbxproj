@@ -13,6 +13,19 @@
 		130A805A2B78C02E0028985F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A80582B78C02E0028985F /* Main.storyboard */; };
 		130A805C2B78C0300028985F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130A805B2B78C0300028985F /* Assets.xcassets */; };
 		130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A805D2B78C0300028985F /* LaunchScreen.storyboard */; };
+		1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E7DF2B8FA2B70033C222 /* IconPage.swift */; };
+		1365E7EB2B8FA9BF0033C222 /* Turtle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7E82B8FA9BE0033C222 /* Turtle@3x.png */; };
+		1365E7EC2B8FA9BF0033C222 /* Turtle@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */; };
+		1365E7ED2B8FA9BF0033C222 /* Turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7EA2B8FA9BF0033C222 /* Turtle@2x.png */; };
+		1365E7F12B8FA9D70033C222 /* Red@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7EE2B8FA9D70033C222 /* Red@1x.png */; };
+		1365E7F22B8FA9D70033C222 /* Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7EF2B8FA9D70033C222 /* Red@2x.png */; };
+		1365E7F32B8FA9D70033C222 /* Red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7F02B8FA9D70033C222 /* Red@3x.png */; };
+		1365E7F72B8FA9EA0033C222 /* Weird@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7F42B8FA9EA0033C222 /* Weird@1x.png */; };
+		1365E7F82B8FA9EA0033C222 /* Weird@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7F52B8FA9EA0033C222 /* Weird@3x.png */; };
+		1365E7F92B8FA9EA0033C222 /* Weird@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7F62B8FA9EA0033C222 /* Weird@2x.png */; };
+		1365E7FD2B8FAA060033C222 /* Nice@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7FA2B8FAA060033C222 /* Nice@1x.png */; };
+		1365E7FE2B8FAA060033C222 /* Nice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7FB2B8FAA060033C222 /* Nice@3x.png */; };
+		1365E7FF2B8FAA060033C222 /* Nice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7FC2B8FAA060033C222 /* Nice@2x.png */; };
 		138661232B81216D0062AC91 /* Hmtai.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661222B81216D0062AC91 /* Hmtai.swift */; };
 		138661252B8136DC0062AC91 /* nekosapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661242B8136DC0062AC91 /* nekosapi.swift */; };
 		13877B192B82001800251A60 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B182B82001800251A60 /* SettingsPage.swift */; };
@@ -39,6 +52,19 @@
 		130A805B2B78C0300028985F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		130A805E2B78C0300028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130A80602B78C0300028985F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1365E7DF2B8FA2B70033C222 /* IconPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPage.swift; sourceTree = "<group>"; };
+		1365E7E82B8FA9BE0033C222 /* Turtle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@3x.png"; sourceTree = "<group>"; };
+		1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@1x.png"; sourceTree = "<group>"; };
+		1365E7EA2B8FA9BF0033C222 /* Turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@2x.png"; sourceTree = "<group>"; };
+		1365E7EE2B8FA9D70033C222 /* Red@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@1x.png"; sourceTree = "<group>"; };
+		1365E7EF2B8FA9D70033C222 /* Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x.png"; sourceTree = "<group>"; };
+		1365E7F02B8FA9D70033C222 /* Red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@3x.png"; sourceTree = "<group>"; };
+		1365E7F42B8FA9EA0033C222 /* Weird@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weird@1x.png"; sourceTree = "<group>"; };
+		1365E7F52B8FA9EA0033C222 /* Weird@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weird@3x.png"; sourceTree = "<group>"; };
+		1365E7F62B8FA9EA0033C222 /* Weird@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Weird@2x.png"; sourceTree = "<group>"; };
+		1365E7FA2B8FAA060033C222 /* Nice@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nice@1x.png"; sourceTree = "<group>"; };
+		1365E7FB2B8FAA060033C222 /* Nice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nice@3x.png"; sourceTree = "<group>"; };
+		1365E7FC2B8FAA060033C222 /* Nice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nice@2x.png"; sourceTree = "<group>"; };
 		138661222B81216D0062AC91 /* Hmtai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hmtai.swift; sourceTree = "<group>"; };
 		138661242B8136DC0062AC91 /* nekosapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosapi.swift; sourceTree = "<group>"; };
 		13877B182B82001800251A60 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
@@ -100,13 +126,34 @@
 			path = AnimeGen;
 			sourceTree = "<group>";
 		};
+		1365E7E72B8FA99C0033C222 /* Iconss */ = {
+			isa = PBXGroup;
+			children = (
+				1365E7FA2B8FAA060033C222 /* Nice@1x.png */,
+				1365E7FC2B8FAA060033C222 /* Nice@2x.png */,
+				1365E7FB2B8FAA060033C222 /* Nice@3x.png */,
+				1365E7F42B8FA9EA0033C222 /* Weird@1x.png */,
+				1365E7F62B8FA9EA0033C222 /* Weird@2x.png */,
+				1365E7F52B8FA9EA0033C222 /* Weird@3x.png */,
+				1365E7EE2B8FA9D70033C222 /* Red@1x.png */,
+				1365E7EF2B8FA9D70033C222 /* Red@2x.png */,
+				1365E7F02B8FA9D70033C222 /* Red@3x.png */,
+				1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */,
+				1365E7EA2B8FA9BF0033C222 /* Turtle@2x.png */,
+				1365E7E82B8FA9BE0033C222 /* Turtle@3x.png */,
+			);
+			path = Iconss;
+			sourceTree = "<group>";
+		};
 		13877B1A2B82017A00251A60 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				1365E7E72B8FA99C0033C222 /* Iconss */,
 				13877B182B82001800251A60 /* SettingsPage.swift */,
 				13877B1D2B82024A00251A60 /* AboutPage.swift */,
 				13877B212B8233B800251A60 /* LicensePage.swift */,
 				13CC95072B8BA40100B5705E /* ApiPage.swift */,
+				1365E7DF2B8FA2B70033C222 /* IconPage.swift */,
 				13CC95092B8BA43600B5705E /* API.xcassets */,
 			);
 			path = Settings;
@@ -200,7 +247,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */,
+				1365E7F12B8FA9D70033C222 /* Red@1x.png in Resources */,
+				1365E7F92B8FA9EA0033C222 /* Weird@2x.png in Resources */,
+				1365E7EB2B8FA9BF0033C222 /* Turtle@3x.png in Resources */,
+				1365E7FD2B8FAA060033C222 /* Nice@1x.png in Resources */,
+				1365E7FE2B8FAA060033C222 /* Nice@3x.png in Resources */,
+				1365E7F72B8FA9EA0033C222 /* Weird@1x.png in Resources */,
+				1365E7FF2B8FAA060033C222 /* Nice@2x.png in Resources */,
+				1365E7F32B8FA9D70033C222 /* Red@3x.png in Resources */,
+				1365E7F82B8FA9EA0033C222 /* Weird@3x.png in Resources */,
 				130A805C2B78C0300028985F /* Assets.xcassets in Resources */,
+				1365E7F22B8FA9D70033C222 /* Red@2x.png in Resources */,
+				1365E7EC2B8FA9BF0033C222 /* Turtle@1x.png in Resources */,
+				1365E7ED2B8FA9BF0033C222 /* Turtle@2x.png in Resources */,
 				13CC950A2B8BA43600B5705E /* API.xcassets in Resources */,
 				130A805A2B78C02E0028985F /* Main.storyboard in Resources */,
 			);
@@ -224,6 +283,7 @@
 				13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */,
 				13877B222B8233B800251A60 /* LicensePage.swift in Sources */,
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
+				1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */,
 				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
 				138661252B8136DC0062AC91 /* nekosapi.swift in Sources */,
 				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,

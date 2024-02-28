@@ -2,6 +2,51 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>Nice</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Nice</string>
+				</array>
+			</dict>
+			<key>Red</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Red</string>
+				</array>
+			</dict>
+			<key>Turtle</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Turtle</string>
+				</array>
+			</dict>
+			<key>Weird</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>Weird</string>
+				</array>
+			</dict>
+		</dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string></string>
+			</array>
+			<key>CFBundleIconName</key>
+			<string></string>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
