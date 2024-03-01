@@ -45,7 +45,7 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
-- [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change)
+- [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change option)
 
 
 
