@@ -6,18 +6,18 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>Nice</key>
+			<key>Generator</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>Nice</string>
+					<string>Generator</string>
 				</array>
 			</dict>
-			<key>Red</key>
+			<key>Printer</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>Red</string>
+					<string>Printer</string>
 				</array>
 			</dict>
 			<key>Turtle</key>
@@ -25,13 +25,6 @@
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>Turtle</string>
-				</array>
-			</dict>
-			<key>Weird</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Weird</string>
 				</array>
 			</dict>
 		</dict>
