@@ -69,11 +69,11 @@ Now you need to create a new file called: Secrets.swift, in this file you need t
 import Foundation
 
 struct Secrets {
-    static let apiToken = "Bot BotToken" // Replace BotToken with the token of the discord bot
+    static let apiToken = "Bot Token" // Replace Token with the token of the discord bot
     
-    static let discordWebhookURL = URL(string: "Your Webhook Url")!
+    static let discordWebhookURL = URL(string: "YourWebhookUrl")!
     
-    static let discordChannelId = "Your ChannelId Here"
+    static let discordChannelId = "YourChannelIdHere"
 }
 ```
 
