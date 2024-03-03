@@ -60,7 +60,7 @@ struct AboutPage: View {
                         Text("Hmtai API Privacy")
                     }
                     .onTapGesture {
-                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/Privacy/Hmtai.md") {
+                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md") {
                             UIApplication.shared.open(url)
                         }
                     }
