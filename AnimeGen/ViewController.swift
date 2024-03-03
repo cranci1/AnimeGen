@@ -108,7 +108,7 @@ class ViewController: UIViewController {
             settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
         ])
         
-        let webButton = UIButton(type: .system)
+        webButton = UIButton(type: .system)
         let webIcon = UIImage(systemName: "safari.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
         webButton.setImage(webIcon, for: .normal)
@@ -230,7 +230,7 @@ class ViewController: UIViewController {
         case "waifu.pics":
             loadImageFromWaifuPics()
         case "Hmtai":
-            loadImagesFromHmtai()
+            fetchDataAndSendImageToDiscord()
         case "Nekos api":
             loadImageAndTagsFromNekosapi()
         case "nekos.moe":
@@ -275,7 +275,7 @@ class ViewController: UIViewController {
             loadImageFromWaifuPics()
         case "Hmtai":
             lastImage = imageView.image
-            loadImagesFromHmtai()
+            fetchDataAndSendImageToDiscord()
         case "Nekos api":
             lastImage = imageView.image
             loadImageAndTagsFromNekosapi()
@@ -360,8 +360,7 @@ class ViewController: UIViewController {
         if let error = error {
             print("Error saving image: \(error.localizedDescription)")
         } else {
-            print("Image saved successfully!")
-            animateFeedback()
+            print("Image saved successfully")
         }
     }
     
@@ -370,5 +369,4 @@ class ViewController: UIViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    
 }

@@ -23,7 +23,6 @@
 		1365E8072B920C110033C222 /* Printer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E8062B920C110033C222 /* Printer@2x.png */; };
 		1365E8092B920C1A0033C222 /* Generator@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E8082B920C1A0033C222 /* Generator@3x.png */; };
 		1365E80B2B920C220033C222 /* Printer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E80A2B920C220033C222 /* Printer@3x.png */; };
-		138661232B81216D0062AC91 /* Hmtai.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661222B81216D0062AC91 /* Hmtai.swift */; };
 		138661252B8136DC0062AC91 /* nekosapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661242B8136DC0062AC91 /* nekosapi.swift */; };
 		13877B192B82001800251A60 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B182B82001800251A60 /* SettingsPage.swift */; };
 		13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B1D2B82024A00251A60 /* AboutPage.swift */; };
@@ -35,7 +34,10 @@
 		13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC82B80D5C2009BF17E /* nekos-best.swift */; };
 		13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910ECA2B80D5C8009BF17E /* waifu-pics.swift */; };
 		13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13910ECE2B80D90D009BF17E /* SDWebImage */; };
+		13A325922B94D8A100F1C357 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A325912B94D8A100F1C357 /* Secrets.swift */; };
 		13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE98BF2B828B8000379AB7 /* nekosmoe.swift */; };
+		13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C8011C2B94C5E900BFD198 /* HmtaiSender.swift */; };
+		13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */; };
 		13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC95072B8BA40100B5705E /* ApiPage.swift */; };
 		13CC950A2B8BA43600B5705E /* API.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13CC95092B8BA43600B5705E /* API.xcassets */; };
 /* End PBXBuildFile section */
@@ -59,7 +61,6 @@
 		1365E8062B920C110033C222 /* Printer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Printer@2x.png"; sourceTree = "<group>"; };
 		1365E8082B920C1A0033C222 /* Generator@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Generator@3x.png"; sourceTree = "<group>"; };
 		1365E80A2B920C220033C222 /* Printer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Printer@3x.png"; sourceTree = "<group>"; };
-		138661222B81216D0062AC91 /* Hmtai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hmtai.swift; sourceTree = "<group>"; };
 		138661242B8136DC0062AC91 /* nekosapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosapi.swift; sourceTree = "<group>"; };
 		13877B182B82001800251A60 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		13877B1D2B82024A00251A60 /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
@@ -70,7 +71,10 @@
 		13910EC62B80D5B9009BF17E /* waifu-im.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
 		13910EC82B80D5C2009BF17E /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
 		13910ECA2B80D5C8009BF17E /* waifu-pics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
+		13A325912B94D8A100F1C357 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		13BE98BF2B828B8000379AB7 /* nekosmoe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosmoe.swift; sourceTree = "<group>"; };
+		13C8011C2B94C5E900BFD198 /* HmtaiSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiSender.swift; sourceTree = "<group>"; };
+		13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiReader.swift; sourceTree = "<group>"; };
 		13CC95072B8BA40100B5705E /* ApiPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPage.swift; sourceTree = "<group>"; };
 		13CC95092B8BA43600B5705E /* API.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = API.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,8 +120,18 @@
 				130A80582B78C02E0028985F /* Main.storyboard */,
 				130A805D2B78C0300028985F /* LaunchScreen.storyboard */,
 				130A80602B78C0300028985F /* Info.plist */,
+				13A325912B94D8A100F1C357 /* Secrets.swift */,
 			);
 			path = AnimeGen;
+			sourceTree = "<group>";
+		};
+		1317D4B22B9479CD00675214 /* Hmtai */ = {
+			isa = PBXGroup;
+			children = (
+				13C8011C2B94C5E900BFD198 /* HmtaiSender.swift */,
+				13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */,
+			);
+			path = Hmtai;
 			sourceTree = "<group>";
 		};
 		1365E7E72B8FA99C0033C222 /* Iconss */ = {
@@ -177,11 +191,11 @@
 		13910EC32B80D595009BF17E /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				1317D4B22B9479CD00675214 /* Hmtai */,
 				13910EC42B80D5A6009BF17E /* pic-re.swift */,
 				13910EC62B80D5B9009BF17E /* waifu-im.swift */,
 				13910ECA2B80D5C8009BF17E /* waifu-pics.swift */,
 				13910EC82B80D5C2009BF17E /* nekos-best.swift */,
-				138661222B81216D0062AC91 /* Hmtai.swift */,
 				138661242B8136DC0062AC91 /* nekosapi.swift */,
 				13BE98BF2B828B8000379AB7 /* nekosmoe.swift */,
 			);
@@ -284,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A325922B94D8A100F1C357 /* Secrets.swift in Sources */,
 				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,
 				13877B192B82001800251A60 /* SettingsPage.swift in Sources */,
 				13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */,
@@ -291,11 +306,12 @@
 				130A80532B78C02E0028985F /* AppDelegate.swift in Sources */,
 				130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */,
 				13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */,
-				138661232B81216D0062AC91 /* Hmtai.swift in Sources */,
 				13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */,
 				13877B222B8233B800251A60 /* LicensePage.swift in Sources */,
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
 				1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */,
+				13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */,
+				13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */,
 				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
 				138661252B8136DC0062AC91 /* nekosapi.swift in Sources */,
 				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,
