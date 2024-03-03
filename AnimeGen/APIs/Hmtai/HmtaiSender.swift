@@ -60,8 +60,8 @@ extension ViewController {
     }
 
     private func sendImageToDiscord(_ imageUrlString: String) {
-        let discordWebhookURL = URL(string: "https://discord.com/api/webhooks/1213771285507735592/flCaAxQ8NuhnJML3P_YYFIOvSQxhmT8552nm4lQE2LgDWOzZvMGNaVsf7BJU4yqdQ_ql")!
-        
+        let discordWebhookURL = Secrets.discordWebhookURL
+
         var request = URLRequest(url: discordWebhookURL)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -11,7 +11,7 @@ extension ViewController {
     
     func fetchLastMessageFromDiscordAndLoadImage() {
         
-        let discordChannelID = "1212099607031578674"
+        let discordChannelID = Secrets.discordChannelId
         
         let url = URL(string: "https://discord.com/api/v10/channels/\(discordChannelID)/messages")!
         var request = URLRequest(url: url)
