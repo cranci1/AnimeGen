@@ -45,13 +45,22 @@ struct AboutPage: View {
                     }
                 }
                 
-                Section(header: Text("Privacy"), footer: Text("AnimeGen prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to save an image, it will only be stored locally in their device's gallery. We are committed to ensuring a secure and private experience for our users.")) {
+                Section(header: Text("Privacy"), footer: Text("AnimeGen prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to save an image, it will only be stored locally in their device's gallery exept for the Hmtai APi. We are committed to ensuring a secure and private experience for our users.")) {
                     
                     HStack {
                         Text("Review the code")
                     }
                     .onTapGesture {
                         if let url = URL(string: "https://github.com/cranci1/AnimeGen/tree/main") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                    
+                    HStack {
+                        Text("Understand More for Hmtai")
+                    }
+                    .onTapGesture {
+                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/Privacy/Hmtai.md") {
                             UIApplication.shared.open(url)
                         }
                     }
