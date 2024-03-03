@@ -18,14 +18,11 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+
 | Waifu.im            | SFW/NSFW |   :white_check_mark:       |
 | Nekos.best          | SFW      |   :white_check_mark:       |
 | Waifu.pics          | SFW/NSFW |   :white_check_mark:       |
-| Hmtai               | SFW/NSFW |   :warning:                |
+| Hmtai               | SFW/NSFW |   :white_check_mark:       |
 | Nekos api           | SFW/NSFW |   :white_check_mark:       |
 | Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
 
 </table>
-
-> [!Important]
-> The Hmtai api uses "cdn.discordapp.com/attachments" links, they are currently marked as "This content is no longer available.", so most of the images wont work.
 
 ## APIs Credits
 
@@ -64,6 +61,20 @@ Navige to the directory:
 
 ```
 cd AnimeGen
+```
+
+Now you need to create a new file called: Secrets.swift, in this file you need to place this code:
+
+```swift
+import Foundation
+
+struct Secrets {
+    static let apiToken = "Bot BotToken" // Replace BotToken with the token of the discord bot
+    
+    static let discordWebhookURL = URL(string: "Your Webhook Url")!
+    
+    static let discordChannelId = "Your ChannelId Here"
+}
 ```
 
 Run the script:
