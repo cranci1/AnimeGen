@@ -16,11 +16,13 @@ extension ViewController {
         let url = URL(string: "https://discord.com/api/v10/channels/\(discordChannelID)/messages")!
         var request = URLRequest(url: url)
         request.setValue(Secrets.apiToken, forHTTPHeaderField: "Authorization")
+        print("Sending request to message JSON")
 
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]], let message = json.first {
                 if let imageUrl = self.extractImageUrl(from: message) {
                     self.loadImageFromDiscord(imageUrl: imageUrl)
+                    print("Success now step 2")
                 } else {
                     print("Error extracting image URL from Discord message.")
                     print("Message JSON: \(self.convertDictionaryToJsonString(message) ?? "")")
