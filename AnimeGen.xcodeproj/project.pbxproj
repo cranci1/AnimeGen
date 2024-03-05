@@ -114,13 +114,13 @@
 				13910ECC2B80D61F009BF17E /* Extensions */,
 				13910EC32B80D595009BF17E /* APIs */,
 				130A80522B78C02E0028985F /* AppDelegate.swift */,
+				13A325912B94D8A100F1C357 /* Secrets.swift */,
 				130A80542B78C02E0028985F /* SceneDelegate.swift */,
 				130A80562B78C02E0028985F /* ViewController.swift */,
 				130A805B2B78C0300028985F /* Assets.xcassets */,
 				130A80582B78C02E0028985F /* Main.storyboard */,
 				130A805D2B78C0300028985F /* LaunchScreen.storyboard */,
 				130A80602B78C0300028985F /* Info.plist */,
-				13A325912B94D8A100F1C357 /* Secrets.swift */,
 			);
 			path = AnimeGen;
 			sourceTree = "<group>";
