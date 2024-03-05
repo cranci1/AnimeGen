@@ -6,13 +6,6 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>Generator</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Generator</string>
-				</array>
-			</dict>
 			<key>Printer</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
