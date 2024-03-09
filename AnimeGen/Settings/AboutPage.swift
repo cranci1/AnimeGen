@@ -1,5 +1,5 @@
 //
-//  LicensePage.swift
+//  AboutPage.swift
 //  AnimeGen
 //
 //  Created by cranci on 18/02/24.
@@ -15,60 +15,78 @@ struct AboutPage: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("App info"), footer: Text("AnimeGen is a free, open source iOS app, developed by cranci. The app is under the GNU General Public License version 3.")) {
-
-                    HStack {
-                        Text("Version: \(appVersion)")
-                    }
-                    
-                    HStack {
-                        Text("Build: \(appBuild)")
-                    }
-                    
-                    HStack {
-                        Text("Github Repository")
-                    }
-                    .font(.system(size: 15, weight: .regular))
-                    .onTapGesture {
-                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/") {
-                            UIApplication.shared.open(url)
-                        }
-                    }
-                    
-                    HStack {
-                        Text("Report an Issue")
-                    }
-                    .onTapGesture {
-                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/issues") {
-                            UIApplication.shared.open(url)
-                        }
-                    }
+                Section(header: Text("App info"),
+                        footer: Text("AnimeGen is a free, open source iOS app, developed by cranci. The app is under the GNU General Public License version 3.")) {
+                    InfoRow(title: "Version", value: appVersion)
+                    InfoRow(title: "Build", value: appBuild)
+                    LinkRow(title: "Github Repository", url: "https://github.com/cranci1/AnimeGen/")
+                    LinkRow(title: "Report an Issue", url: "https://github.com/cranci1/AnimeGen/issues")
                 }
                 
-                Section(header: Text("Privacy"), footer: Text("AnimeGen prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to save an image, it will only be stored locally in their device's gallery exept for the Hmtai API. We are committed to ensuring a secure and private experience for our users.")) {
-                    
-                    HStack {
-                        Text("Review the code")
-                    }
-                    .onTapGesture {
-                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/tree/main") {
-                            UIApplication.shared.open(url)
-                        }
-                    }
-                    
-                    HStack {
-                        Text("Hmtai API Privacy")
-                    }
-                    .onTapGesture {
-                        if let url = URL(string: "https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md") {
-                            UIApplication.shared.open(url)
-                        }
-                    }
+                Section(header: Text("Privacy"),
+                        footer: Text("AnimeGen prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to save an image, it will only be stored locally in their device's gallery except for the Hmtai API. We are committed to ensuring a secure and private experience for our users.")) {
+                    LinkRow(title: "Review the code", url: "https://github.com/cranci1/AnimeGen/tree/main")
+                    LinkRow(title: "Hmtai API Privacy", url: "https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md")
+                }
+                
+                Section(header: Text("License"),
+                        footer: Text("""
+                                    Copyright © 2023-2024 cranci. All rights reserved.
+
+                                    AnimeGen is free software: you can redistribute it and/or modify
+                                    it under the terms of the GNU General Public License as published by
+                                    the Free Software Foundation, either version 3 of the License, or
+                                    (at your option) any later version.
+
+                                    AnimeGen is distributed in the hope that it will be useful,
+                                    but WITHOUT ANY WARRANTY; without even the implied warranty of
+                                    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                                    GNU General Public License for more details.
+
+                                    You should have received a copy of the GNU General Public License
+                                    along with AnimeGen.  If not, see <http://www.gnu.org/licenses/>.
+                                    """)) {
+                    LinkRow(title: "Full License", url: "https://github.com/cranci1/AnimeGen/blob/main/LICENSE")
                 }
             }
             .navigationBarHidden(true)
         }
         .navigationBarTitle("About", displayMode: .inline)
+    }
+}
+
+struct InfoRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text("\(title): \(value)")
+        }
+    }
+}
+
+struct LinkRow: View {
+    let title: String
+    let url: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .foregroundColor(.accentColor)
+                .onTapGesture {
+                    if let url = URL(string: self.url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            Image(systemName: "arrow.right.circle.fill")
+                .foregroundColor(.accentColor)
+                .onTapGesture {
+                    if let url = URL(string: self.url) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+        }
     }
 }
 
