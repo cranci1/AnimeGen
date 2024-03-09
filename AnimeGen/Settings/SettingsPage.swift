@@ -77,14 +77,17 @@ struct SettingsPage: View {
                 Section(header: Text("About AnimeGen")) {
                     NavigationLink(destination: AboutPage()) {
                         Text("About")
+                            .foregroundColor(.accentColor)
                     }
                 
                     NavigationLink(destination: ApiPage()) {
                         Text("APIs credits")
+                            .foregroundColor(.accentColor)
                     }
                     
                     NavigationLink(destination: IconPage().environmentObject(IconNames())) {
                         Text("Change AppIcon")
+                            .foregroundColor(.accentColor)
                     }
                 }
                 

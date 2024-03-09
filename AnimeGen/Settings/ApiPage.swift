@@ -64,6 +64,7 @@ struct ApiPage: View {
                 Text(data.apiName)
                     .padding(.top, 5)
                     .font(.headline)
+                    .foregroundColor(.accentColor)
             }
         }
         .buttonStyle(PlainButtonStyle())
@@ -77,5 +78,6 @@ struct ApiPage: View {
 struct ApiPage_Preview: PreviewProvider {
     static var previews: some View {
         ApiPage()
+            .preferredColorScheme(.dark)
     }
 }

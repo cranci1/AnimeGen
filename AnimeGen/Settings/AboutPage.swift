@@ -93,5 +93,6 @@ struct LinkRow: View {
 struct AboutPage_Previews: PreviewProvider {
     static var previews: some View {
         AboutPage()
+            .preferredColorScheme(.dark)
     }
 }

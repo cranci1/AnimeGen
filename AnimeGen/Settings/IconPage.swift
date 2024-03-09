@@ -55,7 +55,7 @@ struct IconPage: View {
 
                             Text(self.iconSettings.iconNames[i] ?? "Base")
                                 .font(.headline)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.accentColor)
                                 .lineLimit(1)
                                 .padding(.leading, 8)
 
@@ -82,6 +82,6 @@ struct IconPage: View {
 
 struct IconPage_Previews: PreviewProvider {
     static var previews: some View {
-        IconPage().environmentObject(IconNames())
+        IconPage().preferredColorScheme(.dark).environmentObject(IconNames())
     }
 }
