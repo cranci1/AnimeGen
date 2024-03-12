@@ -230,7 +230,7 @@ class ViewController: UIViewController {
         case "waifu.pics":
             loadImageFromWaifuPics()
         case "Hmtai":
-            fetchDataAndSendImageToDiscord()
+            startHmtaiLoader()
         case "Nekos api":
             loadImageAndTagsFromNekosapi()
         case "nekos.moe":
@@ -275,7 +275,7 @@ class ViewController: UIViewController {
             loadImageFromWaifuPics()
         case "Hmtai":
             lastImage = imageView.image
-            fetchDataAndSendImageToDiscord()
+            startHmtaiLoader()
         case "Nekos api":
             lastImage = imageView.image
             loadImageAndTagsFromNekosapi()

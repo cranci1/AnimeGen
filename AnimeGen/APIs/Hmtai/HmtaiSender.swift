@@ -10,7 +10,7 @@ import UIKit
 
 extension ViewController {
     
-    @objc func fetchDataAndSendImageToDiscord() {
+    @objc func startHmtaiLoader() {
         startLoadingIndicator()
 
         let categories3: [String]
