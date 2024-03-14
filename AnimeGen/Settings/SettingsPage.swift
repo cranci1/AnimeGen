@@ -84,11 +84,6 @@ struct SettingsPage: View {
                         Text("APIs credits")
                             .foregroundColor(.accentColor)
                     }
-                    
-                    NavigationLink(destination: IconPage().environmentObject(IconNames())) {
-                        Text("Change AppIcon")
-                            .foregroundColor(.accentColor)
-                    }
                 }
                 
             }
