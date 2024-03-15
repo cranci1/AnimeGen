@@ -23,11 +23,10 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be s
 | Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
 | Kyoko               | SFW/NSFW |   :white_check_mark:       |
 
+</table>
+
 > [!Note]
 > Kyoko and the waifu.pics API likely share a common image database.
-
-
-</table>
 
 ## APIs Credits
 
