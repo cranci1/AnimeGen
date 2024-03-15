@@ -235,6 +235,8 @@ class ViewController: UIViewController {
             loadImageAndTagsFromNekosapi()
         case "nekos.moe":
             loadImageAndTagsFromNekosMoe()
+        case "kyoko":
+            loadImageAndTagsFromKyoko()
         default:
             break
         }
@@ -282,6 +284,9 @@ class ViewController: UIViewController {
         case "nekos.moe":
             lastImage = imageView.image
             loadImageAndTagsFromNekosMoe()
+        case "kyoko":
+            lastImage = imageView.image
+            loadImageAndTagsFromKyoko()
         default:
             break
         }
@@ -291,7 +296,7 @@ class ViewController: UIViewController {
     @objc func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
 
-        let apiOptions = ["nekos.moe", "Nekos api", "Hmtai", "waifu.pics", "nekos.best", "waifu.im", "pic.re"]
+        let apiOptions = ["kyoko", "nekos.moe", "Nekos api", "Hmtai", "waifu.pics", "nekos.best", "waifu.im", "pic.re"]
         for option in apiOptions {
             let action = UIAlertAction(title: option, style: .default) { _ in
                 self.apiButton.setTitle(option, for: .normal)

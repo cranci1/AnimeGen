@@ -21,6 +21,11 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be s
 | Hmtai               | SFW/NSFW |   :white_check_mark:       |
 | Nekos api           | SFW/NSFW |   :white_check_mark:       |
 | Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
+| Kyoko               | SFW/NSFW |   :white_check_mark:       |
+
+> [!Note]
+> Kyoko and the waifu.pics API likely share a common image database.
+
 
 </table>
 
@@ -33,6 +38,7 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be s
 - [Hmtai api](https://hmtai.hatsunia.cfd/endpoints)
 - [Nekos api](https://nekosapi.com/docs)
 - [Nekos.moe](https://docs.nekos.moe)
+- [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)
 
 ## Third Party Softwares
 
@@ -43,8 +49,6 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be s
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
 - [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change option)
-
-
 
 
 ## Build
