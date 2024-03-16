@@ -37,6 +37,7 @@
 		13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */; };
 		13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC95072B8BA40100B5705E /* ApiPage.swift */; };
 		13CC950A2B8BA43600B5705E /* API.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13CC95092B8BA43600B5705E /* API.xcassets */; };
+		13E2DC842BA5D2CF00320E2F /* purr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E2DC832BA5D2CF00320E2F /* purr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiReader.swift; sourceTree = "<group>"; };
 		13CC95072B8BA40100B5705E /* ApiPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPage.swift; sourceTree = "<group>"; };
 		13CC95092B8BA43600B5705E /* API.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = API.xcassets; sourceTree = "<group>"; };
+		13E2DC832BA5D2CF00320E2F /* purr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purr.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				138661242B8136DC0062AC91 /* nekosapi.swift */,
 				13BE98BF2B828B8000379AB7 /* nekosmoe.swift */,
 				139A2E092BA4D642003F2598 /* kyoko.swift */,
+				13E2DC832BA5D2CF00320E2F /* purr.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			files = (
 				13A325922B94D8A100F1C357 /* Secrets.swift in Sources */,
 				139A2E0A2BA4D642003F2598 /* kyoko.swift in Sources */,
+				13E2DC842BA5D2CF00320E2F /* purr.swift in Sources */,
 				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,
 				13877B192B82001800251A60 /* SettingsPage.swift in Sources */,
 				13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */,

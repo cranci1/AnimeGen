@@ -12,16 +12,17 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be s
 </tr>
 <tr><td>
         
-| APIs                | Type  | Working |
-| ------------------- | ----- | :--------: |
-| Pic.re              | SFW      |   :white_check_mark:       |
-| Waifu.im            | SFW/NSFW |   :white_check_mark:       |
-| Nekos.best          | SFW      |   :white_check_mark:       |
-| Waifu.pics          | SFW/NSFW |   :white_check_mark:       |
-| Hmtai               | SFW/NSFW |   :white_check_mark:       |
-| Nekos api           | SFW/NSFW |   :white_check_mark:       |
-| Nekos.mod           | SFW/NSFW |   :white_check_mark:       |
-| Kyoko               | SFW/NSFW |   :white_check_mark:       |
+| APIs                | Type     | Format    | Working                  |
+| ------------------- | -----    | ----      | :--------:               |
+| Pic.re              | SFW      | IMG       | :white_check_mark:       |
+| Waifu.im            | SFW/NSFW | IMG       | :white_check_mark:       |
+| Nekos.best          | SFW      | IMG       | :white_check_mark:       |
+| Waifu.pics          | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
+| Hmtai               | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
+| Nekos api           | SFW/NSFW | IMG       | :white_check_mark:       |
+| Nekos.moe           | SFW/NSFW | IMG       | :white_check_mark:       |
+| Kyoko               | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
+| Purr                | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
 
 </table>
 
@@ -38,6 +39,7 @@ AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be s
 - [Nekos api](https://nekosapi.com/docs)
 - [Nekos.moe](https://docs.nekos.moe)
 - [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)
+- [Purr](https://purrbot.site/)
 
 ## Third Party Softwares
 

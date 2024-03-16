@@ -22,7 +22,8 @@ struct ApiPage: View {
         APIInfo(imageName: "Hmtai", apiName: "Hmtai", url: URL(string: "https://hmtai.hatsunia.cfd/endpoints")!),
         APIInfo(imageName: "nekosapi", apiName: "nekosapi.com", url: URL(string: "https://nekosapi.com")!),
         APIInfo(imageName: "nekos.moe", apiName: "nekos.moe", url: URL(string: "https://nekos.moe")!),
-        APIInfo(imageName: "kyoko", apiName: "Kyoko", url: URL(string: "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/")!)
+        APIInfo(imageName: "kyoko", apiName: "Kyoko", url: URL(string: "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/")!),
+        APIInfo(imageName: "Purr", apiName: "Purr", url: URL(string: "https://purrbot.site/")!)
     ]
 
     var body: some View {
@@ -44,9 +45,9 @@ struct ApiPage: View {
                     }
                 }
                 .padding(EdgeInsets(top: 10, leading: 10, bottom: 30, trailing: 10))
-                .navigationBarHidden(true)
             }
         }
+        .navigationBarTitle(Text("Change App Icon"), displayMode: .inline)
     }
 
     private func apiItem(index: Int) -> some View {
