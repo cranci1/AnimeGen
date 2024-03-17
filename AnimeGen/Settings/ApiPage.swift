@@ -1,5 +1,5 @@
 //
-//  apicredit.swift
+//  ApiPage.swift
 //  AnimeGen
 //
 //  Created by cranci on 25/02/24.
@@ -48,6 +48,13 @@ struct ApiPage: View {
             }
         }
         .navigationBarTitle(Text("Change App Icon"), displayMode: .inline)
+        .navigationBarItems(trailing:
+                                Button(action: {
+                                    UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
+                                }) {
+                                    Text("Close")
+                                }
+                            )
     }
 
     private func apiItem(index: Int) -> some View {

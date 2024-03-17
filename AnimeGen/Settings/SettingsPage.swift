@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SettingsPage.swift
 //  AnimeGen
 //
 //  Created by cranci on 18/02/24.
@@ -18,7 +18,6 @@ struct SettingsPage: View {
     @State private var suggestiveCont = UserDefaults.standard.bool(forKey: "enablesuggestiveCont")
     @State private var borderlineCont = UserDefaults.standard.bool(forKey: "enableBorderlineCont")
     @State private var explicitCont = UserDefaults.standard.bool(forKey: "enableExplictiCont")
-
     
     var body: some View {
         NavigationView {
@@ -64,7 +63,7 @@ struct SettingsPage: View {
                             UserDefaults.standard.set(newValue, forKey: "enableBorderlineCont")
                         }
                     ))
-
+                    
                     Toggle("Explicit Contents", isOn: Binding(
                         get: { self.explicitCont },
                         set: { newValue in
@@ -73,13 +72,13 @@ struct SettingsPage: View {
                         }
                     ))
                 }
-                                
+                
                 Section(header: Text("About AnimeGen")) {
                     NavigationLink(destination: AboutPage()) {
                         Text("About")
                             .foregroundColor(.accentColor)
                     }
-                
+                    
                     NavigationLink(destination: ApiPage()) {
                         Text("APIs credits")
                             .foregroundColor(.accentColor)
@@ -88,6 +87,13 @@ struct SettingsPage: View {
                 
             }
             .navigationBarTitle("Settings")
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                        UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
+                                    }) {
+                                        Text("Close")
+                                    }
+            )
         }
     }
 }

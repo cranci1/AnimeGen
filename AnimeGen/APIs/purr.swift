@@ -2,7 +2,7 @@
 //  purr.swift
 //  AnimeGen
 //
-//  Created by Francesco on 16/03/24.
+//  Created by cranci on 16/03/24.
 //
 
 import Foundation
