@@ -3,7 +3,9 @@
 AnimeGen is an app made in Swift. This app is developed using public APIs. The app purpose is to save, generate, and share images.
 
 ## Compatibility
-AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower version wont be supported)
+
+AnimeGen supports any iOS/iPadOS device running iOS 13+ (lower iOS/iPad versions won't be supported). 
+Along with MacOS 10.15+ support.
 
 ## APIs
 <table>
