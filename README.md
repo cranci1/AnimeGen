@@ -7,6 +7,7 @@ AnimeGen is an app made in Swift. This app is developed using public APIs. The a
 AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **_iOS 13_** or above. It also extends its compatibility to macOS, catering to both Intel-based and Silicon-based Mac systems running **_macOS 10.15_** or later.
 
 ## APIs
+
 <table>
 <tr>
         <th>Working APIs</th>
@@ -52,7 +53,6 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
 - [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change option)
 
-
 ## Build
 
 Want to build the app yourself? No problem, by cloning this repo and running the ipadbuild.sh file, you can build your own IPA of the app! You can also modify the app as you like!
@@ -79,9 +79,9 @@ import Foundation
 
 struct Secrets {
     static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot
-    
+
     static let discordWebhookURL = URL(string: "YourWebhookUrl")!
-    
+
     static let discordChannelId = "YourChannelIdHere"
 }
 ```
@@ -93,3 +93,14 @@ Run the script:
 ```
 
 If the build was successful, you should see a "build" folder with a subfolder "DerivedDataApp" and the AnimeGen.ipa file in the AnimeGen/build directory. You are now done! Just use any IPA installer like TrollStore, AlStore, Scarlet, ESign or sideloadly to install the IPA on the desired device.
+
+## Code Structure
+
+    |
+    ├── Extensions             # Folder with the Image/UI Extensions
+    ├── APIs                   # Folder containing all the APIs function
+    │   └── Hmtai              # Folder containing the Hmtai function to make it fully works
+    ├── Settings               # The Settings page
+    │   └── Iconss             # Folder with the icons images
+    ├── Buttons                # Folder with the buttons code
+    └── ViewController.swift   # The main file app

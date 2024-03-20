@@ -13,6 +13,11 @@
 		130A805A2B78C02E0028985F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A80582B78C02E0028985F /* Main.storyboard */; };
 		130A805C2B78C0300028985F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130A805B2B78C0300028985F /* Assets.xcassets */; };
 		130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A805D2B78C0300028985F /* LaunchScreen.storyboard */; };
+		1315156B2BAB268900A1C770 /* HearthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156A2BAB268900A1C770 /* HearthButton.swift */; };
+		1315156D2BAB274F00A1C770 /* Rewind-Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */; };
+		1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156E2BAB27D600A1C770 /* Web-Share.swift */; };
+		131515712BAB284A00A1C770 /* Refresh-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131515702BAB284A00A1C770 /* Refresh-Button.swift */; };
+		131515742BAB28C900A1C770 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 131515732BAB28C900A1C770 /* SDWebImage */; };
 		1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E7DF2B8FA2B70033C222 /* IconPage.swift */; };
 		1365E7EB2B8FA9BF0033C222 /* Turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7E82B8FA9BE0033C222 /* Turtle@2x.png */; };
 		1365E7EC2B8FA9BF0033C222 /* Turtle@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */; };
@@ -29,7 +34,6 @@
 		13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC62B80D5B9009BF17E /* waifu-im.swift */; };
 		13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC82B80D5C2009BF17E /* nekos-best.swift */; };
 		13910ECB2B80D5C8009BF17E /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910ECA2B80D5C8009BF17E /* waifu-pics.swift */; };
-		13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13910ECE2B80D90D009BF17E /* SDWebImage */; };
 		139A2E0A2BA4D642003F2598 /* kyoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A2E092BA4D642003F2598 /* kyoko.swift */; };
 		13A325922B94D8A100F1C357 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A325912B94D8A100F1C357 /* Secrets.swift */; };
 		13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE98BF2B828B8000379AB7 /* nekosmoe.swift */; };
@@ -49,6 +53,10 @@
 		130A805B2B78C0300028985F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		130A805E2B78C0300028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130A80602B78C0300028985F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1315156A2BAB268900A1C770 /* HearthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearthButton.swift; sourceTree = "<group>"; };
+		1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rewind-Settings.swift"; sourceTree = "<group>"; };
+		1315156E2BAB27D600A1C770 /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
+		131515702BAB284A00A1C770 /* Refresh-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Refresh-Button.swift"; sourceTree = "<group>"; };
 		1349F78F2BA6DE2800B4DAA5 /* AnimeGen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
 		1365E7DF2B8FA2B70033C222 /* IconPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPage.swift; sourceTree = "<group>"; };
 		1365E7E82B8FA9BE0033C222 /* Turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@2x.png"; sourceTree = "<group>"; };
@@ -81,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13910ECF2B80D90D009BF17E /* SDWebImage in Frameworks */,
+				131515742BAB28C900A1C770 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,9 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				1349F78F2BA6DE2800B4DAA5 /* AnimeGen.entitlements */,
-				13877B1A2B82017A00251A60 /* Settings */,
 				13910ECC2B80D61F009BF17E /* Extensions */,
 				13910EC32B80D595009BF17E /* APIs */,
+				13877B1A2B82017A00251A60 /* Settings */,
+				131515692BAB267100A1C770 /* Buttons */,
 				130A80522B78C02E0028985F /* AppDelegate.swift */,
 				13A325912B94D8A100F1C357 /* Secrets.swift */,
 				130A80542B78C02E0028985F /* SceneDelegate.swift */,
@@ -121,6 +130,17 @@
 				130A80602B78C0300028985F /* Info.plist */,
 			);
 			path = AnimeGen;
+			sourceTree = "<group>";
+		};
+		131515692BAB267100A1C770 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				1315156A2BAB268900A1C770 /* HearthButton.swift */,
+				1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */,
+				1315156E2BAB27D600A1C770 /* Web-Share.swift */,
+				131515702BAB284A00A1C770 /* Refresh-Button.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		1317D4B22B9479CD00675214 /* Hmtai */ = {
@@ -216,7 +236,7 @@
 			);
 			name = AnimeGen;
 			packageProductDependencies = (
-				13910ECE2B80D90D009BF17E /* SDWebImage */,
+				131515732BAB28C900A1C770 /* SDWebImage */,
 			);
 			productName = AnimeGen;
 			productReference = 130A804F2B78C02E0028985F /* AnimeGen.app */;
@@ -247,7 +267,7 @@
 			);
 			mainGroup = 130A80462B78C02E0028985F;
 			packageReferences = (
-				13910ECD2B80D90D009BF17E /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				131515722BAB28C900A1C770 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 130A80502B78C02E0028985F /* Products */;
 			projectDirPath = "";
@@ -283,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1315156B2BAB268900A1C770 /* HearthButton.swift in Sources */,
 				13A325922B94D8A100F1C357 /* Secrets.swift in Sources */,
 				139A2E0A2BA4D642003F2598 /* kyoko.swift in Sources */,
 				13E2DC842BA5D2CF00320E2F /* purr.swift in Sources */,
@@ -297,11 +318,14 @@
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
 				1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */,
 				13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */,
+				131515712BAB284A00A1C770 /* Refresh-Button.swift in Sources */,
 				13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */,
 				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
 				138661252B8136DC0062AC91 /* nekosapi.swift in Sources */,
 				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,
 				13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */,
+				1315156D2BAB274F00A1C770 /* Rewind-Settings.swift in Sources */,
+				1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */,
 				13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,7 +562,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		13910ECD2B80D90D009BF17E /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		131515722BAB28C900A1C770 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
 			requirement = {
@@ -549,9 +573,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		13910ECE2B80D90D009BF17E /* SDWebImage */ = {
+		131515732BAB28C900A1C770 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 13910ECD2B80D90D009BF17E /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = 131515722BAB28C900A1C770 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */

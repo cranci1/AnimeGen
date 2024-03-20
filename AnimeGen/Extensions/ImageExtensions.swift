@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 extension UIImage {
     class func gifData(data: Data) -> [UIImage]? {
