@@ -19,13 +19,12 @@ class ViewController: UIViewController {
     var rewindButton: UIButton!
     var shareButton: UIButton!
     var webButton: UIButton!
+    var apiButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView!
     
     var lastImage: UIImage?
     var tagsLabel: UILabel!
-    
-    var apiButton: UIButton!
     
     var currentImageURL: String?
     
@@ -34,7 +33,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
+        // Gestures
         let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(heartButtonTapped))
         tripleTapGesture.numberOfTapsRequired = 3
         view.addGestureRecognizer(tripleTapGesture)
@@ -50,41 +51,32 @@ class ViewController: UIViewController {
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(settingsButtonTapped))
         swipeDown.direction = .down
         view.addGestureRecognizer(swipeDown)
-
-        view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
-
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor(red: 0.1, green: 0.1, blue: 0.2, alpha: 1.0).cgColor, UIColor(red: 0.2, green: 0.1, blue: 0.3, alpha: 1.0).cgColor]
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        
+        // Image View
         imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
-
-        NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55)
-        ])
-
-
+        
+    
+        // Api Button
         apiButton = UIButton(type: .system)
         apiButton.setTitle("pic.re", for: .normal)
         apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
         apiButton.translatesAutoresizingMaskIntoConstraints = false
-
-        apiButton.backgroundColor = UIColor.darkGray
+        apiButton.backgroundColor = UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0)
         apiButton.layer.cornerRadius = 10
-
         apiButton.setTitleColor(UIColor.white, for: .normal)
-
         view.addSubview(apiButton)
 
-        NSLayoutConstraint.activate([
-            apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            apiButton.heightAnchor.constraint(equalToConstant: 40),
-            apiButton.widthAnchor.constraint(equalToConstant: 120)
-        ])
-        
+
+        // Settings Button
         settingsButton = UIButton(type: .system)
         let settingsIcon = UIImage(systemName: "gear")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
@@ -95,28 +87,19 @@ class ViewController: UIViewController {
         settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         settingsButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(settingsButton)
-
-        NSLayoutConstraint.activate([
-            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-        ])
         
+        
+        // Web Button
         webButton = UIButton(type: .system)
         let webIcon = UIImage(systemName: "safari.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
         webButton.setImage(webIcon, for: .normal)
         webButton.tintColor = .systemBlue
-        webButton.setTitleColor(.white, for: .normal)
-        webButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         webButton.addTarget(self, action: #selector(webButtonTapped), for: .touchUpInside)
         webButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webButton)
-
-        NSLayoutConstraint.activate([
-            webButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
-            webButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
-        ])
-
+        
+        // Refresh Button
         refreshButton = UIButton(type: .system)
         let refreshImage = UIImage(systemName: "arrow.clockwise.circle.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
@@ -128,11 +111,7 @@ class ViewController: UIViewController {
         refreshButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(refreshButton)
 
-        NSLayoutConstraint.activate([
-            refreshButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            refreshButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
-
+        // Heart Button
         heartButton = UIButton(type: .system)
         let heartImage = UIImage(systemName: "heart.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
@@ -144,11 +123,8 @@ class ViewController: UIViewController {
         heartButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(heartButton)
 
-        NSLayoutConstraint.activate([
-            heartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            heartButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: -60),
-        ])
-
+        
+        // Rewind Button
         rewindButton = UIButton(type: .system)
         let rewindImage = UIImage(systemName: "arrowshape.turn.up.backward.circle.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
@@ -160,22 +136,16 @@ class ViewController: UIViewController {
         rewindButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(rewindButton)
 
-        NSLayoutConstraint.activate([
-            rewindButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            rewindButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: 60),
-        ])
-
+        
+        // Activity Indicator
         activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .white
         activityIndicator.hidesWhenStopped = true
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityIndicator)
 
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: refreshButton.topAnchor, constant: -30)
-        ])
-
+        
+        // Share Button
         shareButton = UIButton(type: .system)
         let shareImage = UIImage(systemName: "square.and.arrow.up.circle.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
@@ -186,12 +156,9 @@ class ViewController: UIViewController {
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(shareButton)
-
-        NSLayoutConstraint.activate([
-            shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
-            shareButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
         
+        
+        // Tags
         tagsLabel = UILabel()
         tagsLabel.textColor = .white
         tagsLabel.textAlignment = .center
@@ -199,11 +166,45 @@ class ViewController: UIViewController {
         tagsLabel.numberOfLines = 0
         tagsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tagsLabel)
-
+        
+        
         NSLayoutConstraint.activate([
+            
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55),
+            
+            apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            apiButton.heightAnchor.constraint(equalToConstant: 40),
+            apiButton.widthAnchor.constraint(equalToConstant: 120),
+            
+            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            
+            webButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+            webButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            
+            refreshButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            refreshButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            heartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            heartButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: -60),
+            
+            rewindButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            rewindButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: 60),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: refreshButton.topAnchor, constant: -30),
+            
+            shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
+            shareButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            
             tagsLabel.topAnchor.constraint(equalTo: apiButton.bottomAnchor, constant: 16),
             tagsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            
         ])
 
         loadImageAndTagsFromSelectedAPI()

@@ -23,54 +23,15 @@ struct SettingsPage: View {
         NavigationView {
             Form {
                 Section(header: Text("Features")) {
-                    Toggle("Use Animations", isOn: Binding(
-                        get: { self.animations },
-                        set: { newValue in
-                            self.animations = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableAnimations")
-                        }
-                    ))
-                    Toggle("Display Tags", isOn: Binding(
-                        get: { self.tags },
-                        set: { newValue in
-                            self.tags = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableTags")
-                        }
-                    ))
-                    Toggle("Display nekos.moe Tags", isOn: Binding(
-                        get: { self.moetags },
-                        set: { newValue in
-                            self.moetags = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableMoeTags")
-                        }
-                    ))
+                    Toggle("Use Animations", isOn: $animations)
+                    Toggle("Display Tags", isOn: $tags)
+                    Toggle("Display nekos.moe Tags", isOn: $moetags)
                 }
                 
                 Section(header: Text("Content"), footer: Text("Caution: This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
-                    
-                    Toggle("Suggestive Contents", isOn: Binding(
-                        get: { self.suggestiveCont },
-                        set: { newValue in
-                            self.suggestiveCont = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enablesuggestiveCont")
-                        }
-                    ))
-                    
-                    Toggle("Borderline Contents", isOn: Binding(
-                        get: { self.borderlineCont },
-                        set: { newValue in
-                            self.borderlineCont = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableBorderlineCont")
-                        }
-                    ))
-                    
-                    Toggle("Explicit Contents", isOn: Binding(
-                        get: { self.explicitCont },
-                        set: { newValue in
-                            self.explicitCont = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableExplictiCont")
-                        }
-                    ))
+                    Toggle("Suggestive Contents", isOn: $suggestiveCont)
+                    Toggle("Borderline Contents", isOn: $borderlineCont)
+                    Toggle("Explicit Contents", isOn: $explicitCont)
                 }
                 
                 Section(header: Text("About AnimeGen")) {
