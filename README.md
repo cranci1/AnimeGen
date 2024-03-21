@@ -23,13 +23,17 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
 | Hmtai               | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
 | Nekos api           | SFW/NSFW | IMG       | :white_check_mark:       |
 | Nekos.moe           | SFW/NSFW | IMG       | :white_check_mark:       |
-| Kyoko               | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
+| Kyoko               | SFW/NSFW | IMG/GIF   | :x:                      |
 | Purr                | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
 
 </table>
 
 > [!Note]
 > Kyoko and the waifu.pics API likely share a common image database.
+
+> [!Important]
+> The Kyoko api is currently not working for "Internal server error"
+
 
 ## APIs Credits
 
