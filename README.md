@@ -16,7 +16,7 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
         
 | APIs                | Type     | Format    | Working                  |
 | ------------------- | -----    | ----      | :--------:               |
-| Pic.re              | SFW      | IMG       | :white_check_mark:       |
+| Pic.re              | SFW/NSFW | IMG       | :white_check_mark:       |
 | Waifu.im            | SFW/NSFW | IMG       | :white_check_mark:       |
 | Nekos.best          | SFW      | IMG       | :white_check_mark:       |
 | Waifu.pics          | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
