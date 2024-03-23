@@ -28,8 +28,11 @@ class ViewController: UIViewController {
     
     var currentImageURL: String?
     
+    var gradientLayer: CAGradientLayer?
+    
     var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+    var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +55,14 @@ class ViewController: UIViewController {
         swipeDown.direction = .down
         view.addGestureRecognizer(swipeDown)
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor(red: 0.1, green: 0.1, blue: 0.2, alpha: 1.0).cgColor, UIColor(red: 0.2, green: 0.1, blue: 0.3, alpha: 1.0).cgColor]
-        view.layer.insertSublayer(gradientLayer, at: 0)
+        if gradient {
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = view.bounds
+            gradientLayer.colors = [UIColor(red: 0.1, green: 0.1, blue: 0.2, alpha: 1.0).cgColor, UIColor(red: 0.2, green: 0.1, blue: 0.3, alpha: 1.0).cgColor]
+            view.layer.insertSublayer(gradientLayer, at: 0)
+        } else {
+            view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
+        }
         
         
         // Image View
