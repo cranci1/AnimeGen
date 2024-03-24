@@ -58,6 +58,7 @@ extension ViewController {
                                 if imageUrlString.lowercased().hasSuffix(".gif") {
                                     if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
                                         self.imageView.image = animatedImage
+                                        self.imageView.image = animatedImage
                                         self.animateImageChange(with: animatedImage)
                                     } else {
                                         print("Failed to create animated image from GIF data.")
@@ -66,6 +67,7 @@ extension ViewController {
                                     if let newImage = UIImage(data: imageData) {
                                         self.imageView.image = newImage
                                         self.animateImageChange(with: newImage)
+                                        self.addToHistory(image: newImage)
                                     } else {
                                         print("Failed to load image data.")
                                     }

@@ -73,6 +73,7 @@ extension ViewController {
                         if let data = try? Data(contentsOf: imageUrl), let newImage = UIImage(data: data) {
                             self.imageView.image = newImage
                             self.animateImageChange(with: newImage)
+                            self.addToHistory(image: newImage)
                             
                             self.tagsLabel.isHidden = false
                             

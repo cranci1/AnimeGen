@@ -50,9 +50,7 @@ extension ViewController {
     func loadImageFromDiscord(imageUrl: String) {
         DispatchQueue.main.async {
             self.imageView.loadImage(from: imageUrl)
-            
             self.currentImageURL = imageUrl
-            
             self.stopLoadingIndicator()
         }
     }

@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var shareButton: UIButton!
     var webButton: UIButton!
     var apiButton: UIButton!
+    var historyButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView!
     
@@ -64,7 +65,6 @@ class ViewController: UIViewController {
             view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
         }
         
-        
         // Image View
         imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,12 +77,22 @@ class ViewController: UIViewController {
         apiButton.setTitle("pic.re", for: .normal)
         apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
         apiButton.translatesAutoresizingMaskIntoConstraints = false
-        apiButton.backgroundColor = UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0)
+        apiButton.backgroundColor = gradient ? UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0) : UIColor.darkGray
         apiButton.layer.cornerRadius = 10
         apiButton.setTitleColor(UIColor.white, for: .normal)
         view.addSubview(apiButton)
-
-
+        
+        
+        historyButton = UIButton(type: .system)
+        let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
+            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+        historyButton.setImage(historyIcon, for: .normal)
+        historyButton.tintColor = .systemGray
+        historyButton.addTarget(self, action: #selector(historyButtonTapped), for: .touchUpInside)
+        historyButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(historyButton)
+        
+        
         // Settings Button
         settingsButton = UIButton(type: .system)
         let settingsIcon = UIImage(systemName: "gear")?
@@ -186,6 +196,9 @@ class ViewController: UIViewController {
             apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             apiButton.heightAnchor.constraint(equalToConstant: 40),
             apiButton.widthAnchor.constraint(equalToConstant: 120),
+            
+            historyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            historyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),

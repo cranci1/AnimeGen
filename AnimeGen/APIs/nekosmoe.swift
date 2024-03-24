@@ -81,6 +81,7 @@ extension ViewController {
                     print("Image loading error: \(imageError)")
                 } else if let imageData = imageData, let newImage = UIImage(data: imageData) {
                     self.imageView.image = newImage
+                    self.addToHistory(image: newImage)
                     self.animateImageChange(with: newImage)
                     self.tagsLabel.isHidden = true
                 } else {

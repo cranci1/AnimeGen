@@ -64,13 +64,15 @@ extension ViewController {
                         let tags = tagsArray.compactMap { $0["name"] as? String }
 
                         if let data = try? Data(contentsOf: imageUrl), let newImage = UIImage(data: data) {
+                            
                             self.imageView.image = newImage
                             self.animateImageChange(with: newImage)
+                            self.addToHistory(image: newImage)
                             
                             self.tagsLabel.isHidden = false
 
                             self.updateUIWithTags(tags)
-
+                            
                             self.stopLoadingIndicator()
                         } else {
                             print("Failed to load image data.")

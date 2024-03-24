@@ -63,6 +63,7 @@ extension ViewController {
                             self.imageView.image = newImage
                             self.tagsLabel.isHidden = false
                             self.animateImageChange(with: newImage)
+                            self.addToHistory(image: newImage)
                             self.updateUIWithTags([], author: author, category: category)
                             self.stopLoadingIndicator()
                         } else {
