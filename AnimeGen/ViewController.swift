@@ -91,11 +91,13 @@ class ViewController: UIViewController {
         view.addSubview(apiButton)
         
         
+        // History Button
         historyButton = UIButton(type: .system)
         let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
         historyButton.setImage(historyIcon, for: .normal)
         historyButton.tintColor = .systemGray
+        historyButton.setTitleColor(.white, for: .normal)
         historyButton.addTarget(self, action: #selector(historyButtonTapped), for: .touchUpInside)
         historyButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(historyButton)
@@ -217,7 +219,7 @@ class ViewController: UIViewController {
             apiButton.heightAnchor.constraint(equalToConstant: 40),
             apiButton.widthAnchor.constraint(equalToConstant: 120),
             
-            historyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            historyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             historyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
