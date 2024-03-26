@@ -66,6 +66,7 @@ extension ViewController {
                             self.addToHistory(image: newImage)
                             self.updateUIWithTags([], author: author, category: category)
                             self.stopLoadingIndicator()
+                            self.incrementCounter()
                         } else {
                             print("Failed to load image data.")
                             self.stopLoadingIndicator()

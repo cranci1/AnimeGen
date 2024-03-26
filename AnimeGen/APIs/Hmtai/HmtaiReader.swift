@@ -52,6 +52,7 @@ extension ViewController {
             self.imageView.loadImage(from: imageUrl)
             self.currentImageURL = imageUrl
             self.stopLoadingIndicator()
+            self.incrementCounter()
         }
     }
     

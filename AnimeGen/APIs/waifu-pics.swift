@@ -75,6 +75,8 @@ extension ViewController {
                         self.updateUIWithTags([randomCategory])
 
                         self.stopLoadingIndicator()
+                        
+                        self.incrementCounter()
                     } else {
                         print("Failed to load image data.")
                         self.stopLoadingIndicator()

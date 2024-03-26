@@ -83,6 +83,8 @@ extension ViewController {
                                 self.updateUIWithTags([tag])
 
                                 self.stopLoadingIndicator()
+                                
+                                self.incrementCounter()
                             } else {
                                 print("Failed to load image data.")
                                 self.stopLoadingIndicator()

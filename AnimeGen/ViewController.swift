@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class ViewController: UIViewController {
-
+    
     var imageView: UIImageView!
     
     var settingsButton: UIButton!
@@ -27,6 +27,10 @@ class ViewController: UIViewController {
     var lastImage: UIImage?
     var tagsLabel: UILabel!
     
+    var timeLabel: UILabel!
+    var startTime: Date?
+    var timer: Timer?
+    
     var currentImageURL: String?
     
     var gradientLayer: CAGradientLayer?
@@ -34,10 +38,14 @@ class ViewController: UIViewController {
     var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
+    var activity = UserDefaults.standard.bool(forKey: "enableTime")
+    
+    var counter: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startTime = Date()
 
         // Gestures
         let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(heartButtonTapped))
@@ -184,6 +192,18 @@ class ViewController: UIViewController {
         tagsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tagsLabel)
         
+        // Time Label
+        timeLabel = UILabel()
+        timeLabel.textColor = .white
+        timeLabel.textAlignment = .center
+        timeLabel.font = UIFont.systemFont(ofSize: 18)
+        timeLabel.numberOfLines = 0
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(timeLabel)
+                
+        if activity {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
+        }
         
         NSLayoutConstraint.activate([
             
@@ -223,7 +243,10 @@ class ViewController: UIViewController {
             
             tagsLabel.topAnchor.constraint(equalTo: apiButton.bottomAnchor, constant: 16),
             tagsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
+            timeLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
         ])
 
@@ -257,4 +280,57 @@ class ViewController: UIViewController {
             break
         }
     }
+    
+    @objc func updateTimeLabel() {
+        guard let startTime = startTime else { return }
+        
+        let currentTime = Date()
+        let timeInterval = Int(currentTime.timeIntervalSince(startTime))
+        
+        let seconds = timeInterval % 60
+        let minutes = (timeInterval / 60) % 60
+        let hours = (timeInterval / 3600) % 24
+        let days = timeInterval / 86400
+        
+        var timeText = ""
+        
+        let clockIconAttachment = NSTextAttachment()
+        clockIconAttachment.image = UIImage(systemName: "clock")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        let clockIconString = NSAttributedString(attachment: clockIconAttachment)
+        
+        if days > 0 {
+            timeText += "\(days)d "
+        }
+        
+        if hours > 0 || days > 0 {
+            timeText += "\(hours)h "
+        }
+        
+        if minutes > 0 || hours > 0 || days > 0 {
+            timeText += "\(minutes)m "
+        }
+        
+        timeText += "\(seconds)s"
+        
+        // Replace "Images" text with a stock image icon for the images counter
+        let imageIconAttachment = NSTextAttachment()
+        imageIconAttachment.image = UIImage(systemName: "photo.on.rectangle")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        let imageIconString = NSAttributedString(attachment: imageIconAttachment)
+        
+        let mutableAttributedString = NSMutableAttributedString()
+        mutableAttributedString.append(clockIconString)
+        mutableAttributedString.append(NSAttributedString(string: " \(timeText) - "))
+        mutableAttributedString.append(imageIconString)
+        mutableAttributedString.append(NSAttributedString(string: " \(counter)"))
+        
+        timeLabel.attributedText = mutableAttributedString
+    }
+
+
+    
+    func incrementCounter() {
+        counter += 1
+        updateTimeLabel()
+    }
+
 }

@@ -84,6 +84,7 @@ extension ViewController {
                     self.addToHistory(image: newImage)
                     self.animateImageChange(with: newImage)
                     self.tagsLabel.isHidden = true
+                    self.incrementCounter()
                 } else {
                     print("Failed to load image data.")
                 }

@@ -14,6 +14,7 @@ struct SettingsPage: View {
     @State private var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
     @State private var tags = UserDefaults.standard.bool(forKey: "enableTags")
     @State private var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+    @State private var activitytime = UserDefaults.standard.bool(forKey: "enableTime")
     
     // Content
     @State private var suggestiveCont = UserDefaults.standard.bool(forKey: "enablesuggestiveCont")
@@ -38,6 +39,15 @@ struct SettingsPage: View {
                             UserDefaults.standard.set(newValue, forKey: "enablegradient")
                         }
                     ))
+                    
+                    Toggle("Display Activity time", isOn: Binding(
+                        get: { self.activitytime },
+                        set: { newValue in
+                            self.activitytime = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableTime")
+                        }
+                    ))
+                    
                     Toggle("Display Tags", isOn: Binding(
                         get: { self.tags },
                         set: { newValue in

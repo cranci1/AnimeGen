@@ -60,7 +60,6 @@
 		1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rewind-Settings.swift"; sourceTree = "<group>"; };
 		1315156E2BAB27D600A1C770 /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
 		131515702BAB284A00A1C770 /* Refresh-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Refresh-Button.swift"; sourceTree = "<group>"; };
-		1349F78F2BA6DE2800B4DAA5 /* AnimeGen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
 		1365E7DF2B8FA2B70033C222 /* IconPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPage.swift; sourceTree = "<group>"; };
 		1365E7E82B8FA9BE0033C222 /* Turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@2x.png"; sourceTree = "<group>"; };
 		1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@1x.png"; sourceTree = "<group>"; };
@@ -121,7 +120,6 @@
 		130A80512B78C02E0028985F /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
-				1349F78F2BA6DE2800B4DAA5 /* AnimeGen.entitlements */,
 				13910EC32B80D595009BF17E /* APIs */,
 				13910ECC2B80D61F009BF17E /* Extensions */,
 				1365E81E2BB01123005E0548 /* History */,
@@ -515,7 +513,7 @@
 				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -551,7 +549,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

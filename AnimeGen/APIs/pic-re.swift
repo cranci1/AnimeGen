@@ -64,11 +64,16 @@ extension ViewController {
             }
 
             DispatchQueue.main.async {
+                
                 self.tagsLabel.isHidden = false
+                
                 self.addToHistory(image: newImage)
                 self.imageView.image = newImage
+                
                 self.animateImageChange(with: newImage)
                 self.stopLoadingIndicator()
+                
+                self.incrementCounter()
             }
         }
 
