@@ -162,15 +162,7 @@ class ViewController: UIViewController {
         rewindButton.addTarget(self, action: #selector(rewindButtonTapped), for: .touchUpInside)
         rewindButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(rewindButton)
-
         
-        // Activity Indicator
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .white
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(activityIndicator)
-
         
         // Share Button
         shareButton = UIButton(type: .system)
@@ -183,6 +175,14 @@ class ViewController: UIViewController {
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(shareButton)
+
+        
+        // Activity Indicator
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .white
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
         
         
         // Tags

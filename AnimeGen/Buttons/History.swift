@@ -2,7 +2,7 @@
 //  History.swift
 //  AnimeGen
 //
-//  Created by Francesco on 24/03/24.
+//  Created by cranci on 24/03/24.
 //
 
 import UIKit
