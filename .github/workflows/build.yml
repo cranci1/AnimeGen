@@ -10,28 +10,28 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
 
-      - name: Set up Xcode
-        run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app/Contents/Developer
+    - name: Set up Xcode
+      run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app/Contents/Developer
 
-      - name: Make ipabuild.sh executable
-        run: chmod +x ipabuild.sh
+    - name: Make ipabuild.sh executable
+      run: chmod +x ipabuild.sh
 
-      - name: Run ipabuild.sh
-        run: ./ipabuild.sh
+    - name: Run ipabuild.sh
+      run: ./ipabuild.sh
 
-      - name: Find AnimeGen IPA file
-        id: find_ipa
-        run: |
-          IPA_PATH=$(find . -name "AnimeGen.ipa" -print -quit)
-          echo "Found AnimeGen IPA file at $IPA_PATH"
-          echo "::set-output name=ipa_path::$IPA_PATH"
+    - name: Find AnimeGen IPA file
+      id: find_ipa
+      run: |
+        IPA_PATH=$(find . -name "AnimeGen.ipa" -print -quit)
+        echo "Found AnimeGen IPA file at $IPA_PATH"
+        echo "::set-output name=ipa_path::$IPA_PATH"
 
-      - name: Upload AnimeGen IPA artifact
-        if: steps.find_ipa.outputs.ipa_path != ''
-        uses: actions/upload-artifact@v2
-        with:
-          name: AnimeGen-ipa-artifact
-          path: ${{ steps.find_ipa.outputs.ipa_path }}
+    - name: Upload AnimeGen IPA artifact
+      if: steps.find_ipa.outputs.ipa_path != ''
+      uses: actions/upload-artifact@v2
+      with:
+        name: AnimeGen-ipa-artifact
+        path: ${{ steps.find_ipa.outputs.ipa_path }}
