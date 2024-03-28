@@ -8,9 +8,11 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
 
 ## Download
 
+Here, you can access the iPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
+
 - [Download ipa](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
-- [Download arm.deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm.deb)
-- [Download arm64.deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm64.deb)
+- [Download rootfull .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm.deb)
+- [Download rootless .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm64.deb)
 
 ## APIs
 
