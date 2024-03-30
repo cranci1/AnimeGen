@@ -1,10 +1,21 @@
 <img src="Images/banner.jpeg">
 
+
+<div align="center">
+
+<a href="https://github.com/cranci1/AnimeGen/actions/workflows/build.yml">
+    <img src="https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg" alt="Build and Release IPA">
+</a>
+
+<a href="https://img.shields.io/badge/Platforms-iOS/iPadOS-blue">
+    <img src="https://img.shields.io/badge/Platforms-iOS/iPadOS-blue" alt="Platforms">
+</a>
+
+</div>
+
 # AnimeGen
 
 AnimeGen is a mobile app made in Swift, developed using public APIs. The app purpose is to save, generate, and share images.
-
-[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml)
 
 ## Compatibility
 
