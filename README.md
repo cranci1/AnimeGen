@@ -19,8 +19,7 @@ AnimeGen is a mobile app made in Swift, developed using public APIs. The app pur
 
 ## Compatibility
 
-AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **_iOS 13_** or above. It also extends its compatibility to macOS, catering to both Intel-based and Silicon-based Mac systems running **_macOS 10.15_** or later.
-
+AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **_iOS 13_** or above.
 ## Download
 
 Here, you can access the iPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
