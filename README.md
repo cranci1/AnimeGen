@@ -84,13 +84,13 @@ Navige to the directory:
 cd AnimeGen
 ```
 
-You need to update the Secrets.swift file with your specific values: the Discord Bot Token, a Discord webhook, and your Discord channel ID.
+You need to update the Secrets.swift file with your specific values: the Discord Bot Token, a Discord webhook, and your Discord channel ID:
 
 ```swift
 import Foundation
 
 struct Secrets {
-    static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot
+    static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot. DONT REMOVE "Bot" 
 
     static let discordWebhookURL = URL(string: "YourWebhookUrl")!
 
