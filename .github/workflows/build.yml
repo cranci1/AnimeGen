@@ -18,7 +18,7 @@ jobs:
 
       - name: Build IPA
         run: |
-          xcodebuild -project AnimeGen.xcodeproj -scheme AnimeGen -configuration Release -destination 'generic/platform=iOS' clean archive -archivePath $PWD/build/AnimeGen.xcarchive
+          xcodebuild -project AnimeGen.xcodeproj -scheme AnimeGen -configuration Release -destination 'generic/platform=iOS' clean archive -archivePath $PWD/build/AnimeGen.xcarchive -allowProvisioningUpdates
           xcodebuild -exportArchive -archivePath $PWD/build/AnimeGen.xcarchive -exportPath $PWD/build
 
       - name: Archive and Upload Artifact
