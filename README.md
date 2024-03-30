@@ -1,54 +1,45 @@
-<img src="Images/banner.jpeg">
-
+![AnimeGen Banner](Images/banner.jpeg)
 
 <div align="center">
 
-<a href="https://github.com/cranci1/AnimeGen/actions/workflows/build.yml">
-    <img src="https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg" alt="Build and Release IPA">
-</a>
-
-<a href="https://img.shields.io/badge/Platforms-iOS/iPadOS-blue">
-    <img src="https://img.shields.io/badge/Platforms-iOS/iPadOS-blue" alt="Platforms">
-</a>
+[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) [![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue)](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue)
 
 </div>
 
 # AnimeGen
 
-AnimeGen is a mobile app made in Swift, developed using public APIs. The app purpose is to save, generate, and share images.
+AnimeGen is a mobile app made in Swift, developed using public APIs. The app's purpose is to save, generate, and share images.
 
 ## Compatibility
 
-AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **_iOS 13_** or above.
+AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **iOS 13** or above.
+
 ## Download
+Here, you can access the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
 
-Here, you can access the iPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
+> [!Note]
+> If you want you can install the dev-build IPA, but the Hmtai API will not work.
 
-- [Download ipa](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
+- [Download IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
+- [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
 - [Download rootfull .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm.deb)
 - [Download rootless .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm64.deb)
 
 ## APIs
 
-<table>
-<tr>
-        <th>Working APIs</th>
-</tr>
-<tr><td>
-        
+### Working APIs
+
 | APIs                | Type     | Format    | Working                  |
 | ------------------- | -----    | ----      | :--------:               |
-| Pic.re              | SFW/NSFW | IMG       | :white_check_mark:       |
-| Waifu.im            | SFW/NSFW | IMG       | :white_check_mark:       |
-| Nekos.best          | SFW      | IMG       | :white_check_mark:       |
-| Waifu.pics          | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
-| Hmtai               | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
-| Nekos api           | SFW/NSFW | IMG       | :white_check_mark:       |
-| Nekos.moe           | SFW/NSFW | IMG       | :white_check_mark:       |
-| Kyoko               | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
-| Purr                | SFW/NSFW | IMG/GIF   | :white_check_mark:       |
-
-</table>
+| Pic.re              | SFW/NSFW | IMG       | ✅                        |
+| Waifu.im            | SFW/NSFW | IMG       | ✅                        |
+| Nekos.best          | SFW      | IMG       | ✅                        |
+| Waifu.pics          | SFW/NSFW | IMG/GIF   | ✅                        |
+| Hmtai               | SFW/NSFW | IMG/GIF   | ✅                        |
+| Nekos api           | SFW/NSFW | IMG       | ✅                        |
+| Nekos.moe           | SFW/NSFW | IMG       | ✅                        |
+| Kyoko               | SFW/NSFW | IMG/GIF   | ✅                        |
+| Purr                | SFW/NSFW | IMG/GIF   | ✅                        |
 
 > [!Note]
 > Kyoko and the waifu.pics API likely share a common image database.
@@ -65,26 +56,26 @@ Here, you can access the iPA file for installation via TrollStore, AltStore, or 
 - [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)
 - [Purr](https://purrbot.site/)
 
-## Third Party Softwares
+## Third Party Software
 
-- [SDWebImage](https://github.com/SDWebImage/SDWebImage) (.gif images saves for the gallery)
+- [SDWebImage](https://github.com/SDWebImage/SDWebImage) (Handles .gif images for the gallery)
 
 ## Help
 
-- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea and Base)
+- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launch screen idea and base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
 - [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change option)
 
 ## Build
 
-Want to build the app yourself? No problem, by cloning this repo and running the ipadbuild.sh file, you can build your own IPA of the app! You can also modify the app as you like!
+Want to build the app yourself? No problem, by cloning this repo and running the `ipadbuild.sh` file, you can build your own IPA of the app! You can also modify the app as you like!
 
 > [!IMPORTANT]
 > You need to have Xcode installed!
 
 Clone the repo:
 
-```
+```bash
 git clone https://github.com/cranci1/AnimeGen
 ```
 
