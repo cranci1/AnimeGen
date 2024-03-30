@@ -28,6 +28,7 @@
 		1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E81F2BB0112D005E0548 /* HistoryView.swift */; };
 		1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8212BB011F6005E0548 /* ImageHistory.swift */; };
 		1365E8242BB01236005E0548 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8232BB01236005E0548 /* History.swift */; };
+		1375B3EA2BB813DA00E3D128 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1375B3E92BB813DA00E3D128 /* Activity.swift */; };
 		138661252B8136DC0062AC91 /* nekosapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661242B8136DC0062AC91 /* nekosapi.swift */; };
 		13877B192B82001800251A60 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B182B82001800251A60 /* SettingsPage.swift */; };
 		13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B1D2B82024A00251A60 /* AboutPage.swift */; };
@@ -70,6 +71,7 @@
 		1365E81F2BB0112D005E0548 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		1365E8212BB011F6005E0548 /* ImageHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHistory.swift; sourceTree = "<group>"; };
 		1365E8232BB01236005E0548 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		1375B3E92BB813DA00E3D128 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		138661242B8136DC0062AC91 /* nekosapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosapi.swift; sourceTree = "<group>"; };
 		13877B182B82001800251A60 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		13877B1D2B82024A00251A60 /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				1315156E2BAB27D600A1C770 /* Web-Share.swift */,
 				131515702BAB284A00A1C770 /* Refresh-Button.swift */,
 				1365E8232BB01236005E0548 /* History.swift */,
+				1375B3E92BB813DA00E3D128 /* Activity.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				1315156B2BAB268900A1C770 /* HearthButton.swift in Sources */,
 				13A325922B94D8A100F1C357 /* Secrets.swift in Sources */,
+				1375B3EA2BB813DA00E3D128 /* Activity.swift in Sources */,
 				139A2E0A2BA4D642003F2598 /* kyoko.swift in Sources */,
 				13E2DC842BA5D2CF00320E2F /* purr.swift in Sources */,
 				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,

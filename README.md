@@ -57,7 +57,7 @@ Here, you can access the iPA file for installation via TrollStore, AltStore, or 
 
 ## Help
 
-- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea/Base)
+- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launchscreen Idea and Base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
 - [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change option)
 
@@ -101,14 +101,3 @@ Run the script:
 ```
 
 If the build was successful, you should see a "build" folder with a subfolder "DerivedDataApp" and the AnimeGen.ipa file in the AnimeGen/build directory. You are now done! Just use any IPA installer like TrollStore, AlStore, Scarlet, ESign or sideloadly to install the IPA on the desired device.
-
-## Code Structure
-
-    |
-    ├── Extensions             # Folder with the Image/UI Extensions
-    ├── APIs                   # Folder containing all the APIs function
-    │   └── Hmtai              # Folder containing the Hmtai function to make it fully works
-    ├── Settings               # The Settings page
-    │   └── Iconss             # Folder with the icons images
-    ├── Buttons                # Folder with the buttons code
-    └── ViewController.swift   # The main file app
