@@ -16,10 +16,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Xcode
-        uses: actions/setup-xcode@v2
-        with:
-          xcode-version: '13.x'
+      - name: Install Xcode Command Line Tools
+        run: sudo xcode-select --install
 
       - name: Install CocoaPods
         run: |
