@@ -4,9 +4,7 @@
 
 AnimeGen is a mobile app made in Swift, developed using public APIs. The app purpose is to save, generate, and share images.
 
-<a href="https://github.com/cranci1/AnimeGen/actions?query=workflow%3A%22Build+and+Release+IPA%22">
-    <img src="https://github.com/cranci1/AnimeGen/workflows/Build%20and%20Release%20IPA/badge.svg?branch=master" alt="Nightly Build Status"/>
-</a>
+[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml)
 
 ## Compatibility
 
