@@ -18,7 +18,7 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
 Here, you can access the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
 
 > [!Note]
-> If you want you can install the dev-build IPA, but the Hmtai API will not work.
+> If you want you can install the nightly-IPA, but the Hmtai API will not work.
 
 - [Download IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
