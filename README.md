@@ -2,7 +2,11 @@
 
 # AnimeGen
 
-AnimeGen is an app made in Swift. This app is developed using public APIs. The app purpose is to save, generate, and share images.
+AnimeGen is a mobile app made in Swift, developed using public APIs. The app purpose is to save, generate, and share images.
+
+<a href="https://github.com/cranci1/AnimeGen/actions?query=workflow%3A%22Build+and+Release+IPA%22">
+    <img src="https://github.com/cranci1/AnimeGen/workflows/Build%20and%20Release%20IPA/badge.svg?branch=master" alt="Nightly Build Status"/>
+</a>
 
 ## Compatibility
 
