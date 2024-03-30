@@ -1,37 +1,34 @@
-name: Build IPA
+name: Nightly Build
 
 on:
-  push:
-    branches:
-      - main
-
+  - "push"
+  - "workflow_dispatch"
 jobs:
   build:
-    runs-on: macos-latest
-
+    
+    runs-on: macos-13
+    
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Xcode
-      run: sudo xcode-select --switch /Applications/Xcode_13.2.1.app/Contents/Developer
-
-    - name: Make ipabuild.sh executable
-      run: chmod +x ipabuild.sh
-
-    - name: Run ipabuild.sh
-      run: ./ipabuild.sh
-
-    - name: Find AnimeGen IPA file
-      id: find_ipa
-      run: |
-        IPA_PATH=$(find . -name "AnimeGen.ipa" -print -quit)
-        echo "Found AnimeGen IPA file at $IPA_PATH"
-        echo "::set-output name=ipa_path::$IPA_PATH"
-
-    - name: Upload AnimeGen IPA artifact
-      if: steps.find_ipa.outputs.ipa_path != ''
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        submodules: recursive
+    - name: Fetch Commit Info
+      id: commitinfo
+      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    - name: Build iOS
+      run: xcodebuild -workspace "AnimeGen.xcworkspace" -scheme AnimeGen -configuration Release -destination generic/platform=iOS archive -archivePath "build/AnimeGen_Nightly.iOS.xcarchive" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+    - name: Package iOS
+      run: ./Misc/scripts/package.sh "build/AnimeGen_Nightly.iOS.xcarchive" iOS "AnimeGen_Nightly.${{ steps.commitinfo.outputs.sha_short }}.iOS"
+    - name: Upload iOS Symbols
+      run: ./Misc/scripts/upload_symbols.sh ${{ secrets.APPCENTER_TOKEN }}
+    - name: Upload iOS Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: AnimeGen-ipa-artifact
-        path: ${{ steps.find_ipa.outputs.ipa_path }}
+        name: AnimeGen_Nightly.${{ steps.commitinfo.outputs.sha_short }}.iOS
+        path: build/*
+        if-no-files-found: error

@@ -1,3 +1,5 @@
+<img src="Images/banner.jpeg">
+
 # AnimeGen
 
 AnimeGen is an app made in Swift. This app is developed using public APIs. The app purpose is to save, generate, and share images.
