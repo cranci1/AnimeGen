@@ -84,7 +84,7 @@ Navige to the directory:
 cd AnimeGen
 ```
 
-Now you need to create a new file called: Secrets.swift, in this file you need to place this code:
+You need to update the Secrets.swift file with your specific values: the Discord Bot Token, a Discord webhook, and your Discord channel ID.
 
 ```swift
 import Foundation
