@@ -1,3 +1,4 @@
 # .gitignore
 AnimeGen/Secrets.swift
 build/
+AnimeGen/Secrets.swift
