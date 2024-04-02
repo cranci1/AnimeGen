@@ -64,6 +64,8 @@ class ViewController: UIViewController {
         swipeDown.direction = .down
         view.addGestureRecognizer(swipeDown)
         
+        
+        // gradient
         if gradient {
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = view.bounds
