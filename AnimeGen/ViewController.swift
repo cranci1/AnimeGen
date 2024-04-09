@@ -196,6 +196,7 @@ class ViewController: UIViewController {
         tagsLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tagsLabel)
         
+        
         // Time Label
         timeLabel = UILabel()
         timeLabel.textColor = .white
@@ -204,10 +205,11 @@ class ViewController: UIViewController {
         timeLabel.numberOfLines = 0
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(timeLabel)
-                
-        if activity {
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
-        }
+
+        timeLabel.isHidden = !activity
+
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
+        
         
         NSLayoutConstraint.activate([
             

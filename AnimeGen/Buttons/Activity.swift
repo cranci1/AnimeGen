@@ -53,12 +53,10 @@ extension ViewController {
         
         timeLabel.attributedText = mutableAttributedString
     }
-
-
     
     func incrementCounter() {
         counter += 1
         updateTimeLabel()
     }
-    
+
 }
