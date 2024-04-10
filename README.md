@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) [![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue)](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue) [![Testflight](https://img.shields.io/badge/Nightly-Testflight-008080)](testflight.apple.com/join/Qx5saHll)
+[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) [![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue)](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue) [![Testflight](https://img.shields.io/badge/Nightly-Testflight-008080)](https://testflight.apple.com/join/Qx5saHll)
 
 </div>
 
@@ -14,11 +14,25 @@ AnimeGen is a mobile app made in Swift, developed using public APIs. The app's p
 
 AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **iOS 13** or above.
 
+## Screenshots
+
+<table>
+  <tbody>
+    <tr>
+      <td><img src="images/screenshots/apis.png" width=200></td>
+      <td><img src="images/screenshots/history.png" width=200></td>
+      <td><img src="images/screenshots/tags.png" width=200></td>
+      <td><video src="images/videos/gif.mp4" width=200></td>
+    </tr>
+  </tbody>
+</table>
+
 ## Download
+
 Here, you can access the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
 
 > [!Note]
-> The nightly-IPA may be unstable and also does not support the Hmtai API.
+> The nightly-IPA may be unstable and also does not support the Hmtai API. (also does testflight)
 
 - [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
 - [Download IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
@@ -30,22 +44,17 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 
 ### Working APIs
 
-| APIs                | Type     | Format    | Working                  |
-| ------------------- | -----    | ----      | :--------:               |
-| Pic.re              | SFW/NSFW | IMG       | ✅                        |
-| Waifu.im            | SFW/NSFW | IMG       | ✅                        |
-| Nekos.best          | SFW      | IMG       | ✅                        |
-| Waifu.pics          | SFW/NSFW | IMG/GIF   | ✅                        |
-| Hmtai               | SFW/NSFW | IMG/GIF   | ✅                        |
-| Nekos api           | SFW/NSFW | IMG       | ✅                        |
-| Nekos.moe           | SFW/NSFW | IMG       | ✅                        |
-| Kyoko               | SFW/NSFW | IMG/GIF   | ✅                        |
-| Purr                | SFW/NSFW | IMG/GIF   | ✅                        |
-
-> [!Note]
-> Kyoko and the waifu.pics API likely share a common image database.
-
-## APIs Credits
+| APIs       | Type     | Format  | Working |
+| ---------- | -------- | ------- | :-----: |
+| Pic.re     | SFW/NSFW | IMG     |   ✅    |
+| Waifu.im   | SFW/NSFW | IMG     |   ✅    |
+| Nekos.best | SFW      | IMG     |   ✅    |
+| Waifu.pics | SFW/NSFW | IMG/GIF |   ✅    |
+| Hmtai      | SFW/NSFW | IMG/GIF |   ✅    |
+| Nekos api  | SFW/NSFW | IMG     |   ✅    |
+| Nekos.moe  | SFW/NSFW | IMG     |   ✅    |
+| Kyoko      | SFW/NSFW | IMG/GIF |   ✅    |
+| Purr       | SFW/NSFW | IMG/GIF |   ✅    |
 
 - [pic.re api](https://doc.pic.re/)
 - [waifu.im api](https://docs.waifu.im/)
@@ -65,7 +74,6 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launch screen idea and base)
 - [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
-- [Jared Davidson](https://www.youtube.com/@Archetapp) (AppIcon change option)
 
 ## Build
 
@@ -92,7 +100,7 @@ You need to update the Secrets.swift file with your specific values: the Discord
 import Foundation
 
 struct Secrets {
-    static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot. DONT REMOVE "Bot" 
+    static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot. DONT REMOVE "Bot"
 
     static let discordWebhookURL = URL(string: "YourWebhookUrl")!
 
