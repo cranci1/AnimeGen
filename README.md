@@ -23,7 +23,7 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
       <td><img src="https://raw.githubusercontent.com/cranci1/AnimeGen/main/Images/screenshots/apis.png" width=200px></td>
       <td><img src="https://raw.githubusercontent.com/cranci1/AnimeGen/main/Images/screenshots/history.png" width=200px></td>
       <td><img src="https://raw.githubusercontent.com/cranci1/AnimeGen/main/Images/screenshots/tags.png" width=200px></td>
-      <td><img src="https://github.com/cranci1/AnimeGen/assets/100066266/4e61df2b-873a-4439-8b66-4ee83e37e32a" width="200"></td>
+      <td><img src="https://github.com/cranci1/AnimeGen/assets/100066266/4e61df2b-873a-4439-8b66-4ee83e37e32a" width="200px"></td>
     </tr>
     </tbody>
   </table>
