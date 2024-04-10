@@ -22,6 +22,7 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 
 - [Download IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
+- [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
 - [Download rootfull .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm.deb)
 - [Download rootless .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm64.deb)
 
