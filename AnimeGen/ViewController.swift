@@ -187,7 +187,7 @@ class ViewController: UIViewController {
         view.addSubview(activityIndicator)
         
         
-        // Tags
+        // Tags Label
         tagsLabel = UILabel()
         tagsLabel.textColor = .white
         tagsLabel.textAlignment = .center
@@ -213,48 +213,60 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
+            // Image View
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
             imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55),
             
+            // API button
             apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             apiButton.heightAnchor.constraint(equalToConstant: 40),
             apiButton.widthAnchor.constraint(equalToConstant: 120),
             
+            // History button
             historyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             historyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
+            // Settings button
             settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
+            // Web button
             webButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             webButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             
+            // Refresh button
             refreshButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
             refreshButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            // Heart button
             heartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
             heartButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: -60),
             
+            // Rewind button
             rewindButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
             rewindButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: 60),
             
+            // Activity button
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: refreshButton.topAnchor, constant: -30),
             
+            // Share button
             shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             shareButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             
+            // Tags label
             tagsLabel.topAnchor.constraint(equalTo: apiButton.bottomAnchor, constant: 16),
             tagsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
+            // Time label
             timeLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
         ])
+
 
         loadImageAndTagsFromSelectedAPI()
     }

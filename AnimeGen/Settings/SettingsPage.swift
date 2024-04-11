@@ -12,19 +12,19 @@ struct SettingsPage: View {
     // Features
     @State private var animations = UserDefaults.standard.bool(forKey: "enableAnimations")
     @State private var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
-    @State private var tags = UserDefaults.standard.bool(forKey: "enableTags")
-    @State private var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     @State private var activitytime = UserDefaults.standard.bool(forKey: "enableTime")
     
+    // Tags
+    @State private var tags = UserDefaults.standard.bool(forKey: "enableTags")
+    @State private var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+    
     // Content
-    @State private var suggestiveCont = UserDefaults.standard.bool(forKey: "enablesuggestiveCont")
-    @State private var borderlineCont = UserDefaults.standard.bool(forKey: "enableBorderlineCont")
     @State private var explicitCont = UserDefaults.standard.bool(forKey: "enableExplictiCont")
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Features")) {
+                Section(header: Text("Features"), footer: Text("An app restart is necessary for the gradient and activity label to take effect.")) {
                     Toggle("Use Animations", isOn: Binding(
                         get: { self.animations },
                         set: { newValue in
@@ -40,14 +40,17 @@ struct SettingsPage: View {
                         }
                     ))
                     
-                    Toggle("Display Activity time", isOn: Binding(
+                    Toggle("Display Activity Label", isOn: Binding(
                         get: { self.activitytime },
                         set: { newValue in
                             self.activitytime = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableTime")
                         }
                     ))
-                    
+                }
+                 
+                
+                Section(header: Text("Tags"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
                     Toggle("Display Tags", isOn: Binding(
                         get: { self.tags },
                         set: { newValue in
@@ -64,24 +67,9 @@ struct SettingsPage: View {
                     ))
                 }
                 
+                
                 Section(header: Text("Content"), footer: Text("Caution: This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
-                    
-                    Toggle("Suggestive Contents", isOn: Binding(
-                        get: { self.suggestiveCont },
-                        set: { newValue in
-                            self.suggestiveCont = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enablesuggestiveCont")
-                        }
-                    ))
-                    
-                    Toggle("Borderline Contents", isOn: Binding(
-                        get: { self.borderlineCont },
-                        set: { newValue in
-                            self.borderlineCont = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableBorderlineCont")
-                        }
-                    ))
-                    
+                                        
                     Toggle("Explicit Contents", isOn: Binding(
                         get: { self.explicitCont },
                         set: { newValue in
@@ -105,13 +93,6 @@ struct SettingsPage: View {
                 
             }
             .navigationBarTitle("Settings")
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
-                                    }) {
-                                        Text("Close")
-                                    }
-            )
         }
     }
 }

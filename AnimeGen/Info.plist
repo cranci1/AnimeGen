@@ -4,23 +4,6 @@
 <dict>
 	<key>CFBundleIcons</key>
 	<dict>
-		<key>CFBundleAlternateIcons</key>
-		<dict>
-			<key>Printer</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Printer</string>
-				</array>
-			</dict>
-			<key>Turtle</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>Turtle</string>
-				</array>
-			</dict>
-		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>

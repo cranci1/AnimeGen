@@ -52,13 +52,6 @@ struct AboutPage: View {
             .navigationBarHidden(true)
         }
         .navigationBarTitle("About", displayMode: .inline)
-        .navigationBarItems(trailing:
-                                Button(action: {
-                                    UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
-                                }) {
-                                    Text("Close")
-                                }
-                            )
     }
 }
 

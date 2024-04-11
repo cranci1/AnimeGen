@@ -18,13 +18,6 @@
 		1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156E2BAB27D600A1C770 /* Web-Share.swift */; };
 		131515712BAB284A00A1C770 /* Refresh-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131515702BAB284A00A1C770 /* Refresh-Button.swift */; };
 		131515742BAB28C900A1C770 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 131515732BAB28C900A1C770 /* SDWebImage */; };
-		1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E7DF2B8FA2B70033C222 /* IconPage.swift */; };
-		1365E7EB2B8FA9BF0033C222 /* Turtle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7E82B8FA9BE0033C222 /* Turtle@2x.png */; };
-		1365E7EC2B8FA9BF0033C222 /* Turtle@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */; };
-		1365E7ED2B8FA9BF0033C222 /* Turtle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E7EA2B8FA9BF0033C222 /* Turtle@3x.png */; };
-		1365E8012B920BF80033C222 /* Printer@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E8002B920BF80033C222 /* Printer@1x.png */; };
-		1365E8072B920C110033C222 /* Printer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E8062B920C110033C222 /* Printer@2x.png */; };
-		1365E80B2B920C220033C222 /* Printer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1365E80A2B920C220033C222 /* Printer@3x.png */; };
 		1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E81F2BB0112D005E0548 /* HistoryView.swift */; };
 		1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8212BB011F6005E0548 /* ImageHistory.swift */; };
 		1365E8242BB01236005E0548 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8232BB01236005E0548 /* History.swift */; };
@@ -61,13 +54,6 @@
 		1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rewind-Settings.swift"; sourceTree = "<group>"; };
 		1315156E2BAB27D600A1C770 /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
 		131515702BAB284A00A1C770 /* Refresh-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Refresh-Button.swift"; sourceTree = "<group>"; };
-		1365E7DF2B8FA2B70033C222 /* IconPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPage.swift; sourceTree = "<group>"; };
-		1365E7E82B8FA9BE0033C222 /* Turtle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@2x.png"; sourceTree = "<group>"; };
-		1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@1x.png"; sourceTree = "<group>"; };
-		1365E7EA2B8FA9BF0033C222 /* Turtle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turtle@3x.png"; sourceTree = "<group>"; };
-		1365E8002B920BF80033C222 /* Printer@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Printer@1x.png"; sourceTree = "<group>"; };
-		1365E8062B920C110033C222 /* Printer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Printer@2x.png"; sourceTree = "<group>"; };
-		1365E80A2B920C220033C222 /* Printer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Printer@3x.png"; sourceTree = "<group>"; };
 		1365E81F2BB0112D005E0548 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		1365E8212BB011F6005E0548 /* ImageHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHistory.swift; sourceTree = "<group>"; };
 		1365E8232BB01236005E0548 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -161,15 +147,6 @@
 			path = Hmtai;
 			sourceTree = "<group>";
 		};
-		1365E7E72B8FA99C0033C222 /* Iconss */ = {
-			isa = PBXGroup;
-			children = (
-				1377C8502B938A30005B386E /* Turtle */,
-				1377C84F2B938A1F005B386E /* Printer */,
-			);
-			path = Iconss;
-			sourceTree = "<group>";
-		};
 		1365E81E2BB01123005E0548 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,34 +156,12 @@
 			path = History;
 			sourceTree = "<group>";
 		};
-		1377C84F2B938A1F005B386E /* Printer */ = {
-			isa = PBXGroup;
-			children = (
-				1365E8002B920BF80033C222 /* Printer@1x.png */,
-				1365E8062B920C110033C222 /* Printer@2x.png */,
-				1365E80A2B920C220033C222 /* Printer@3x.png */,
-			);
-			path = Printer;
-			sourceTree = "<group>";
-		};
-		1377C8502B938A30005B386E /* Turtle */ = {
-			isa = PBXGroup;
-			children = (
-				1365E7E92B8FA9BF0033C222 /* Turtle@1x.png */,
-				1365E7E82B8FA9BE0033C222 /* Turtle@2x.png */,
-				1365E7EA2B8FA9BF0033C222 /* Turtle@3x.png */,
-			);
-			path = Turtle;
-			sourceTree = "<group>";
-		};
 		13877B1A2B82017A00251A60 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				1365E7E72B8FA99C0033C222 /* Iconss */,
 				13877B182B82001800251A60 /* SettingsPage.swift */,
 				13877B1D2B82024A00251A60 /* AboutPage.swift */,
 				13CC95072B8BA40100B5705E /* ApiPage.swift */,
-				1365E7DF2B8FA2B70033C222 /* IconPage.swift */,
 				13CC95092B8BA43600B5705E /* API.xcassets */,
 			);
 			path = Settings;
@@ -302,13 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */,
-				1365E7EB2B8FA9BF0033C222 /* Turtle@2x.png in Resources */,
 				130A805C2B78C0300028985F /* Assets.xcassets in Resources */,
-				1365E7EC2B8FA9BF0033C222 /* Turtle@1x.png in Resources */,
-				1365E7ED2B8FA9BF0033C222 /* Turtle@3x.png in Resources */,
-				1365E8072B920C110033C222 /* Printer@2x.png in Resources */,
-				1365E8012B920BF80033C222 /* Printer@1x.png in Resources */,
-				1365E80B2B920C220033C222 /* Printer@3x.png in Resources */,
 				13CC950A2B8BA43600B5705E /* API.xcassets in Resources */,
 				130A805A2B78C02E0028985F /* Main.storyboard in Resources */,
 			);
@@ -337,7 +286,6 @@
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
 				1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */,
 				1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */,
-				1365E7E02B8FA2B70033C222 /* IconPage.swift in Sources */,
 				13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */,
 				131515712BAB284A00A1C770 /* Refresh-Button.swift in Sources */,
 				1365E8242BB01236005E0548 /* History.swift in Sources */,
@@ -497,7 +445,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
@@ -532,7 +480,7 @@
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;

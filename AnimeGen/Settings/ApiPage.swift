@@ -47,14 +47,7 @@ struct ApiPage: View {
                 .padding(EdgeInsets(top: 10, leading: 10, bottom: 30, trailing: 10))
             }
         }
-        .navigationBarTitle(Text("Change App Icon"), displayMode: .inline)
-        .navigationBarItems(trailing:
-                                Button(action: {
-                                    UIApplication.shared.windows.first { $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
-                                }) {
-                                    Text("Close")
-                                }
-                            )
+        .navigationBarTitle(Text("APIs Credit"), displayMode: .inline)
     }
 
     private func apiItem(index: Int) -> some View {

@@ -14,12 +14,6 @@ extension ViewController {
         
         var ratings: [String] = ["safe"]
 
-        if UserDefaults.standard.bool(forKey: "enablesuggestiveCont") {
-            ratings.append("suggestive")
-        }
-        if UserDefaults.standard.bool(forKey: "enableBorderlineCont") {
-            ratings.append("borderline")
-        }
         if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
             ratings.append("explicit")
         }
