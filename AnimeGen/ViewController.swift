@@ -205,7 +205,7 @@ class ViewController: UIViewController {
         timeLabel.numberOfLines = 0
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(timeLabel)
-
+        
         timeLabel.isHidden = !activity
 
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)

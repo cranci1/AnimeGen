@@ -40,7 +40,6 @@ extension ViewController {
         
         timeText += "\(seconds)s"
         
-        // Replace "Images" text with a stock image icon for the images counter
         let imageIconAttachment = NSTextAttachment()
         imageIconAttachment.image = UIImage(systemName: "photo.on.rectangle")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
         let imageIconString = NSAttributedString(attachment: imageIconAttachment)

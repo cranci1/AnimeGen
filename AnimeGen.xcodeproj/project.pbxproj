@@ -16,7 +16,7 @@
 		1315156B2BAB268900A1C770 /* HearthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156A2BAB268900A1C770 /* HearthButton.swift */; };
 		1315156D2BAB274F00A1C770 /* Rewind-Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */; };
 		1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156E2BAB27D600A1C770 /* Web-Share.swift */; };
-		131515712BAB284A00A1C770 /* Refresh-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131515702BAB284A00A1C770 /* Refresh-Button.swift */; };
+		131515712BAB284A00A1C770 /* Refresh-API-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131515702BAB284A00A1C770 /* Refresh-API-Button.swift */; };
 		131515742BAB28C900A1C770 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 131515732BAB28C900A1C770 /* SDWebImage */; };
 		1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E81F2BB0112D005E0548 /* HistoryView.swift */; };
 		1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8212BB011F6005E0548 /* ImageHistory.swift */; };
@@ -53,7 +53,7 @@
 		1315156A2BAB268900A1C770 /* HearthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearthButton.swift; sourceTree = "<group>"; };
 		1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rewind-Settings.swift"; sourceTree = "<group>"; };
 		1315156E2BAB27D600A1C770 /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
-		131515702BAB284A00A1C770 /* Refresh-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Refresh-Button.swift"; sourceTree = "<group>"; };
+		131515702BAB284A00A1C770 /* Refresh-API-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Refresh-API-Button.swift"; sourceTree = "<group>"; };
 		1365E81F2BB0112D005E0548 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		1365E8212BB011F6005E0548 /* ImageHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHistory.swift; sourceTree = "<group>"; };
 		1365E8232BB01236005E0548 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				1315156A2BAB268900A1C770 /* HearthButton.swift */,
 				1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */,
 				1315156E2BAB27D600A1C770 /* Web-Share.swift */,
-				131515702BAB284A00A1C770 /* Refresh-Button.swift */,
+				131515702BAB284A00A1C770 /* Refresh-API-Button.swift */,
 				1365E8232BB01236005E0548 /* History.swift */,
 				1375B3E92BB813DA00E3D128 /* Activity.swift */,
 			);
@@ -287,7 +287,7 @@
 				1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */,
 				1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */,
 				13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */,
-				131515712BAB284A00A1C770 /* Refresh-Button.swift in Sources */,
+				131515712BAB284A00A1C770 /* Refresh-API-Button.swift in Sources */,
 				1365E8242BB01236005E0548 /* History.swift in Sources */,
 				13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */,
 				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
