@@ -27,6 +27,7 @@ struct HistoryView: View {
                     .navigationBarTitle("History")
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

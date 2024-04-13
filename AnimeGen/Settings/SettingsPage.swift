@@ -48,7 +48,6 @@ struct SettingsPage: View {
                         }
                     ))
                 }
-                 
                 
                 Section(header: Text("Tags"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
                     Toggle("Display Tags", isOn: Binding(
@@ -67,9 +66,8 @@ struct SettingsPage: View {
                     ))
                 }
                 
-                
                 Section(header: Text("Content"), footer: Text("Caution: This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
-                                        
+                    
                     Toggle("Explicit Contents", isOn: Binding(
                         get: { self.explicitCont },
                         set: { newValue in
@@ -92,14 +90,16 @@ struct SettingsPage: View {
                 }
                 
             }
+            .listStyle(GroupedListStyle())
             .navigationBarTitle("Settings")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct SettingsPage_Preview: PreviewProvider {
     static var previews: some View {
         SettingsPage()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
     }
 }

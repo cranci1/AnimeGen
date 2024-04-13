@@ -29,49 +29,75 @@ struct ApiPage: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(0..<apiData.count, id: \.self) { index in
-                        if index % 3 == 0 {
-                            HStack(spacing: 20) {
-                                apiItem(index: index)
-                                if index + 1 < apiData.count {
-                                    apiItem(index: index + 1)
-                                }
-                                if index + 2 < apiData.count {
-                                    apiItem(index: index + 2)
-                                }
+                VStack(spacing: 20) {
+                    ForEach(Array(apiData.enumerated()), id: \.element.self) { index, data in
+                        if index != apiData.count - 1 {
+                            APIRow(data: data)
+                        } else {
+                            VStack(spacing: 10) {
+                                APIRow(data: data)
+                                THanksSection()
                             }
                         }
                     }
                 }
-                .padding(EdgeInsets(top: 10, leading: 10, bottom: 30, trailing: 10))
+                .padding()
             }
+            .navigationBarHidden(true)
         }
-        .navigationBarTitle(Text("APIs Credit"), displayMode: .inline)
+        .navigationBarTitle("APIs Credit", displayMode: .inline)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
+}
 
-    private func apiItem(index: Int) -> some View {
-        let data = apiData[index]
+struct THanksSection: View {
+    var body: some View {
+        VStack(spacing: 10) {
+            Text("Special Thanks")
+                .font(.title)
+                .fontWeight(.bold)
+            Text("Special thanks to all the developers who provided these APIs for public use. Without them, this project wouldn't exist. Thank you very much!")
+                .font(.caption)
+                .fontWeight(.semibold)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+        }
+        .padding()
+        .background(Color.secondary.opacity(0.1))
+        .cornerRadius(10)
+    }
+}
 
-        return Button(action: {
-            openURL(data.url)
-        }) {
-            VStack {
-                Image(data.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 100)
-                    .cornerRadius(10)
-
+struct APIRow: View {
+    let data: ApiPage.APIInfo
+    
+    var body: some View {
+        HStack {
+            Image(data.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80, height: 80)
+                .cornerRadius(10)
+                .onTapGesture {
+                    openURL(data.url)
+                }
+            
+            VStack(alignment: .leading) {
                 Text(data.apiName)
-                    .padding(.top, 5)
-                    .font(.headline)
+                    .font(.title)
                     .foregroundColor(.accentColor)
+                    .padding(.vertical, 10)
+                    .onTapGesture {
+                        openURL(data.url)
+                    }
             }
+            .padding(.horizontal, 10)
+            Spacer()
         }
-        .buttonStyle(PlainButtonStyle())
+        .background(Color.secondary.opacity(0.1))
+        .cornerRadius(10)
     }
-
+    
     private func openURL(_ url: URL) {
         UIApplication.shared.open(url)
     }

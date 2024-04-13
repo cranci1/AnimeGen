@@ -52,6 +52,7 @@ struct AboutPage: View {
             .navigationBarHidden(true)
         }
         .navigationBarTitle("About", displayMode: .inline)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
