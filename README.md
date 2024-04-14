@@ -30,42 +30,33 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
 
 ## Download
 
-Here, you can access the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, if your device is jailbroken, you can opt to install the .deb file.
+Here, you can access the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight
 
 > [!Note]
 > The nightly-IPA may be unstable and also does not support the Hmtai API. (also does testflight)
 
 - [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
-- [Download IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
+- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
-- [Download rootfull .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm.deb)
-- [Download rootless .deb](https://raw.githubusercontent.com/cranci1/AnimeGen/main/debs/me.cranci.animegen_1.5_iphoneos-arm64.deb)
 
 ## APIs
 
 ### Working APIs
 
-| APIs       | Type     | Format  | Working |
-| ---------- | -------- | ------- | :-----: |
-| Pic.re     | SFW/NSFW | IMG     |   ✅    |
-| Waifu.im   | SFW/NSFW | IMG     |   ✅    |
-| Nekos.best | SFW      | IMG     |   ✅    |
-| Waifu.pics | SFW/NSFW | IMG/GIF |   ✅    |
-| Hmtai      | SFW/NSFW | IMG/GIF |   ✅    |
-| Nekos api  | SFW/NSFW | IMG     |   ✅    |
-| Nekos.moe  | SFW/NSFW | IMG     |   ✅    |
-| Kyoko      | SFW/NSFW | IMG/GIF |   ✅    |
-| Purr       | SFW/NSFW | IMG/GIF |   ✅    |
+| APIs                                                         | Type     | Format  | Status |
+| ------------------------------------------------------------ | -------- | ------- | :----: |
+| [pic.re](https://doc.pic.re/)                                | SFW/NSFW | IMG     |   ✅   |
+| [waifu.im](https://docs.waifu.im/)                           | SFW/NSFW | IMG     |   ✅   |
+| [nekos.best](https://docs.nekos.best/)                       | SFW      | IMG     |   ✅   |
+| [waifu.pics](https://waifu.pics/docs)                        | SFW/NSFW | IMG/GIF |   ✅   |
+| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)                | SFW/NSFW | IMG/GIF |   ⚠️    |
+| [Nekos api](https://nekosapi.com/docs)                       | SFW/NSFW | IMG     |   ✅   |
+| [Nekos.moe](https://docs.nekos.moe)                          | SFW/NSFW | IMG     |   ✅   |
+| [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)   | SFW/NSFW | IMG/GIF |   ✅   |
+| [Purr Bot](https://purrbot.site/)                            | SFW/NSFW | IMG/GIF |   ✅   |
 
-- [pic.re api](https://doc.pic.re/)
-- [waifu.im api](https://docs.waifu.im/)
-- [nekos.best api](https://docs.nekos.best/)
-- [waifu.pics api](https://waifu.pics/docs)
-- [Hmtai api](https://hmtai.hatsunia.cfd/endpoints)
-- [Nekos api](https://nekosapi.com/docs)
-- [Nekos.moe](https://docs.nekos.moe)
-- [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)
-- [Purr](https://purrbot.site/)
+> [!Note]
+> The Hmtai api is pretty slow, [why?](https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md)
 
 ## Third Party Software
 
@@ -85,13 +76,13 @@ Want to build the app yourself? No problem, by cloning this repo and running the
 
 Clone the repo:
 
-```bash
+```
 git clone https://github.com/cranci1/AnimeGen
 ```
 
 Navige to the directory:
 
-```
+```bash
 cd AnimeGen
 ```
 
