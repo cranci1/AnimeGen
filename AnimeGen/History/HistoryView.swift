@@ -21,10 +21,10 @@ struct HistoryView: View {
         NavigationView {
             if #available(iOS 15.0, *) {
                 ImageGrid(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
-                    .navigationBarTitle("History")
+                    .navigationBarTitle("History - \(ImageHistory.images.count) images")
             } else {
                 ImageGridiOS13(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
-                    .navigationBarTitle("History")
+                    .navigationBarTitle("History - \(ImageHistory.images.count) images")
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

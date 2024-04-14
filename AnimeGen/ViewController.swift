@@ -95,16 +95,22 @@ class ViewController: UIViewController {
         
         // History Button
         historyButton = UIButton(type: .system)
-        let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-        historyButton.setImage(historyIcon, for: .normal)
+        if #available(iOS 14.0, *) {
+            let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+            historyButton.setImage(historyIcon, for: .normal)
+        } else {
+            let customHistoryIcon = UIImage(named: "hisoty")
+            historyButton.setImage(customHistoryIcon, for: .normal)
+        }
         historyButton.tintColor = .systemGray
         historyButton.setTitleColor(.white, for: .normal)
         historyButton.addTarget(self, action: #selector(historyButtonTapped), for: .touchUpInside)
         historyButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(historyButton)
-        
-        
+
+
+
         // Settings Button
         settingsButton = UIButton(type: .system)
         let settingsIcon = UIImage(systemName: "gear")?
@@ -155,9 +161,14 @@ class ViewController: UIViewController {
         
         // Rewind Button
         rewindButton = UIButton(type: .system)
-        let rewindImage = UIImage(systemName: "arrowshape.turn.up.backward.circle.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
-        rewindButton.setImage(rewindImage, for: .normal)
+        if #available(iOS 14.0, *) {
+            let rewindImage = UIImage(systemName: "arrowshape.turn.up.backward.circle.fill")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
+            rewindButton.setImage(rewindImage, for: .normal)
+        } else {
+            let customRewindIcon = UIImage(named: "undo")
+            rewindButton.setImage(customRewindIcon, for: .normal)
+        }
         rewindButton.tintColor = .systemGreen
         rewindButton.setTitleColor(.white, for: .normal)
         rewindButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
@@ -168,9 +179,14 @@ class ViewController: UIViewController {
         
         // Share Button
         shareButton = UIButton(type: .system)
-        let shareImage = UIImage(systemName: "square.and.arrow.up.circle.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
-        shareButton.setImage(shareImage, for: .normal)
+        if #available(iOS 15.0, *) {
+            let shareImage = UIImage(systemName: "square.and.arrow.up.circle.fill")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
+            shareButton.setImage(shareImage, for: .normal)
+        } else {
+            let customShareIcon = UIImage(named: "share")
+            shareButton.setImage(customShareIcon, for: .normal)
+        }
         shareButton.tintColor = .systemPurple
         shareButton.setTitleColor(.white, for: .normal)
         shareButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
