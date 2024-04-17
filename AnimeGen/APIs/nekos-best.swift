@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
     
-    func loadImageAndTagsFromNekosBest() {
+    func loadImageFromNekosBest() {
         startLoadingIndicator()
 
         let categories = ["neko", "waifu", "kitsune"]

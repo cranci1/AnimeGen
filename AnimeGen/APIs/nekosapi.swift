@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
 
-    func loadImageAndTagsFromNekosapi() {
+    func loadImageFromNekosapi() {
         startLoadingIndicator()
         
         var ratings: [String] = ["safe"]

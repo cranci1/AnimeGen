@@ -292,24 +292,42 @@ class ViewController: UIViewController {
             return
         }
         switch title {
+            
         case "pic.re":
-            loadImageAndTagsFromPicRe()
+            loadImageFromPicRe()
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
         case "waifu.im":
-            loadImageAndTagsFromWaifuIm()
+            loadImageFromWaifuIm()
         case "nekos.best":
-            loadImageAndTagsFromNekosBest()
+            loadImageFromNekosBest()
         case "waifu.pics":
             loadImageFromWaifuPics()
         case "Hmtai":
             startHmtaiLoader()
         case "Nekos api":
-            loadImageAndTagsFromNekosapi()
+            loadImageFromNekosapi()
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
         case "nekos.moe":
-            loadImageAndTagsFromNekosMoe()
+            loadImageFromNekosMoe()
         case "kyoko":
-            loadImageAndTagsFromKyoko()
+            loadImageFromKyoko()
         case "Purr":
-            loadImageAndTagsFromPurr()
+            loadImageFromPurr()
+            
         default:
             break
         }

@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
     
-    func loadImageAndTagsFromKyoko() {
+    func loadImageFromKyoko() {
         startLoadingIndicator()
 
         let categories: [String]

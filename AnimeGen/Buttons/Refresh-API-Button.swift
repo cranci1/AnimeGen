@@ -16,14 +16,22 @@ extension ViewController {
 
         switch title {
         case "pic.re":
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
             lastImage = imageView.image
-            loadImageAndTagsFromPicRe()
+            loadImageFromPicRe()
         case "waifu.im":
             lastImage = imageView.image
-            loadImageAndTagsFromWaifuIm()
+            loadImageFromWaifuIm()
         case "nekos.best":
             lastImage = imageView.image
-            loadImageAndTagsFromNekosBest()
+            loadImageFromNekosBest()
         case "waifu.pics":
             lastImage = imageView.image
             loadImageFromWaifuPics()
@@ -31,23 +39,30 @@ extension ViewController {
             lastImage = imageView.image
             startHmtaiLoader()
         case "Nekos api":
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
             lastImage = imageView.image
-            loadImageAndTagsFromNekosapi()
+            loadImageFromNekosapi()
         case "nekos.moe":
             lastImage = imageView.image
-            loadImageAndTagsFromNekosMoe()
+            loadImageFromNekosMoe()
         case "kyoko":
             lastImage = imageView.image
-            loadImageAndTagsFromKyoko()
+            loadImageFromKyoko()
         case "Purr":
             lastImage = imageView.image
-            loadImageAndTagsFromPurr()
+            loadImageFromPurr()
         default:
             break
         }
     }
 
-    
     @objc func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
 

@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
     
-    func loadImageAndTagsFromPicRe() {
+    func loadImageFromPicRe() {
         startLoadingIndicator()
 
         let apiEndpoint = "https://pic.re/image"

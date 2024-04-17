@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
     
-    func loadImageAndTagsFromWaifuIm() {
+    func loadImageFromWaifuIm() {
         startLoadingIndicator()
 
         let isNSFW = UserDefaults.standard.bool(forKey: "enableExplictiCont")

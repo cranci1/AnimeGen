@@ -10,7 +10,7 @@ import UIKit
 
 extension ViewController {
     
-    func loadImageAndTagsFromPurr() {
+    func loadImageFromPurr() {
         startLoadingIndicator()
 
         var categories: [String]

@@ -90,7 +90,6 @@ struct SettingsPage: View {
                 }
                 
             }
-            .listStyle(GroupedListStyle())
             .navigationBarTitle("Settings")
         }
         .navigationViewStyle(StackNavigationViewStyle())

@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
 
-    func loadImageAndTagsFromNekosMoe() {
+    func loadImageFromNekosMoe() {
         startLoadingIndicator()
 
         let isNSFW = UserDefaults.standard.bool(forKey: "enableExplictiCont")
