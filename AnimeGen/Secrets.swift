@@ -8,10 +8,9 @@
 import Foundation
 
 struct Secrets {
-    static let apiToken = "Bot TokenHEREHEREHERE"
+    static var apiToken = "Bot DiscordBotTokenHere"
     
-    static let discordWebhookURL = URL(string: "YourWebhookUrl")!
+    static var discordWebhookURL = URL(string: "YourWebhookUrl")!
     
-    static let discordChannelId = "YourChannelIdHere"
+    static var discordChannelId = "YourChannelIdHere"
 }
-

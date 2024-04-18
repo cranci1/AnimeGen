@@ -21,6 +21,9 @@ struct SettingsPage: View {
     // Content
     @State private var explicitCont = UserDefaults.standard.bool(forKey: "enableExplictiCont")
     
+    // Devloper Mode
+    @State private var developerMode = UserDefaults.standard.bool(forKey: "enableDeveloperMode")
+    
     var body: some View {
         NavigationView {
             Form {
@@ -67,7 +70,6 @@ struct SettingsPage: View {
                 }
                 
                 Section(header: Text("Content"), footer: Text("Caution: This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
-                    
                     Toggle("Explicit Contents", isOn: Binding(
                         get: { self.explicitCont },
                         set: { newValue in
@@ -75,6 +77,24 @@ struct SettingsPage: View {
                             UserDefaults.standard.set(newValue, forKey: "enableExplictiCont")
                         }
                     ))
+                }
+                
+                Section(header: Text("Developer")) {
+                    
+                    Toggle("Developer Mode", isOn: Binding(
+                        get: { self.developerMode },
+                        set: { newValue in
+                            self.developerMode = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableDeveloperMode")
+                        }
+                    ))
+                    
+                    if UserDefaults.standard.bool(forKey: "enableDeveloperMode") {
+                        NavigationLink(destination: DeveloperView()) {
+                            Text("Developer Settings")
+                                .foregroundColor(.accentColor)
+                        }
+                    }
                 }
                 
                 Section(header: Text("About AnimeGen")) {

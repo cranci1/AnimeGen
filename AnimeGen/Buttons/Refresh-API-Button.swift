@@ -35,7 +35,7 @@ extension ViewController {
         case "waifu.pics":
             lastImage = imageView.image
             loadImageFromWaifuPics()
-        case "Hmtai":
+        case "Hmtai api":
             lastImage = imageView.image
             startHmtaiLoader()
         case "Nekos api":
@@ -66,7 +66,7 @@ extension ViewController {
     @objc func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
 
-        let apiOptions = ["Purr", "kyoko", "nekos.moe", "Nekos api", "Hmtai", "waifu.pics", "nekos.best", "waifu.im", "pic.re"]
+        let apiOptions = ["Purr", "kyoko", "nekos.moe", "Nekos api", "Hmtai api", "waifu.pics", "nekos.best", "waifu.im", "pic.re"]
         for option in apiOptions {
             let action = UIAlertAction(title: option, style: .default) { _ in
                 self.apiButton.setTitle(option, for: .normal)

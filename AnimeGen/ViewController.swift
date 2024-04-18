@@ -309,7 +309,7 @@ class ViewController: UIViewController {
             loadImageFromNekosBest()
         case "waifu.pics":
             loadImageFromWaifuPics()
-        case "Hmtai":
+        case "Hmtai api":
             startHmtaiLoader()
         case "Nekos api":
             loadImageFromNekosapi()
