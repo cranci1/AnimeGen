@@ -18,6 +18,7 @@
 		1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156E2BAB27D600A1C770 /* Web-Share.swift */; };
 		131515712BAB284A00A1C770 /* Refresh-API-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131515702BAB284A00A1C770 /* Refresh-API-Button.swift */; };
 		131515742BAB28C900A1C770 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 131515732BAB28C900A1C770 /* SDWebImage */; };
+		134C3A862BD404C5001C3C22 /* Main-onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134C3A852BD404C5001C3C22 /* Main-onboard.swift */; };
 		1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E81F2BB0112D005E0548 /* HistoryView.swift */; };
 		1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8212BB011F6005E0548 /* ImageHistory.swift */; };
 		1365E8242BB01236005E0548 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8232BB01236005E0548 /* History.swift */; };
@@ -25,7 +26,6 @@
 		138661252B8136DC0062AC91 /* nekosapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661242B8136DC0062AC91 /* nekosapi.swift */; };
 		13877B192B82001800251A60 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B182B82001800251A60 /* SettingsPage.swift */; };
 		13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B1D2B82024A00251A60 /* AboutPage.swift */; };
-		138A42142BD02D24008B03F4 /* popup-Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138A42132BD02D24008B03F4 /* popup-Banner.swift */; };
 		13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBD2B80D380009BF17E /* ImageExtensions.swift */; };
 		13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBF2B80D396009BF17E /* UIExtensions.swift */; };
 		13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC42B80D5A6009BF17E /* pic-re.swift */; };
@@ -56,6 +56,7 @@
 		1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rewind-Settings.swift"; sourceTree = "<group>"; };
 		1315156E2BAB27D600A1C770 /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
 		131515702BAB284A00A1C770 /* Refresh-API-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Refresh-API-Button.swift"; sourceTree = "<group>"; };
+		134C3A852BD404C5001C3C22 /* Main-onboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main-onboard.swift"; sourceTree = "<group>"; };
 		1365E81F2BB0112D005E0548 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		1365E8212BB011F6005E0548 /* ImageHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHistory.swift; sourceTree = "<group>"; };
 		1365E8232BB01236005E0548 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		138661242B8136DC0062AC91 /* nekosapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosapi.swift; sourceTree = "<group>"; };
 		13877B182B82001800251A60 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		13877B1D2B82024A00251A60 /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
-		138A42132BD02D24008B03F4 /* popup-Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "popup-Banner.swift"; sourceTree = "<group>"; };
 		13910EBD2B80D380009BF17E /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		13910EBF2B80D396009BF17E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		13910EC42B80D5A6009BF17E /* pic-re.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 		130A80512B78C02E0028985F /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
+				134C3A842BD404B9001C3C22 /* Boarding */,
 				13910EC32B80D595009BF17E /* APIs */,
 				13910ECC2B80D61F009BF17E /* Extensions */,
 				1365E81E2BB01123005E0548 /* History */,
@@ -149,6 +150,14 @@
 				13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */,
 			);
 			path = Hmtai;
+			sourceTree = "<group>";
+		};
+		134C3A842BD404B9001C3C22 /* Boarding */ = {
+			isa = PBXGroup;
+			children = (
+				134C3A852BD404C5001C3C22 /* Main-onboard.swift */,
+			);
+			path = Boarding;
 			sourceTree = "<group>";
 		};
 		1365E81E2BB01123005E0548 /* History */ = {
@@ -193,7 +202,6 @@
 			children = (
 				13910EBD2B80D380009BF17E /* ImageExtensions.swift */,
 				13910EBF2B80D396009BF17E /* UIExtensions.swift */,
-				138A42132BD02D24008B03F4 /* popup-Banner.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -284,7 +292,7 @@
 				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,
 				13877B192B82001800251A60 /* SettingsPage.swift in Sources */,
 				13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */,
-				138A42142BD02D24008B03F4 /* popup-Banner.swift in Sources */,
+				134C3A862BD404C5001C3C22 /* Main-onboard.swift in Sources */,
 				130A80572B78C02E0028985F /* ViewController.swift in Sources */,
 				130A80532B78C02E0028985F /* AppDelegate.swift in Sources */,
 				130A80552B78C02E0028985F /* SceneDelegate.swift in Sources */,
@@ -381,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -436,7 +444,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -453,7 +461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
@@ -465,12 +473,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -488,7 +496,7 @@
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
@@ -500,12 +508,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

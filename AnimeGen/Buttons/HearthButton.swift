@@ -10,7 +10,7 @@ import Photos
 import MobileCoreServices
 
 extension ViewController {
-    
+
     @objc func heartButtonTapped() {
         guard let image = imageView.image else {
             return
@@ -18,9 +18,9 @@ extension ViewController {
 
         if let data = image.imageData,
            let source = CGImageSourceCreateWithData(data as CFData, nil),
-           let utType = CGImageSourceGetType(source),
-           UTTypeConformsTo(utType, kUTTypeGIF) {
-
+           let utType = CGImageSourceGetType(source) as String?,
+           UTType(utType)?.conforms(to: .gif) == true {
+           
             PHPhotoLibrary.shared().performChanges {
                 let creationRequest = PHAssetCreationRequest.forAsset()
                 creationRequest.addResource(with: .photo, data: data, options: nil)
@@ -45,7 +45,7 @@ extension ViewController {
             print("Error converting image to JPEG format")
         }
     }
-    
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             print("Error saving image: \(error.localizedDescription)")
@@ -53,5 +53,4 @@ extension ViewController {
             print("Image saved successfully")
         }
     }
-    
 }

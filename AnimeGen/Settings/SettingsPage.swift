@@ -24,6 +24,9 @@ struct SettingsPage: View {
     // Devloper Mode
     @State private var developerMode = UserDefaults.standard.bool(forKey: "enableDeveloperMode")
     
+    // Tutorial
+    @State private var isShowingTutorial = false
+    
     var body: some View {
         NavigationView {
             Form {
@@ -107,8 +110,17 @@ struct SettingsPage: View {
                         Text("APIs credits")
                             .foregroundColor(.accentColor)
                     }
+                    
+                    Button(action: {
+                        isShowingTutorial = true
+                    }) {
+                        Text("Show Tutorial")
+                            .foregroundColor(.accentColor)
+                    }
+                    .fullScreenCover(isPresented: $isShowingTutorial) {
+                        TutorialView()
+                    }
                 }
-                
             }
             .navigationBarTitle("Settings")
         }

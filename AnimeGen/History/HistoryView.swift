@@ -19,19 +19,13 @@ struct HistoryView: View {
     
     var body: some View {
         NavigationView {
-            if #available(iOS 15.0, *) {
-                ImageGrid(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
-                    .navigationBarTitle("History - \(ImageHistory.images.count) images")
-            } else {
-                ImageGridiOS13(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
-                    .navigationBarTitle("History - \(ImageHistory.images.count) images")
-            }
+            ImageGrid(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
+                .navigationBarTitle("History - \(ImageHistory.images.count) images")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
-@available(iOS 15.0, *)
 struct ImageGrid: View {
     @Binding var selectedImage: UIImage?
     @Binding var isSaveAlertPresented: Bool

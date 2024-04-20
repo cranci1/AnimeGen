@@ -16,14 +16,6 @@ extension ViewController {
 
         switch title {
         case "pic.re":
-            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
-                if #available(iOS 14.0, *) {
-                    // nothing here cuz ios 14+ 💪
-                } else {
-                    self.apiButton.setTitle("waifu.im", for: .normal)
-                    self.loadImageFromWaifuIm()
-                }
-            }
             lastImage = imageView.image
             loadImageFromPicRe()
         case "waifu.im":
@@ -39,14 +31,6 @@ extension ViewController {
             lastImage = imageView.image
             startHmtaiLoader()
         case "Nekos api":
-            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
-                if #available(iOS 14.0, *) {
-                    // nothing here cuz ios 14+ 💪
-                } else {
-                    self.apiButton.setTitle("waifu.im", for: .normal)
-                    self.loadImageFromWaifuIm()
-                }
-            }
             lastImage = imageView.image
             loadImageFromNekosapi()
         case "nekos.moe":
