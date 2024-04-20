@@ -12,7 +12,7 @@ AnimeGen is a mobile app made in Swift, developed using public APIs. The app's p
 
 ## Compatibility
 
-AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **iOS 13** or above.
+AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **iOS 15** or above. (since v1.7-24 iOS 13 and 14 are no longer supported)
 
 ## Screenshots
 
