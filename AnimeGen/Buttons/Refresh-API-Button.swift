@@ -18,6 +18,14 @@ extension ViewController {
         case "pic.re":
             lastImage = imageView.image
             loadImageFromPicRe()
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
         case "waifu.im":
             lastImage = imageView.image
             loadImageFromWaifuIm()
@@ -33,6 +41,14 @@ extension ViewController {
         case "Nekos api":
             lastImage = imageView.image
             loadImageFromNekosapi()
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
         case "nekos.moe":
             lastImage = imageView.image
             loadImageFromNekosMoe()

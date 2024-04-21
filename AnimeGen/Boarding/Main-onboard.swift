@@ -18,20 +18,38 @@ struct TutorialView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var currentStep = 0
     @State private var isShowingBlur = false
-    
-    let steps: [TutorialStep] = [
-        TutorialStep(text: "Welcom to AnimeGen.", icon: "star.fill", tintColor: .accentColor, position: "A simple way to enjoy anime Art"),
-        TutorialStep(text: "Tap the Top button to switch image providers. There are 9 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
-        TutorialStep(text: "Hit refresh for a new image.", icon: "arrow.clockwise.circle.fill", tintColor: .teal, position: "Placed on the Bottom Center"),
-        TutorialStep(text: "Show some love! Tap the heart to save an image.", icon: "heart.fill", tintColor: .red, position: "Placed on the Bottom Center Right"),
-        TutorialStep(text: "Rewind to the last image with the rewind icon.", icon: "arrowshape.turn.up.backward.circle.fill", tintColor: .green, position: "Placed on the Bottom Center Left"),
-        TutorialStep(text: "Share the current image with the share icon.", icon: "square.and.arrow.up.circle.fill", tintColor: .purple, position: "Placed on the Bottom Right Corner"),
-        TutorialStep(text: "Access the image URL with the Safari icon.", icon: "safari.fill", tintColor: .blue, position: "Placed on the Bottom Left Corner"),
-        TutorialStep(text: "Gear up! Tap the gear icon to tweak settings.", icon: "gearshape", tintColor: .gray, position: "Placed on the Top Left Corner"),
-        TutorialStep(text: "Check out the session history with the clock icon in the top right.", icon: "clock.arrow.circlepath", tintColor: .pink, position: "Placed on the Top Right Corner"),
-        TutorialStep(text: "AnimeGen care about your privacy. Nothing is stored!", icon: "shield.fill", tintColor: .orange, position: "Visit Settings → About, to learn more."),
-        TutorialStep(text: "Enjoy your Stay!", icon: "photo.on.rectangle.angled", tintColor: .indigo, position: "Don't forget to share your feedbacks!")
-    ]
+
+    var steps: [TutorialStep] {
+        if #available(iOS 15.0, *) {
+            return [
+                TutorialStep(text: "Welcom to AnimeGen", icon: "star.fill", tintColor: .accentColor, position: "A simple way to enjoy anime Art"),
+                TutorialStep(text: "Tap the Top button to switch image providers. There are 9 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
+                TutorialStep(text: "Hit refresh for a new image.", icon: "arrow.clockwise.circle.fill", tintColor: .secondary, position: "Placed on the Bottom Center"),
+                TutorialStep(text: "Show some love! Tap the heart to save an image.", icon: "heart.fill", tintColor: .red, position: "Placed on the Bottom Center Right"),
+                TutorialStep(text: "Rewind to the last image with the rewind icon.", icon: "arrowshape.turn.up.backward.circle.fill", tintColor: .green, position: "Placed on the Bottom Center Left"),
+                TutorialStep(text: "Share the current image with the share icon.", icon: "square.and.arrow.up.circle.fill", tintColor: .purple, position: "Placed on the Bottom Right Corner"),
+                TutorialStep(text: "Access the image URL with the Safari icon.", icon: "safari.fill", tintColor: .blue, position: "Placed on the Bottom Left Corner"),
+                TutorialStep(text: "Gear up! Tap the gear icon to tweak settings.", icon: "gearshape", tintColor: .gray, position: "Placed on the Top Left Corner"),
+                TutorialStep(text: "Check out the session history with the clock icon in the top right.", icon: "clock.arrow.circlepath", tintColor: .pink, position: "Placed on the Top Right Corner"),
+                TutorialStep(text: "AnimeGen care about your privacy. Nothing is stored!", icon: "shield.fill", tintColor: .orange, position: "Visit Settings → About, to learn more."),
+                TutorialStep(text: "Enjoy your Stay!", icon: "photo.on.rectangle.angled", tintColor: .accentColor, position: "Don't forget to share your feedbacks!")
+            ]
+        } else {
+            return [
+                TutorialStep(text: "Welcom to AnimeGen", icon: "star.fill", tintColor: .accentColor, position: "A simple way to enjoy anime Art"),
+                TutorialStep(text: "Tap the Top button to switch image providers. There are 9 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
+                TutorialStep(text: "Hit refresh for a new image.", icon: "arrow.clockwise.circle.fill", tintColor: .secondary, position: "Placed on the Bottom Center"),
+                TutorialStep(text: "Show some love! Tap the heart to save an image.", icon: "heart.fill", tintColor: .red, position: "Placed on the Bottom Center Right"),
+                TutorialStep(text: "Rewind to the last image with the rewind icon.", icon: "arrowshape.turn.up.backward.circle.fill", tintColor: .green, position: "Placed on the Bottom Center Left"),
+                TutorialStep(text: "Share the current image with the share icon.", icon: "square.and.arrow.up.on.square.fill", tintColor: .purple, position: "Placed on the Bottom Right Corner"),
+                TutorialStep(text: "Access the image URL with the Safari icon.", icon: "safari.fill", tintColor: .blue, position: "Placed on the Bottom Left Corner"),
+                TutorialStep(text: "Gear up! Tap the gear icon to tweak settings.", icon: "gearshape", tintColor: .gray, position: "Placed on the Top Left Corner"),
+                TutorialStep(text: "Check out the session history with the clock icon in the top right.", icon: "clock.arrow.circlepath", tintColor: .pink, position: "Placed on the Top Right Corner"),
+                TutorialStep(text: "AnimeGen care about your privacy. Nothing is stored!", icon: "shield.fill", tintColor: .orange, position: "Visit Settings → About, to learn more."),
+                TutorialStep(text: "Enjoy your Stay!", icon: "photo.on.rectangle.angled", tintColor: .accentColor, position: "Don't forget to share your feedbacks!")
+            ]
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -57,14 +75,14 @@ struct TutorialView: View {
                         }
                         
                         Text(steps[currentStep].text)
-                            .font(.title2)
+                            .font(.title)
                             .fontWeight(.semibold)
                             .multilineTextAlignment(.center)
                             .padding()
                             .foregroundColor(.primary)
                         
                         Text(steps[currentStep].position)
-                            .font(.title3)
+                            .font(.headline)
                             .multilineTextAlignment(.center)
                             .padding()
                             .foregroundColor(.primary)

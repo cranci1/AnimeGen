@@ -111,14 +111,26 @@ struct SettingsPage: View {
                             .foregroundColor(.accentColor)
                     }
                     
-                    Button(action: {
-                        isShowingTutorial = true
-                    }) {
-                        Text("Show Tutorial")
-                            .foregroundColor(.accentColor)
-                    }
-                    .fullScreenCover(isPresented: $isShowingTutorial) {
-                        TutorialView()
+                    if #available(iOS 14.0, *) {
+                        Button(action: {
+                            isShowingTutorial = true
+                        }) {
+                            Text("Show Tutorial")
+                                .foregroundColor(.accentColor)
+                        }
+                        .fullScreenCover(isPresented: $isShowingTutorial) {
+                            TutorialView()
+                        }
+                    } else {
+                        Button(action: {
+                            isShowingTutorial = true
+                        }) {
+                            Text("Show Tutorial")
+                                .foregroundColor(.accentColor)
+                        }
+                        .sheet(isPresented: $isShowingTutorial) {
+                            TutorialView()
+                        }
                     }
                 }
             }

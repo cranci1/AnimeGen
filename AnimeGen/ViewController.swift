@@ -93,11 +93,19 @@ class ViewController: UIViewController {
         view.addSubview(apiButton)
         
         
+        
+        
         // History Button
         historyButton = UIButton(type: .system)
-        let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-        historyButton.setImage(historyIcon, for: .normal)
+        if #available(iOS 14.0, *) {
+            let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+            historyButton.setImage(historyIcon, for: .normal)
+        } else {
+            let secondhistoryIcon = UIImage(systemName: "clock")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
+            historyButton.setImage(secondhistoryIcon, for: .normal)
+        }
         historyButton.tintColor = .systemGray
         historyButton.setTitleColor(.white, for: .normal)
         historyButton.addTarget(self, action: #selector(historyButtonTapped), for: .touchUpInside)
@@ -156,7 +164,7 @@ class ViewController: UIViewController {
         
         // Rewind Button
         rewindButton = UIButton(type: .system)
-        let rewindImage = UIImage(systemName: "arrowshape.turn.up.backward.circle.fill")?
+        let rewindImage = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
         rewindButton.setImage(rewindImage, for: .normal)
         rewindButton.tintColor = .systemGreen
@@ -169,9 +177,15 @@ class ViewController: UIViewController {
         
         // Share Button
         shareButton = UIButton(type: .system)
-        let shareImage = UIImage(systemName: "square.and.arrow.up.circle.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
-        shareButton.setImage(shareImage, for: .normal)
+        if #available(iOS 15.0, *) {
+            let shareImage = UIImage(systemName: "square.and.arrow.up.circle.fill")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
+            shareButton.setImage(shareImage, for: .normal)
+        } else {
+            let secondShareImage = UIImage(systemName: "square.and.arrow.up.on.square.fill")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .bold))
+            shareButton.setImage(secondShareImage, for: .normal)
+        }
         shareButton.tintColor = .systemPurple
         shareButton.setTitleColor(.white, for: .normal)
         shareButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
@@ -277,9 +291,17 @@ class ViewController: UIViewController {
             return
         }
         switch title {
-            
+          
         case "pic.re":
             loadImageFromPicRe()
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
         case "waifu.im":
             loadImageFromWaifuIm()
         case "nekos.best":
@@ -290,6 +312,14 @@ class ViewController: UIViewController {
             startHmtaiLoader()
         case "Nekos api":
             loadImageFromNekosapi()
+            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+                if #available(iOS 14.0, *) {
+                    // nothing here cuz ios 14+ 💪
+                } else {
+                    self.apiButton.setTitle("waifu.im", for: .normal)
+                    self.loadImageFromWaifuIm()
+                }
+            }
         case "nekos.moe":
             loadImageFromNekosMoe()
         case "kyoko":
