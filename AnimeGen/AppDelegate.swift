@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
             
             let tutorialView = TutorialView()
+                .edgesIgnoringSafeArea(.all)
             let hostingController = UIHostingController(rootView: tutorialView)
             
             window = UIWindow(frame: UIScreen.main.bounds)
@@ -50,4 +51,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 }
-

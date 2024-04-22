@@ -13,6 +13,7 @@ struct SettingsPage: View {
     @State private var animations = UserDefaults.standard.bool(forKey: "enableAnimations")
     @State private var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
     @State private var activitytime = UserDefaults.standard.bool(forKey: "enableTime")
+    @State private var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
     
     // Tags
     @State private var tags = UserDefaults.standard.bool(forKey: "enableTags")
@@ -30,15 +31,15 @@ struct SettingsPage: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Features"), footer: Text("An app restart is necessary for the gradient and activity label to take effect.")) {
-                    Toggle("Use Animations", isOn: Binding(
+                Section(header: Text("Features"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
+                    Toggle("App Animations", isOn: Binding(
                         get: { self.animations },
                         set: { newValue in
                             self.animations = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableAnimations")
                         }
                     ))
-                    Toggle("Use Background Gradient", isOn: Binding(
+                    Toggle("Background Gradient", isOn: Binding(
                         get: { self.gradient },
                         set: { newValue in
                             self.gradient = newValue
@@ -51,6 +52,14 @@ struct SettingsPage: View {
                         set: { newValue in
                             self.activitytime = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableTime")
+                        }
+                    ))
+                    
+                    Toggle("Enable Gestures", isOn: Binding(
+                        get: { self.gestures },
+                        set: { newValue in
+                            self.gestures = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableGestures")
                         }
                     ))
                 }
@@ -72,7 +81,7 @@ struct SettingsPage: View {
                     ))
                 }
                 
-                Section(header: Text("Content"), footer: Text("Caution: This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
+                Section(header: Text("Content"), footer: Text("This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
                     Toggle("Explicit Contents", isOn: Binding(
                         get: { self.explicitCont },
                         set: { newValue in

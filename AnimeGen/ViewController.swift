@@ -36,9 +36,11 @@ class ViewController: UIViewController {
     var gradientLayer: CAGradientLayer?
     
     var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
-    var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
     var activity = UserDefaults.standard.bool(forKey: "enableTime")
+    var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
+    
+    var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     
     var counter: Int = 0
     
@@ -48,29 +50,27 @@ class ViewController: UIViewController {
         startTime = Date()
 
         // Gestures
-        let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(heartButtonTapped))
-        tripleTapGesture.numberOfTapsRequired = 3
-        view.addGestureRecognizer(tripleTapGesture)
+        if gestures {
+            let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(heartButtonTapped))
+            tripleTapGesture.numberOfTapsRequired = 3
+            view.addGestureRecognizer(tripleTapGesture)
 
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(refreshButtonTapped))
-        swipeLeft.direction = .left
-        view.addGestureRecognizer(swipeLeft)
+            let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(refreshButtonTapped))
+            swipeLeft.direction = .left
+            view.addGestureRecognizer(swipeLeft)
 
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(rewindButtonTapped))
-        swipeRight.direction = .right
-        view.addGestureRecognizer(swipeRight)
+            let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(rewindButtonTapped))
+            swipeRight.direction = .right
+            view.addGestureRecognizer(swipeRight)
+            
+            let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(settingsButtonTapped))
+            swipeDown.direction = .down
+            view.addGestureRecognizer(swipeDown)
+        }
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(settingsButtonTapped))
-        swipeDown.direction = .down
-        view.addGestureRecognizer(swipeDown)
-        
-        
-        // gradient
+        // Gradient
         if gradient {
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = view.bounds
-            gradientLayer.colors = [UIColor(red: 0.1, green: 0.1, blue: 0.2, alpha: 1.0).cgColor, UIColor(red: 0.2, green: 0.1, blue: 0.3, alpha: 1.0).cgColor]
-            view.layer.insertSublayer(gradientLayer, at: 0)
+            setupGradient()
         } else {
             view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
         }
@@ -91,8 +91,6 @@ class ViewController: UIViewController {
         apiButton.layer.cornerRadius = 10
         apiButton.setTitleColor(UIColor.white, for: .normal)
         view.addSubview(apiButton)
-        
-        
         
         
         // History Button
@@ -282,7 +280,10 @@ class ViewController: UIViewController {
             timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
 
-
+        if gradient {
+            animateGradient()
+        }
+        
         loadImageAndTagsFromSelectedAPI()
     }
     
