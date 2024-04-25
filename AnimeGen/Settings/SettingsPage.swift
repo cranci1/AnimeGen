@@ -15,15 +15,17 @@ struct SettingsPage: View {
     @State private var activitytime = UserDefaults.standard.bool(forKey: "enableTime")
     @State private var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
     
-    // Tags
+    // API preferences
     @State private var tags = UserDefaults.standard.bool(forKey: "enableTags")
     @State private var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+    @State private var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     
     // Content
     @State private var explicitCont = UserDefaults.standard.bool(forKey: "enableExplictiCont")
     
     // Devloper Mode
     @State private var developerMode = UserDefaults.standard.bool(forKey: "enableDeveloperMode")
+    @State private var developerAlert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
     
     // Tutorial
     @State private var isShowingTutorial = false
@@ -64,7 +66,7 @@ struct SettingsPage: View {
                     ))
                 }
                 
-                Section(header: Text("Tags"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
+                Section(header: Text("Api Preferences"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
                     Toggle("Display Tags", isOn: Binding(
                         get: { self.tags },
                         set: { newValue in
@@ -79,6 +81,14 @@ struct SettingsPage: View {
                             UserDefaults.standard.set(newValue, forKey: "enableMoeTags")
                         }
                     ))
+                    Toggle("Kyoko 'Note' banner", isOn: Binding(
+                        get: { self.kyokobanner },
+                        set: { newValue in
+                            self.kyokobanner = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableKyokobanner")
+                        }
+                    ))
+                    
                 }
                 
                 Section(header: Text("Content"), footer: Text("This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
@@ -100,13 +110,29 @@ struct SettingsPage: View {
                             UserDefaults.standard.set(newValue, forKey: "enableDeveloperMode")
                         }
                     ))
+        
+                    Toggle("Developer Alert", isOn: Binding(
+                        get: { self.developerAlert },
+                        set: { newValue in
+                            self.developerAlert = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableDeveloperAlert")
+                        }
+                    ))
                     
                     if UserDefaults.standard.bool(forKey: "enableDeveloperMode") {
                         NavigationLink(destination: DeveloperView()) {
-                            Text("Developer Settings")
+                            Text("Hmtai Preferences")
                                 .foregroundColor(.accentColor)
                         }
                     }
+                    
+                    if UserDefaults.standard.bool(forKey: "enableDeveloperMode") {
+                        NavigationLink(destination: waifuitView()) {
+                            Text("Waifu.it Preferences")
+                                .foregroundColor(.accentColor)
+                        }
+                    }
+                    
                 }
                 
                 Section(header: Text("About AnimeGen")) {

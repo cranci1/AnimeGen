@@ -1,29 +1,27 @@
 //
-//  waifu-pics.swift
+//  waifu-it.swift
 //  AnimeGen
 //
-//  Created by cranci on 17/02/24.
+//  Created by cranci on 24/04/24.
 //
 
 import UIKit
 
 extension ViewController {
     
-    func loadImageFromWaifuPics() {
+    func loadImageFromWaifuIt() {
         startLoadingIndicator()
 
         let categories: [String]
-        let endpointPrefix: String
+        let endpointPrefix: String = "https://waifu.it/api/v4/"
 
         if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
-            categories = ["waifu", "neko", "trap", "blowjob"]
-            endpointPrefix = "https://api.waifu.pics/nsfw/"
+            categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bully", "bye", "chase", "cheer", "cringe", "cry", "dab", "dance", "die", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kill", "kiss", "laugh", "lick", "love", "lurk", "midfing", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "punch", "run", "sad", "shoot", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stab", "stare", "suicide", "tease", "think", "thumbsup", "tickle", "triggered", "wag", "wave", "wink", "yes"]
         } else {
-            categories = ["waifu", "neko", "shinobu", "cuddle", "hug", "kiss", "lick", "pat", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
-            endpointPrefix = "https://api.waifu.pics/sfw/"
+            categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bye", "chase", "cheer", "cringe", "cry", "cuddle", "dab", "dance", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kiss", "laugh", "lurk", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "run", "sad", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stare", "tease", "think", "thumbsup", "tickle", "wag", "wave", "wink", "yes"]
         }
 
-        let randomCategory = categories.randomElement() ?? "waifu"
+        let randomCategory = categories.randomElement() ?? "pat"
 
         let apiEndpoint = "\(endpointPrefix)\(randomCategory)"
 
@@ -38,7 +36,10 @@ extension ViewController {
             return
         }
 
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        var request = URLRequest(url: url)
+        request.setValue(Secrets.waifuItToken, forHTTPHeaderField: "Authorization")
+
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     
@@ -54,7 +55,7 @@ extension ViewController {
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     
                     if self.alert {
-                        self.showAlert(withTitle: "Invalid HTTP response", message: "Please wait, the api may be down.", viewController: self)
+                        self.showAlert(withTitle: "Invalid HTTP response", message: "Please check your API Token.", viewController: self)
                     }
                     
                     print("Invalid HTTP response")
@@ -69,8 +70,8 @@ extension ViewController {
                             if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
                                 self.imageView.image = animatedImage
                                 self.imageView.image = animatedImage
-                                self.addToHistory(image: animatedImage)
                                 self.animateImageChange(with: animatedImage)
+                                self.addToHistory(image: animatedImage)
                             } else {
                                 print("Failed to create animated image from GIF data.")
                                 
@@ -113,12 +114,13 @@ extension ViewController {
                         self.stopLoadingIndicator()
                     }
                 } else {
-                    print("Failed to parse JSON response or missing necessary data.")
-                    self.stopLoadingIndicator()
                     
                     if self.alert {
                         self.showAlert(withTitle: "Error!", message: "Failed to parse JSON response or missing data.", viewController: self)
                     }
+                    
+                    print("Failed to parse JSON response or missing necessary data.")
+                    self.stopLoadingIndicator()
                 }
             }
         }

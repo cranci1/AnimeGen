@@ -31,6 +31,11 @@ extension ViewController {
         let apiEndpoint = "\(endpointPrefix)\(randomCategory)"
 
         guard let url = URL(string: apiEndpoint) else {
+            
+            if self.alert {
+                self.showAlert(withTitle: "Invalid URL", message: "Please wait, the api may be down.", viewController: self)
+            }
+            
             print("Invalid URL")
             stopLoadingIndicator()
             return
@@ -39,12 +44,22 @@ extension ViewController {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
+                    
+                    if self.alert {
+                        self.showAlert(withTitle: "Error!", message: "\(error)", viewController: self)
+                    }
+                    
                     print("Error: \(error)")
                     self.stopLoadingIndicator()
                     return
                 }
 
                 guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    
+                    if self.alert {
+                        self.showAlert(withTitle: "Invalid HTTP response", message: "Please wait, the api may be down.", viewController: self)
+                    }
+                    
                     print("Invalid HTTP response")
                     self.stopLoadingIndicator()
                     return
@@ -64,6 +79,11 @@ extension ViewController {
                                         self.animateImageChange(with: animatedImage)
                                     } else {
                                         print("Failed to create animated image from GIF data.")
+                                        
+                                        if self.alert {
+                                            self.showAlert(withTitle: "Error!", message: "Failed to create animated image from GIF data.", viewController: self)
+                                        }
+                                        
                                     }
                                 } else {
                                     if let newImage = UIImage(data: imageData) {
@@ -72,6 +92,10 @@ extension ViewController {
                                         self.addToHistory(image: newImage)
                                     } else {
                                         print("Failed to load image data.")
+                                        
+                                        if self.alert {
+                                            self.showAlert(withTitle: "Error!", message: "Failed to load image data.", viewController: self)
+                                        }
                                     }
                                 }
 
@@ -86,15 +110,28 @@ extension ViewController {
                                 
                                 self.incrementCounter()
                             } else {
+                                if self.alert {
+                                    self.showAlert(withTitle: "Error!", message: "Failed to load image data.", viewController: self)
+                                }
                                 print("Failed to load image data.")
                                 self.stopLoadingIndicator()
                             }
                         } else {
+                            
+                            if self.alert {
+                                self.showAlert(withTitle: "Error!", message: "Failed to parse JSON response or missing data.", viewController: self)
+                            }
+                            
                             print("Failed to parse JSON response or missing necessary data.")
                             self.stopLoadingIndicator()
                         }
                     }
                 } else {
+                    
+                    if self.alert {
+                        self.showAlert(withTitle: "Error!", message: "No data received from the server.", viewController: self)
+                    }
+                    
                     print("No data received from server.")
                     self.stopLoadingIndicator()
                 }

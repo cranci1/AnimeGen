@@ -1,5 +1,5 @@
 //
-//  Developer.swift
+//  Hmtai-pref.swift
 //  AnimeGen
 //
 //  Created by cranci on 18/04/24.
@@ -29,7 +29,7 @@ struct DeveloperView: View {
                 TextField("Bot DiscordTokenHere", text: $apiToken)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                Text("On this value you need to remove 'DiscordTokenHere' and replace it with your discord bot token. Dont remove the 'Bot' prefix and also leave the space.")
+                Text("Replace 'DiscordTokenHere' with your Discord bot token.")
                     .font(.caption)
                     .padding(.top, -10)
                     .foregroundColor(.gray)
@@ -38,7 +38,7 @@ struct DeveloperView: View {
                 TextField("Discord Webhook URL", text: $discordWebhookURL)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                Text("On this value make sure to put your discord webhook with the https://")
+                Text("Provide your Discord webhook URL starting with 'https://'")
                     .font(.caption)
                     .padding(.top, -10)
                     .foregroundColor(.gray)
@@ -47,7 +47,7 @@ struct DeveloperView: View {
                 TextField("Discord Channel ID", text: $discordChannelId)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                Text("On this value you need to past your discord channel ID.")
+                Text("Enter your Discord channel ID.")
                     .font(.caption)
                     .padding(.top, -10)
                     .foregroundColor(.gray)
@@ -72,7 +72,7 @@ struct DeveloperView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle("Developer Settings", displayMode: .inline)
+        .navigationBarTitle("Settings", displayMode: .inline)
     }
     
     private func saveValues() {

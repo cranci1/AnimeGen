@@ -23,7 +23,7 @@ struct TutorialView: View {
         if #available(iOS 15.0, *) {
             return [
                 TutorialStep(text: "Welcom to AnimeGen", icon: "star.fill", tintColor: .accentColor, position: "A simple way to enjoy anime Art"),
-                TutorialStep(text: "Tap the Top button to switch image providers. There are 9 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
+                TutorialStep(text: "Tap the Top button to switch image providers. There are 10 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
                 TutorialStep(text: "Hit refresh for a new image.", icon: "arrow.clockwise.circle.fill", tintColor: .secondary, position: "Placed on the Bottom Center"),
                 TutorialStep(text: "Show some love! Tap the heart to save an image.", icon: "heart.fill", tintColor: .red, position: "Placed on the Bottom Center Right"),
                 TutorialStep(text: "Rewind to the last image with the rewind icon.", icon: "arrowshape.turn.up.backward.circle.fill", tintColor: .green, position: "Placed on the Bottom Center Left"),
@@ -37,7 +37,7 @@ struct TutorialView: View {
         } else {
             return [
                 TutorialStep(text: "Welcom to AnimeGen", icon: "star.fill", tintColor: .accentColor, position: "A simple way to enjoy anime Art"),
-                TutorialStep(text: "Tap the Top button to switch image providers. There are 9 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
+                TutorialStep(text: "Tap the Top button to switch image providers. There are 10 API options with unique images.", icon: "bookmark.fill", tintColor: .yellow, position: "Placed on the Top Center"),
                 TutorialStep(text: "Hit refresh for a new image.", icon: "arrow.clockwise.circle.fill", tintColor: .secondary, position: "Placed on the Bottom Center"),
                 TutorialStep(text: "Show some love! Tap the heart to save an image.", icon: "heart.fill", tintColor: .red, position: "Placed on the Bottom Center Right"),
                 TutorialStep(text: "Rewind to the last image with the rewind icon.", icon: "arrowshape.turn.up.backward.circle.fill", tintColor: .green, position: "Placed on the Bottom Center Left"),

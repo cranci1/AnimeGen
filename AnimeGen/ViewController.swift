@@ -41,6 +41,9 @@ class ViewController: UIViewController {
     var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
     
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+    var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
+    
+    var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
     
     var counter: Int = 0
     
@@ -74,6 +77,7 @@ class ViewController: UIViewController {
         } else {
             view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
         }
+        
         
         // Image View
         imageView = UIImageView()
@@ -305,12 +309,12 @@ class ViewController: UIViewController {
             }
         case "waifu.im":
             loadImageFromWaifuIm()
+        case "waifu.it":
+            loadImageFromWaifuIt()
         case "nekos.best":
             loadImageFromNekosBest()
         case "waifu.pics":
             loadImageFromWaifuPics()
-        case "Hmtai api":
-            startHmtaiLoader()
         case "Nekos api":
             loadImageFromNekosapi()
             showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
@@ -323,7 +327,12 @@ class ViewController: UIViewController {
             }
         case "nekos.moe":
             loadImageFromNekosMoe()
+        case "Hmtai api":
+            startHmtaiLoader()
         case "kyoko":
+            if kyokobanner {
+                showAlert(withTitle: "Note", message: "The api is very slow.", viewController: self)
+            }
             loadImageFromKyoko()
         case "Purr":
             loadImageFromPurr()

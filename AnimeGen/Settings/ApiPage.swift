@@ -18,10 +18,11 @@ struct ApiPage: View {
         APIInfo(imageName: "pic-re", apiName: "pic.re", url: URL(string: "https://pic.re")!),
         APIInfo(imageName: "waifu.im", apiName: "waifu.im", url: URL(string: "https://waifu.im")!),
         APIInfo(imageName: "waifu.pics", apiName: "waifu.pics", url: URL(string: "https://waifu.pics")!),
+        APIInfo(imageName: "waifu.it", apiName: "waifu.it", url: URL(string: "https://waifu.it/")!),
         APIInfo(imageName: "nekos.best", apiName: "nekos.best", url: URL(string: "https://nekos.best")!),
-        APIInfo(imageName: "Hmtai", apiName: "Hmtai", url: URL(string: "https://hmtai.hatsunia.cfd/endpoints")!),
         APIInfo(imageName: "nekosapi", apiName: "nekosapi.com", url: URL(string: "https://nekosapi.com")!),
         APIInfo(imageName: "nekos.moe", apiName: "nekos.moe", url: URL(string: "https://nekos.moe")!),
+        APIInfo(imageName: "Hmtai", apiName: "Hmtai", url: URL(string: "https://hmtai.hatsunia.cfd/endpoints")!),
         APIInfo(imageName: "kyoko", apiName: "Kyoko", url: URL(string: "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/")!),
         APIInfo(imageName: "Purr", apiName: "Purr", url: URL(string: "https://purrbot.site/")!)
     ]
