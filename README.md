@@ -49,12 +49,13 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 | [waifu.im](https://docs.waifu.im/)                           | SFW/NSFW | IMG     |   ✅   |
 | [nekos.best](https://docs.nekos.best/)                       | SFW      | IMG     |   ✅   |
 | [waifu.pics](https://waifu.pics/docs)                        | SFW/NSFW | IMG/GIF |   ✅   |
-| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)                | SFW/NSFW | IMG/GIF |   ⚠️    |
+| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)                | SFW/NSFW | IMG/GIF |   ⚠️   |
 | [Nekos api](https://nekosapi.com/docs)                       | SFW/NSFW | IMG     |   ✅   |
 | [Nekos.moe](https://docs.nekos.moe)                          | SFW/NSFW | IMG     |   ✅   |
 | [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)   | SFW/NSFW | IMG/GIF |   ✅   |
 | [Purr Bot](https://purrbot.site/)                            | SFW/NSFW | IMG/GIF |   ✅   |
 | [Waifu.it](https://waifu.it/)                                | SFW/NSFW | IMG/GIF |   ✅   |
+| [NekoBot](https://nekobot.xyz/)                              | SFW/NSFW | IMG/GIF |   ✅   |
 
 > [!Note]
 > The Hmtai api is pretty slow, [why?](https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md)

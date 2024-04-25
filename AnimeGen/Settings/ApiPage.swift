@@ -22,6 +22,7 @@ struct ApiPage: View {
         APIInfo(imageName: "nekos.best", apiName: "nekos.best", url: URL(string: "https://nekos.best")!),
         APIInfo(imageName: "nekosapi", apiName: "nekosapi.com", url: URL(string: "https://nekosapi.com")!),
         APIInfo(imageName: "nekos.moe", apiName: "nekos.moe", url: URL(string: "https://nekos.moe")!),
+        APIInfo(imageName: "NekoBot", apiName: "NekoBot", url: URL(string: "https://nekobot.xyz")!),
         APIInfo(imageName: "Hmtai", apiName: "Hmtai", url: URL(string: "https://hmtai.hatsunia.cfd/endpoints")!),
         APIInfo(imageName: "kyoko", apiName: "Kyoko", url: URL(string: "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/")!),
         APIInfo(imageName: "Purr", apiName: "Purr", url: URL(string: "https://purrbot.site/")!)

@@ -39,6 +39,7 @@
 		13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE98BF2B828B8000379AB7 /* nekosmoe.swift */; };
 		13C6CA732BD990E30046923C /* waifu-it.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C6CA722BD990E30046923C /* waifu-it.swift */; };
 		13C6CA752BDA2FDF0046923C /* waifu-it-pref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C6CA742BDA2FDF0046923C /* waifu-it-pref.swift */; };
+		13C6CA782BDA409A0046923C /* nekosbot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C6CA772BDA409A0046923C /* nekosbot.swift */; };
 		13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C8011C2B94C5E900BFD198 /* HmtaiSender.swift */; };
 		13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */; };
 		13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC95072B8BA40100B5705E /* ApiPage.swift */; };
@@ -81,6 +82,7 @@
 		13BE98BF2B828B8000379AB7 /* nekosmoe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosmoe.swift; sourceTree = "<group>"; };
 		13C6CA722BD990E30046923C /* waifu-it.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-it.swift"; sourceTree = "<group>"; };
 		13C6CA742BDA2FDF0046923C /* waifu-it-pref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-it-pref.swift"; sourceTree = "<group>"; };
+		13C6CA772BDA409A0046923C /* nekosbot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosbot.swift; sourceTree = "<group>"; };
 		13C8011C2B94C5E900BFD198 /* HmtaiSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiSender.swift; sourceTree = "<group>"; };
 		13C8011E2B94CAD900BFD198 /* HmtaiReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiReader.swift; sourceTree = "<group>"; };
 		13CC95072B8BA40100B5705E /* ApiPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPage.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				139A2E092BA4D642003F2598 /* kyoko.swift */,
 				13E2DC832BA5D2CF00320E2F /* purr.swift */,
 				13C6CA722BD990E30046923C /* waifu-it.swift */,
+				13C6CA772BDA409A0046923C /* nekosbot.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */,
 				13C6CA732BD990E30046923C /* waifu-it.swift in Sources */,
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
+				13C6CA782BDA409A0046923C /* nekosbot.swift in Sources */,
 				1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */,
 				13A2B7902BD1615600B79DF7 /* Hmtai-pref.swift in Sources */,
 				1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */,
@@ -485,7 +489,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
@@ -520,7 +524,7 @@
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;

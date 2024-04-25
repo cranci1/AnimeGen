@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: ["enableTags": true])
         UserDefaults.standard.register(defaults: ["enableGestures": true])
         UserDefaults.standard.register(defaults: ["enableKyokobanner": true])
+        UserDefaults.standard.register(defaults: ["enableDeveloperAlert": true])
         
         
         // Tutorial View Prompt

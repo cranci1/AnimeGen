@@ -336,6 +336,8 @@ class ViewController: UIViewController {
             loadImageFromKyoko()
         case "Purr":
             loadImageFromPurr()
+        case "NekoBot":
+            loadImageFromNekoBot()
             
         default:
             break
