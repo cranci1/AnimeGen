@@ -54,6 +54,7 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 | [Nekos.moe](https://docs.nekos.moe)                          | SFW/NSFW | IMG     |   ✅   |
 | [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)   | SFW/NSFW | IMG/GIF |   ✅   |
 | [Purr Bot](https://purrbot.site/)                            | SFW/NSFW | IMG/GIF |   ✅   |
+| [Waifu.it](https://waifu.it/)                                | SFW/NSFW | IMG/GIF |   ✅   |
 
 > [!Note]
 > The Hmtai api is pretty slow, [why?](https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md)
