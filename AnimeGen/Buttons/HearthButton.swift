@@ -30,6 +30,7 @@ extension ViewController {
                     self.animateFeedback()
                 } else {
                     print("Error saving GIF image: \(error?.localizedDescription ?? "")")
+                    self.showAlert(withTitle: "Error Saving Image!", message: "You didn't allow AnimeGen to access the Photo Library.", viewController: self)
                 }
             }
             return
@@ -46,10 +47,12 @@ extension ViewController {
         }
     }
 
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             print("Error saving image: \(error.localizedDescription)")
+            self.showAlert(withTitle: "Error Saving Image!", message: "You didn't allow AnimeGen to access the Photo Library.", viewController: self)
         } else {
+            self.animateFeedback()
             print("Image saved successfully")
         }
     }

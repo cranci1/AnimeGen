@@ -45,6 +45,8 @@ class ViewController: UIViewController {
     
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
     
+    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "kyoko", "Purr"]
+
     var counter: Int = 0
     
     override func viewDidLoad() {
@@ -88,7 +90,7 @@ class ViewController: UIViewController {
     
         // Api Button
         apiButton = UIButton(type: .system)
-        apiButton.setTitle("pic.re", for: .normal)
+        apiButton.setTitle("", for: .normal)
         apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
         apiButton.translatesAutoresizingMaskIntoConstraints = false
         apiButton.backgroundColor = gradient ? UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0) : UIColor.darkGray
@@ -288,8 +290,25 @@ class ViewController: UIViewController {
             animateGradient()
         }
         
+        let selectedChoiceIndex = UserDefaults.standard.integer(forKey: "SelectedChoiceIndex")
+        apiButton.setTitle(choices[selectedChoiceIndex], for: .normal)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(selectedChoiceChanged(_:)), name: Notification.Name("SelectedChoiceChanged"), object: nil)
+        
         loadImageAndTagsFromSelectedAPI()
     }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+        
+    @objc func selectedChoiceChanged(_ notification: Notification) {
+        guard let selectedIndex = notification.object as? Int else { return }
+        guard selectedIndex >= 0 && selectedIndex < choices.count else { return }
+        apiButton.setTitle(choices[selectedIndex], for: .normal)
+    }
+    
     
     func loadImageAndTagsFromSelectedAPI() {
         guard let title = apiButton.title(for: .normal) else {

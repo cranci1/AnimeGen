@@ -30,6 +30,12 @@ struct SettingsPage: View {
     // Tutorial
     @State private var isShowingTutorial = false
     
+    // Default API
+    @State private var isPresentingActionSheet = false
+    @State private var selectedChoiceIndex = 0
+    
+    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "kyoko", "Purr"]
+    
     var body: some View {
         NavigationView {
             Form {
@@ -67,6 +73,36 @@ struct SettingsPage: View {
                 }
                 
                 Section(header: Text("Api Preferences"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
+                    Button(action: {
+                        isPresentingActionSheet = true
+                    }) {
+                        HStack {
+                            Text("Default API")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text(choices[selectedChoiceIndex])
+                                .foregroundColor(.accentColor)
+                        }
+                    }.actionSheet(isPresented: $isPresentingActionSheet) {
+                        ActionSheet(title: Text("Choose Default API"), buttons: [
+                            .default(Text("Purr")) { selectedChoiceIndex = 9 },
+                            .default(Text("kyoko")) { selectedChoiceIndex = 8 },
+                            .default(Text("NekoBot")) { selectedChoiceIndex = 7 },
+                            .default(Text("nekos.moe")) { selectedChoiceIndex = 6 },
+                            .default(Text("Nekos api")) { selectedChoiceIndex = 5 },
+                            .default(Text("nekos.best")) { selectedChoiceIndex = 4 },
+                            .default(Text("waifu.it")) { selectedChoiceIndex = 3 },
+                            .default(Text("waifu.pics")) { selectedChoiceIndex = 2 },
+                            .default(Text("waifu.im")) { selectedChoiceIndex = 0 },
+                            .default(Text("pic.re")) { selectedChoiceIndex = 1 },
+                            .cancel()
+                        ])
+                    }
+                    .onDisappear {
+                        UserDefaults.standard.set(selectedChoiceIndex, forKey: "SelectedChoiceIndex")
+                        NotificationCenter.default.post(name: Notification.Name("SelectedChoiceChanged"), object: selectedChoiceIndex)
+                    }
+                    
                     Toggle("Display Tags", isOn: Binding(
                         get: { self.tags },
                         set: { newValue in
