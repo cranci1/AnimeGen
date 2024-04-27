@@ -11,6 +11,11 @@ jobs:
     runs-on: macOS-latest
     
     steps:
+    - name: Use Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
     - name: Checkout code
       uses: actions/checkout@v2
       
@@ -20,7 +25,7 @@ jobs:
         ./ipabuild.sh
       
     - name: Upload IPA artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: AnimeGen-IPA
         path: build/AnimeGen.ipa
