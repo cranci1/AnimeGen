@@ -32,45 +32,13 @@ struct SettingsPage: View {
     
     // Default API
     @State private var isPresentingActionSheet = false
-    @State private var selectedChoiceIndex = 0
+    @State private var selectedChoiceIndex = UserDefaults.standard.integer(forKey: "SelectedChoiceIndex")
     
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "kyoko", "Purr"]
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Features"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
-                    Toggle("App Animations", isOn: Binding(
-                        get: { self.animations },
-                        set: { newValue in
-                            self.animations = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableAnimations")
-                        }
-                    ))
-                    Toggle("Background Gradient", isOn: Binding(
-                        get: { self.gradient },
-                        set: { newValue in
-                            self.gradient = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enablegradient")
-                        }
-                    ))
-                    
-                    Toggle("Display Activity Label", isOn: Binding(
-                        get: { self.activitytime },
-                        set: { newValue in
-                            self.activitytime = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableTime")
-                        }
-                    ))
-                    
-                    Toggle("Enable Gestures", isOn: Binding(
-                        get: { self.gestures },
-                        set: { newValue in
-                            self.gestures = newValue
-                            UserDefaults.standard.set(newValue, forKey: "enableGestures")
-                        }
-                    ))
-                }
                 
                 Section(header: Text("Api Preferences"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
                     Button(action: {
@@ -83,18 +51,19 @@ struct SettingsPage: View {
                             Text(choices[selectedChoiceIndex])
                                 .foregroundColor(.accentColor)
                         }
-                    }.actionSheet(isPresented: $isPresentingActionSheet) {
+                    }
+                    .actionSheet(isPresented: $isPresentingActionSheet) {
                         ActionSheet(title: Text("Choose Default API"), buttons: [
-                            .default(Text("Purr")) { selectedChoiceIndex = 9 },
-                            .default(Text("kyoko")) { selectedChoiceIndex = 8 },
-                            .default(Text("NekoBot")) { selectedChoiceIndex = 7 },
-                            .default(Text("nekos.moe")) { selectedChoiceIndex = 6 },
-                            .default(Text("Nekos api")) { selectedChoiceIndex = 5 },
-                            .default(Text("nekos.best")) { selectedChoiceIndex = 4 },
-                            .default(Text("waifu.it")) { selectedChoiceIndex = 3 },
-                            .default(Text("waifu.pics")) { selectedChoiceIndex = 2 },
-                            .default(Text("waifu.im")) { selectedChoiceIndex = 0 },
-                            .default(Text("pic.re")) { selectedChoiceIndex = 1 },
+                            .default(Text("Purr")) { updateSelectedChoiceIndex(9) },
+                            .default(Text("kyoko")) { updateSelectedChoiceIndex(8) },
+                            .default(Text("NekoBot")) { updateSelectedChoiceIndex(7) },
+                            .default(Text("nekos.moe")) { updateSelectedChoiceIndex(6) },
+                            .default(Text("Nekos api")) { updateSelectedChoiceIndex(5) },
+                            .default(Text("nekos.best")) { updateSelectedChoiceIndex(4) },
+                            .default(Text("waifu.it")) { updateSelectedChoiceIndex(3) },
+                            .default(Text("waifu.pics")) { updateSelectedChoiceIndex(2) },
+                            .default(Text("waifu.im")) { updateSelectedChoiceIndex(0) },
+                            .default(Text("pic.re")) { updateSelectedChoiceIndex(1) },
                             .cancel()
                         ])
                     }
@@ -127,6 +96,39 @@ struct SettingsPage: View {
                     
                 }
                 
+                Section(header: Text("Features"), footer: Text("An app restart is necessary to enable or disable the changes.")) {
+                    Toggle("App Animations", isOn: Binding(
+                        get: { self.animations },
+                        set: { newValue in
+                            self.animations = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableAnimations")
+                        }
+                    ))
+                    Toggle("Background Gradient", isOn: Binding(
+                        get: { self.gradient },
+                        set: { newValue in
+                            self.gradient = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enablegradient")
+                        }
+                    ))
+                    
+                    Toggle("Display Activity Label", isOn: Binding(
+                        get: { self.activitytime },
+                        set: { newValue in
+                            self.activitytime = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableTime")
+                        }
+                    ))
+                    
+                    Toggle("Enable Gestures", isOn: Binding(
+                        get: { self.gestures },
+                        set: { newValue in
+                            self.gestures = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableGestures")
+                        }
+                    ))
+                }
+                                
                 Section(header: Text("Content"), footer: Text("This content is on the borderline of explicit material and includes adult content. Viewer discretion is advised.")) {
                     Toggle("Explicit Contents", isOn: Binding(
                         get: { self.explicitCont },
@@ -209,6 +211,13 @@ struct SettingsPage: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    private func updateSelectedChoiceIndex(_ index: Int) {
+        selectedChoiceIndex = index
+        UserDefaults.standard.set(index, forKey: "SelectedChoiceIndex")
+        NotificationCenter.default.post(name: Notification.Name("SelectedChoiceChanged"), object: index)
+    }
+    
 }
 
 struct SettingsPage_Preview: PreviewProvider {
