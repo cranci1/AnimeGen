@@ -32,6 +32,7 @@ struct waifuitView: View {
                     .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .navigationBarHidden(true)
             
             Button(action: {
                 saveValues2()
@@ -51,7 +52,7 @@ struct waifuitView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle("Settings", displayMode: .inline)
+        .navigationBarTitle("Waifu.it Settings", displayMode: .inline)
         
     }
     

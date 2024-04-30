@@ -17,7 +17,6 @@ struct TutorialStep {
 struct TutorialView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var currentStep = 0
-    @State private var isShowingBlur = false
 
     var steps: [TutorialStep] {
         if #available(iOS 15.0, *) {
@@ -52,108 +51,132 @@ struct TutorialView: View {
     }
     
     var body: some View {
-        ZStack {
-            if isShowingBlur {
-                VisualEffectBlur(blurStyle: .regular)
-            }
-            
-            VStack {
-                Spacer()
-                
+        GeometryReader { geometry in
+            ZStack {
                 VStack {
-                    if currentStep < steps.count {
-                        ZStack {
-                            Image(systemName: steps[currentStep].icon)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 120, height: 120)
+                    Spacer()
+                    
+                    VStack {
+                        if currentStep < steps.count {
+                            ZStack {
+                                Image(systemName: steps[currentStep].icon)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 120, height: 120)
+                                    .padding()
+                                    .foregroundColor(steps[currentStep].tintColor)
+                                    .onTapGesture {
+                                        self.nextButtonTapped()
+                                    }
+                            }
+                            
+                            Text(steps[currentStep].text)
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .multilineTextAlignment(.center)
                                 .padding()
-                                .foregroundColor(steps[currentStep].tintColor)
-                                .onTapGesture {
-                                    self.nextButtonTapped()
-                                }
+                                .foregroundColor(.primary)
+                            
+                            Text(steps[currentStep].position)
+                                .font(.headline)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 30) {
+                        Button(action: {
+                            self.previousButtonTapped()
+                        }) {
+                            Text("Previous")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .fill(steps[currentStep].tintColor)
+                                )
                         }
                         
-                        Text(steps[currentStep].text)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .foregroundColor(.primary)
+                        Spacer()
                         
-                        Text(steps[currentStep].position)
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .foregroundColor(.primary)
+                        Button(action: {
+                            if self.currentStep == self.steps.count - 1 {
+                                self.presentationMode.wrappedValue.dismiss()
+                            } else {
+                                self.nextButtonTapped()
+                            }
+                        }) {
+                            Text(self.currentStep == self.steps.count - 1 ? "Finish" : "Next")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .fill(steps[currentStep].tintColor)
+                                )
+                        }
                     }
+                    
+                    HStack {
+                        ForEach(0..<steps.count, id: \.self) { index in
+                            Circle()
+                                .fill(index == currentStep ? steps[currentStep].tintColor : Color.gray.opacity(0.5))
+                                .frame(width: 8, height: 8)
+                                .padding(.horizontal, 4)
+                        }
+                    }.padding(.bottom, 50)
+                }
+                .onAppear {
+                    self.startTutorial()
                 }
                 
-                Spacer()
-                
-                Button(action: {
-                    if self.currentStep == self.steps.count - 1 {
-                        self.presentationMode.wrappedValue.dismiss()
-                    } else {
-                        self.nextButtonTapped()
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.primary)
+                                .padding()
+                                .background(
+                                    Circle()
+                                        .fill(Color.accentColor)
+                                        .shadow(radius: 5)
+                                )
+                        }
                     }
-                }) {
-                    Text(self.currentStep == self.steps.count - 1 ? "Finish" : "Next")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                        .padding()
-                        .padding(.horizontal, 60)
-                        .background(
-                            RoundedRectangle(cornerRadius: 25)
-                                .fill(self.steps[self.currentStep].tintColor)
-                        )
+                    Spacer()
                 }
-                
-                HStack {
-                    ForEach(0..<steps.count, id: \.self) { index in
-                        Circle()
-                            .fill(index == currentStep ? steps[currentStep].tintColor : Color.gray.opacity(0.5))
-                            .frame(width: 8, height: 8)
-                            .padding(.horizontal, 4)
-                    }
-                }.padding(.bottom, 50)
             }
-            .onAppear {
-                self.startTutorial()
-            }
-        }
-        .edgesIgnoringSafeArea(.all)
-        .onTapGesture {
-            self.isShowingBlur.toggle()
         }
     }
     
     func startTutorial() {
         currentStep = 0
-        isShowingBlur = true
     }
     
     func nextButtonTapped() {
         currentStep += 1
-        if currentStep >= steps.count {
-            isShowingBlur = false
+    }
+    
+    func previousButtonTapped() {
+        if currentStep > 0 {
+            currentStep -= 1
         }
     }
-}
-
-struct VisualEffectBlur: UIViewRepresentable {
-    var blurStyle: UIBlurEffect.Style = .systemMaterial
-    
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: UIBlurEffect(style: blurStyle))
-    }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
 }
 
 struct TutorialView_Previews: PreviewProvider {
     static var previews: some View {
         TutorialView()
+            .previewDevice("iPhone 13 mini")
             .preferredColorScheme(.dark)
     }
 }

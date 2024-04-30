@@ -40,6 +40,7 @@ class ViewController: UIViewController {
     var activity = UserDefaults.standard.bool(forKey: "enableTime")
     var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
     
+    var loadstart = UserDefaults.standard.bool(forKey: "enableImageStartup")
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     
@@ -295,7 +296,9 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(selectedChoiceChanged(_:)), name: Notification.Name("SelectedChoiceChanged"), object: nil)
         
-        loadImageAndTagsFromSelectedAPI()
+        if loadstart {
+            loadImageAndTagsFromSelectedAPI()
+        }
     }
     
     

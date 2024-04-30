@@ -13,6 +13,7 @@
 		130A805A2B78C02E0028985F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A80582B78C02E0028985F /* Main.storyboard */; };
 		130A805C2B78C0300028985F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130A805B2B78C0300028985F /* Assets.xcassets */; };
 		130A805F2B78C0300028985F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130A805D2B78C0300028985F /* LaunchScreen.storyboard */; };
+		1312CFE72BE143B0003E135F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312CFE62BE143B0003E135F /* History.swift */; };
 		1315156B2BAB268900A1C770 /* HearthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156A2BAB268900A1C770 /* HearthButton.swift */; };
 		1315156D2BAB274F00A1C770 /* Rewind-Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */; };
 		1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1315156E2BAB27D600A1C770 /* Web-Share.swift */; };
@@ -22,11 +23,15 @@
 		135DA6512BD501FD0083235B /* popup-Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135DA6502BD501FD0083235B /* popup-Banner.swift */; };
 		1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E81F2BB0112D005E0548 /* HistoryView.swift */; };
 		1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8212BB011F6005E0548 /* ImageHistory.swift */; };
-		1365E8242BB01236005E0548 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8232BB01236005E0548 /* History.swift */; };
+		1365E8242BB01236005E0548 /* History-Butt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1365E8232BB01236005E0548 /* History-Butt.swift */; };
 		1375B3EA2BB813DA00E3D128 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1375B3E92BB813DA00E3D128 /* Activity.swift */; };
 		138661252B8136DC0062AC91 /* nekosapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138661242B8136DC0062AC91 /* nekosapi.swift */; };
 		13877B192B82001800251A60 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B182B82001800251A60 /* SettingsPage.swift */; };
 		13877B1E2B82024A00251A60 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13877B1D2B82024A00251A60 /* AboutPage.swift */; };
+		138C92642BE11887008E37F8 /* API-Pref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C92632BE11887008E37F8 /* API-Pref.swift */; };
+		138C92672BE11CE7008E37F8 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C92662BE11CE7008E37F8 /* Features.swift */; };
+		138C92692BE1202D008E37F8 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C92682BE1202D008E37F8 /* Content.swift */; };
+		138C926B2BE120E3008E37F8 /* Developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C926A2BE120E3008E37F8 /* Developer.swift */; };
 		13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBD2B80D380009BF17E /* ImageExtensions.swift */; };
 		13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EBF2B80D396009BF17E /* UIExtensions.swift */; };
 		13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13910EC42B80D5A6009BF17E /* pic-re.swift */; };
@@ -58,6 +63,7 @@
 		130A805B2B78C0300028985F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		130A805E2B78C0300028985F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130A80602B78C0300028985F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1312CFE62BE143B0003E135F /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		1315156A2BAB268900A1C770 /* HearthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HearthButton.swift; sourceTree = "<group>"; };
 		1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rewind-Settings.swift"; sourceTree = "<group>"; };
 		1315156E2BAB27D600A1C770 /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
@@ -66,11 +72,15 @@
 		135DA6502BD501FD0083235B /* popup-Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "popup-Banner.swift"; sourceTree = "<group>"; };
 		1365E81F2BB0112D005E0548 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		1365E8212BB011F6005E0548 /* ImageHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHistory.swift; sourceTree = "<group>"; };
-		1365E8232BB01236005E0548 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		1365E8232BB01236005E0548 /* History-Butt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History-Butt.swift"; sourceTree = "<group>"; };
 		1375B3E92BB813DA00E3D128 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		138661242B8136DC0062AC91 /* nekosapi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nekosapi.swift; sourceTree = "<group>"; };
 		13877B182B82001800251A60 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		13877B1D2B82024A00251A60 /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
+		138C92632BE11887008E37F8 /* API-Pref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API-Pref.swift"; sourceTree = "<group>"; };
+		138C92662BE11CE7008E37F8 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		138C92682BE1202D008E37F8 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		138C926A2BE120E3008E37F8 /* Developer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developer.swift; sourceTree = "<group>"; };
 		13910EBD2B80D380009BF17E /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		13910EBF2B80D396009BF17E /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		13910EC42B80D5A6009BF17E /* pic-re.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
@@ -150,7 +160,7 @@
 				1315156C2BAB274F00A1C770 /* Rewind-Settings.swift */,
 				1315156E2BAB27D600A1C770 /* Web-Share.swift */,
 				131515702BAB284A00A1C770 /* Refresh-API-Button.swift */,
-				1365E8232BB01236005E0548 /* History.swift */,
+				1365E8232BB01236005E0548 /* History-Butt.swift */,
 				1375B3E92BB813DA00E3D128 /* Activity.swift */,
 			);
 			path = Buttons;
@@ -185,13 +195,34 @@
 		13877B1A2B82017A00251A60 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				13C6CA762BDA3ABC0046923C /* Developer-Pref */,
+				138C92652BE11CA7008E37F8 /* About-Credits */,
+				138C92622BE1186E008E37F8 /* App Settings */,
 				13877B182B82001800251A60 /* SettingsPage.swift */,
-				13877B1D2B82024A00251A60 /* AboutPage.swift */,
-				13CC95072B8BA40100B5705E /* ApiPage.swift */,
 				13CC95092B8BA43600B5705E /* API.xcassets */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		138C92622BE1186E008E37F8 /* App Settings */ = {
+			isa = PBXGroup;
+			children = (
+				138C92632BE11887008E37F8 /* API-Pref.swift */,
+				138C92662BE11CE7008E37F8 /* Features.swift */,
+				138C92682BE1202D008E37F8 /* Content.swift */,
+				138C926A2BE120E3008E37F8 /* Developer.swift */,
+				1312CFE62BE143B0003E135F /* History.swift */,
+				13C6CA762BDA3ABC0046923C /* Developer-Pref */,
+			);
+			path = "App Settings";
+			sourceTree = "<group>";
+		};
+		138C92652BE11CA7008E37F8 /* About-Credits */ = {
+			isa = PBXGroup;
+			children = (
+				13877B1D2B82024A00251A60 /* AboutPage.swift */,
+				13CC95072B8BA40100B5705E /* ApiPage.swift */,
+			);
+			path = "About-Credits";
 			sourceTree = "<group>";
 		};
 		13910EC32B80D595009BF17E /* APIs */ = {
@@ -317,6 +348,7 @@
 				139A2E0A2BA4D642003F2598 /* kyoko.swift in Sources */,
 				13E2DC842BA5D2CF00320E2F /* purr.swift in Sources */,
 				13C6CA752BDA2FDF0046923C /* waifu-it-pref.swift in Sources */,
+				138C92672BE11CE7008E37F8 /* Features.swift in Sources */,
 				13910EC72B80D5B9009BF17E /* waifu-im.swift in Sources */,
 				13877B192B82001800251A60 /* SettingsPage.swift in Sources */,
 				13BE98C02B828B8000379AB7 /* nekosmoe.swift in Sources */,
@@ -330,12 +362,15 @@
 				13C6CA732BD990E30046923C /* waifu-it.swift in Sources */,
 				13910EC52B80D5A6009BF17E /* pic-re.swift in Sources */,
 				13C6CA782BDA409A0046923C /* nekosbot.swift in Sources */,
+				138C926B2BE120E3008E37F8 /* Developer.swift in Sources */,
+				138C92642BE11887008E37F8 /* API-Pref.swift in Sources */,
 				1365E8202BB0112D005E0548 /* HistoryView.swift in Sources */,
 				13A2B7902BD1615600B79DF7 /* Hmtai-pref.swift in Sources */,
 				1365E8222BB011F6005E0548 /* ImageHistory.swift in Sources */,
+				138C92692BE1202D008E37F8 /* Content.swift in Sources */,
 				13C8011D2B94C5E900BFD198 /* HmtaiSender.swift in Sources */,
 				131515712BAB284A00A1C770 /* Refresh-API-Button.swift in Sources */,
-				1365E8242BB01236005E0548 /* History.swift in Sources */,
+				1365E8242BB01236005E0548 /* History-Butt.swift in Sources */,
 				13C8011F2B94CAD900BFD198 /* HmtaiReader.swift in Sources */,
 				135DA6512BD501FD0083235B /* popup-Banner.swift in Sources */,
 				13910EC02B80D396009BF17E /* UIExtensions.swift in Sources */,
@@ -343,6 +378,7 @@
 				13910EC92B80D5C2009BF17E /* nekos-best.swift in Sources */,
 				13910EBE2B80D380009BF17E /* ImageExtensions.swift in Sources */,
 				1315156D2BAB274F00A1C770 /* Rewind-Settings.swift in Sources */,
+				1312CFE72BE143B0003E135F /* History.swift in Sources */,
 				1315156F2BAB27D600A1C770 /* Web-Share.swift in Sources */,
 				13CC95082B8BA40100B5705E /* ApiPage.swift in Sources */,
 			);
@@ -493,11 +529,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The photo Library Addition is required to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -527,11 +564,12 @@
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The photo Library Addition is required to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

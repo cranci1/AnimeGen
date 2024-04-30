@@ -28,6 +28,9 @@ struct HistoryView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .alert(isPresented: $isSaveAlertPresented) {
+            Alert(title: Text("Success"), message: Text("Image saved successfully"), dismissButton: .default(Text("OK")))
+        }
     }
 }
 

@@ -53,6 +53,7 @@ struct DeveloperView: View {
                     .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .navigationBarHidden(true)
             
             Button(action: {
                 saveValues()
@@ -72,7 +73,7 @@ struct DeveloperView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle("Settings", displayMode: .inline)
+        .navigationBarTitle("Hmtai Settings", displayMode: .inline)
     }
     
     private func saveValues() {
