@@ -21,13 +21,11 @@ struct Contents: View {
                                     """)) {
 
                     Toggle("Explicit Contents", isOn: Binding(
-                        get: { self.explicitCont },
+                        get: { UserDefaults.standard.bool(forKey: "enableExplictiCont") },
                         set: { newValue in
+                            UserDefaults.standard.set(newValue, forKey: "enableExplictiCont")
                             if newValue {
-                                showAlert = true
-                            } else {
-                                self.explicitCont = newValue
-                                UserDefaults.standard.set(newValue, forKey: "enableExplictiCont")
+                                self.showAlert = true
                             }
                         }
                     ))

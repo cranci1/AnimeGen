@@ -23,17 +23,15 @@ struct DeveloperPref: View {
                                     """)) {
 
                     Toggle("Developer Mode", isOn: Binding(
-                        get: { self.developerMode },
+                        get: { UserDefaults.standard.bool(forKey: "enableDeveloperMode") },
                         set: { newValue in
-                            self.developerMode = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableDeveloperMode")
                         }
                     ))
         
                     Toggle("Developer Alert", isOn: Binding(
-                        get: { self.developerAlert },
+                        get: { UserDefaults.standard.bool(forKey: "enableDeveloperAlert") },
                         set: { newValue in
-                            self.developerAlert = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableDeveloperAlert")
                         }
                     ))

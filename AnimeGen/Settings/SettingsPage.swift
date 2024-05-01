@@ -18,42 +18,63 @@ struct SettingsPage: View {
                 
                 Section(header: Text("App Settings"), footer: Text("You can access different app settings on these pages.")) {
                     NavigationLink(destination: APIPreferences()) {
-                        Text("APIs Preferences")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "gear")
+                            Text("APIs Preferences")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                     NavigationLink(destination: Features()) {
-                        Text("App Features")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "square.grid.2x2")
+                            Text("App Features")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                     NavigationLink(destination: Contents()) {
-                        Text("Contents Settings")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "doc.text.magnifyingglass")
+                            Text("Contents Settings")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                     
                     NavigationLink(destination: HistoryPref()) {
-                        Text("History Settings")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "clock")
+                            Text("History Settings")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                     NavigationLink(destination: DeveloperPref()) {
-                        Text("Developer Preferences")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "hammer")
+                            Text("Developer Preferences")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                 }
                                 
                 Section(header: Text("About AnimeGen")) {
                     NavigationLink(destination: AboutPage()) {
-                        Text("About")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "info.circle")
+                            Text("About")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                     NavigationLink(destination: ApiPage()) {
-                        Text("APIs credits")
-                            .foregroundColor(.accentColor)
+                        HStack {
+                            Image(systemName: "list.bullet")
+                            Text("APIs Credits")
+                                .foregroundColor(.accentColor)
+                        }
                     }
                     
                     if #available(iOS 14.0, *) {

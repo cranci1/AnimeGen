@@ -17,7 +17,13 @@ struct HistoryPref: View {
         NavigationView {
             Form {
                 Section(footer: Text("'Don't clear history': It makes so that the history will not be cleared when closing the app.")) {
-                    Toggle("Don't clear history", isOn: $historyOvertime)
+                    Toggle("Don't clear history", isOn: Binding(
+                        get: { self.historyOvertime },
+                        set: { newValue in
+                            self.historyOvertime = newValue
+                            UserDefaults.standard.set(newValue, forKey: "enableHistoryOvertime")
+                        }
+                    ))
                 }
                 
                 Section {

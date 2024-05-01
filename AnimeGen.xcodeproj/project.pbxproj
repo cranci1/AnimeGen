@@ -209,8 +209,8 @@
 				138C92632BE11887008E37F8 /* API-Pref.swift */,
 				138C92662BE11CE7008E37F8 /* Features.swift */,
 				138C92682BE1202D008E37F8 /* Content.swift */,
-				138C926A2BE120E3008E37F8 /* Developer.swift */,
 				1312CFE62BE143B0003E135F /* History.swift */,
+				138C926A2BE120E3008E37F8 /* Developer.swift */,
 				13C6CA762BDA3ABC0046923C /* Developer-Pref */,
 			);
 			path = "App Settings";
@@ -529,7 +529,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
@@ -564,7 +564,7 @@
 				CODE_SIGN_ENTITLEMENTS = AnimeGen/AnimeGen.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;

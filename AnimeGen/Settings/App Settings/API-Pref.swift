@@ -70,31 +70,27 @@ struct APIPreferences: View {
                     }
                     
                     Toggle("Load Image on Startup", isOn: Binding(
-                        get: { self.loadstart },
+                        get: { UserDefaults.standard.bool(forKey: "enableImageStartup") },
                         set: { newValue in
-                            self.loadstart = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableImageStartup")
                         }
                     ))
                     
                     Toggle("Display Tags", isOn: Binding(
-                        get: { self.tags },
+                        get: { UserDefaults.standard.bool(forKey: "enableTags") },
                         set: { newValue in
-                            self.tags = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableTags")
                         }
                     ))
                     Toggle("Display nekos.moe Tags", isOn: Binding(
-                        get: { self.moetags },
+                        get: { UserDefaults.standard.bool(forKey: "enableMoeTags") },
                         set: { newValue in
-                            self.moetags = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableMoeTags")
                         }
                     ))
                     Toggle("Kyoko 'Note' banner", isOn: Binding(
-                        get: { self.kyokobanner },
+                        get: { UserDefaults.standard.bool(forKey: "enableKyokobanner") },
                         set: { newValue in
-                            self.kyokobanner = newValue
                             UserDefaults.standard.set(newValue, forKey: "enableKyokobanner")
                         }
                     ))
