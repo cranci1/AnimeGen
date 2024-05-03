@@ -18,11 +18,6 @@ extension ViewController {
         let apiEndpoint = "https://nekos.moe/api/v1/random/image"
 
         guard var components = URLComponents(string: apiEndpoint) else {
-            
-            if self.alert {
-                self.showAlert(withTitle: "Invalid URL", message: "Please wait, the api may be down.", viewController: self)
-            }
-            
             print("Invalid URL")
             stopLoadingIndicator()
             return
@@ -31,11 +26,6 @@ extension ViewController {
         components.queryItems = [URLQueryItem(name: "nsfw", value: isNSFW.description.lowercased())]
 
         guard let url = components.url else {
-            
-            if self.alert {
-                self.showAlert(withTitle: "Invalid URL", message: "Please wait, the api may be down.", viewController: self)
-            }
-            
             print("Invalid URL")
             stopLoadingIndicator()
             return
@@ -54,11 +44,6 @@ extension ViewController {
                       let images = jsonResponse["images"] as? [[String: Any]],
                       let firstImage = images.first,
                       let imageId = firstImage["id"] as? String else {
-                          
-                          if self.alert {
-                              self.showAlert(withTitle: "Error!", message: "Failed to get valid response.", viewController: self)
-                          }
-                          
                         print("Failed to get valid response.")
                         self.stopLoadingIndicator()
                         return
@@ -93,24 +78,13 @@ extension ViewController {
         let imageTask = URLSession.shared.dataTask(with: imageRequest) { (imageData, _, imageError) in
             DispatchQueue.main.async {
                 if let imageError = imageError {
-                    
-                    if self.alert {
-                        self.showAlert(withTitle: "Image loading error", message: "\(imageError)", viewController: self)
-                    }
-                    
                     print("Image loading error: \(imageError)")
                 } else if let imageData = imageData, let newImage = UIImage(data: imageData) {
                     self.imageView.image = newImage
-                    self.addToHistory(image: newImage)
                     self.animateImageChange(with: newImage)
-                    self.tagsLabel.isHidden = !self.moetags
-                    self.incrementCounter()
+                    self.addToHistory(image: newImage)
+                    self.tagsLabel.isHidden = true
                 } else {
-                    
-                    if self.alert {
-                        self.showAlert(withTitle: "Error!", message: "Failed to load image data.", viewController: self)
-                    }
-                    
                     print("Failed to load image data.")
                 }
                 self.stopLoadingIndicator()

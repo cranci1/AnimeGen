@@ -23,11 +23,6 @@ extension ViewController {
         let apiEndpoint = "https://api.nekosapi.com/v3/images/random?limit=1&rating=\(randomRating)"
         
         guard let url = URL(string: apiEndpoint) else {
-            
-            if self.alert {
-                self.showAlert(withTitle: "Invalid URL", message: "Please wait, the api may be down.", viewController: self)
-            }
-            
             print("Invalid URL")
             stopLoadingIndicator()
             return
@@ -39,33 +34,18 @@ extension ViewController {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
-                    
-                    if self.alert {
-                        self.showAlert(withTitle: "Error!", message: "\(error)", viewController: self)
-                    }
-                    
                     print("Error: \(error)")
                     self.stopLoadingIndicator()
                     return
                 }
 
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    
-                    if self.alert {
-                        self.showAlert(withTitle: "Invalid HTTP response", message: "Please wait, the api may be down.", viewController: self)
-                    }
-                    
                     print("Invalid HTTP response")
                     self.stopLoadingIndicator()
                     return
                 }
 
                 guard httpResponse.statusCode == 200 else {
-                    
-                    if self.alert {
-                        self.showAlert(withTitle: "Invalid status code", message: "\(httpResponse.statusCode)", viewController: self)
-                    }
-                    
                     print("Invalid status code: \(httpResponse.statusCode)")
                     self.stopLoadingIndicator()
                     return
@@ -87,31 +67,17 @@ extension ViewController {
                         if let data = try? Data(contentsOf: imageUrl), let newImage = UIImage(data: data) {
                             self.imageView.image = newImage
                             self.animateImageChange(with: newImage)
-                            self.addToHistory(image: newImage)
-                            
                             self.tagsLabel.isHidden = false
-                            
+                            self.addToHistory(image: newImage)
                             self.updateUIWithTags(tags)
-
                             self.stopLoadingIndicator()
-                            
-                            self.incrementCounter()
                         } else {
                             print("Failed to load image data.")
                             self.stopLoadingIndicator()
-                            
-                            if self.alert {
-                                self.showAlert(withTitle: "Error!", message: "Failed to load image data.", viewController: self)
-                            }
-                            
                         }
                     } else {
                         print("Failed to parse JSON response or missing necessary data.")
                         self.stopLoadingIndicator()
-                        
-                        if self.alert {
-                            self.showAlert(withTitle: "Error!", message: "Failed to parse JSON response or missing data.", viewController: self)
-                        }
                     }
                 }
             }

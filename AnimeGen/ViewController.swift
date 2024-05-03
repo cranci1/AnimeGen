@@ -45,6 +45,7 @@ class ViewController: UIViewController {
     var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
+    var hmtaiON = UserDefaults.standard.bool(forKey: "enabledHmtaiAPI")
     
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "kyoko", "Purr"]
 
@@ -360,6 +361,8 @@ class ViewController: UIViewController {
             loadImageFromPurr()
         case "NekoBot":
             loadImageFromNekoBot()
+        case "Hmtai":
+            startHmtaiLoader()
             
         default:
             break

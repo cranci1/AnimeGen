@@ -11,102 +11,54 @@ extension ViewController {
     
     func loadImageFromPicRe() {
         startLoadingIndicator()
-
-        let apiEndpoint = "https://pic.re/image"
-
-        guard let url = URL(string: apiEndpoint) else {
+        
+        DispatchQueue.global().async {
+            guard let url = URL(string: "https://pic.re/image") else {
+                print("Invalid URL")
+                self.stopLoadingIndicator()
+                return
+            }
             
-            if self.alert {
-                self.showAlert(withTitle: "Invalid URL", message: "Please wait, the api may be down.", viewController: self)
-            }
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
             
-            print("Invalid URL")
-            stopLoadingIndicator()
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
+            URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+                guard let self = self else { return }
                 
-                if self.alert {
-                    self.showAlert(withTitle: "Error!", message: "\(error)", viewController: self)
+                if let error = error {
+                    print("Error: \(error)")
+                    self.stopLoadingIndicator()
+                    return
                 }
                 
-                print("Error: \(error)")
-                self.stopLoadingIndicator()
-                return
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse else {
-                
-                if self.alert {
-                    self.showAlert(withTitle: "Invalid HTTP response", message: "Please wait, the api may be down.", viewController: self)
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    print("Invalid HTTP response")
+                    self.stopLoadingIndicator()
+                    return
                 }
                 
-                print("Invalid HTTP response")
-                self.stopLoadingIndicator()
-                return
-            }
-
-            guard httpResponse.statusCode == 200 else {
-                
-                if self.alert {
-                    self.showAlert(withTitle: "Invalid status code", message: "\(httpResponse.statusCode)", viewController: self)
+                guard let data = data,
+                      let imageTagsString = httpResponse.allHeaderFields["image_tags"] as? String,
+                      let imageUrlString = httpResponse.allHeaderFields["image_source"] as? String,
+                      let newImage = UIImage(data: data) else {
+                    print("Invalid image data or missing response headers")
+                    self.stopLoadingIndicator()
+                    return
                 }
                 
-                print("Invalid status code: \(httpResponse.statusCode)")
-                self.stopLoadingIndicator()
-                return
-            }
-
-            if let imageTagsString = httpResponse.allHeaderFields["image_tags"] as? String,
-               let imageUrlString = httpResponse.allHeaderFields["image_source"] as? String {
                 let tags = imageTagsString.components(separatedBy: ",")
-
-                self.currentImageURL = imageUrlString
-
+                
                 DispatchQueue.main.async {
+                    self.currentImageURL = imageUrlString
                     self.updateUIWithTags(tags)
+                    self.addToHistory(image: newImage)
+                    self.tagsLabel.isHidden = false
+                    self.imageView.image = newImage
+                    self.animateImageChange(with: newImage)
+                    self.stopLoadingIndicator()
                 }
-            } else {
-                print("No image tags found in response headers.")
-                
-                if self.alert {
-                    self.showAlert(withTitle: "Error!", message: "No image tags found in response headers.", viewController: self)
-                }
-                
-                self.stopLoadingIndicator()
-                return
-            }
-
-            guard let data = data, let newImage = UIImage(data: data) else {
-                print("Invalid image data")
-                
-                if self.alert {
-                    self.showAlert(withTitle: "Error!", message: "Invalid image data.", viewController: self)
-                }
-                
-                self.stopLoadingIndicator()
-                return
-            }
-
-            DispatchQueue.main.async {
-                
-                self.tagsLabel.isHidden = false
-                
-                self.addToHistory(image: newImage)
-                self.imageView.image = newImage
-                
-                self.animateImageChange(with: newImage)
-                self.stopLoadingIndicator()
-                
-                self.incrementCounter()
-            }
+            }.resume()
         }
-
-        task.resume()
     }
+    
 }

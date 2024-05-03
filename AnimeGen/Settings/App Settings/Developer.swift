@@ -12,6 +12,7 @@ struct DeveloperPref: View {
     // Devloper Mode
     @State private var developerMode = UserDefaults.standard.bool(forKey: "enableDeveloperMode")
     @State private var developerAlert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
+    @State private var hmtaidev = UserDefaults.standard.bool(forKey: "enabledHmtaiAPI")
         
     var body: some View {
         NavigationView {
@@ -48,6 +49,15 @@ struct DeveloperPref: View {
                             Text("Waifu.it Preferences")
                                 .foregroundColor(.accentColor)
                         }
+                    }
+                    
+                    if UserDefaults.standard.bool(forKey: "enableDeveloperMode") {
+                        Toggle("Display Hmtai API", isOn: Binding(
+                            get: { UserDefaults.standard.bool(forKey: "enabledHmtaiAPI") },
+                            set: { newValue in
+                                UserDefaults.standard.set(newValue, forKey: "enabledHmtaiAPI")
+                            }
+                        ))
                     }
                     
                 }

@@ -64,6 +64,9 @@ extension ViewController {
         case "NekoBot":
             lastImage = imageView.image
             loadImageFromNekoBot()
+        case "Hmtai":
+            lastImage = imageView.image
+            startHmtaiLoader()
         default:
             break
         }
@@ -71,8 +74,15 @@ extension ViewController {
 
     @objc func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
-
-        let apiOptions = ["Purr", "kyoko", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+        
+        var apiOptions: [String]
+        
+        if hmtaiON {
+            apiOptions = ["Purr", "kyoko", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+        } else {
+            apiOptions = ["Purr", "kyoko", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+        }
+        
         for option in apiOptions {
             let action = UIAlertAction(title: option, style: .default) { _ in
                 self.apiButton.setTitle(option, for: .normal)

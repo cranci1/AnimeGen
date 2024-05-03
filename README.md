@@ -52,7 +52,7 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 | [Hmtai](https://hmtai.hatsunia.cfd/endpoints)                | SFW/NSFW | IMG/GIF |   ⚠️   |
 | [Nekos api](https://nekosapi.com/docs)                       | SFW/NSFW | IMG     |   ✅   |
 | [Nekos.moe](https://docs.nekos.moe)                          | SFW/NSFW | IMG     |   ✅   |
-| [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)   | SFW/NSFW | IMG/GIF |   ✅   |
+| [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)   | SFW/NSFW | IMG/GIF |   :x:  |
 | [Purr Bot](https://purrbot.site/)                            | SFW/NSFW | IMG/GIF |   ✅   |
 | [Waifu.it](https://waifu.it/)                                | SFW/NSFW | IMG/GIF |   ✅   |
 | [NekoBot](https://nekobot.xyz/)                              | SFW/NSFW | IMG/GIF |   ✅   |
