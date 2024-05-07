@@ -2,7 +2,7 @@
 //  HistoryView.swift
 //  AnimeGen
 //
-//  Created by cranci on 24/03/24.
+//  Created by cranci on 05/05/24.
 //
 
 import SwiftUI

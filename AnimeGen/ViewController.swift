@@ -2,38 +2,32 @@
 //  ViewController.swift
 //  AnimeGen
 //
-//  Created by cranci on 11/02/24.
+//  Created by Francesco on 04/05/24.
 //
 
 import UIKit
-import SwiftUI
 
 class ViewController: UIViewController {
-    
-    var imageView: UIImageView!
-    
-    var settingsButton: UIButton!
-    
-    var refreshButton: UIButton!
-    var heartButton: UIButton!
-    var rewindButton: UIButton!
-    var shareButton: UIButton!
-    var webButton: UIButton!
-    var apiButton: UIButton!
-    var historyButton: UIButton!
-    
-    var activityIndicator: UIActivityIndicatorView!
-    
+
+    var currentImageURL: String?
     var lastImage: UIImage?
     var tagsLabel: UILabel!
-    
+
     var timeLabel: UILabel!
     var startTime: Date?
     var timer: Timer?
     
-    var currentImageURL: String?
+    var imageView: UIImageView!
     
-    var gradientLayer: CAGradientLayer?
+    var apiButton: UIButton!
+    var shareButton: UIButton!
+    var webButton: UIButton!
+    
+    var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet var RefreshButton: UIButton!
+    @IBOutlet var HeartButton: UIButton!
+    @IBOutlet var RewindButton: UIButton!
     
     var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
     var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
@@ -44,13 +38,15 @@ class ViewController: UIViewController {
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     
+    var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
+    
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
     var hmtaiON = UserDefaults.standard.bool(forKey: "enabledHmtaiAPI")
     
-    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "kyoko", "Purr"]
-
-    var counter: Int = 0
+    var lightmode = UserDefaults.standard.bool(forKey: "enabledLightMode")
     
+    var counter: Int = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,18 +66,17 @@ class ViewController: UIViewController {
             swipeRight.direction = .right
             view.addGestureRecognizer(swipeRight)
             
-            let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(settingsButtonTapped))
-            swipeDown.direction = .down
-            view.addGestureRecognizer(swipeDown)
         }
         
         // Gradient
         if gradient {
             setupGradient()
-        } else {
+            animateGradient()
+        } else if !lightmode {
             view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
+        } else if lightmode {
+            view.backgroundColor = UIColor.white
         }
-        
         
         // Image View
         imageView = UIImageView()
@@ -92,45 +87,31 @@ class ViewController: UIViewController {
     
         // Api Button
         apiButton = UIButton(type: .system)
-        apiButton.setTitle("", for: .normal)
+        apiButton.setTitle("pic.re", for: .normal)
         apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
         apiButton.translatesAutoresizingMaskIntoConstraints = false
-        apiButton.backgroundColor = gradient ? UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0) : UIColor.darkGray
+        if gradient {
+            apiButton.backgroundColor = UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0)
+        } else if !lightmode {
+            apiButton.backgroundColor = UIColor.darkGray
+        } else if lightmode {
+            apiButton.backgroundColor = UIColor.lightGray
+        }
         apiButton.layer.cornerRadius = 10
         apiButton.setTitleColor(UIColor.white, for: .normal)
         view.addSubview(apiButton)
         
         
-        // History Button
-        historyButton = UIButton(type: .system)
-        if #available(iOS 14.0, *) {
-            let historyIcon = UIImage(systemName: "clock.arrow.circlepath")?
-                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-            historyButton.setImage(historyIcon, for: .normal)
+        // Activity Indicator
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        if !lightmode {
+            activityIndicator.color = .white
         } else {
-            let secondhistoryIcon = UIImage(systemName: "clock")?
-                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-            historyButton.setImage(secondhistoryIcon, for: .normal)
+            activityIndicator.color = .black
         }
-        historyButton.tintColor = .systemGray
-        historyButton.setTitleColor(.white, for: .normal)
-        historyButton.addTarget(self, action: #selector(historyButtonTapped), for: .touchUpInside)
-        historyButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(historyButton)
-
-
-
-        // Settings Button
-        settingsButton = UIButton(type: .system)
-        let settingsIcon = UIImage(systemName: "gear")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .regular))
-        settingsButton.setImage(settingsIcon, for: .normal)
-        settingsButton.tintColor = .systemGray
-        settingsButton.setTitleColor(.white, for: .normal)
-        settingsButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-        settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
-        settingsButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(settingsButton)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activityIndicator)
         
         
         // Web Button
@@ -142,43 +123,6 @@ class ViewController: UIViewController {
         webButton.addTarget(self, action: #selector(webButtonTapped), for: .touchUpInside)
         webButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webButton)
-        
-        // Refresh Button
-        refreshButton = UIButton(type: .system)
-        let refreshImage = UIImage(systemName: "arrow.clockwise.circle.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
-        refreshButton.setImage(refreshImage, for: .normal)
-        refreshButton.tintColor = .systemTeal
-        refreshButton.setTitleColor(.white, for: .normal)
-        refreshButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-        refreshButton.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
-        refreshButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(refreshButton)
-
-        // Heart Button
-        heartButton = UIButton(type: .system)
-        let heartImage = UIImage(systemName: "heart.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
-        heartButton.setImage(heartImage, for: .normal)
-        heartButton.tintColor = .systemRed
-        heartButton.setTitleColor(.white, for: .normal)
-        heartButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-        heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-        heartButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(heartButton)
-
-        
-        // Rewind Button
-        rewindButton = UIButton(type: .system)
-        let rewindImage = UIImage(systemName: "arrowshape.turn.up.left.circle.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 35, weight: .bold))
-        rewindButton.setImage(rewindImage, for: .normal)
-        rewindButton.tintColor = .systemGreen
-        rewindButton.setTitleColor(.white, for: .normal)
-        rewindButton.titleLabel?.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-        rewindButton.addTarget(self, action: #selector(rewindButtonTapped), for: .touchUpInside)
-        rewindButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(rewindButton)
         
         
         // Share Button
@@ -198,19 +142,15 @@ class ViewController: UIViewController {
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(shareButton)
-
-        
-        // Activity Indicator
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .white
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(activityIndicator)
         
         
         // Tags Label
         tagsLabel = UILabel()
-        tagsLabel.textColor = .white
+        if !lightmode{
+            tagsLabel.textColor = .white
+        } else {
+            tagsLabel.textColor = .black
+        }
         tagsLabel.textAlignment = .center
         tagsLabel.font = UIFont.systemFont(ofSize: 18)
         tagsLabel.numberOfLines = 0
@@ -220,7 +160,11 @@ class ViewController: UIViewController {
         
         // Time Label
         timeLabel = UILabel()
-        timeLabel.textColor = .white
+        if !lightmode{
+            timeLabel.textColor = .white
+        } else {
+            timeLabel.textColor = .black
+        }
         timeLabel.textAlignment = .center
         timeLabel.font = UIFont.systemFont(ofSize: 18)
         timeLabel.numberOfLines = 0
@@ -230,7 +174,6 @@ class ViewController: UIViewController {
         timeLabel.isHidden = !activity
 
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
-        
         
         NSLayoutConstraint.activate([
             
@@ -246,33 +189,13 @@ class ViewController: UIViewController {
             apiButton.heightAnchor.constraint(equalToConstant: 40),
             apiButton.widthAnchor.constraint(equalToConstant: 120),
             
-            // History button
-            historyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            historyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            
-            // Settings button
-            settingsButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            settingsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            // Activity button
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: RefreshButton.topAnchor, constant: -30),
             
             // Web button
             webButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             webButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            
-            // Refresh button
-            refreshButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            refreshButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            // Heart button
-            heartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            heartButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: -60),
-            
-            // Rewind button
-            rewindButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            rewindButton.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor, constant: 60),
-            
-            // Activity button
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: refreshButton.topAnchor, constant: -30),
             
             // Share button
             shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
@@ -286,33 +209,14 @@ class ViewController: UIViewController {
             // Time label
             timeLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
             timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-
-        if gradient {
-            animateGradient()
-        }
-        
-        let selectedChoiceIndex = UserDefaults.standard.integer(forKey: "SelectedChoiceIndex")
-        apiButton.setTitle(choices[selectedChoiceIndex], for: .normal)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(selectedChoiceChanged(_:)), name: Notification.Name("SelectedChoiceChanged"), object: nil)
+            
+            ])
         
         if loadstart {
             loadImageAndTagsFromSelectedAPI()
         }
     }
-    
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-        
-    @objc func selectedChoiceChanged(_ notification: Notification) {
-        guard let selectedIndex = notification.object as? Int else { return }
-        guard selectedIndex >= 0 && selectedIndex < choices.count else { return }
-        apiButton.setTitle(choices[selectedIndex], for: .normal)
-    }
-    
+
     
     func loadImageAndTagsFromSelectedAPI() {
         guard let title = apiButton.title(for: .normal) else {
@@ -368,5 +272,5 @@ class ViewController: UIViewController {
             break
         }
     }
-
 }
+
