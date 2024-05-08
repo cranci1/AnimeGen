@@ -18,8 +18,9 @@ class Contents: UITableViewController {
         
     }
 
-    @IBAction func switchContent(_ sender: UISwitch) {     
+    @IBAction func switchContent(_ sender: UISwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "enableExplictiCont")
     }
+
 }
 

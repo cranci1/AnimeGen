@@ -63,6 +63,7 @@ extension ViewController {
                         } else {
                             if let newImage = UIImage(data: imageData) {
                                 self.imageView.image = newImage
+                                self.addImageToHistory(image: newImage, tags: [tag])
                                 self.animateImageChange(with: newImage)
                                 self.addToHistory(image: newImage)
                             } else {
@@ -75,8 +76,9 @@ extension ViewController {
                         self.tagsLabel.isHidden = false
                         
                         tag = tag.components(separatedBy: "/").first ?? ""
+                        
                         self.updateUIWithTags([tag])
-
+                        self.incrementCounter()
                         self.stopLoadingIndicator()
                     } else {
                         print("Failed to load image data.")

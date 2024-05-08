@@ -12,8 +12,7 @@ extension ViewController {
     func loadImageFromNekosMoe() {
         startLoadingIndicator()
 
-        let isNSFW = UserDefaults.standard.bool(forKey: "enableExplictiCont")
-        let moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+        let isNSFW = UserDefaults.standard.bool(forKey: "enableExplicitContent")
 
         let apiEndpoint = "https://nekos.moe/api/v1/random/image"
 
@@ -37,24 +36,21 @@ extension ViewController {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard error == nil,
-                      let httpResponse = response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200,
-                      let jsonData = data,
-                      let jsonResponse = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
-                      let images = jsonResponse["images"] as? [[String: Any]],
-                      let firstImage = images.first,
-                      let imageId = firstImage["id"] as? String else {
+                    let httpResponse = response as? HTTPURLResponse,
+                    httpResponse.statusCode == 200,
+                    let jsonData = data,
+                    let jsonResponse = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
+                    let images = jsonResponse["images"] as? [[String: Any]],
+                    let firstImage = images.first,
+                    let imageId = firstImage["id"] as? String,
+                    let tagsArray = firstImage["tags"] as? [String] else {
                         print("Failed to get valid response.")
                         self.stopLoadingIndicator()
                         return
                 }
 
-                if moetags, let tagsArray = firstImage["tags"] as? [String] {
-                    self.updateUIWithTags(tagsArray)
-                    self.loadImage(with: imageId, tags: tagsArray)
-                } else {
-                    self.loadImage(with: imageId, tags: nil)
-                }
+                self.updateUIWithTags(tagsArray)
+                self.loadImage(with: imageId, tags: tagsArray)
             }
         }
 
@@ -83,6 +79,10 @@ extension ViewController {
                     self.imageView.image = newImage
                     self.addToHistory(image: newImage)
                     self.animateImageChange(with: newImage)
+                    if let tags = tags {
+                        self.addImageToHistory(image: newImage, tags: tags)
+                    }
+                    self.incrementCounter()
                     
                     if self.moetags {
                         self.tagsLabel.isHidden = false

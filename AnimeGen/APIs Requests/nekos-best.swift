@@ -64,8 +64,10 @@ extension ViewController {
                             self.tagsLabel.isHidden = false
                             self.animateImageChange(with: newImage)
                             self.addToHistory(image: newImage)
+                            self.addImageToHistory(image: newImage, tags: [randomCategory])
                             self.updateUIWithTags([], author: author, category: category)
                             self.stopLoadingIndicator()
+                            self.incrementCounter()
                         } else {
                             print("Failed to load image data.")
                             self.stopLoadingIndicator()

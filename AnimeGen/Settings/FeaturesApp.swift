@@ -23,13 +23,6 @@ class FeaturesApp: UITableViewController {
         Gradient.isOn = UserDefaults.standard.bool(forKey: "enablegradient")
         Gestures.isOn = UserDefaults.standard.bool(forKey: "enableGestures")
         ActivityLabel.isOn = UserDefaults.standard.bool(forKey: "enableTime")
-        
-        let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndex")
-        segmentedControl.selectedSegmentIndex = selectedIndex
-        if UserDefaults.standard.value(forKey: "enabledLightMode") == nil {
-            UserDefaults.standard.set(false, forKey: "enabledLightMode")
-        }
-        
     }
     
     @IBAction func switchAnimations(_ sender: UISwitch) {
@@ -37,25 +30,30 @@ class FeaturesApp: UITableViewController {
     }
     
     @IBAction func switchGradient(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enablegradient")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enablegradient")
+        NotificationCenter.default.post(name: Notification.Name("EnableGradient"), object: nil, userInfo: ["enablegradient": isEnabled])
     }
     
     @IBAction func switchTime(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableTime")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enableTime")
+        NotificationCenter.default.post(name: Notification.Name("EnableTime"), object: nil, userInfo: ["enableTime": isEnabled])
     }
     
     @IBAction func switctchGestures(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableGestures")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enableGestures")
+        NotificationCenter.default.post(name: Notification.Name("EnableGestures"), object: nil, userInfo: ["enableGestures": isEnabled])
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
         UserDefaults.standard.set(selectedIndex, forKey: "selectedIndex")
         
-        if selectedIndex == 1 {
-            UserDefaults.standard.set(true, forKey: "enabledLightMode")
-        } else {
-            UserDefaults.standard.set(false, forKey: "enabledLightMode")
-        }
+        let isEnabledLightMode = selectedIndex == 1
+        UserDefaults.standard.set(isEnabledLightMode, forKey: "enabledLightMode")
+        
+        NotificationCenter.default.post(name: Notification.Name("EnabledLightMode"), object: nil, userInfo: ["enabledLightMode": isEnabledLightMode])
     }
 }

@@ -49,6 +49,7 @@ extension ViewController {
                 let tags = imageTagsString.components(separatedBy: ",")
                 
                 DispatchQueue.main.async {
+                    self.addImageToHistory(image: newImage, tags: tags)
                     self.currentImageURL = imageUrlString
                     self.updateUIWithTags(tags)
                     self.addToHistory(image: newImage)
@@ -56,6 +57,7 @@ extension ViewController {
                     self.imageView.image = newImage
                     self.animateImageChange(with: newImage)
                     self.stopLoadingIndicator()
+                    self.incrementCounter()
                 }
             }.resume()
         }

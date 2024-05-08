@@ -18,7 +18,9 @@ class History: UITableViewController {
     }
 
     @IBAction func switchHistory(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableHistory")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enableHistory")
+        NotificationCenter.default.post(name: Notification.Name("EnableHistory"), object: nil, userInfo: ["enableHistory": isEnabled])
     }
 
     @IBAction func clearButtonTapped(_ sender: Any) {

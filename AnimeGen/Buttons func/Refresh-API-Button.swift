@@ -16,7 +16,6 @@ extension ViewController {
 
         switch title {
         case "pic.re":
-            lastImage = imageView.image
             loadImageFromPicRe()
             showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
                 if #available(iOS 14.0, *) {
@@ -27,22 +26,16 @@ extension ViewController {
                 }
             }
         case "waifu.im":
-            lastImage = imageView.image
             loadImageFromWaifuIm()
         case "waifu.it":
-            lastImage = imageView.image
             loadImageFromWaifuIt()
         case "nekos.best":
-            lastImage = imageView.image
             loadImageFromNekosBest()
         case "waifu.pics":
-            lastImage = imageView.image
             loadImageFromWaifuPics()
         case "Hmtai api":
-            lastImage = imageView.image
             startHmtaiLoader()
         case "Nekos api":
-            lastImage = imageView.image
             loadImageFromNekosapi()
             showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
                 if #available(iOS 14.0, *) {
@@ -53,19 +46,14 @@ extension ViewController {
                 }
             }
         case "nekos.moe":
-            lastImage = imageView.image
             loadImageFromNekosMoe()
         case "kyoko":
-            lastImage = imageView.image
             loadImageFromKyoko()
         case "Purr":
-            lastImage = imageView.image
             loadImageFromPurr()
         case "NekoBot":
-            lastImage = imageView.image
             loadImageFromNekoBot()
         case "Hmtai":
-            lastImage = imageView.image
             startHmtaiLoader()
         default:
             break

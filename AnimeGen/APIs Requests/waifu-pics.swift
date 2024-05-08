@@ -53,6 +53,7 @@ extension ViewController {
                         if imageUrlString.lowercased().hasSuffix(".gif") {
                             if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
                                 self.imageView.image = animatedImage
+                                self.addImageToHistory(image: animatedImage, tags: [randomCategory])
                                 self.animateImageChange(with: animatedImage)
                                 self.addToHistory(image: animatedImage)
                             } else {
@@ -61,6 +62,7 @@ extension ViewController {
                         } else {
                             if let newImage = UIImage(data: imageData) {
                                 self.imageView.image = newImage
+                                self.addImageToHistory(image: newImage, tags: [randomCategory])
                                 self.animateImageChange(with: newImage)
                                 self.addToHistory(image: newImage)
                             } else {
@@ -71,6 +73,7 @@ extension ViewController {
                         self.tagsLabel.isHidden = false
                         self.updateUIWithTags([randomCategory])
                         self.stopLoadingIndicator()
+                        self.incrementCounter()
                     } else {
                         print("Failed to load image data.")
                         self.stopLoadingIndicator()

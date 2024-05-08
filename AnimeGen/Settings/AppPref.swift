@@ -33,11 +33,15 @@ class AppPref: UITableViewController {
     }
     
     @IBAction func switchMoeTags(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableMoeTags")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enableMoeTags")
+        NotificationCenter.default.post(name: Notification.Name("EnableMoeTagsChanged"), object: nil, userInfo: ["enableMoeTags": isEnabled])
     }
     
     @IBAction func switchKyokoBanner(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableKyokobanner")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enableKyokobanner")
+        NotificationCenter.default.post(name: Notification.Name("EnableKyokoBanner"), object: nil, userInfo: ["enableKyokobanner": isEnabled])
     }
             
 }

@@ -59,6 +59,7 @@ extension ViewController {
                                     if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
                                         self.imageView.image = animatedImage
                                         self.animateImageChange(with: animatedImage)
+                                        self.addImageToHistory(image: animatedImage, tags: [randomCategory])
                                         self.addToHistory(image: animatedImage)
                                     } else {
                                         print("Failed to create animated image from GIF data.")
@@ -66,6 +67,7 @@ extension ViewController {
                                 } else {
                                     if let newImage = UIImage(data: imageData) {
                                         self.imageView.image = newImage
+                                        self.addImageToHistory(image: newImage, tags: [randomCategory])
                                         self.addToHistory(image: newImage)
                                         self.animateImageChange(with: newImage)
                                     } else {

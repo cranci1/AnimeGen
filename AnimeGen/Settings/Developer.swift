@@ -26,7 +26,9 @@ class DeveloperPref: UITableViewController {
     // }
     
     @IBAction func switchHmtaiAPI(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enabledHmtaiAPI")
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enabledHmtaiAPI")
+        NotificationCenter.default.post(name: Notification.Name("EnabledHmtaiAPI"), object: nil, userInfo: ["enabledHmtaiAPI": isEnabled])
     }
     
     @IBAction func waifuit(_ sender: UITapGestureRecognizer) {

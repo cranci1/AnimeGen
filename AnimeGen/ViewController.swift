@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var imageHistory: [(UIImage, [String])] = []
+    var currentPosition: Int = -1
 
     var currentImageURL: String?
     var lastImage: UIImage?
@@ -215,8 +218,23 @@ class ViewController: UIViewController {
         if loadstart {
             loadImageAndTagsFromSelectedAPI()
         }
+        
+        // APIs Pref
+        NotificationCenter.default.addObserver(self, selector: #selector(handleMoeTags(_:)), name: Notification.Name("EnableMoeTagsChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKyokoBanner(_:)), name: Notification.Name("EnableKyokoBanner"), object: nil)
+        
+        // App Features
+        NotificationCenter.default.addObserver(self, selector: #selector(handleGradient(_:)), name: Notification.Name("EnableGradient"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleTime(_:)), name: Notification.Name("EnableTime"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleGestures(_:)), name: Notification.Name("EnableGestures"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLightMode(_:)), name: Notification.Name("EnabledLightMode"), object: nil)
+        
+        // Developer
+        NotificationCenter.default.addObserver(self, selector: #selector(handleHmtaiShowcase(_:)), name: Notification.Name("EnabledHmtaiAPI"), object: nil)
+        
+        // History
+        NotificationCenter.default.addObserver(self, selector: #selector(handleHsistory(_:)), name: Notification.Name("EnableHistory"), object: nil)
     }
-
     
     func loadImageAndTagsFromSelectedAPI() {
         guard let title = apiButton.title(for: .normal) else {

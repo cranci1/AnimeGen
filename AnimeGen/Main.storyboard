@@ -465,7 +465,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
-                            <tableViewSection id="z6d-GI-YIK">
+                            <tableViewSection footerTitle="Enables you to choose the Hmtai API from the API selector." id="z6d-GI-YIK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KVg-G1-EoS">
                                         <rect key="frame" x="20" y="18" width="350" height="43.666667938232422"/>
@@ -500,7 +500,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                             <tableViewSection headerTitle="Developer APIs" id="Y5n-Ax-od7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="W56-k4-mOl">
-                                        <rect key="frame" x="20" y="111.33333396911621" width="350" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="133.66666603088379" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W56-k4-mOl" id="8Fg-Iy-Jyz">
                                             <rect key="frame" x="0.0" y="0.0" width="321.33333333333331" height="43.666667938232422"/>
@@ -521,7 +521,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="TSR-YQ-5ba">
-                                        <rect key="frame" x="20" y="155.00000190734863" width="350" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="177.33333396911621" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TSR-YQ-5ba" id="lsk-PS-Roy">
                                             <rect key="frame" x="0.0" y="0.0" width="321.33333333333331" height="43.666667938232422"/>
@@ -577,15 +577,15 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="wTz-Yu-EQZ">
-                                <string key="footerTitle">Default API Selection: You can customize your preferred API that the app will utilize upon opening. (Only works when opening the App)
+                                <mutableString key="footerTitle">Default API Selection: You can customize your preferred API that the app will utilize upon opening. (Only works when opening the App)
                                     
 Load Image on Startup: You can choose whether to generate an image when the app starts or not.
                                     
 Display of Tags: You have control over whether to display tags associated with each image.
                                     
-Display nekos.moe Tags: You can choose whether to show or hide tags sourced from the nekos.moe API. (App Restart is required)
+Display nekos.moe Tags: You can choose whether to show or hide tags sourced from the nekos.moe API.
                                     
-Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API since it's very slow. (App Restart is required)</string>
+Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API since it's very slow.</mutableString>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NKD-o8-QYG">
                                         <rect key="frame" x="20" y="18" width="350" height="43.666667938232422"/>
@@ -1281,7 +1281,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="731.66666603088379" width="350" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmE-aj-VWq" id="4rw-iP-Xcv">
-                                            <rect key="frame" x="0.0" y="0.0" width="331.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NekoBot" translatesAutoresizingMaskIntoConstraints="NO" id="bSs-tU-7G3">
@@ -1318,7 +1318,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="831.66666603088379" width="350" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mF-gw-51Y" id="FoQ-jc-JmS">
-                                            <rect key="frame" x="0.0" y="0.0" width="331.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Hnm-Gd-NQr">
@@ -1355,7 +1355,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="931.66666603088379" width="350" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ojb-68-Y8b" id="He8-lk-JVb">
-                                            <rect key="frame" x="0.0" y="0.0" width="331.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kyoko" translatesAutoresizingMaskIntoConstraints="NO" id="5WR-J1-ygh">
@@ -1392,7 +1392,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="1031.6666660308838" width="350" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UP9-lD-Iv6" id="6GP-W5-v3h">
-                                            <rect key="frame" x="0.0" y="0.0" width="331.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Purr" translatesAutoresizingMaskIntoConstraints="NO" id="0zY-H8-kmS">
@@ -1433,7 +1433,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="1181.3333320617676" width="350" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vhY-mC-J2p" id="kdO-fg-T6c">
-                                            <rect key="frame" x="0.0" y="0.0" width="331.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="333.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SD" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-S8-U2i">
@@ -1462,6 +1462,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="y7B-rv-vOT" appends="YES" id="AA4-0E-Tnt"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1508,24 +1511,24 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                         <action selector="picre:" destination="HJz-GU-SmI" id="pHj-WA-pRS"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="eG4-wT-oFJ" userLabel="waifu.im">
-                    <connections>
-                        <action selector="waifuim:" destination="HJz-GU-SmI" id="VCC-PV-EUh"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="iHw-Nc-nmY" userLabel="waifu.pics">
-                    <connections>
-                        <action selector="waifupics:" destination="HJz-GU-SmI" id="KNz-sJ-Bzv"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <tapGestureRecognizer id="qrb-tN-atx" userLabel="waifu.it">
                     <connections>
                         <action selector="waifuit:" destination="HJz-GU-SmI" id="ciS-OT-vZS"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="eG4-wT-oFJ" userLabel="waifu.im">
+                    <connections>
+                        <action selector="waifuim:" destination="HJz-GU-SmI" id="VCC-PV-EUh"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <tapGestureRecognizer id="CRy-vk-daJ" userLabel="nekosapi">
                     <connections>
                         <action selector="nekosapi:" destination="HJz-GU-SmI" id="RDG-gT-ffa"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="iHw-Nc-nmY" userLabel="waifu.pics">
+                    <connections>
+                        <action selector="waifupics:" destination="HJz-GU-SmI" id="KNz-sJ-Bzv"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="GBR-Gm-Ul4" userLabel="nekosbest">
@@ -1558,9 +1561,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                         <action selector="purrbot:" destination="HJz-GU-SmI" id="ydI-eB-2rL"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="C4T-Tm-gmn" userLabel="Sd">
+                <tapGestureRecognizer id="y7B-rv-vOT" userLabel="SD">
                     <connections>
-                        <action selector="SDweb:" destination="HJz-GU-SmI" id="7ZQ-Bc-dIB"/>
+                        <action selector="SDweb:" destination="HJz-GU-SmI" id="lqg-LM-PRU"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

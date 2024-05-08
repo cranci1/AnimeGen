@@ -8,29 +8,36 @@
 import SwiftUI
 import Photos
 
-struct ImageWrapper: Identifiable {
-    let id = UUID()
-    let image: UIImage
-}
-
 struct HistoryView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var isSaveAlertPresented = false
     @State private var selectedImage: UIImage?
     
     var body: some View {
         NavigationView {
-            if #available(iOS 15.0, *) {
-                ImageGrid(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
-                    .navigationBarTitle("History - \(ImageHistory.images.count) images")
-            } else {
-                ImageGridiOS13(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
-                    .navigationBarTitle("History - \(ImageHistory.images.count) images")
+            VStack {
+                if #available(iOS 15.0, *) {
+                    ImageGrid(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
+                } else {
+                    ImageGridiOS13(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
+                }
+                Button(action: clearImagesAndClose) {
+                    Image(systemName: "trash")
+                        .font(.title)
+                }
+                .foregroundColor(.red)
             }
+            .navigationBarTitle("History - \(ImageHistory.images.count) images")
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $isSaveAlertPresented) {
             Alert(title: Text("Success"), message: Text("Image saved successfully"), dismissButton: .default(Text("OK")))
         }
+    }
+    
+    func clearImagesAndClose() {
+        ImageHistory.images.removeAll()
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
