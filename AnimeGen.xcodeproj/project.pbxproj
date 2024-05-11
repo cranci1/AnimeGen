@@ -23,6 +23,7 @@
 		1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A72BEBC94300704137 /* Dev-History.swift */; };
 		1393C3AB2BEBC94300704137 /* moe-kyoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A82BEBC94300704137 /* moe-kyoko.swift */; };
 		13AB1D2A2BE93E3D009132CB /* Historyy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AB1D292BE93E3D009132CB /* Historyy.swift */; };
+		13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC382B2BEFA34A00676546 /* APIsValid.swift */; };
 		13C1E03C2BE9068600A27DEE /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1E03B2BE9068600A27DEE /* AboutPage.swift */; };
 		13C1E03E2BE9183400A27DEE /* API.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1E03D2BE9183400A27DEE /* API.xcassets */; };
 		13C1E0402BE92BB300A27DEE /* APIsCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */; };
@@ -75,6 +76,7 @@
 		1393C3A72BEBC94300704137 /* Dev-History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dev-History.swift"; sourceTree = "<group>"; };
 		1393C3A82BEBC94300704137 /* moe-kyoko.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "moe-kyoko.swift"; sourceTree = "<group>"; };
 		13AB1D292BE93E3D009132CB /* Historyy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historyy.swift; sourceTree = "<group>"; };
+		13AC382B2BEFA34A00676546 /* APIsValid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsValid.swift; sourceTree = "<group>"; };
 		13C1E03B2BE9068600A27DEE /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
 		13C1E03D2BE9183400A27DEE /* API.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = API.xcassets; sourceTree = "<group>"; };
 		13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsCredits.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				136BD7E72BE7E24100ED23AE /* Developer.swift */,
 				13AB1D292BE93E3D009132CB /* Historyy.swift */,
 				13DD19D92BEA58B00034B014 /* SettingsMain.swift */,
+				13AC382B2BEFA34A00676546 /* APIsValid.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				13D4FBE92BE768C100BC3D1C /* HeartButton.swift in Sources */,
 				13D4FC212BE770EC00BC3D1C /* kyoko.swift in Sources */,
 				13D4FBF22BE76DCA00BC3D1C /* Web-Share.swift in Sources */,
+				13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */,
 				13D4FC242BE770EC00BC3D1C /* pic-re.swift in Sources */,
 				133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */,
 				13C1E0402BE92BB300A27DEE /* APIsCredits.swift in Sources */,

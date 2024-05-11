@@ -49,6 +49,8 @@ class ViewController: UIViewController {
     var lightmode = UserDefaults.standard.bool(forKey: "enabledLightMode")
     
     var counter: Int = 0
+    
+    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "kyoko", "Purr"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +92,7 @@ class ViewController: UIViewController {
     
         // Api Button
         apiButton = UIButton(type: .system)
-        apiButton.setTitle("pic.re", for: .normal)
+        apiButton.setTitle("", for: .normal)
         apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
         apiButton.translatesAutoresizingMaskIntoConstraints = false
         if gradient {
@@ -210,7 +212,7 @@ class ViewController: UIViewController {
             tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             // Time label
-            timeLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10),
+            timeLabel.bottomAnchor.constraint(equalTo: RefreshButton.bottomAnchor, constant: 25),
             timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             
             ])
@@ -234,7 +236,29 @@ class ViewController: UIViewController {
         
         // History
         NotificationCenter.default.addObserver(self, selector: #selector(handleHsistory(_:)), name: Notification.Name("EnableHistory"), object: nil)
+        
+        
+        let selectedChoiceIndex = UserDefaults.standard.integer(forKey: "SelectedChoiceIndex")
+        apiButton.setTitle(choices[selectedChoiceIndex], for: .normal)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(selectedChoiceChanged(_:)), name: Notification.Name("SelectedChoiceChanged"), object: nil)
+        
+        if loadstart {
+            loadImageAndTagsFromSelectedAPI()
+        }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+        
+    @objc func selectedChoiceChanged(_ notification: Notification) {
+        guard let selectedIndex = notification.object as? Int else { return }
+        guard selectedIndex >= 0 && selectedIndex < choices.count else { return }
+        apiButton.setTitle(choices[selectedIndex], for: .normal)
+    }
+    
+    
     
     func loadImageAndTagsFromSelectedAPI() {
         guard let title = apiButton.title(for: .normal) else {
@@ -244,14 +268,6 @@ class ViewController: UIViewController {
           
         case "pic.re":
             loadImageFromPicRe()
-            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
-                if #available(iOS 14.0, *) {
-                    // nothing here cuz ios 14+ 💪
-                } else {
-                    self.apiButton.setTitle("waifu.im", for: .normal)
-                    self.loadImageFromWaifuIm()
-                }
-            }
         case "waifu.im":
             loadImageFromWaifuIm()
         case "waifu.it":
@@ -262,14 +278,6 @@ class ViewController: UIViewController {
             loadImageFromWaifuPics()
         case "Nekos api":
             loadImageFromNekosapi()
-            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
-                if #available(iOS 14.0, *) {
-                    // nothing here cuz ios 14+ 💪
-                } else {
-                    self.apiButton.setTitle("waifu.im", for: .normal)
-                    self.loadImageFromWaifuIm()
-                }
-            }
         case "nekos.moe":
             loadImageFromNekosMoe()
         case "Hmtai api":

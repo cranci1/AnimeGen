@@ -32,17 +32,20 @@ class DeveloperPref: UITableViewController {
     }
     
     @IBAction func waifuit(_ sender: UITapGestureRecognizer) {
-        let swiftUIView = waifuitView()
-        let hostingController = UIHostingController(rootView: swiftUIView)
-        present(hostingController, animated: true, completion: nil)
+        if let navigationController = self.navigationController,
+           !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
+            let swiftUIView = waifuitView()
+            navigationController.pushViewController(UIHostingController(rootView: swiftUIView), animated: true)
+        }
     }
-    
+
     @IBAction func hmtaipage(_ sender: UITapGestureRecognizer) {
-        let swiftUIView = HmtaiView()
-        let hostingController = UIHostingController(rootView: swiftUIView)
-        present(hostingController, animated: true, completion: nil)
+        if let navigationController = self.navigationController,
+           !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
+            let swiftUIView = HmtaiView()
+            navigationController.pushViewController(UIHostingController(rootView: swiftUIView), animated: true)
+        }
     }
-    
     
 }
 

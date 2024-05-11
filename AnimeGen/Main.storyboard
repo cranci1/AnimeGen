@@ -234,8 +234,29 @@
                                             <segue destination="4EG-3l-fut" kind="show" id="hmh-2N-Awf"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="Boe-Yd-q2b">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="agX-W1-hO2">
                                         <rect key="frame" x="20" y="359.00000762939453" width="350" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="agX-W1-hO2" id="i9m-GG-wKf">
+                                            <rect key="frame" x="0.0" y="0.0" width="321.33333333333331" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="APIs Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dC5-HL-RiY">
+                                                    <rect key="frame" x="16" y="13" width="79" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="0ZA-XE-jX3" appends="YES" id="BhK-4B-S8O"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="Boe-Yd-q2b">
+                                        <rect key="frame" x="20" y="402.66667556762695" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Boe-Yd-q2b" id="Jr1-aa-jZP">
                                             <rect key="frame" x="0.0" y="0.0" width="321.33333333333331" height="43.666667938232422"/>
@@ -265,6 +286,11 @@
                     <navigationItem key="navigationItem" title="Settings" id="QYW-CF-MJD"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chy-hT-HzR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0ZA-XE-jX3" userLabel="Show Apis Status Page">
+                    <connections>
+                        <action selector="APIsStatus:" destination="BaH-N7-bdh" id="RlQ-3k-9SA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="876" y="-78.325123152709367"/>
         </scene>
@@ -577,8 +603,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="wTz-Yu-EQZ">
-                                <mutableString key="footerTitle">Default API Selection: You can customize your preferred API that the app will utilize upon opening. (Only works when opening the App)
-                                    
+                                <mutableString key="footerTitle">Default API Selection: You can customize your preferred API that the app will utilize upon opening. (Only works when opening the App). Please don't select "pic.re" or "Nekos api" if you are on iOS 13.
+
 Load Image on Startup: You can choose whether to generate an image when the app starts or not.
                                     
 Display of Tags: You have control over whether to display tags associated with each image.
@@ -587,8 +613,38 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                     
 Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API since it's very slow.</mutableString>
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NKD-o8-QYG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ilS-3G-87m">
                                         <rect key="frame" x="20" y="18" width="350" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ilS-3G-87m" id="Cxq-XN-Mrj">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default API:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iup-4N-ADU">
+                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zg9-yL-Yh6">
+                                                    <rect key="frame" x="279.66666666666669" y="6.3333333333333321" width="60.333333333333314" height="30.999999999999996"/>
+                                                    <color key="tintColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="pic.re"/>
+                                                    <connections>
+                                                        <action selector="presentActionSheet:" destination="Wed-HT-PHI" eventType="touchUpInside" id="Yan-Jb-uhe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Zg9-yL-Yh6" firstAttribute="centerY" secondItem="Cxq-XN-Mrj" secondAttribute="centerY" id="5WG-Uo-8mg"/>
+                                                <constraint firstItem="Zg9-yL-Yh6" firstAttribute="trailing" secondItem="Cxq-XN-Mrj" secondAttribute="trailing" constant="-10" id="CnR-Kd-xVe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NKD-o8-QYG">
+                                        <rect key="frame" x="20" y="61.666667938232422" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NKD-o8-QYG" id="sBJ-qG-Db4">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.666667938232422"/>
@@ -616,7 +672,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dmJ-nN-el8">
-                                        <rect key="frame" x="20" y="61.666667938232422" width="350" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="105.33333587646484" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dmJ-nN-el8" id="dpi-Es-Etq">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.666667938232422"/>
@@ -644,7 +700,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uHm-oJ-L2G">
-                                        <rect key="frame" x="20" y="105.33333587646484" width="350" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="149.00000381469727" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uHm-oJ-L2G" id="vII-rD-wxv">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.666667938232422"/>
@@ -672,7 +728,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IcC-Uu-Mx7">
-                                        <rect key="frame" x="20" y="149.00000381469727" width="350" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="192.66667175292969" width="350" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IcC-Uu-Mx7" id="H6w-2p-k65">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.666667938232422"/>
@@ -709,6 +765,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                     </tableView>
                     <navigationItem key="navigationItem" title="APIs Preferences" id="9Ae-az-fnW"/>
                     <connections>
+                        <outlet property="APIDefa" destination="Zg9-yL-Yh6" id="vUD-Jx-Ohe"/>
                         <outlet property="DisplayNekosTags" destination="MuY-OC-Hck" id="tNL-oT-5bM"/>
                         <outlet property="DisplayTags" destination="4BD-IM-7pM" id="qAI-UV-2Ng"/>
                         <outlet property="KyokoNoteBanner" destination="PkI-7q-Y1R" id="kGT-xR-dAa"/>
@@ -717,7 +774,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OkX-cu-2rR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876" y="-857"/>
+            <point key="canvasLocation" x="875.38461538461536" y="-857.34597156398104"/>
         </scene>
         <!--Contents-->
         <scene sceneID="ole-aD-kgC">
