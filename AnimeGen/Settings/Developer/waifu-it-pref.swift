@@ -17,12 +17,7 @@ struct waifuitView: View {
     
     var body: some View {
         VStack {
-            VStack(spacing: 20) {
-                Text("Waifu.it Preferences")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
+            VStack(spacing: 20) {                
                 TextField("API Token", text: $waifuittoken)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
@@ -52,7 +47,7 @@ struct waifuitView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle("Waifu.it Settings", displayMode: .inline)
+        .navigationBarTitle("Waifu.it Settings")
         
     }
     

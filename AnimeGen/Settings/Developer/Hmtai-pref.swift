@@ -21,11 +21,6 @@ struct HmtaiView: View {
     var body: some View {
         VStack {
             VStack(spacing: 20) {
-                Text("Hmtai Preferences")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
                 TextField("Bot DiscordTokenHere", text: $apiToken)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
@@ -73,7 +68,7 @@ struct HmtaiView: View {
             Spacer()
         }
         .padding()
-        .navigationBarTitle("Hmtai Settings", displayMode: .inline)
+        .navigationBarTitle("Hmtai Settings")
     }
     
     private func saveValues() {

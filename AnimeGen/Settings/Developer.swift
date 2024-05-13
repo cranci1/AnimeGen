@@ -33,7 +33,7 @@ class DeveloperPref: UITableViewController {
     
     @IBAction func waifuit(_ sender: UITapGestureRecognizer) {
         if let navigationController = self.navigationController,
-           !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
+           !(navigationController.topViewController is UIHostingController<waifuitView>) {
             let swiftUIView = waifuitView()
             navigationController.pushViewController(UIHostingController(rootView: swiftUIView), animated: true)
         }
@@ -41,7 +41,7 @@ class DeveloperPref: UITableViewController {
 
     @IBAction func hmtaipage(_ sender: UITapGestureRecognizer) {
         if let navigationController = self.navigationController,
-           !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
+           !(navigationController.topViewController is UIHostingController<HmtaiView>) {
             let swiftUIView = HmtaiView()
             navigationController.pushViewController(UIHostingController(rootView: swiftUIView), animated: true)
         }

@@ -20,15 +20,13 @@ extension ViewController {
             if !tagsString.isEmpty {
                 tagsString += "\n"
             }
-
             tagsString += "Author: \(author)"
         }
 
         if let category = category, !category.isEmpty {
-            if !tagsString.isEmpty || (author != nil && !author!.isEmpty) {
+            if !tagsString.isEmpty || author != nil && !author!.isEmpty {
                 tagsString += "\n"
             }
-
             tagsString += "Category: \(category)"
         }
 
@@ -45,6 +43,7 @@ extension ViewController {
         tagsLabel.attributedText = attributedString
     }
 
+
     func startLoadingIndicator() {
         activityIndicator.startAnimating()
     }
@@ -52,6 +51,7 @@ extension ViewController {
     func stopLoadingIndicator() {
         activityIndicator.stopAnimating()
     }
+
 
     func animateFeedback() {
         guard UserDefaults.standard.bool(forKey: "enableAnimations") else {
@@ -62,14 +62,14 @@ extension ViewController {
             self.imageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }) { _ in
             UIView.animate(withDuration: 0.3) {
-                self.imageView.transform = CGAffineTransform.identity
+                self.imageView.transform = .identity
             }
         }
     }
 
     func animateImageChange(with newImage: UIImage) {
         guard UserDefaults.standard.bool(forKey: "enableAnimations") else {
-            self.imageView.image = newImage
+            imageView.image = newImage
             return
         }
 

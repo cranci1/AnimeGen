@@ -12,6 +12,8 @@ extension ViewController {
     func loadImageFromPicRe() {
         startLoadingIndicator()
         
+        let startTime = DispatchTime.now()
+        
         DispatchQueue.global().async {
             guard let url = URL(string: "https://pic.re/image") else {
                 print("Invalid URL")
@@ -49,18 +51,25 @@ extension ViewController {
                 let tags = imageTagsString.components(separatedBy: ",")
                 
                 DispatchQueue.main.async {
-                    self.addImageToHistory(image: newImage, tags: tags)
-                    self.currentImageURL = imageUrlString
-                    self.updateUIWithTags(tags)
-                    self.addToHistory(image: newImage)
-                    self.tagsLabel.isHidden = false
-                    self.imageView.image = newImage
-                    self.animateImageChange(with: newImage)
-                    self.stopLoadingIndicator()
-                    self.incrementCounter()
+                    self.handleImageLoadingCompletion(with: newImage, tags: tags, imageUrlString: imageUrlString)
+                    
+                    let endTime = DispatchTime.now()
+                    let executionTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
+                    print("Execution time: \(Double(executionTime) / 1_000_000_000) seconds")
                 }
             }.resume()
         }
     }
     
+    private func handleImageLoadingCompletion(with newImage: UIImage, tags: [String], imageUrlString: String) {
+        addImageToHistory(image: newImage, tags: tags)
+        currentImageURL = imageUrlString
+        updateUIWithTags(tags)
+        addToHistory(image: newImage)
+        tagsLabel.isHidden = false
+        imageView.image = newImage
+        animateImageChange(with: newImage)
+        stopLoadingIndicator()
+        incrementCounter()
+    }
 }
