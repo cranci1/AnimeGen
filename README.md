@@ -8,11 +8,25 @@
 
 # AnimeGen
 
-AnimeGen is a mobile app made in Swift, developed using public APIs. The app's purpose is to save, generate, and share images.
+AnimeGen is a mobile app developed in Swift that allows users to save, generate, and share anime images. It utilizes various public APIs to fetch the images and is designed for anime enthusiasts who want to discover and share new anime images.
+
+## Table of Contents
+
+- [Compatibility](#compatibility)
+- [Screenshots](#screenshots)
+- [Download](#download)
+- [APIs](#apis)
+  - [Working APIs](#working-apis)
+- [Third Party Software](#third-party-software)
+- [Acknowledgements](#acknowledgements)
+- [Build](#build)
+- [License](#license)
 
 ## Compatibility
 
-AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minimum operating system version of **iOS 13** or above.
+AnimeGen is designed to work smoothly on any device running iOS or iPadOS. The minimum required operating system version is **iOS 13**. This includes iPhones, iPads, and iPod touch devices that are capable of running these versions.
+
+Please note that while AnimeGen should function on all compatible devices, the user experience may vary depending on the specific device model and its performance capabilities.
 
 ## Screenshots
 
@@ -30,16 +44,15 @@ AnimeGen is designed to seamlessly operate on any iOS/iPadOS device with a minim
 
 ## Download
 
-Here, you can access the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight
-
-> [!Note]
-> The nightly-IPA may be unstable and also does not support the Hmtai API. (also does testflight)
+You can download the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight. Please note that the nightly-IPA may be unstable. The stable-IPA is recommended for most users.
 
 - [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
-- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.5/AnimeGen.ipa)
+- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.7/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
 
 ## APIs
+
+Thanks to all the Developer that are providing this apis for public use.
 
 ### Working APIs
 
@@ -49,7 +62,7 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 | [waifu.im](https://docs.waifu.im/)                           | SFW/NSFW | IMG     |   ✅   |
 | [nekos.best](https://docs.nekos.best/)                       | SFW      | IMG     |   ✅   |
 | [waifu.pics](https://waifu.pics/docs)                        | SFW/NSFW | IMG/GIF |   ✅   |
-| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)                | SFW/NSFW | IMG/GIF |   ⚠️   |
+| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)                | SFW/NSFW | IMG/GIF |   ⚠️    |
 | [Nekos api](https://nekosapi.com/docs)                       | SFW/NSFW | IMG     |   ✅   |
 | [Nekos.moe](https://docs.nekos.moe)                          | SFW/NSFW | IMG     |   ✅   |
 | [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/)   | SFW/NSFW | IMG/GIF |   :x:  |
@@ -63,50 +76,47 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 
 ## Third Party Software
 
-- [SDWebImage](https://github.com/SDWebImage/SDWebImage) (Handles .gif images for the gallery)
+- [SDWebImage](https://github.com/SDWebImage/SDWebImage): This software is used to handle .gif images for the gallery in the app.
 
-## Help
+## Acknowledgements
 
-- [NineAnimator](https://github.com/SuperMarcus/NineAnimator) (Launch screen idea and base)
-- [Nekidev](https://github.com/Nekidev/anime-api) (Anime-api list)
+- [NineAnimator](https://github.com/SuperMarcus/NineAnimator): Inspired the launch screen idea and provided a base for the app launch screen.
+- [Nekidev](https://github.com/Nekidev/anime-api): Provided the anime-api list used in the app.
 
 ## Build
 
-Want to build the app yourself? No problem, by cloning this repo and running the `ipadbuild.sh` file, you can build your own IPA of the app! You can also modify the app as you like!
+If you want to build the app yourself, follow these steps:
 
-> [!IMPORTANT]
-> You need to have Xcode installed!
+1. Ensure you have Xcode installed on your machine.
 
-Clone the repo:
+2. Clone the repo:
 
-```
-git clone https://github.com/cranci1/AnimeGen
-```
+  ```
+  git clone https://github.com/cranci1/AnimeGen
+  ```
 
-Navige to the directory:
+3. Navigate to the directory:
+  ```bash
+  cd AnimeGen
+  ```
 
-```bash
-cd AnimeGen
-```
+> Note: This can also be modified directly from the app in the developer section!
+3-1. Update the `Secrets.swift` file with your specific values: the Discord Bot Token, a Discord webhook, and your Discord channel ID:
+  ```swift
+  import Foundation
 
-You need to update the Secrets.swift file with your specific values: the Discord Bot Token, a Discord webhook, and your Discord channel ID:
-
-```swift
-import Foundation
-
-struct Secrets {
+  struct Secrets {
     static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot. DONT REMOVE "Bot"
-
     static let discordWebhookURL = URL(string: "YourWebhookUrl")!
-
     static let discordChannelId = "YourChannelIdHere"
-}
-```
+  }
+  ```
 
-Run the script:
+5. Run the script:
+  ```
+  ./ipabuild.sh
+  ```
 
-```
-./ipabuild.sh
-```
+If the build was successful, you should see a "build" folder with a subfolder "DerivedDataApp" and the AnimeGen.ipa file in the AnimeGen/build directory. You can now use any IPA installer like TrollStore, AlStore, Scarlet, ESign or sideloadly to install the IPA on the desired device.
 
-If the build was successful, you should see a "build" folder with a subfolder "DerivedDataApp" and the AnimeGen.ipa file in the AnimeGen/build directory. You are now done! Just use any IPA installer like TrollStore, AlStore, Scarlet, ESign or sideloadly to install the IPA on the desired device.
+> Note: If you encounter any issues during the build, please create an issue I will try my best to help!

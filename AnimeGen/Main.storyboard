@@ -1402,7 +1402,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="831.66666603088379" width="388" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mF-gw-51Y" id="FoQ-jc-JmS">
-                                            <rect key="frame" x="0.0" y="0.0" width="359.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="371.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Hnm-Gd-NQr">
@@ -1439,7 +1439,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <rect key="frame" x="20" y="931.66666603088379" width="388" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ojb-68-Y8b" id="He8-lk-JVb">
-                                            <rect key="frame" x="0.0" y="0.0" width="359.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="371.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kyoko" translatesAutoresizingMaskIntoConstraints="NO" id="5WR-J1-ygh">
@@ -1865,7 +1865,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
         <!--FrameWorks-->
         <scene sceneID="Xmn-MX-0UE">
             <objects>
-                <tableViewController id="Bim-j3-k8P" customClass="APIsCredits" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Bim-j3-k8P" customClass="FrameWorksCredits" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="hOr-0N-ueV">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1906,6 +1906,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Lqs-oh-Xda" appends="YES" id="hs3-xe-lrH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1948,6 +1951,11 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                     <navigationItem key="navigationItem" title="FrameWorks" id="CQv-fc-DQm"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2A6-zz-80J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Lqs-oh-Xda" userLabel="SD">
+                    <connections>
+                        <action selector="SDweb:" destination="Bim-j3-k8P" id="4f3-lb-FZr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2651" y="1433"/>
         </scene>
@@ -2417,7 +2425,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
         <!--Contributors-->
         <scene sceneID="F6h-Kr-cMB">
             <objects>
-                <tableViewController id="5M6-vj-vuL" customClass="APIsCredits" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="5M6-vj-vuL" customClass="ContributorsCredits" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="NTk-oo-1cN">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2458,6 +2466,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hwb-7G-ahL" appends="YES" id="Xjm-en-Zas"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -2499,6 +2510,11 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                     <navigationItem key="navigationItem" title="Contributors" id="PE2-1j-LbU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRv-sD-CJm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hwb-7G-ahL" userLabel="Max">
+                    <connections>
+                        <action selector="Max:" destination="5M6-vj-vuL" id="Xc6-1X-Yf4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3516" y="1433"/>
         </scene>

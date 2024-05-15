@@ -23,10 +23,12 @@
 		1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A72BEBC94300704137 /* Dev-History.swift */; };
 		1393C3AB2BEBC94300704137 /* moe-kyoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A82BEBC94300704137 /* moe-kyoko.swift */; };
 		13A8496B2BF479DA009A9442 /* n-sfw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496A2BF479DA009A9442 /* n-sfw.swift */; };
+		13A8496E2BF4F0E7009A9442 /* FrameWorksCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */; };
+		13A849702BF4F118009A9442 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496F2BF4F118009A9442 /* Contributor.swift */; };
 		13AB1D2A2BE93E3D009132CB /* Historyy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AB1D292BE93E3D009132CB /* Historyy.swift */; };
 		13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC382B2BEFA34A00676546 /* APIsValid.swift */; };
 		13C1E03C2BE9068600A27DEE /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1E03B2BE9068600A27DEE /* AboutPage.swift */; };
-		13C1E03E2BE9183400A27DEE /* API.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1E03D2BE9183400A27DEE /* API.xcassets */; };
+		13C1E03E2BE9183400A27DEE /* Credits-Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1E03D2BE9183400A27DEE /* Credits-Images.xcassets */; };
 		13C1E0402BE92BB300A27DEE /* APIsCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */; };
 		13D4FBE02BE7661A00BC3D1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */; };
 		13D4FBE62BE7689500BC3D1C /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBE52BE7689400BC3D1C /* Tags.swift */; };
@@ -77,10 +79,12 @@
 		1393C3A72BEBC94300704137 /* Dev-History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dev-History.swift"; sourceTree = "<group>"; };
 		1393C3A82BEBC94300704137 /* moe-kyoko.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "moe-kyoko.swift"; sourceTree = "<group>"; };
 		13A8496A2BF479DA009A9442 /* n-sfw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "n-sfw.swift"; sourceTree = "<group>"; };
+		13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameWorksCredits.swift; sourceTree = "<group>"; };
+		13A8496F2BF4F118009A9442 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
 		13AB1D292BE93E3D009132CB /* Historyy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historyy.swift; sourceTree = "<group>"; };
 		13AC382B2BEFA34A00676546 /* APIsValid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsValid.swift; sourceTree = "<group>"; };
 		13C1E03B2BE9068600A27DEE /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
-		13C1E03D2BE9183400A27DEE /* API.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = API.xcassets; sourceTree = "<group>"; };
+		13C1E03D2BE9183400A27DEE /* Credits-Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Credits-Images.xcassets"; sourceTree = "<group>"; };
 		13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsCredits.swift; sourceTree = "<group>"; };
 		13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		13D4FBE52BE7689400BC3D1C /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
@@ -170,14 +174,23 @@
 			path = History;
 			sourceTree = "<group>";
 		};
-		13C1E03A2BE9067700A27DEE /* About-Credits */ = {
+		13A8496C2BF4F0B8009A9442 /* Credits */ = {
 			isa = PBXGroup;
 			children = (
-				13C1E03D2BE9183400A27DEE /* API.xcassets */,
-				13C1E03B2BE9068600A27DEE /* AboutPage.swift */,
+				13C1E03D2BE9183400A27DEE /* Credits-Images.xcassets */,
 				13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */,
+				13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */,
+				13A8496F2BF4F118009A9442 /* Contributor.swift */,
 			);
-			path = "About-Credits";
+			path = Credits;
+			sourceTree = "<group>";
+		};
+		13C1E03A2BE9067700A27DEE /* About */ = {
+			isa = PBXGroup;
+			children = (
+				13C1E03B2BE9068600A27DEE /* AboutPage.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		13D4FBE12BE7683D00BC3D1C /* APIs Requests */ = {
@@ -235,8 +248,9 @@
 		13D4FC352BE780BE00BC3D1C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				13A8496C2BF4F0B8009A9442 /* Credits */,
 				13DD19DB2BEA64590034B014 /* Developer */,
-				13C1E03A2BE9067700A27DEE /* About-Credits */,
+				13C1E03A2BE9067700A27DEE /* About */,
 				136BD7E32BE7DFEE00ED23AE /* AppPref.swift */,
 				13D4FC362BE780C900BC3D1C /* FeaturesApp.swift */,
 				136BD7E52BE7E1B300ED23AE /* Contents.swift */,
@@ -332,7 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13D4FC2F2BE779A200BC3D1C /* LaunchScreen.storyboard in Resources */,
-				13C1E03E2BE9183400A27DEE /* API.xcassets in Resources */,
+				13C1E03E2BE9183400A27DEE /* Credits-Images.xcassets in Resources */,
 				133C4C902BE67CAD00258EDD /* Assets.xcassets in Resources */,
 				136BD7E22BE7CCC400ED23AE /* PrivacyInfo.xcprivacy in Resources */,
 				13D4FBE02BE7661A00BC3D1C /* Main.storyboard in Resources */,
@@ -347,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13DD19DA2BEA58B00034B014 /* SettingsMain.swift in Sources */,
+				13A849702BF4F118009A9442 /* Contributor.swift in Sources */,
 				13D4FBF42BE76FC000BC3D1C /* Activity.swift in Sources */,
 				13D4FC2D2BE7719700BC3D1C /* Secrets.swift in Sources */,
 				1393C3AB2BEBC94300704137 /* moe-kyoko.swift in Sources */,
@@ -363,6 +378,7 @@
 				136BD7DE2BE7CAA300ED23AE /* HistoryButton.swift in Sources */,
 				13DD19DD2BEA64620034B014 /* waifu-it-pref.swift in Sources */,
 				13D4FC202BE770EC00BC3D1C /* waifu-pics.swift in Sources */,
+				13A8496E2BF4F0E7009A9442 /* FrameWorksCredits.swift in Sources */,
 				13D4FBF82BE7706D00BC3D1C /* Refresh-API-Button.swift in Sources */,
 				13D4FC1E2BE770EC00BC3D1C /* waifu-im.swift in Sources */,
 				13D4FC1D2BE770EC00BC3D1C /* waifu-it.swift in Sources */,
