@@ -293,7 +293,7 @@ class ViewController: UIViewController {
             loadImageFromNekoBot()
         case "Hmtai":
             startHmtaiLoader()
-        case "n-sfw api":
+        case "n-sfw.com":
             loadImageFromNSFW()
         default:
             break

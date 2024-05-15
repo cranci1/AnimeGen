@@ -55,7 +55,7 @@ extension ViewController {
             loadImageFromNekoBot()
         case "Hmtai":
             startHmtaiLoader()
-        case "n-sfw api":
+        case "n-sfw.com":
             loadImageFromNSFW()
         default:
             break
@@ -69,15 +69,15 @@ extension ViewController {
         
         if #available(iOS 14.0, *) {
             if hmtaiON {
-                apiOptions = ["Purr", "n-sfw api", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
             } else {
-                apiOptions = ["Purr", "n-sfw api", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
             }
         } else {
             if hmtaiON {
-                apiOptions = ["Purr", "n-sfw api", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
+                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
             } else {
-                apiOptions = ["Purr", "n-sfw api", "NekoBot", "nekos.moe", "nekos.best", "waifu.it", "waifu.pics", "waifu.im"]
+                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "waifu.it", "waifu.pics", "waifu.im"]
             }
         }
         

@@ -8,7 +8,7 @@
 import UIKit
 
 extension ViewController {
-
+    
     func loadImageFromNSFW() {
         startLoadingIndicator()
 
@@ -23,95 +23,69 @@ extension ViewController {
             endpointPrefix = "https://api.n-sfw.com/sfw/"
         }
 
-        guard let randomCategory = categories.randomElement() else {
-            print("Failed to get random category")
-            stopLoadingIndicator()
-            return
-        }
+        let randomCategory = categories.randomElement() ?? "waifu"
 
-        guard let url = makeURL(with: endpointPrefix, category: randomCategory) else {
+        let apiEndpoint = "\(endpointPrefix)\(randomCategory)"
+
+        guard let url = URL(string: apiEndpoint) else {
             print("Invalid URL")
             stopLoadingIndicator()
             return
         }
 
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Error: \(error)")
+                    self.stopLoadingIndicator()
+                    return
+                }
 
-            guard let data = try? Data(contentsOf: url) else {
-                print("Failed to fetch image data.")
-                DispatchQueue.main.async {
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    print("Invalid HTTP response")
+                    self.stopLoadingIndicator()
+                    return
+                }
+
+                if let data = data, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let imageUrlString = jsonResponse["url"] as? String, let imageUrl = URL(string: imageUrlString) {
+
+                    if let imageData = try? Data(contentsOf: imageUrl) {
+                        if imageUrlString.lowercased().hasSuffix(".gif") {
+                            if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
+                                self.imageView.image = animatedImage
+                                self.addImageToHistory(image: animatedImage, tags: [randomCategory])
+                                self.animateImageChange(with: animatedImage)
+                                self.addToHistory(image: animatedImage)
+                            } else {
+                                print("Failed to create animated image from GIF data.")
+                            }
+                        } else {
+                            if let newImage = UIImage(data: imageData) {
+                                self.imageView.image = newImage
+                                self.addImageToHistory(image: newImage, tags: [randomCategory])
+                                self.animateImageChange(with: newImage)
+                                self.addToHistory(image: newImage)
+                            } else {
+                                print("Failed to load image data.")
+                            }
+                        }
+                        self.currentImageURL = imageUrlString
+                        self.tagsLabel.isHidden = false
+                        self.updateUIWithTags([randomCategory])
+                        self.stopLoadingIndicator()
+                        self.incrementCounter()
+                    } else {
+                        print("Failed to load image data.")
+                        self.stopLoadingIndicator()
+                    }
+                } else {
+                    print("Failed to parse JSON response or missing necessary data.")
                     self.stopLoadingIndicator()
                 }
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.handleImageData(data, category: randomCategory)
             }
         }
+
+        task.resume()
     }
-
-    private func makeURL(with endpointPrefix: String, category: String) -> URL? {
-        guard let url = URL(string: endpointPrefix + category) else {
-            print("Invalid URL")
-            return nil
-        }
-        return url
-    }
-
-    private func handleImageData(_ data: Data, category: String) {
-        guard let imageUrl = getImageUrl(from: data) else {
-            print("Failed to parse JSON response or missing necessary data.")
-            stopLoadingIndicator()
-            return
-        }
-
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else { return }
-
-            guard let imageData = try? Data(contentsOf: imageUrl) else {
-                print("Failed to load image data.")
-                DispatchQueue.main.async {
-                    self.stopLoadingIndicator()
-                }
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.loadedImageHandler(imageData, category: category)
-            }
-        }
-    }
-
-    private func loadedImageHandler(_ imageData: Data, category: String) {
-        guard let image = UIImage(data: imageData) else {
-            print("Failed to create image from data.")
-            stopLoadingIndicator()
-            return
-        }
-
-        self.handleLoadedImage(image, category: category)
-    }
-
-    private func handleLoadedImage(_ image: UIImage, category: String) {
-        self.imageView.image = image
-        self.addImageToHistory(image: image, tags: [category])
-        self.animateImageChange(with: image)
-        self.addToHistory(image: image)
-
-        self.tagsLabel.isHidden = false
-        self.updateUIWithTags([category])
-        self.stopLoadingIndicator()
-        self.incrementCounter()
-    }
-
-    private func getImageUrl(from data: Data) -> URL? {
-        guard let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-              let imageUrlString = jsonResponse["url"] as? String,
-              let imageUrl = URL(string: imageUrlString) else {
-            return nil
-        }
-        return imageUrl
-    }
+    
 }
