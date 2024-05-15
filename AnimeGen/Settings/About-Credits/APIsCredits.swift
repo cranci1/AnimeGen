@@ -21,6 +21,7 @@ class APIsCredits: UITableViewController {
     let Hmtai = "https://hmtai.hatsunia.cfd/endpoints"
     let kyoko = "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/"
     let purrbot = "https://purrbot.site/"
+    let nsfw = "https://github.com/SDWebImage/SDWebImage"
     let SDweb = "https://github.com/SDWebImage/SDWebImage"
     
     override func viewDidLoad() {
@@ -75,6 +76,10 @@ class APIsCredits: UITableViewController {
     
     @IBAction func purrbot(_ sender: UITapGestureRecognizer) {
         openURL(purrbot)
+    }
+    
+    @IBAction func nsfwa(_ sender: UITapGestureRecognizer) {
+        openURL(nsfw)
     }
     
     @IBAction func SDweb(_ sender: UITapGestureRecognizer) {

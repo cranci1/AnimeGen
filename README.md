@@ -56,6 +56,7 @@ Here, you can access the IPA file for installation via TrollStore, AltStore, or 
 | [Purr Bot](https://purrbot.site/)                            | SFW/NSFW | IMG/GIF |   ✅   |
 | [Waifu.it](https://waifu.it/)                                | SFW/NSFW | IMG/GIF |   ✅   |
 | [NekoBot](https://nekobot.xyz/)                              | SFW/NSFW | IMG/GIF |   ✅   |
+| [n-sfw api](https://n-sfw.com/)                              | SFW/NSFW | IMG/GIF |   ✅   |
 
 > [!Note]
 > The Hmtai api is pretty slow, [why?](https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md)

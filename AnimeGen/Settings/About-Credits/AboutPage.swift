@@ -14,6 +14,7 @@ class AboutPageViewController: UITableViewController {
     @IBOutlet weak var buildLabel: UILabel!
     @IBOutlet weak var privacyLabel: UILabel!
     @IBOutlet weak var licenseLabel: UILabel!
+    @IBOutlet weak var SDlicenseLabel: UILabel!
     
     // URLs
     let githubURL = "https://github.com/cranci1/AnimeGen/"
@@ -21,6 +22,7 @@ class AboutPageViewController: UITableViewController {
     let reviewCodeURL = "https://github.com/cranci1/AnimeGen/tree/main"
     let hmtaiPrivacyURL = "https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md"
     let fullLicenseURL = "https://github.com/cranci1/AnimeGen/blob/main/LICENSE"
+    let SDfullLicenseURL = "https://github.com/SDWebImage/SDWebImage/blob/master/LICENSE"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,5 +64,8 @@ class AboutPageViewController: UITableViewController {
     
     @IBAction func fullLicenseTapped(_ sender: UITapGestureRecognizer) {
         openURL(fullLicenseURL)
+    }
+    @IBAction func SDfullLicenseTapped(_ sender: UITapGestureRecognizer) {
+        openURL(SDfullLicenseURL)
     }
 }
