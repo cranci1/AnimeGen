@@ -68,14 +68,14 @@ extension ViewController {
         var apiOptions: [String]
         
         if #available(iOS 14.0, *) {
-            if hmtaiON {
-                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+            if developerAPIs {
+                apiOptions = ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
             } else {
                 apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
             }
         } else {
-            if hmtaiON {
-                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
+            if developerAPIs {
+                apiOptions = ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
             } else {
                 apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "waifu.it", "waifu.pics", "waifu.im"]
             }

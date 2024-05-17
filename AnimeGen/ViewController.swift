@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
     
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
-    var hmtaiON = UserDefaults.standard.bool(forKey: "enabledHmtaiAPI")
+    var developerAPIs = UserDefaults.standard.bool(forKey: "enableDevAPIs")
     
     var lightmode = UserDefaults.standard.bool(forKey: "enabledLightMode")
     
@@ -232,7 +232,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleLightMode(_:)), name: Notification.Name("EnabledLightMode"), object: nil)
         
         // Developer
-        NotificationCenter.default.addObserver(self, selector: #selector(handleHmtaiShowcase(_:)), name: Notification.Name("EnabledHmtaiAPI"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleHmtaiShowcase(_:)), name: Notification.Name("EnableDevAPIs"), object: nil)
         
         // History
         NotificationCenter.default.addObserver(self, selector: #selector(handleHsistory(_:)), name: Notification.Name("EnableHistory"), object: nil)

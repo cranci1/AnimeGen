@@ -18,7 +18,7 @@ class AppPref: UITableViewController {
     @IBOutlet weak var LoadImageSwitch: UISwitch!
     @IBOutlet weak var DisplayTags: UISwitch!
     @IBOutlet weak var DisplayNekosTags: UISwitch!
-    @IBOutlet weak var KyokoNoteBanner: UISwitch!
+    // @IBOutlet weak var KyokoNoteBanner: UISwitch!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class AppPref: UITableViewController {
         LoadImageSwitch.isOn = UserDefaults.standard.bool(forKey: "enableImageStartup")
         DisplayTags.isOn = UserDefaults.standard.bool(forKey: "enableTags")
         DisplayNekosTags.isOn = UserDefaults.standard.bool(forKey: "enableMoeTags")
-        KyokoNoteBanner.isOn = UserDefaults.standard.bool(forKey: "enableKyokobanner")
+        // KyokoNoteBanner.isOn = UserDefaults.standard.bool(forKey: "enableKyokobanner")
         
         updateButtonTitle()
     }
@@ -46,11 +46,11 @@ class AppPref: UITableViewController {
         NotificationCenter.default.post(name: Notification.Name("EnableMoeTagsChanged"), object: nil, userInfo: ["enableMoeTags": isEnabled])
     }
     
-    @IBAction func switchKyokoBanner(_ sender: UISwitch) {
-        let isEnabled = sender.isOn
-        UserDefaults.standard.set(isEnabled, forKey: "enableKyokobanner")
-        NotificationCenter.default.post(name: Notification.Name("EnableKyokoBanner"), object: nil, userInfo: ["enableKyokobanner": isEnabled])
-    }
+    // @IBAction func switchKyokoBanner(_ sender: UISwitch) {
+        // let isEnabled = sender.isOn
+        // UserDefaults.standard.set(isEnabled, forKey: "enableKyokobanner")
+        // NotificationCenter.default.post(name: Notification.Name("EnableKyokoBanner"), object: nil, userInfo: ["enableKyokobanner": isEnabled])
+    // }
     
     @IBAction func presentActionSheet(_ sender: UIButton) {
          isPresentingActionSheet = true

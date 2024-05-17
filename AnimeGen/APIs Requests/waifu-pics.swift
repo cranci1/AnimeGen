@@ -47,37 +47,8 @@ extension ViewController {
                     return
                 }
 
-                if let data = data, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let imageUrlString = jsonResponse["url"] as? String, let imageUrl = URL(string: imageUrlString) {
-
-                    if let imageData = try? Data(contentsOf: imageUrl) {
-                        if imageUrlString.lowercased().hasSuffix(".gif") {
-                            if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
-                                self.imageView.image = animatedImage
-                                self.addImageToHistory(image: animatedImage, tags: [randomCategory])
-                                self.animateImageChange(with: animatedImage)
-                                self.addToHistory(image: animatedImage)
-                            } else {
-                                print("Failed to create animated image from GIF data.")
-                            }
-                        } else {
-                            if let newImage = UIImage(data: imageData) {
-                                self.imageView.image = newImage
-                                self.addImageToHistory(image: newImage, tags: [randomCategory])
-                                self.animateImageChange(with: newImage)
-                                self.addToHistory(image: newImage)
-                            } else {
-                                print("Failed to load image data.")
-                            }
-                        }
-                        self.currentImageURL = imageUrlString
-                        self.tagsLabel.isHidden = false
-                        self.updateUIWithTags([randomCategory])
-                        self.stopLoadingIndicator()
-                        self.incrementCounter()
-                    } else {
-                        print("Failed to load image data.")
-                        self.stopLoadingIndicator()
-                    }
+                if let data = data, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let imageUrlString = jsonResponse["url"] as? String {
+                    self.loadImage(with: imageUrlString, tags: [randomCategory])
                 } else {
                     print("Failed to parse JSON response or missing necessary data.")
                     self.stopLoadingIndicator()
@@ -88,4 +59,48 @@ extension ViewController {
         task.resume()
     }
     
+    private func loadImage(with imageUrlString: String, tags: [String]) {
+        guard let imageUrl = URL(string: imageUrlString) else {
+            print("Invalid image URL")
+            stopLoadingIndicator()
+            return
+        }
+
+        DispatchQueue.global().async {
+            if let imageData = try? Data(contentsOf: imageUrl) {
+                DispatchQueue.main.async {
+                    if imageUrlString.lowercased().hasSuffix(".gif") {
+                        if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
+                            self.handleImageLoadingCompletion(with: animatedImage, tags: tags, imageUrlString: imageUrlString)
+                        } else {
+                            print("Failed to create animated image from GIF data.")
+                            self.stopLoadingIndicator()
+                        }
+                    } else {
+                        if let newImage = UIImage(data: imageData) {
+                            self.handleImageLoadingCompletion(with: newImage, tags: tags, imageUrlString: imageUrlString)
+                        } else {
+                            print("Failed to load image data.")
+                            self.stopLoadingIndicator()
+                        }
+                    }
+                }
+            } else {
+                print("Failed to load image data.")
+                self.stopLoadingIndicator()
+            }
+        }
+    }
+    
+    private func handleImageLoadingCompletion(with newImage: UIImage, tags: [String], imageUrlString: String) {
+        addImageToHistory(image: newImage, tags: tags)
+        currentImageURL = imageUrlString
+        updateUIWithTags(tags)
+        addToHistory(image: newImage)
+        tagsLabel.isHidden = false
+        imageView.image = newImage
+        animateImageChange(with: newImage)
+        stopLoadingIndicator()
+        incrementCounter()
+    }
 }

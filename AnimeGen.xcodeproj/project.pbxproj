@@ -12,7 +12,6 @@
 		133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C8A2BE67CAB00258EDD /* ViewController.swift */; };
 		133C4C902BE67CAD00258EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133C4C8F2BE67CAD00258EDD /* Assets.xcassets */; };
 		136BD7DB2BE7CA6F00ED23AE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */; };
-		136BD7DC2BE7CA6F00ED23AE /* ImageHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DA2BE7CA6F00ED23AE /* ImageHistory.swift */; };
 		136BD7DE2BE7CAA300ED23AE /* HistoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */; };
 		136BD7E02BE7CB4D00ED23AE /* RewindButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */; };
 		136BD7E22BE7CCC400ED23AE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */; };
@@ -68,7 +67,6 @@
 		133C4C8F2BE67CAD00258EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		133C4C942BE67CAD00258EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		136BD7DA2BE7CA6F00ED23AE /* ImageHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHistory.swift; sourceTree = "<group>"; };
 		136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryButton.swift; sourceTree = "<group>"; };
 		136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewindButton.swift; sourceTree = "<group>"; };
 		136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */,
-				136BD7DA2BE7CA6F00ED23AE /* ImageHistory.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -386,7 +383,6 @@
 				13D4FC1C2BE770EC00BC3D1C /* purr.swift in Sources */,
 				13D4FC292BE7710500BC3D1C /* HmtaiReader.swift in Sources */,
 				136BD7E82BE7E24100ED23AE /* Developer.swift in Sources */,
-				136BD7DC2BE7CA6F00ED23AE /* ImageHistory.swift in Sources */,
 				13D4FBF02BE76D4000BC3D1C /* popup-Banner.swift in Sources */,
 				13D4FC2A2BE7710500BC3D1C /* HmtaiSender.swift in Sources */,
 				13D4FC262BE770EC00BC3D1C /* nekos-best.swift in Sources */,

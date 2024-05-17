@@ -15,12 +15,13 @@ class SettingsMain: UITableViewController {
     }
     
     @IBAction func APIsStatus(_ sender: UITapGestureRecognizer) {
-        if let navigationController = self.navigationController,
-           !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
-            let swiftUIView = APIsSuppport()
-            navigationController.pushViewController(UIHostingController(rootView: swiftUIView), animated: true)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, let navigationController = self.navigationController else { return }
+            if !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
+                let swiftUIView = APIsSuppport()
+                let hostingController = UIHostingController(rootView: swiftUIView)
+                navigationController.pushViewController(hostingController, animated: true)
+            }
         }
     }
-
-
 }

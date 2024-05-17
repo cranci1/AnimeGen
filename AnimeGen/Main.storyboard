@@ -491,7 +491,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
-                            <tableViewSection footerTitle="Enables you to choose the Hmtai API from the API selector." id="z6d-GI-YIK">
+                            <tableViewSection footerTitle="Enables you to choose the Hmtai and Kyoko API from the API selector." id="z6d-GI-YIK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KVg-G1-EoS">
                                         <rect key="frame" x="16" y="18" width="343" height="43.666667938232422"/>
@@ -500,7 +500,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Hmtai api Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw3-c6-4fO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Dev APIs Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw3-c6-4fO">
                                                     <rect key="frame" x="16" y="13" width="256" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -511,7 +511,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                                     <rect key="frame" x="284" y="6.3333333333333321" width="51" height="30.999999999999996"/>
                                                     <color key="onTintColor" name="AccentColor"/>
                                                     <connections>
-                                                        <action selector="switchHmtaiAPI:" destination="m4x-QR-EoK" eventType="valueChanged" id="i8o-1i-j8W"/>
+                                                        <action selector="switchHmtaiAPI:" destination="m4x-QR-EoK" eventType="valueChanged" id="4oq-vx-mbh"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -577,7 +577,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                     </tableView>
                     <navigationItem key="navigationItem" title="Test Settings" id="LBH-n5-QKo"/>
                     <connections>
-                        <outlet property="DisplayHmtai" destination="DvM-al-uNy" id="AvK-WX-sJ6"/>
+                        <outlet property="DisplayAPisStuff" destination="DvM-al-uNy" id="RvV-3o-FEb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zLB-fc-vXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -609,9 +609,7 @@ Load Image on Startup: You can choose whether to generate an image when the app 
                                     
 Display of Tags: You have control over whether to display tags associated with each image.
                                     
-Display nekos.moe Tags: You can choose whether to show or hide tags sourced from the nekos.moe API.
-                                    
-Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API since it's very slow.</string>
+Display nekos.moe Tags: You can choose whether to show or hide tags sourced from the nekos.moe API.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ilS-3G-87m">
                                         <rect key="frame" x="16" y="18" width="343" height="43.666667938232422"/>
@@ -727,34 +725,6 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IcC-Uu-Mx7">
-                                        <rect key="frame" x="16" y="192.66667175292969" width="343" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IcC-Uu-Mx7" id="H6w-2p-k65">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kyoko 'Note' Banner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fah-3q-uhZ">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PkI-7q-Y1R">
-                                                    <rect key="frame" x="284" y="6.3333333333333321" width="51" height="30.999999999999996"/>
-                                                    <color key="onTintColor" name="AccentColor"/>
-                                                    <connections>
-                                                        <action selector="switchKyokoBanner:" destination="Wed-HT-PHI" eventType="valueChanged" id="Ev4-nH-2ce"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="PkI-7q-Y1R" firstAttribute="centerY" secondItem="H6w-2p-k65" secondAttribute="centerY" id="3rQ-xQ-3R7"/>
-                                                <constraint firstItem="PkI-7q-Y1R" firstAttribute="trailing" secondItem="H6w-2p-k65" secondAttribute="trailing" constant="-10" id="s3C-v0-Ciq"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -768,7 +738,6 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                         <outlet property="APIDefa" destination="Zg9-yL-Yh6" id="vUD-Jx-Ohe"/>
                         <outlet property="DisplayNekosTags" destination="MuY-OC-Hck" id="tNL-oT-5bM"/>
                         <outlet property="DisplayTags" destination="4BD-IM-7pM" id="qAI-UV-2Ng"/>
-                        <outlet property="KyokoNoteBanner" destination="PkI-7q-Y1R" id="kGT-xR-dAa"/>
                         <outlet property="LoadImageSwitch" destination="IZd-IH-uaI" id="2bm-Iu-VrP"/>
                     </connections>
                 </tableViewController>
@@ -858,10 +827,10 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                             <tableViewSection footerTitle="AnimeGen is a free, open source iOS app, developed by cranci. The app is under the GNU General Public License version 3." id="bDz-oV-kWY">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UI6-b7-A1s">
-                                        <rect key="frame" x="16" y="18" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="18" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UI6-b7-A1s" id="8sW-j4-xpW">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Version:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cz9-K4-ZCP">
@@ -875,10 +844,10 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CUi-W9-7cb">
-                                        <rect key="frame" x="16" y="61.666667938232422" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="62" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CUi-W9-7cb" id="Bb6-YJ-h4r">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Build:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eb6-dK-KGc">
@@ -892,10 +861,10 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="7jA-OO-Pde">
-                                        <rect key="frame" x="16" y="105.33333587646484" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="106" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7jA-OO-Pde" id="kZM-Ny-AEu">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Github Repository" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uc-Le-eq2">
@@ -913,7 +882,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Csd-I5-feZ">
-                                        <rect key="frame" x="16" y="149.00000381469727" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="150" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Csd-I5-feZ" id="5jv-P4-a5t">
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
@@ -939,7 +908,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                 <string key="footerTitle">AnimeGen prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to save an image, it will only be stored locally in their device's gallery or on the HistoryView. We are committed to ensuring a secure and private experience for our users.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="skf-t3-NOB">
-                                        <rect key="frame" x="16" y="286.0000057220459" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="287.00000190734863" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="skf-t3-NOB" id="kC8-aH-yCb">
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
@@ -960,7 +929,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="8X5-Fm-hFA">
-                                        <rect key="frame" x="16" y="329.66667366027832" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="330.66666984558105" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8X5-Fm-hFA" id="cYE-hR-gxO">
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
@@ -983,7 +952,7 @@ Kyoko 'Note' Banner: You'll be notified with a special banner for the Kyoko API 
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="License" id="Qtm-iC-Y59">
-                                <string key="footerTitle">Copyright © 2023-2024 cranci. All rights reserved.
+                                <mutableString key="footerTitle">Copyright © 2023-2024 cranci. All rights reserved.
 
 AnimeGen is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -996,10 +965,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
+along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</mutableString>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="C3L-Vo-6ca">
-                                        <rect key="frame" x="16" y="522.66667556762695" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="523.66667175292969" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C3L-Vo-6ca" id="GPu-Sa-3jY">
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
@@ -1020,7 +989,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="JME-tf-gML">
-                                        <rect key="frame" x="16" y="566.33334350585938" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="567.33333969116211" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JME-tf-gML" id="Fzf-dR-KpE">
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
@@ -1090,610 +1059,6 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="875" y="663"/>
-        </scene>
-        <!--Credits-->
-        <scene sceneID="vd2-iB-tNw">
-            <objects>
-                <tableViewController id="HJz-GU-SmI" customClass="APIsCredits" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Zo9-Rr-nNU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="tintColor" name="AccentColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="APIs Credits" id="Hjb-tB-fMN">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="GBd-Hv-dJG" userLabel="pic.re">
-                                        <rect key="frame" x="16" y="49" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GBd-Hv-dJG" id="0XI-ZZ-p5U">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pic-re" translatesAutoresizingMaskIntoConstraints="NO" id="dIc-69-Js5">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pic.re" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1m-hT-kv3">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="gSF-5L-2iW" appends="YES" id="wNA-Pd-fSP"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="KGQ-ly-fYr" userLabel="waifu.im">
-                                        <rect key="frame" x="16" y="149" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGQ-ly-fYr" id="UvX-yq-mFk">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waifu.im" translatesAutoresizingMaskIntoConstraints="NO" id="7ad-cl-AMi">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="waifu.im" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQW-j4-0MS">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="eG4-wT-oFJ" appends="YES" id="6AB-Oo-TPP"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="Tse-wT-wsx" userLabel="waifut.pics">
-                                        <rect key="frame" x="16" y="249" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tse-wT-wsx" id="gaL-1z-WcW">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waifu.pics" translatesAutoresizingMaskIntoConstraints="NO" id="q4W-nK-plr">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="waifu.pics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4Q-Qn-WvQ">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="iHw-Nc-nmY" appends="YES" id="IpI-dz-52A"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="bXj-89-Qn2" userLabel="waifu.it">
-                                        <rect key="frame" x="16" y="349" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bXj-89-Qn2" id="xD9-SP-V8T">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="waifu.it" translatesAutoresizingMaskIntoConstraints="NO" id="hbf-Nn-ZQ0">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="waifu.it" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcD-da-JSh">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="qrb-tN-atx" appends="YES" id="mEb-DR-iLF"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="Xvl-v0-vI5" userLabel="nekosapis.com">
-                                        <rect key="frame" x="16" y="449" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xvl-v0-vI5" id="Bbu-aW-aQA">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nekosapi" translatesAutoresizingMaskIntoConstraints="NO" id="Is6-bu-bg7">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nekosapi.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEL-pg-zTj">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="CRy-vk-daJ" appends="YES" id="3uQ-Hq-xms"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="AbR-po-vVV" userLabel="nekos.btest">
-                                        <rect key="frame" x="16" y="549" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AbR-po-vVV" id="1Za-30-rGW">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nekos.best" translatesAutoresizingMaskIntoConstraints="NO" id="H89-Jp-eEF">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nekos.best" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuW-Eq-oK3">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="GBR-Gm-Ul4" appends="YES" id="POQ-jB-80h"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="XIM-hu-VXh" userLabel="nekos.moe">
-                                        <rect key="frame" x="16" y="649" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XIM-hu-VXh" id="bsb-Nh-OVF">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nekos.moe" translatesAutoresizingMaskIntoConstraints="NO" id="sWf-G4-Ny1">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nekos.moe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ab-93-dYn">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="CJG-v6-J8y" appends="YES" id="Reo-4y-9kx"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="gmE-aj-VWq" userLabel="nekobot.xyz">
-                                        <rect key="frame" x="16" y="749" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmE-aj-VWq" id="4rw-iP-Xcv">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NekoBot" translatesAutoresizingMaskIntoConstraints="NO" id="bSs-tU-7G3">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NekoBot.xyz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-R5-iXc">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="szI-BQ-Ngn" appends="YES" id="JSr-HX-lnW"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="0mF-gw-51Y" userLabel="Hmtai">
-                                        <rect key="frame" x="16" y="849" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mF-gw-51Y" id="FoQ-jc-JmS">
-                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Hnm-Gd-NQr">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hmtai api" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTE-WZ-SKF">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="3iM-d3-f0t" appends="YES" id="FIc-Pt-a4T"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="Ojb-68-Y8b" userLabel="kyoko">
-                                        <rect key="frame" x="16" y="949" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ojb-68-Y8b" id="He8-lk-JVb">
-                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kyoko" translatesAutoresizingMaskIntoConstraints="NO" id="5WR-J1-ygh">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kyoko api" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phe-7e-lBR">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="84b-yv-NoU" appends="YES" id="tWM-op-wIE"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="UP9-lD-Iv6" userLabel="Purr">
-                                        <rect key="frame" x="16" y="1049" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UP9-lD-Iv6" id="6GP-W5-v3h">
-                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Purr" translatesAutoresizingMaskIntoConstraints="NO" id="0zY-H8-kmS">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="purrbot.site" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cuw-Gy-M3j">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="VaY-oa-5zx" appends="YES" id="2H7-yR-ehD"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="hdP-GL-2cg" userLabel="n-sfw.com">
-                                        <rect key="frame" x="16" y="1149" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hdP-GL-2cg" id="ESF-FA-OkM">
-                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="n-sfw" translatesAutoresizingMaskIntoConstraints="NO" id="arK-Et-eUd">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="n-sfw.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SO4-5r-VBr">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Xvr-po-bkj" appends="YES" id="tzZ-bo-2zI"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="FrameWorks" id="uag-oo-lRb">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="vhY-mC-J2p" userLabel="SDWebImage">
-                                        <rect key="frame" x="16" y="1298.6666660308838" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vhY-mC-J2p" id="kdO-fg-T6c">
-                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SD" translatesAutoresizingMaskIntoConstraints="NO" id="aGc-S8-U2i">
-                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SDWebImage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAo-Oi-YIk">
-                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="y7B-rv-vOT" appends="YES" id="AA4-0E-Tnt"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="RuE-Bm-eby">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="r4v-zJ-9Vi">
-                                        <rect key="frame" x="16" y="1434.6666660308838" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r4v-zJ-9Vi" id="sGp-lg-eob">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Special Thanks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esy-4P-yIf">
-                                                    <rect key="frame" x="62" y="8" width="219" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwC-jf-SSc">
-                                                    <rect key="frame" x="8" y="46" width="327" height="46"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">Special thanks to all the developers who provided these APIs/Frameworks for public use. Without them, this project wouldn't exist. Thank you very much!</string>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="HJz-GU-SmI" id="ikJ-nU-rAu"/>
-                            <outlet property="delegate" destination="HJz-GU-SmI" id="ktf-hb-IRr"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Credits" id="NJ9-5B-Zvf"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1pj-v7-LTT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="gSF-5L-2iW" userLabel="pic.re">
-                    <connections>
-                        <action selector="picre:" destination="HJz-GU-SmI" id="pHj-WA-pRS"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="qrb-tN-atx" userLabel="waifu.it">
-                    <connections>
-                        <action selector="waifuit:" destination="HJz-GU-SmI" id="ciS-OT-vZS"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="eG4-wT-oFJ" userLabel="waifu.im">
-                    <connections>
-                        <action selector="waifuim:" destination="HJz-GU-SmI" id="VCC-PV-EUh"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="CRy-vk-daJ" userLabel="nekosapi">
-                    <connections>
-                        <action selector="nekosapi:" destination="HJz-GU-SmI" id="RDG-gT-ffa"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="iHw-Nc-nmY" userLabel="waifu.pics">
-                    <connections>
-                        <action selector="waifupics:" destination="HJz-GU-SmI" id="KNz-sJ-Bzv"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="GBR-Gm-Ul4" userLabel="nekosbest">
-                    <connections>
-                        <action selector="nekosbest:" destination="HJz-GU-SmI" id="ovU-ut-CfA"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="CJG-v6-J8y" userLabel="nekosmoe">
-                    <connections>
-                        <action selector="nekosmoe:" destination="HJz-GU-SmI" id="doa-Lj-2DY"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="szI-BQ-Ngn" userLabel="nekobot">
-                    <connections>
-                        <action selector="nekobot:" destination="HJz-GU-SmI" id="nPx-54-3ZD"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="3iM-d3-f0t" userLabel="Hmtai">
-                    <connections>
-                        <action selector="Hmtai:" destination="HJz-GU-SmI" id="QaZ-qM-Tgl"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="84b-yv-NoU" userLabel="Kyoko">
-                    <connections>
-                        <action selector="kyoko:" destination="HJz-GU-SmI" id="CQs-5d-hja"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="VaY-oa-5zx" userLabel="purr">
-                    <connections>
-                        <action selector="purrbot:" destination="HJz-GU-SmI" id="ydI-eB-2rL"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="Xvr-po-bkj" userLabel="n-sfw">
-                    <connections>
-                        <action selector="nsfwa:" destination="HJz-GU-SmI" id="yeY-rq-D6B"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="y7B-rv-vOT" userLabel="SD">
-                    <connections>
-                        <action selector="SDweb:" destination="HJz-GU-SmI" id="lqg-LM-PRU"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1808" y="663"/>
         </scene>
         <!--History-->
         <scene sceneID="ojI-rQ-UW9">
@@ -1785,7 +1150,10 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="tintColor" name="AccentColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Credits" footerTitle="You can access different app contribution information on these pages." id="ZCO-Tr-5WZ" userLabel="About">
+                            <tableViewSection headerTitle="Credits" id="ZCO-Tr-5WZ" userLabel="About">
+                                <string key="footerTitle">You can access different app contribution information on these pages.
+
+Also Thanks to all the active users of the TestFlight beta which are always helping with issues and bugs!</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="jz2-j0-rIs">
                                         <rect key="frame" x="16" y="31.666666030883789" width="343" height="43.666667938232422"/>
@@ -1860,7 +1228,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmg-6w-ZhD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="875" y="1433"/>
+            <point key="canvasLocation" x="1809" y="663"/>
         </scene>
         <!--FrameWorks-->
         <scene sceneID="Xmn-MX-0UE">
@@ -1871,7 +1239,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="tintColor" name="AccentColor"/>
                         <sections>
-                            <tableViewSection headerTitle="FrameWorks" footerTitle="This are the FrameWorks used to make the app be alive" id="gMR-s2-cwE">
+                            <tableViewSection headerTitle="FrameWorks" footerTitle="These are the FrameWorks used to make the app be alive" id="gMR-s2-cwE">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="ujA-1l-IqH" userLabel="SDWebImage">
                                         <rect key="frame" x="16" y="31.666666030883789" width="343" height="100"/>
@@ -1921,14 +1289,6 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Big Thanks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4c-7s-piN">
-                                                    <rect key="frame" x="112.33333333333326" y="8" width="120" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7y-S7-ZOw">
                                                     <rect key="frame" x="0.0" y="46" width="327" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1936,6 +1296,14 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Big Thanks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4c-7s-piN">
+                                                    <rect key="frame" x="103" y="7" width="120" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1957,7 +1325,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2650.4000000000001" y="1432.7586206896553"/>
+            <point key="canvasLocation" x="1809" y="1433"/>
         </scene>
         <!--APIs-->
         <scene sceneID="Kbw-gt-5yk">
@@ -2004,7 +1372,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="fve-Wv-S7v" appends="YES" id="GDq-af-rOa"/>
+                                            <outletCollection property="gestureRecognizers" destination="hRW-tb-DuW" appends="YES" id="jJ5-NG-wh6"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="tu4-Tt-4AH" userLabel="waifu.im">
@@ -2040,6 +1408,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="xEk-jo-wBA" appends="YES" id="Auw-Tp-ivi"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="R8W-ps-SSy" userLabel="waifut.pics">
                                         <rect key="frame" x="16" y="231.66666603088379" width="343" height="100"/>
@@ -2074,6 +1445,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="BIy-yN-Ffn" appends="YES" id="BN7-lu-IDE"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="qmN-lr-dgo" userLabel="waifu.it">
                                         <rect key="frame" x="16" y="331.66666603088379" width="343" height="100"/>
@@ -2108,6 +1482,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="9Ga-hP-K8O" appends="YES" id="ON3-41-Ocj"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="tny-Fz-T6v" userLabel="nekosapis.com">
                                         <rect key="frame" x="16" y="431.66666603088379" width="343" height="100"/>
@@ -2142,6 +1519,9 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="rx4-e3-kXa" appends="YES" id="kaf-7e-VWi"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="B0J-qg-63y" userLabel="nekos.btest">
                                         <rect key="frame" x="16" y="531.66666603088379" width="343" height="100"/>
@@ -2177,7 +1557,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Ob0-4N-IBJ" appends="YES" id="oms-Pf-uL6"/>
+                                            <outletCollection property="gestureRecognizers" destination="Ak7-eg-1c1" appends="YES" id="SVm-Af-4xp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="JGP-US-Lb6" userLabel="nekos.moe">
@@ -2214,14 +1594,14 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="xpN-eP-Ibh" appends="YES" id="hIU-3d-74Y"/>
+                                            <outletCollection property="gestureRecognizers" destination="PuC-5W-bhF" appends="YES" id="LIC-jO-kEF"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="mst-hn-gIg" userLabel="nekobot.xyz">
                                         <rect key="frame" x="16" y="731.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mst-hn-gIg" id="d1t-mQ-sS1">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NekoBot" translatesAutoresizingMaskIntoConstraints="NO" id="BaJ-S5-7fN">
@@ -2251,15 +1631,14 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="iBM-Zj-ULJ" appends="YES" id="WFc-9x-s12"/>
-                                            <outletCollection property="gestureRecognizers" destination="Jn7-aV-GDM" appends="YES" id="uVo-RL-27a"/>
+                                            <outletCollection property="gestureRecognizers" destination="REW-3e-7bw" appends="YES" id="VH8-1E-4Nv"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="IWp-Nx-xkf" userLabel="Hmtai">
                                         <rect key="frame" x="16" y="831.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWp-Nx-xkf" id="UTM-ox-K0H">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Y7X-uZ-you">
@@ -2289,16 +1668,14 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="rJx-fS-Vrv" appends="YES" id="aH2-ue-rkp"/>
-                                            <outletCollection property="gestureRecognizers" destination="Hk8-c9-aji" appends="YES" id="Yjl-WE-E0p"/>
-                                            <outletCollection property="gestureRecognizers" destination="8KU-lg-t8f" appends="YES" id="IXN-PP-46O"/>
+                                            <outletCollection property="gestureRecognizers" destination="pBj-Hu-BPy" appends="YES" id="Bce-j4-AfP"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="BXZ-Sy-Reg" userLabel="kyoko">
                                         <rect key="frame" x="16" y="931.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BXZ-Sy-Reg" id="LRd-OU-HE2">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kyoko" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-4Q-Rbf">
@@ -2328,15 +1705,14 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="rLe-Vg-H2J" appends="YES" id="pmC-CP-Ecv"/>
-                                            <outletCollection property="gestureRecognizers" destination="YaV-4T-jPe" appends="YES" id="Juv-fJ-0tS"/>
+                                            <outletCollection property="gestureRecognizers" destination="DXD-ol-ZmO" appends="YES" id="ui4-07-pqH"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="Idh-qs-KGR" userLabel="Purr">
                                         <rect key="frame" x="16" y="1031.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Idh-qs-KGR" id="nSd-i1-IEG">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Purr" translatesAutoresizingMaskIntoConstraints="NO" id="j08-uO-HJI">
@@ -2366,14 +1742,14 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="k29-fV-E6Z" appends="YES" id="YV4-Zj-bjh"/>
+                                            <outletCollection property="gestureRecognizers" destination="SO7-q9-n19" appends="YES" id="LfT-Cj-CgL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="poB-13-Rb5" userLabel="n-sfw.com">
                                         <rect key="frame" x="16" y="1131.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="poB-13-Rb5" id="4EK-hi-GOt">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="n-sfw" translatesAutoresizingMaskIntoConstraints="NO" id="eoh-Fh-BgG">
@@ -2403,7 +1779,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="fDf-2r-laD" appends="YES" id="OaP-hO-12V"/>
+                                            <outletCollection property="gestureRecognizers" destination="pIw-Kw-YNB" appends="YES" id="2vi-s6-HnY"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -2447,68 +1823,68 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                     <navigationItem key="navigationItem" title="APIs" id="cQn-Zl-LW1"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbp-FL-XsK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fDf-2r-laD" userLabel="n-sfw">
+                <tapGestureRecognizer id="hRW-tb-DuW" userLabel="pic.re">
                     <connections>
-                        <action selector="nsfwa:" destination="RZI-Yo-0G5" id="c7g-i8-eFR"/>
+                        <action selector="picre:" destination="RZI-Yo-0G5" id="MXO-N7-9WD"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="k29-fV-E6Z" userLabel="purr">
+                <tapGestureRecognizer id="xEk-jo-wBA" userLabel="waifu.im">
                     <connections>
-                        <action selector="purrbot:" destination="RZI-Yo-0G5" id="Bil-6d-brt"/>
+                        <action selector="waifuim:" destination="RZI-Yo-0G5" id="BiY-nf-dyh"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="iBM-Zj-ULJ" userLabel="waifu.im">
+                <tapGestureRecognizer id="BIy-yN-Ffn" userLabel="waifu.pics">
                     <connections>
-                        <action selector="waifuim:" destination="RZI-Yo-0G5" id="NmH-Bv-UQ8"/>
+                        <action selector="waifupics:" destination="RZI-Yo-0G5" id="4DA-1n-SOW"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="rJx-fS-Vrv" userLabel="waifu.pics">
+                <tapGestureRecognizer id="9Ga-hP-K8O" userLabel="waifu.it">
                     <connections>
-                        <action selector="waifupics:" destination="RZI-Yo-0G5" id="Kig-xL-XPn"/>
+                        <action selector="waifuit:" destination="RZI-Yo-0G5" id="fKj-CA-0cH"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="rLe-Vg-H2J" userLabel="kyoko">
+                <tapGestureRecognizer id="rx4-e3-kXa" userLabel="nekosapi">
                     <connections>
-                        <action selector="kyoko:" destination="RZI-Yo-0G5" id="Rr1-ix-s2W"/>
+                        <action selector="nekosapi:" destination="RZI-Yo-0G5" id="w9v-Q5-Xtx"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="Hk8-c9-aji" userLabel="waifu.it">
+                <tapGestureRecognizer id="Ak7-eg-1c1" userLabel="nekosbest">
                     <connections>
-                        <action selector="waifuit:" destination="RZI-Yo-0G5" id="K4F-Ix-kvQ"/>
+                        <action selector="nekosbest:" destination="RZI-Yo-0G5" id="XH1-Yl-pcq"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="YaV-4T-jPe" userLabel="nekosapi.com">
+                <tapGestureRecognizer id="PuC-5W-bhF" userLabel="nekosmoe">
                     <connections>
-                        <action selector="nekosapi:" destination="RZI-Yo-0G5" id="b92-8X-Cn1"/>
+                        <action selector="nekosmoe:" destination="RZI-Yo-0G5" id="aeb-8k-qH0"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="fve-Wv-S7v" userLabel="pic-re">
+                <tapGestureRecognizer id="REW-3e-7bw" userLabel="nekobot">
                     <connections>
-                        <action selector="picre:" destination="RZI-Yo-0G5" id="o7S-qF-9LJ"/>
+                        <action selector="nekobot:" destination="RZI-Yo-0G5" id="t92-rp-ZSX"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="Ob0-4N-IBJ" userLabel="nekos.best">
+                <tapGestureRecognizer id="pBj-Hu-BPy" userLabel="hmtai">
                     <connections>
-                        <action selector="nekosbest:" destination="RZI-Yo-0G5" id="x4c-qc-YRh"/>
+                        <action selector="Hmtai:" destination="RZI-Yo-0G5" id="j9D-f8-XCE"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="xpN-eP-Ibh" userLabel="nekosmoe">
+                <tapGestureRecognizer id="DXD-ol-ZmO" userLabel="kyoko">
                     <connections>
-                        <action selector="nekosmoe:" destination="RZI-Yo-0G5" id="XiY-7L-V1s"/>
+                        <action selector="kyoko:" destination="RZI-Yo-0G5" id="1U8-gR-i9c"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="Jn7-aV-GDM" userLabel="nekobot">
+                <tapGestureRecognizer id="SO7-q9-n19" userLabel="purr">
                     <connections>
-                        <action selector="nekobot:" destination="RZI-Yo-0G5" id="8lv-ua-Uqo"/>
+                        <action selector="purrbot:" destination="RZI-Yo-0G5" id="abo-DS-cCl"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="8KU-lg-t8f" userLabel="hmtai">
+                <tapGestureRecognizer id="pIw-Kw-YNB" userLabel="n-sfw">
                     <connections>
-                        <action selector="Hmtai:" destination="RZI-Yo-0G5" id="Exg-d5-5xz"/>
+                        <action selector="nsfwa:" destination="RZI-Yo-0G5" id="hKU-4Q-Aj8"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1807" y="1433"/>
+            <point key="canvasLocation" x="876" y="1433"/>
         </scene>
         <!--GitHub Contributors-->
         <scene sceneID="F6h-Kr-cMB">
@@ -2519,7 +1895,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="tintColor" name="AccentColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Contributors" footerTitle="This are people who helped me on github with improvements" id="ZtH-ut-HXB">
+                            <tableViewSection headerTitle="Contributors" footerTitle="These are people who helped me on github with improvements" id="ZtH-ut-HXB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="6Vw-jv-n6y" userLabel="SDWebImage">
                                         <rect key="frame" x="16" y="31.666666030883789" width="343" height="100"/>
@@ -2569,20 +1945,20 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Big Shoutout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-CC-GBX">
-                                                    <rect key="frame" x="103" y="8" width="139" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Big shoutout to all the amazing people who contributed and supported me to improve significantly this app!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqh-Qx-kWc">
                                                     <rect key="frame" x="8" y="46" width="327" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Big Shoutout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-CC-GBX">
+                                                    <rect key="frame" x="102" y="7" width="139" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -2604,7 +1980,7 @@ along with AnimeGen. If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3516" y="1433"/>
+            <point key="canvasLocation" x="2652" y="1433"/>
         </scene>
     </scenes>
     <resources>

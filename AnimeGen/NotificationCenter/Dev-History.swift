@@ -11,10 +11,10 @@ extension ViewController {
     
     @objc func handleHmtaiShowcase(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enabledHmtaiAPI"] as? Bool else {
+              let isEnabled = userInfo["enableDevAPIs"] as? Bool else {
             return
         }
-        self.hmtaiON = isEnabled
+        self.developerAPIs = isEnabled
     }
     
     @objc func handleHsistory(_ notification: Notification) {

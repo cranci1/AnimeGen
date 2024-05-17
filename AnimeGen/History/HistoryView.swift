@@ -5,6 +5,7 @@
 //  Created by cranci on 05/05/24.
 //
 
+import UIKit
 import SwiftUI
 import Photos
 
@@ -22,12 +23,21 @@ struct HistoryView: View {
                     ImageGridiOS13(selectedImage: $selectedImage, isSaveAlertPresented: $isSaveAlertPresented)
                 }
                 Button(action: clearImagesAndClose) {
-                    Image(systemName: "trash")
-                        .font(.title)
+                    HStack {
+                        Image(systemName: "trash")
+                            .font(.title)
+                        Text("Clear History")
+                            .fontWeight(.semibold)
+                    }
+                    .padding()
+                    .background(Color.red.opacity(0.8))
+                    .cornerRadius(10)
+                    .foregroundColor(.white)
                 }
-                .foregroundColor(.red)
+                .padding(.top, 20)
             }
-            .navigationBarTitle("History - \(ImageHistory.images.count) images")
+            .padding()
+            .navigationBarTitle("History - \(ImageHistory.images.count) images", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $isSaveAlertPresented) {
@@ -48,12 +58,16 @@ struct ImageGrid: View {
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 10) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 15) {
                 ForEach(ImageHistory.images.indices, id: \.self) { index in
                     let image = ImageHistory.images[index]
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
+                        .frame(width: 100, height: 100)
+                        .clipped()
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
                         .onTapGesture {
                             selectedImage = image
                             saveImageToGallery(image)
@@ -65,23 +79,24 @@ struct ImageGrid: View {
     }
     
     func saveImageToGallery(_ image: UIImage) {
-        if let imageData = image.jpegData(compressionQuality: 1.0),
-           let uiImage = UIImage(data: imageData) {
-            PHPhotoLibrary.shared().performChanges {
-                let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: uiImage)
-                creationRequest.creationDate = Date()
-            } completionHandler: { (success, error) in
-                DispatchQueue.main.async {
-                    if success {
-                        print("Image saved successfully")
-                        self.isSaveAlertPresented = true
-                    } else {
-                        print("Error saving image: \(error?.localizedDescription ?? "")")
-                    }
+        guard let imageData = image.jpegData(compressionQuality: 1.0),
+              let uiImage = UIImage(data: imageData) else {
+            print("Error converting image to JPEG format")
+            return
+        }
+        
+        PHPhotoLibrary.shared().performChanges({
+            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: uiImage)
+            creationRequest.creationDate = Date()
+        }) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    print("Image saved successfully")
+                    isSaveAlertPresented = true
+                } else {
+                    print("Error saving image: \(error?.localizedDescription ?? "")")
                 }
             }
-        } else {
-            print("Error converting image to JPEG format")
         }
     }
 }
@@ -90,18 +105,34 @@ struct ImageGridiOS13: View {
     @Binding var selectedImage: UIImage?
     @Binding var isSaveAlertPresented: Bool
     
+    let columns: Int = 3
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(ImageHistory.images.indices, id: \.self) { index in
-                    let image = ImageHistory.images[index]
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .onTapGesture {
-                            selectedImage = image
-                            saveImageToGallery(image)
+            VStack {
+                ForEach(0..<(ImageHistory.images.count / columns + (ImageHistory.images.count % columns > 0 ? 1 : 0)), id: \.self) { rowIndex in
+                    HStack {
+                        ForEach(0..<columns) { columnIndex in
+                            let index = rowIndex * columns + columnIndex
+                            if index < ImageHistory.images.count {
+                                let image = ImageHistory.images[index]
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 100, height: 100)
+                                    .clipped()
+                                    .cornerRadius(10)
+                                    .shadow(radius: 5)
+                                    .onTapGesture {
+                                        selectedImage = image
+                                        saveImageToGallery(image)
+                                    }
+                            } else {
+                                Spacer()
+                                    .frame(width: 100, height: 100)
+                            }
                         }
+                    }
                 }
             }
             .padding(10)
@@ -109,23 +140,32 @@ struct ImageGridiOS13: View {
     }
     
     func saveImageToGallery(_ image: UIImage) {
-        if let imageData = image.jpegData(compressionQuality: 1.0),
-           let uiImage = UIImage(data: imageData) {
-            PHPhotoLibrary.shared().performChanges {
-                let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: uiImage)
-                creationRequest.creationDate = Date()
-            } completionHandler: { (success, error) in
-                DispatchQueue.main.async {
-                    if success {
-                        print("Image saved successfully")
-                        self.isSaveAlertPresented = true
-                    } else {
-                        print("Error saving image: \(error?.localizedDescription ?? "")")
-                    }
+        guard let imageData = image.jpegData(compressionQuality: 1.0),
+              let uiImage = UIImage(data: imageData) else {
+            print("Error converting image to JPEG format")
+            return
+        }
+        
+        PHPhotoLibrary.shared().performChanges({
+            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: uiImage)
+            creationRequest.creationDate = Date()
+        }) { success, error in
+            DispatchQueue.main.async {
+                if success {
+                    print("Image saved successfully")
+                    isSaveAlertPresented = true
+                } else {
+                    print("Error saving image: \(error?.localizedDescription ?? "")")
                 }
             }
-        } else {
-            print("Error converting image to JPEG format")
         }
+    }
+}
+
+struct ImageHistory {
+    static var images: [UIImage] = []
+    
+    static func addImage(_ image: UIImage) {
+        images.append(image)
     }
 }
