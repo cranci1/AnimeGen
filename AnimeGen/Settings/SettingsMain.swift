@@ -17,8 +17,8 @@ class SettingsMain: UITableViewController {
     @IBAction func APIsStatus(_ sender: UITapGestureRecognizer) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self, let navigationController = self.navigationController else { return }
-            if !(navigationController.topViewController is UIHostingController<APIsSuppport>) {
-                let swiftUIView = APIsSuppport()
+            if !(navigationController.topViewController is UIHostingController<APIsSupport>) {
+                let swiftUIView = APIsSupport()
                 let hostingController = UIHostingController(rootView: swiftUIView)
                 navigationController.pushViewController(hostingController, animated: true)
             }
