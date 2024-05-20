@@ -15,7 +15,7 @@ extension ViewController {
         let categories: [String]
         let endpointPrefix: String = "https://waifu.it/api/v4/"
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bully", "bye", "chase", "cheer", "cringe", "cry", "dab", "dance", "die", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kill", "kiss", "laugh", "lick", "love", "lurk", "midfing", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "punch", "run", "sad", "shoot", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stab", "stare", "suicide", "tease", "think", "thumbsup", "tickle", "triggered", "wag", "wave", "wink", "yes"]
         } else {
             categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bye", "chase", "cheer", "cringe", "cry", "cuddle", "dab", "dance", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kiss", "laugh", "lurk", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "run", "sad", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stare", "tease", "think", "thumbsup", "tickle", "wag", "wave", "wink", "yes"]

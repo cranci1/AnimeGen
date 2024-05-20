@@ -12,7 +12,7 @@ extension ViewController {
     func loadImageFromWaifuIm() {
         startLoadingIndicator()
 
-        let isNSFW = UserDefaults.standard.bool(forKey: "enableExplictiCont")
+        let isNSFW = UserDefaults.standard.bool(forKey: "enableExplicitContent")
         let apiEndpoint = "https://api.waifu.im/search"
 
         guard var components = URLComponents(string: apiEndpoint) else {

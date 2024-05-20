@@ -15,7 +15,7 @@ extension ViewController {
         let categories: [String]
         let endpointPrefix: String
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             categories = ["hentai", "hkitsune", "hanal", "hthigh", "hboobs", "yaoi"]
             endpointPrefix = "https://nekobot.xyz/api/image?type="
         } else {

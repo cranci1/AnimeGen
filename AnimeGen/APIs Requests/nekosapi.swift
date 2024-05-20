@@ -14,7 +14,7 @@ extension ViewController {
         
         var ratings: [String] = ["safe"]
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             ratings.append("explicit")
         }
 

@@ -15,7 +15,7 @@ extension ViewController {
         let categories: [String]
         let endpointPrefix: String
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             categories = ["waifu", "neko", "trap", "blowjob"]
             endpointPrefix = "https://api.waifu.pics/nsfw/"
         } else {
@@ -24,7 +24,6 @@ extension ViewController {
         }
 
         let randomCategory = categories.randomElement() ?? "waifu"
-
         let apiEndpoint = "\(endpointPrefix)\(randomCategory)"
 
         guard let url = URL(string: apiEndpoint) else {
@@ -33,36 +32,42 @@ extension ViewController {
             return
         }
 
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let startTime = Date()
+        
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
+                guard let self = self else { return }
+
                 if let error = error {
-                    print("Error: \(error)")
-                    self.stopLoadingIndicator()
+                    self.handleError("Error: \(error)")
                     return
                 }
 
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                    print("Invalid HTTP response")
-                    self.stopLoadingIndicator()
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
+                      let data = data,
+                      let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                      let imageUrlString = jsonResponse["url"] as? String else {
+                    self.handleError("Invalid HTTP response or data")
                     return
                 }
 
-                if let data = data, let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let imageUrlString = jsonResponse["url"] as? String {
-                    self.loadImage(with: imageUrlString, tags: [randomCategory])
-                } else {
-                    print("Failed to parse JSON response or missing necessary data.")
-                    self.stopLoadingIndicator()
-                }
+                self.loadImage(with: imageUrlString, tags: [randomCategory], startTime: startTime)
             }
-        }
-
-        task.resume()
+        }.resume()
     }
     
-    private func loadImage(with imageUrlString: String, tags: [String]) {
+    private var imageCache: ImageCache {
+        return ImageCache()
+    }
+
+    private func loadImage(with imageUrlString: String, tags: [String], startTime: Date) {
         guard let imageUrl = URL(string: imageUrlString) else {
-            print("Invalid image URL")
-            stopLoadingIndicator()
+            handleError("Invalid image URL")
+            return
+        }
+
+        if let cachedImage = imageCache.image(for: imageUrl as NSURL) {
+            handleImageLoadingCompletion(with: cachedImage, tags: tags, imageUrlString: imageUrlString, startTime: startTime)
             return
         }
 
@@ -71,28 +76,34 @@ extension ViewController {
                 DispatchQueue.main.async {
                     if imageUrlString.lowercased().hasSuffix(".gif") {
                         if let animatedImage = UIImage.animatedImage(with: UIImage.gifData(data: imageData) ?? [], duration: 1.0) {
-                            self.handleImageLoadingCompletion(with: animatedImage, tags: tags, imageUrlString: imageUrlString)
+                            self.imageCache.insertImage(animatedImage, for: imageUrl as NSURL)
+                            self.handleImageLoadingCompletion(with: animatedImage, tags: tags, imageUrlString: imageUrlString, startTime: startTime)
                         } else {
-                            print("Failed to create animated image from GIF data.")
-                            self.stopLoadingIndicator()
+                            self.handleError("Failed to create animated image from GIF data.")
                         }
                     } else {
                         if let newImage = UIImage(data: imageData) {
-                            self.handleImageLoadingCompletion(with: newImage, tags: tags, imageUrlString: imageUrlString)
+                            self.imageCache.insertImage(newImage, for: imageUrl as NSURL)
+                            self.handleImageLoadingCompletion(with: newImage, tags: tags, imageUrlString: imageUrlString, startTime: startTime)
                         } else {
-                            print("Failed to load image data.")
-                            self.stopLoadingIndicator()
+                            self.handleError("Failed to load image data.")
                         }
                     }
                 }
             } else {
-                print("Failed to load image data.")
-                self.stopLoadingIndicator()
+                self.handleError("Failed to load image data.")
             }
         }
     }
     
-    private func handleImageLoadingCompletion(with newImage: UIImage, tags: [String], imageUrlString: String) {
+    private func handleError(_ message: String) {
+        print(message)
+        DispatchQueue.main.async {
+            self.stopLoadingIndicator()
+        }
+    }
+
+    private func handleImageLoadingCompletion(with newImage: UIImage, tags: [String], imageUrlString: String, startTime: Date) {
         addImageToHistory(image: newImage, tags: tags)
         currentImageURL = imageUrlString
         updateUIWithTags(tags)
@@ -102,5 +113,8 @@ extension ViewController {
         animateImageChange(with: newImage)
         stopLoadingIndicator()
         incrementCounter()
+        
+        let executionTime = Date().timeIntervalSince(startTime)
+        print("Execution time: \(executionTime) seconds")
     }
 }

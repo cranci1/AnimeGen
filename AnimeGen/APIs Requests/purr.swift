@@ -15,7 +15,7 @@ extension ViewController {
         let categories: [String]
         let endpointPrefix: String
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             categories = ["anal/gif", "blowjob/gif", "cum/gif", "fuck/gif", "neko/gif", "pussylick/gif", "solo/gif", "solo_male/gif", "threesome_fff/gif", "threesome_ffm/gif", "threesome_mmf/gif", "yuri/gif", "neko/img"]
             endpointPrefix = "https://purrbot.site/api/img/nsfw/"
         } else {

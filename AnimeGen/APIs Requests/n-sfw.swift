@@ -15,7 +15,7 @@ extension ViewController {
         let categories: [String]
         let endpointPrefix: String
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             categories = ["anal","ass", "blowjob", "breeding", "buttplug", "cages", "ecchi", "feet", "fo", "furry", "gif", "hentai", "legs", "masturbation", "milf", "muscle", "neko", "paizuri", "petgirls", "pierced", "selfie", "smothering", "socks", "trap", "vagina", "yaoi", "yuri"]
             endpointPrefix = "https://api.n-sfw.com/nsfw/"
         } else {

@@ -15,7 +15,7 @@ extension ViewController {
         let categories3: [String]
         let endpointPrefix: String
 
-        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
+        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
             categories3 = ["ass", "anal", "bdsm", "classic", "cum", "creampie", "manga", "femdom", "hentai", "incest", "masturbation", "public", "ero", "orgy", "elves", "yuri", "pantsu", "pussy", "glasses", "cuckold", "blowjob", "boobjob", "handjob", "footjob", "boobs", "thighs", "ahegao", "uniform", "gangbang", "tentacles", "gif", "nsfwNeko", "nsfwMobileWallpaper", "zettaiRyouiki"]
             endpointPrefix = "https://hmtai.hatsunia.cfd/nsfw/"
         } else {
