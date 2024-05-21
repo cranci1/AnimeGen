@@ -10,22 +10,16 @@ import UIKit
 class Contents: UITableViewController {
     
     @IBOutlet weak var Contents: UISwitch!
-    @IBOutlet weak var ContentsRemoval: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        Contents.isOn = UserDefaults.standard.bool(forKey: "disableExplicitContent")
-        ContentsRemoval.isOn = UserDefaults.standard.bool(forKey: "enableExplicitContent")
+        Contents.isOn = UserDefaults.standard.bool(forKey: "enableExplictiCont")
         
     }
 
     @IBAction func switchContent(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableExplicitContent")
-    }
-    
-    @IBAction func switchContentRemove(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "disableExplicitContent")
+        UserDefaults.standard.set(sender.isOn, forKey: "enableExplictiCont")
     }
 
 }

@@ -15,7 +15,7 @@ extension ViewController {
         let categories: [String]
         let endpointPrefix: String
 
-        if UserDefaults.standard.bool(forKey: "enableExplicitContent") {
+        if UserDefaults.standard.bool(forKey: "enableExplictiCont") {
             categories = ["waifu", "neko", "trap", "blowjob"]
             endpointPrefix = "https://waifu.rei.my.id/nsfw/"
         } else {
