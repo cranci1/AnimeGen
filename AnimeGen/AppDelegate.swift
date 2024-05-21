@@ -10,8 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UserDefaults.standard.register(defaults: ["enableAnimations": true])
@@ -40,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    func applicationWillTerminate(_ application: UIApplication) {
+        if UserDefaults.standard.bool(forKey: "parentsModeLoL") {
+            UserDefaults.standard.set(false, forKey: "explicitContents")
+        }
+    }
 
 }
 

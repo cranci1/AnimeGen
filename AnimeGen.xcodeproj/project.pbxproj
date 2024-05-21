@@ -21,6 +21,7 @@
 		1393C3A92BEBC94300704137 /* AppPreff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A62BEBC94300704137 /* AppPreff.swift */; };
 		1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A72BEBC94300704137 /* Dev-History.swift */; };
 		1393C3AB2BEBC94300704137 /* moe-kyoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A82BEBC94300704137 /* moe-kyoko.swift */; };
+		139C35072BFCE1A9003A1CA1 /* Contentsss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139C35062BFCE1A9003A1CA1 /* Contentsss.swift */; };
 		13A8496B2BF479DA009A9442 /* n-sfw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496A2BF479DA009A9442 /* n-sfw.swift */; };
 		13A8496E2BF4F0E7009A9442 /* FrameWorksCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */; };
 		13A849702BF4F118009A9442 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496F2BF4F118009A9442 /* Contributor.swift */; };
@@ -76,6 +77,7 @@
 		1393C3A62BEBC94300704137 /* AppPreff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPreff.swift; sourceTree = "<group>"; };
 		1393C3A72BEBC94300704137 /* Dev-History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dev-History.swift"; sourceTree = "<group>"; };
 		1393C3A82BEBC94300704137 /* moe-kyoko.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "moe-kyoko.swift"; sourceTree = "<group>"; };
+		139C35062BFCE1A9003A1CA1 /* Contentsss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contentsss.swift; sourceTree = "<group>"; };
 		13A8496A2BF479DA009A9442 /* n-sfw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "n-sfw.swift"; sourceTree = "<group>"; };
 		13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameWorksCredits.swift; sourceTree = "<group>"; };
 		13A8496F2BF4F118009A9442 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				1393C3A62BEBC94300704137 /* AppPreff.swift */,
 				1393C3A72BEBC94300704137 /* Dev-History.swift */,
 				1393C3A82BEBC94300704137 /* moe-kyoko.swift */,
+				139C35062BFCE1A9003A1CA1 /* Contentsss.swift */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */,
 				13D4FC1C2BE770EC00BC3D1C /* purr.swift in Sources */,
 				13D4FC292BE7710500BC3D1C /* HmtaiReader.swift in Sources */,
+				139C35072BFCE1A9003A1CA1 /* Contentsss.swift in Sources */,
 				136BD7E82BE7E24100ED23AE /* Developer.swift in Sources */,
 				13D4FBF02BE76D4000BC3D1C /* popup-Banner.swift in Sources */,
 				13D4FC2A2BE7710500BC3D1C /* HmtaiSender.swift in Sources */,
@@ -529,7 +533,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
@@ -560,7 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;

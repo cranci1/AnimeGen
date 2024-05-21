@@ -48,6 +48,8 @@ class ViewController: UIViewController {
     
     var lightmode = UserDefaults.standard.bool(forKey: "enabledLightMode")
     
+    var parentsModeLoL = UserDefaults.standard.bool(forKey: "parentsModeLoL")
+    
     var counter: Int = 0
     
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr"]
@@ -230,6 +232,9 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleTime(_:)), name: Notification.Name("EnableTime"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleGestures(_:)), name: Notification.Name("EnableGestures"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleLightMode(_:)), name: Notification.Name("EnabledLightMode"), object: nil)
+        
+        // Content
+        NotificationCenter.default.addObserver(self, selector: #selector(handleParentMode(_:)), name: Notification.Name("ParentsModeLoL"), object: nil)
         
         // Developer
         NotificationCenter.default.addObserver(self, selector: #selector(handleHmtaiShowcase(_:)), name: Notification.Name("EnableDevAPIs"), object: nil)

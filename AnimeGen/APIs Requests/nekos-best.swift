@@ -13,74 +13,100 @@ extension ViewController {
         startLoadingIndicator()
 
         let categories = ["neko", "waifu", "kitsune"]
-        let randomCategory = categories.randomElement() ?? "waifu"
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
+        let randomCategory = categories[randomIndex]
 
         let apiEndpoint = "https://nekos.best/api/v2/\(randomCategory)"
 
-        guard let url = URL(string: apiEndpoint) else {
+        guard let components = URLComponents(string: apiEndpoint) else {
             print("Invalid URL")
             stopLoadingIndicator()
             return
         }
 
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("Error: \(error)")
-                    self.stopLoadingIndicator()
-                    return
-                }
-
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    print("Invalid HTTP response")
-                    self.stopLoadingIndicator()
-                    return
-                }
-
-                guard httpResponse.statusCode == 200 else {
-                    print("Invalid status code: \(httpResponse.statusCode)")
-                    self.stopLoadingIndicator()
-                    return
-                }
-                
-                do {
-                    if let jsonData = data,
-                       let jsonResponse = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
-                       let results = jsonResponse["results"] as? [[String: Any]],
-                       let result = results.first,
-                       let imageUrlString = result["url"] as? String,
-                       let imageUrl = URL(string: imageUrlString) {
-
-                        self.currentImageURL = imageUrlString
-
-                        let author = result["artist_name"] as? String
-                        let category = randomCategory
-
-                        if let data = try? Data(contentsOf: imageUrl), let newImage = UIImage(data: data) {
-                            self.imageView.image = newImage
-                            self.tagsLabel.isHidden = false
-                            self.animateImageChange(with: newImage)
-                            self.addToHistory(image: newImage)
-                            self.addImageToHistory(image: newImage, tags: [randomCategory])
-                            self.updateUIWithTags([], author: author, category: category)
-                            self.stopLoadingIndicator()
-                            self.incrementCounter()
-                        } else {
-                            print("Failed to load image data.")
-                            self.stopLoadingIndicator()
-                        }
-                    } else {
-                        print("Failed to parse JSON response or missing necessary data.")
-                        self.stopLoadingIndicator()
-                    }
-                }
-            }
+        guard let url = components.url else {
+            print("Invalid URL components")
+            stopLoadingIndicator()
+            return
         }
 
-        task.resume()
+        let request = URLRequest(url: url)
+        fetchImage(with: request, tag: randomCategory)
     }
 
+    private func fetchImage(with request: URLRequest, tag: String) {
+        URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+            guard let self = self else { return }
+
+            if let error = error {
+                print("Error: \(error)")
+                DispatchQueue.main.async {
+                    self.stopLoadingIndicator()
+                }
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Invalid HTTP response")
+                DispatchQueue.main.async {
+                    self.stopLoadingIndicator()
+                }
+                return
+            }
+
+            guard let data = data else {
+                print("Invalid data")
+                DispatchQueue.main.async {
+                    self.stopLoadingIndicator()
+                }
+                return
+            }
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                      let images = json["results"] as? [[String: Any]],
+                      let imageInfo = images.first,
+                      let imageUrlString = imageInfo["url"] as? String,
+                      let tag = [tag].first
+                else {
+                    print("Invalid image data or missing tags")
+                    DispatchQueue.main.async {
+                        self.stopLoadingIndicator()
+                    }
+                    return
+                }
+
+                guard let imageUrl = URL(string: imageUrlString),
+                      let imageData = try? Data(contentsOf: imageUrl),
+                      let image = UIImage(data: imageData) else {
+                    print("Invalid image data or missing tags")
+                    DispatchQueue.main.async {
+                        self.stopLoadingIndicator()
+                    }
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    self.handleImageLoadingCompletion(with: image, tags: [tag], imageUrlString: imageUrlString)
+                }
+            } catch {
+                print("Error parsing JSON: \(error)")
+                DispatchQueue.main.async {
+                    self.stopLoadingIndicator()
+                }
+            }
+        }.resume()
+    }
+
+    private func handleImageLoadingCompletion(with image: UIImage, tags: [String], imageUrlString: String) {
+        addImageToHistory(image: image, tags: tags)
+        currentImageURL = imageUrlString
+        updateUIWithTags(tags)
+        addToHistory(image: image)
+        tagsLabel.isHidden = false
+        imageView.image = image
+        animateImageChange(with: image)
+        stopLoadingIndicator()
+        incrementCounter()
+    }
 }

@@ -9,22 +9,15 @@ import UIKit
 
 extension ViewController {
 
-    func updateUIWithTags(_ tags: [String], author: String? = nil, category: String? = nil) {
+    func updateUIWithTags(_ tags: [String], category: String? = nil) {
         var tagsString = ""
 
         if UserDefaults.standard.bool(forKey: "enableTags") && !tags.isEmpty {
             tagsString += "Tags: \(tags.joined(separator: ", "))"
         }
 
-        if let author = author, !author.isEmpty {
-            if !tagsString.isEmpty {
-                tagsString += "\n"
-            }
-            tagsString += "Author: \(author)"
-        }
-
         if let category = category, !category.isEmpty {
-            if !tagsString.isEmpty || author != nil && !author!.isEmpty {
+            if !tagsString.isEmpty {
                 tagsString += "\n"
             }
             tagsString += "Category: \(category)"
@@ -43,7 +36,6 @@ extension ViewController {
         tagsLabel.attributedText = attributedString
     }
 
-
     func startLoadingIndicator() {
         activityIndicator.startAnimating()
     }
@@ -51,7 +43,6 @@ extension ViewController {
     func stopLoadingIndicator() {
         activityIndicator.stopAnimating()
     }
-
 
     func animateFeedback() {
         guard UserDefaults.standard.bool(forKey: "enableAnimations") else {
