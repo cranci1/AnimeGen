@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     
     var loadstart = UserDefaults.standard.bool(forKey: "enableImageStartup")
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
-    var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
+    // var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     
     var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
     
@@ -225,7 +225,6 @@ class ViewController: UIViewController {
         
         // APIs Pref
         NotificationCenter.default.addObserver(self, selector: #selector(handleMoeTags(_:)), name: Notification.Name("EnableMoeTagsChanged"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKyokoBanner(_:)), name: Notification.Name("EnableKyokoBanner"), object: nil)
         
         // App Features
         NotificationCenter.default.addObserver(self, selector: #selector(handleGradient(_:)), name: Notification.Name("EnableGradient"), object: nil)
@@ -242,7 +241,7 @@ class ViewController: UIViewController {
         // History
         NotificationCenter.default.addObserver(self, selector: #selector(handleHsistory(_:)), name: Notification.Name("EnableHistory"), object: nil)
         
-        
+        // Choice of the settings default app.
         let selectedChoiceIndex = UserDefaults.standard.integer(forKey: "SelectedChoiceIndex")
         apiButton.setTitle(choices[selectedChoiceIndex], for: .normal)
         
@@ -256,53 +255,46 @@ class ViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-        
+    
+    // Choice listener
     @objc func selectedChoiceChanged(_ notification: Notification) {
         guard let selectedIndex = notification.object as? Int else { return }
         guard selectedIndex >= 0 && selectedIndex < choices.count else { return }
         apiButton.setTitle(choices[selectedIndex], for: .normal)
     }
     
-    
-    
+    // Function to make the Notification of the UserDefault work
+    @objc func handleNotification(_ notification: Notification, key: String, action: (Bool) -> Void) {
+        guard let userInfo = notification.userInfo,
+              let isEnabled = userInfo[key] as? Bool else {
+            return
+        }
+        action(isEnabled)
+    }
+
+    // load image from the api
     func loadImageAndTagsFromSelectedAPI() {
         guard let title = apiButton.title(for: .normal) else {
             return
         }
-        switch title {
-          
-        case "pic.re":
-            loadImageFromPicRe()
-        case "waifu.im":
-            loadImageFromWaifuIm()
-        case "waifu.it":
-            loadImageFromWaifuIt()
-        case "nekos.best":
-            loadImageFromNekosBest()
-        case "waifu.pics":
-            loadImageFromWaifuPics()
-        case "Nekos api":
-            loadImageFromNekosapi()
-        case "nekos.moe":
-            loadImageFromNekosMoe()
-        case "Hmtai api":
-            startHmtaiLoader()
-        case "kyoko":
-            if kyokobanner {
-                showAlert(withTitle: "Note", message: "The api is very slow.", viewController: self)
-            }
-            loadImageFromKyoko()
-        case "Purr":
-            loadImageFromPurr()
-        case "NekoBot":
-            loadImageFromNekoBot()
-        case "Hmtai":
-            startHmtaiLoader()
-        case "n-sfw.com":
-            loadImageFromNSFW()
-        default:
-            break
-        }
+
+        let apiLoaders: [String: () -> Void] = [
+            "pic.re": loadImageFromPicRe,
+            "waifu.im": loadImageFromWaifuIm,
+            "waifu.it": loadImageFromWaifuIt,
+            "nekos.best": loadImageFromNekosBest,
+            "waifu.pics": loadImageFromWaifuPics,
+            "Nekos api": loadImageFromNekosapi,
+            "nekos.moe": loadImageFromNekosMoe,
+            "Hmtai api": startHmtaiLoader,
+            "kyoko": loadImageFromKyoko,
+            "Purr": loadImageFromPurr,
+            "NekoBot": loadImageFromNekoBot,
+            "Hmtai": startHmtaiLoader,
+            "n-sfw.com": loadImageFromNSFW
+        ]
+
+        apiLoaders[title]?()
     }
 }
 

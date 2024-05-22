@@ -75,7 +75,7 @@ Thanks to all the Developer that are providing this apis for public use! By clic
 
 | APIs                                                       | Type     | Format  | Status |
 | ---------------------------------------------------------- | -------- | ------- | :----: |
-| [pic.re](https://doc.pic.re/)                              | SFW/NSFW | IMG     |   ✅   |
+| [pic.re](https://doc.pic.re/)                              | SFW      | IMG     |   ✅   |
 | [waifu.im](https://docs.waifu.im/)                         | SFW/NSFW | IMG     |   ✅   |
 | [waifu.pics](https://waifu.pics/docs)                      | SFW/NSFW | IMG/GIF |   ✅   |
 | [Waifu.it](https://waifu.it/)                              | SFW/NSFW | IMG/GIF |   ✅   |
@@ -120,19 +120,20 @@ git clone https://github.com/cranci1/AnimeGen
 cd AnimeGen
 ```
 
-> Note: This can also be modified directly from the app in the developer section!
-
 3-1. Update the `Secrets.swift` file with your specific values: the Discord Bot Token, a Discord webhook, and your Discord channel ID:
 
 ```swift
 import Foundation
 
 struct Secrets {
-  static let apiToken = "Bot TokenHEREHEREHERE" // Replace TokenHEREHEREHERE with the token of the discord bot. DONT REMOVE "Bot"
-  static let discordWebhookURL = URL(string: "YourWebhookUrl")!
-  static let discordChannelId = "YourChannelIdHere"
+    static var apiToken = "Bot DiscordBotTokenHere"
+    static var discordWebhookURL = URL(string: "YourWebhookUrl")!
+    static var discordChannelId = "YourChannelIdHere"
+    static var waifuItToken = "waifu.it token"
 }
+
 ```
+> Note: This can also be modified directly from the app in the developer section!
 
 4. Run the script:
 

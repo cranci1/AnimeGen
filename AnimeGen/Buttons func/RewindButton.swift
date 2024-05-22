@@ -15,15 +15,18 @@ extension ViewController {
     }
         
     @objc func rewindButtonTapped() {
-        if currentPosition > 0 {
-            currentPosition -= 1
-            let (previousImage, previousTags) = imageHistory[currentPosition]
-            DispatchQueue.main.async {
-                self.imageView.image = previousImage
-                self.updateUIWithTags(previousTags)
-                self.animateImageChange(with: previousImage)
-            }
+        guard currentPosition > 0 else {
+            print("No previous images to rewind to.")
+            return
+        }
+        
+        currentPosition -= 1
+        let (previousImage, previousTags) = imageHistory[currentPosition]
+        
+        DispatchQueue.main.async {
+            self.imageView.image = previousImage
+            self.updateUIWithTags(previousTags)
+            self.animateImageChange(with: previousImage)
         }
     }
-    
 }

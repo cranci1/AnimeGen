@@ -21,7 +21,7 @@ class APIsCredits: UITableViewController {
     let Hmtai = "https://hmtai.hatsunia.cfd/endpoints"
     let kyoko = "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/"
     let purrbot = "https://purrbot.site/"
-    let nsfw = "https://github.com/SDWebImage/SDWebImage"
+    let nsfw = "https://n-sfw.com/"
     
     override func viewDidLoad() {
         super.viewDidLoad()

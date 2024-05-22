@@ -10,35 +10,26 @@ import UIKit
 extension ViewController {
     
     @objc func handleGradient(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enablegradient"] as? Bool else {
-            return
+        handleNotification(notification, key: "enablegradient") { isEnabled in
+            self.gradient = isEnabled
         }
-        self.gradient = isEnabled
     }
     
     @objc func handleTime(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enableTime"] as? Bool else {
-            return
+        handleNotification(notification, key: "enableTime") { isEnabled in
+            self.activity = isEnabled
         }
-        self.activity = isEnabled
     }
     
     @objc func handleGestures(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enableGestures"] as? Bool else {
-            return
+        handleNotification(notification, key: "enableGestures") { isEnabled in
+            self.gestures = isEnabled
         }
-        self.gestures = isEnabled
     }
     
     @objc func handleLightMode(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enabledLightMode"] as? Bool else {
-            return
+        handleNotification(notification, key: "enabledLightMode") { isEnabled in
+            self.lightmode = isEnabled
         }
-        self.lightmode = isEnabled
     }
-    
 }

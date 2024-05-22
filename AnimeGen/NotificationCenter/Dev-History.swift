@@ -10,19 +10,14 @@ import UIKit
 extension ViewController {
     
     @objc func handleHmtaiShowcase(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enableDevAPIs"] as? Bool else {
-            return
+        handleNotification(notification, key: "enableDevAPIs") { isEnabled in
+            self.developerAPIs = isEnabled
         }
-        self.developerAPIs = isEnabled
     }
     
     @objc func handleHsistory(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo["enableHistory"] as? Bool else {
-            return
+        handleNotification(notification, key: "enableHistory") { isEnabled in
+            self.HistoryTrue = isEnabled
         }
-        self.HistoryTrue = isEnabled
     }
-    
 }

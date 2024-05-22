@@ -11,20 +11,14 @@ extension ViewController {
     
     @IBAction func refreshButtonTapped() {
         guard let title = apiButton.title(for: .normal) else {
+            print("API button has no title.")
             return
         }
-
+        
         switch title {
         case "pic.re":
             loadImageFromPicRe()
-            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
-                if #available(iOS 14.0, *) {
-                    // nothing here cuz ios 14+ 💪
-                } else {
-                    self.apiButton.setTitle("waifu.im", for: .normal)
-                    self.loadImageFromWaifuIm()
-                }
-            }
+            handleUnsupportedAPIBanner()
         case "waifu.im":
             loadImageFromWaifuIm()
         case "waifu.it":
@@ -33,18 +27,11 @@ extension ViewController {
             loadImageFromNekosBest()
         case "waifu.pics":
             loadImageFromWaifuPics()
-        case "Hmtai api":
+        case "Hmtai api", "Hmtai":
             startHmtaiLoader()
         case "Nekos api":
             loadImageFromNekosapi()
-            showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
-                if #available(iOS 14.0, *) {
-                    // nothing here cuz ios 14+ 💪
-                } else {
-                    self.apiButton.setTitle("waifu.im", for: .normal)
-                    self.loadImageFromWaifuIm()
-                }
-            }
+            handleUnsupportedAPIBanner()
         case "nekos.moe":
             loadImageFromNekosMoe()
         case "kyoko":
@@ -53,48 +40,50 @@ extension ViewController {
             loadImageFromPurr()
         case "NekoBot":
             loadImageFromNekoBot()
-        case "Hmtai":
-            startHmtaiLoader()
         case "n-sfw.com":
             loadImageFromNSFW()
         default:
-            break
+            print("Unknown API: \(title)")
+        }
+    }
+
+    private func handleUnsupportedAPIBanner() {
+        showPopUpBanner(message: "This API is not supported on your iOS version!", viewController: self) {
+            if #available(iOS 14.0, *) {
+                //nothing cuz iOS 14 is strong frfr
+            } else {
+                self.apiButton.setTitle("waifu.im", for: .normal)
+                self.loadImageFromWaifuIm()
+            }
         }
     }
 
     @objc func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
         
-        var apiOptions: [String]
+        let apiOptions: [String]
         
         if #available(iOS 14.0, *) {
-            if developerAPIs {
-                apiOptions = ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
-            } else {
-                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
-            }
+            apiOptions = developerAPIs ? ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+                                       : ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
         } else {
-            if developerAPIs {
-                apiOptions = ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
-            } else {
-                apiOptions = ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "waifu.it", "waifu.pics", "waifu.im"]
-            }
+            apiOptions = developerAPIs ? ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
+                                       : ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "waifu.it", "waifu.pics", "waifu.im"]
         }
         
-        for option in apiOptions {
+        apiOptions.forEach { option in
             let action = UIAlertAction(title: option, style: .default) { _ in
                 self.apiButton.setTitle(option, for: .normal)
                 self.loadImageAndTagsFromSelectedAPI()
             }
             alertController.addAction(action)
         }
-
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-
+        
         alertController.popoverPresentationController?.sourceView = apiButton
         alertController.popoverPresentationController?.sourceRect = apiButton.bounds
         present(alertController, animated: true, completion: nil)
     }
-    
 }
