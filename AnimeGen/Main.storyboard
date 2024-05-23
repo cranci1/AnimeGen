@@ -117,14 +117,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="APIs Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6B-Y5-ko2">
-                                                    <rect key="frame" x="16" y="13" width="117" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APIs Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6B-Y5-ko2">
+                                                    <rect key="frame" x="15" y="13" width="117" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="r6B-Y5-ko2" firstAttribute="centerY" secondItem="73b-sm-U0c" secondAttribute="centerY" id="43t-hC-f9H"/>
+                                                <constraint firstItem="r6B-Y5-ko2" firstAttribute="leading" secondItem="73b-sm-U0c" secondAttribute="leading" constant="15" id="LSt-xs-9lT"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Wed-HT-PHI" kind="show" id="Rve-J5-j57"/>
@@ -137,14 +140,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="App Features" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWu-cF-TXO">
-                                                    <rect key="frame" x="16" y="13" width="92" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Features" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWu-cF-TXO">
+                                                    <rect key="frame" x="15" y="13" width="92" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MWu-cF-TXO" firstAttribute="leading" secondItem="GN8-EL-FKs" secondAttribute="leading" constant="15" id="9nu-9c-zWu"/>
+                                                <constraint firstItem="MWu-cF-TXO" firstAttribute="centerY" secondItem="GN8-EL-FKs" secondAttribute="centerY" id="mPf-nX-jry"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="kSj-Na-OWG" kind="show" id="BoG-Dv-beY"/>
@@ -157,14 +163,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contents Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ake-XB-fGM">
-                                                    <rect key="frame" x="16" y="13" width="123" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contents Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ake-XB-fGM">
+                                                    <rect key="frame" x="15" y="13" width="123" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ake-XB-fGM" firstAttribute="centerY" secondItem="hUi-qR-15M" secondAttribute="centerY" id="BAL-hi-ahI"/>
+                                                <constraint firstItem="Ake-XB-fGM" firstAttribute="leading" secondItem="hUi-qR-15M" secondAttribute="leading" constant="15" id="qeg-R9-EeD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="yTC-g6-Xql" kind="show" id="gSn-BJ-qJJ"/>
@@ -177,14 +186,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="History Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byX-0X-AST">
-                                                    <rect key="frame" x="16.333333333333329" y="13" width="110" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byX-0X-AST">
+                                                    <rect key="frame" x="15" y="13" width="110" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="byX-0X-AST" firstAttribute="leading" secondItem="EoI-FV-syJ" secondAttribute="leading" constant="15" id="Tnt-RH-yaR"/>
+                                                <constraint firstItem="byX-0X-AST" firstAttribute="centerY" secondItem="EoI-FV-syJ" secondAttribute="centerY" id="u4w-Ga-6VS"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="j4T-B9-g7w" kind="show" id="cwF-ss-zsw"/>
@@ -197,14 +209,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Developer Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwt-rl-ch9">
-                                                    <rect key="frame" x="16" y="13" width="156.33333333333334" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developer Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwt-rl-ch9">
+                                                    <rect key="frame" x="15" y="13" width="156.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Pwt-rl-ch9" firstAttribute="centerY" secondItem="uJa-WI-dTH" secondAttribute="centerY" id="JIg-PA-sCf"/>
+                                                <constraint firstItem="Pwt-rl-ch9" firstAttribute="leading" secondItem="uJa-WI-dTH" secondAttribute="leading" constant="15" id="NxO-2c-wSK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="m4x-QR-EoK" kind="show" id="OMT-Ry-Lvr"/>
@@ -221,14 +236,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvX-qE-MGa">
-                                                    <rect key="frame" x="16" y="13" width="42" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvX-qE-MGa">
+                                                    <rect key="frame" x="15" y="13" width="42" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="uvX-qE-MGa" firstAttribute="leading" secondItem="v4F-iE-Dh9" secondAttribute="leading" constant="15" id="4p3-39-X3c"/>
                                                 <constraint firstItem="uvX-qE-MGa" firstAttribute="centerY" secondItem="v4F-iE-Dh9" secondAttribute="centerY" id="qeU-aO-DEc"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -243,14 +259,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="APIs Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dC5-HL-RiY">
-                                                    <rect key="frame" x="16" y="13" width="79" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APIs Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dC5-HL-RiY">
+                                                    <rect key="frame" x="15" y="13" width="79" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dC5-HL-RiY" firstAttribute="centerY" secondItem="i9m-GG-wKf" secondAttribute="centerY" id="dBj-NI-TlP"/>
+                                                <constraint firstItem="dC5-HL-RiY" firstAttribute="leading" secondItem="i9m-GG-wKf" secondAttribute="leading" constant="15" id="xuE-Wx-TXG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
@@ -264,14 +283,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKz-Yn-1YU" userLabel="Credits">
-                                                    <rect key="frame" x="16" y="13" width="50" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKz-Yn-1YU" userLabel="Credits">
+                                                    <rect key="frame" x="15" y="13" width="50" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sKz-Yn-1YU" firstAttribute="leading" secondItem="Jr1-aa-jZP" secondAttribute="leading" constant="15" id="DA1-gZ-W0S"/>
+                                                <constraint firstItem="sKz-Yn-1YU" firstAttribute="centerY" secondItem="Jr1-aa-jZP" secondAttribute="centerY" id="rWW-lG-hve"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="wOg-Z4-rW9" kind="show" id="B1A-pI-eH4"/>
@@ -328,9 +350,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="App Animations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dP1-Xp-AuM">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Animations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dP1-Xp-AuM">
+                                                    <rect key="frame" x="15" y="13" width="108" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -345,6 +366,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="8Yj-px-8rm" firstAttribute="centerY" secondItem="w1g-gG-BbO" secondAttribute="centerY" id="CP1-DN-oGu"/>
+                                                <constraint firstItem="dP1-Xp-AuM" firstAttribute="leading" secondItem="w1g-gG-BbO" secondAttribute="leading" constant="15" id="aMJ-C0-ocZ"/>
+                                                <constraint firstItem="dP1-Xp-AuM" firstAttribute="centerY" secondItem="w1g-gG-BbO" secondAttribute="centerY" id="hzN-uD-qHY"/>
                                                 <constraint firstItem="8Yj-px-8rm" firstAttribute="trailing" secondItem="w1g-gG-BbO" secondAttribute="trailing" constant="-10" id="nOz-kC-Ryn"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -356,9 +379,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Background Gradient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtq-BN-R3u">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Gradient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtq-BN-R3u">
+                                                    <rect key="frame" x="15" y="13" width="145.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -372,6 +394,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="qtq-BN-R3u" firstAttribute="centerY" secondItem="mrU-rP-JVq" secondAttribute="centerY" id="IUN-b6-36d"/>
+                                                <constraint firstItem="qtq-BN-R3u" firstAttribute="leading" secondItem="mrU-rP-JVq" secondAttribute="leading" constant="15" id="JYF-dT-Agq"/>
                                                 <constraint firstItem="VlR-Jj-EGT" firstAttribute="centerY" secondItem="mrU-rP-JVq" secondAttribute="centerY" id="ql4-hd-ecp"/>
                                                 <constraint firstItem="VlR-Jj-EGT" firstAttribute="trailing" secondItem="mrU-rP-JVq" secondAttribute="trailing" constant="-10" id="s0B-oo-E0z"/>
                                             </constraints>
@@ -391,9 +415,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                                         <action selector="switchTime:" destination="kSj-Na-OWG" eventType="valueChanged" id="kDO-Fu-tuv"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7V-Fp-fld">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7V-Fp-fld">
+                                                    <rect key="frame" x="15" y="13" width="92.333333333333329" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -402,6 +425,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <constraints>
                                                 <constraint firstItem="zWY-pV-2XH" firstAttribute="centerY" secondItem="PY6-Yb-aoW" secondAttribute="centerY" id="AtA-pF-VIU"/>
                                                 <constraint firstItem="zWY-pV-2XH" firstAttribute="trailing" secondItem="PY6-Yb-aoW" secondAttribute="trailing" constant="-10" id="cNI-lV-VxS"/>
+                                                <constraint firstItem="M7V-Fp-fld" firstAttribute="centerY" secondItem="PY6-Yb-aoW" secondAttribute="centerY" id="hP6-Mu-wjf"/>
+                                                <constraint firstItem="M7V-Fp-fld" firstAttribute="leading" secondItem="PY6-Yb-aoW" secondAttribute="leading" constant="15" id="rQz-oE-W7F"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -412,9 +437,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="App Gestures" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiW-w5-T2o">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Gestures" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiW-w5-T2o">
+                                                    <rect key="frame" x="15" y="13" width="93.666666666666671" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -429,7 +453,9 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Axu-nh-KBG" firstAttribute="trailing" secondItem="l5G-Ei-ftw" secondAttribute="trailing" constant="-10" id="4CL-p6-oBN"/>
+                                                <constraint firstItem="tiW-w5-T2o" firstAttribute="leading" secondItem="l5G-Ei-ftw" secondAttribute="leading" constant="15" id="9MS-tS-kdB"/>
                                                 <constraint firstItem="Axu-nh-KBG" firstAttribute="centerY" secondItem="l5G-Ei-ftw" secondAttribute="centerY" id="XPs-Mk-h9u"/>
+                                                <constraint firstItem="tiW-w5-T2o" firstAttribute="centerY" secondItem="l5G-Ei-ftw" secondAttribute="centerY" id="nxV-w8-wla"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -440,9 +466,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Appearance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB3-df-D4Y">
-                                                    <rect key="frame" x="16" y="13" width="172" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appearance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB3-df-D4Y">
+                                                    <rect key="frame" x="15" y="13" width="82.666666666666671" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -459,6 +484,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="lB3-df-D4Y" firstAttribute="centerY" secondItem="VXH-7r-wck" secondAttribute="centerY" id="dRT-IR-T5E"/>
+                                                <constraint firstItem="lB3-df-D4Y" firstAttribute="leading" secondItem="VXH-7r-wck" secondAttribute="leading" constant="15" id="g3k-qm-x72"/>
                                                 <constraint firstItem="VWg-Nc-mKy" firstAttribute="trailing" secondItem="VXH-7r-wck" secondAttribute="trailing" constant="-10" id="hIM-Dg-Yeb"/>
                                                 <constraint firstItem="VWg-Nc-mKy" firstAttribute="centerY" secondItem="VXH-7r-wck" secondAttribute="centerY" id="kKI-9O-oXX"/>
                                             </constraints>
@@ -502,9 +529,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Dev APIs Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw3-c6-4fO">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Dev APIs Selection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw3-c6-4fO">
+                                                    <rect key="frame" x="15" y="13" width="183" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -519,6 +545,8 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DvM-al-uNy" firstAttribute="centerY" secondItem="VNQ-bP-ene" secondAttribute="centerY" id="7OL-0K-bFa"/>
+                                                <constraint firstItem="zw3-c6-4fO" firstAttribute="leading" secondItem="VNQ-bP-ene" secondAttribute="leading" constant="15" id="JZY-Qm-squ"/>
+                                                <constraint firstItem="zw3-c6-4fO" firstAttribute="centerY" secondItem="VNQ-bP-ene" secondAttribute="centerY" id="Lve-ia-8bP"/>
                                                 <constraint firstItem="DvM-al-uNy" firstAttribute="trailing" secondItem="VNQ-bP-ene" secondAttribute="trailing" constant="-10" id="jh8-so-HeF"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -534,14 +562,17 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waifu.it Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-1e-NMv">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waifu.it Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-1e-NMv">
+                                                    <rect key="frame" x="14.999999999999993" y="13" width="112.33333333333331" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OVy-1e-NMv" firstAttribute="leading" secondItem="8Fg-Iy-Jyz" secondAttribute="leading" constant="15" id="EFW-EC-b5W"/>
+                                                <constraint firstItem="OVy-1e-NMv" firstAttribute="centerY" secondItem="8Fg-Iy-Jyz" secondAttribute="centerY" id="c8U-Bv-Nr3"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
@@ -555,14 +586,17 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hmtai api Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvF-IX-s1V">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hmtai api Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvF-IX-s1V">
+                                                    <rect key="frame" x="15.000000000000007" y="13" width="125.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WvF-IX-s1V" firstAttribute="centerY" secondItem="lsk-PS-Roy" secondAttribute="centerY" id="IJh-zn-Jux"/>
+                                                <constraint firstItem="WvF-IX-s1V" firstAttribute="leading" secondItem="lsk-PS-Roy" secondAttribute="leading" constant="15" id="lZf-jI-htd"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
@@ -620,9 +654,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default API:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iup-4N-ADU">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default API:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iup-4N-ADU">
+                                                    <rect key="frame" x="15" y="13" width="80.666666666666671" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -640,6 +673,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <constraints>
                                                 <constraint firstItem="Zg9-yL-Yh6" firstAttribute="centerY" secondItem="Cxq-XN-Mrj" secondAttribute="centerY" id="5WG-Uo-8mg"/>
                                                 <constraint firstItem="Zg9-yL-Yh6" firstAttribute="trailing" secondItem="Cxq-XN-Mrj" secondAttribute="trailing" constant="-10" id="CnR-Kd-xVe"/>
+                                                <constraint firstItem="Iup-4N-ADU" firstAttribute="centerY" secondItem="Cxq-XN-Mrj" secondAttribute="centerY" id="EWl-ow-3hQ"/>
+                                                <constraint firstItem="Iup-4N-ADU" firstAttribute="leading" secondItem="Cxq-XN-Mrj" secondAttribute="leading" constant="15" id="q9e-cr-Uel"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -650,9 +685,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Load Image on Startup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjr-6R-r7J">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Load Image on Startup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjr-6R-r7J">
+                                                    <rect key="frame" x="15" y="13" width="155.66666666666666" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -668,6 +702,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <constraints>
                                                 <constraint firstItem="IZd-IH-uaI" firstAttribute="trailing" secondItem="sBJ-qG-Db4" secondAttribute="trailing" constant="-10" id="Jme-0S-SHD"/>
                                                 <constraint firstItem="IZd-IH-uaI" firstAttribute="centerY" secondItem="sBJ-qG-Db4" secondAttribute="centerY" id="i0a-NN-xzL"/>
+                                                <constraint firstItem="jjr-6R-r7J" firstAttribute="leading" secondItem="sBJ-qG-Db4" secondAttribute="leading" constant="15" id="ozP-Dv-0By"/>
+                                                <constraint firstItem="jjr-6R-r7J" firstAttribute="centerY" secondItem="sBJ-qG-Db4" secondAttribute="centerY" id="vrM-wO-FBl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -678,9 +714,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skq-nC-Dwe">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skq-nC-Dwe">
+                                                    <rect key="frame" x="15" y="13" width="86.333333333333329" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -694,8 +729,10 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="skq-nC-Dwe" firstAttribute="centerY" secondItem="dpi-Es-Etq" secondAttribute="centerY" id="3YX-L3-Fln"/>
                                                 <constraint firstItem="4BD-IM-7pM" firstAttribute="trailing" secondItem="dpi-Es-Etq" secondAttribute="trailing" constant="-10" id="3wk-8t-ox2"/>
                                                 <constraint firstItem="4BD-IM-7pM" firstAttribute="centerY" secondItem="dpi-Es-Etq" secondAttribute="centerY" id="d5L-aj-zPc"/>
+                                                <constraint firstItem="skq-nC-Dwe" firstAttribute="leading" secondItem="dpi-Es-Etq" secondAttribute="leading" constant="15" id="khB-ey-Fsn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -706,9 +743,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Display Nekos.moe Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw7-1z-cfw">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Nekos.moe Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mw7-1z-cfw">
+                                                    <rect key="frame" x="15" y="13" width="167.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -724,6 +760,8 @@ Display nekos.moe Tags: You can choose whether to show or hide tags sourced from
                                             <constraints>
                                                 <constraint firstItem="MuY-OC-Hck" firstAttribute="trailing" secondItem="vII-rD-wxv" secondAttribute="trailing" constant="-10" id="05G-63-WMG"/>
                                                 <constraint firstItem="MuY-OC-Hck" firstAttribute="centerY" secondItem="vII-rD-wxv" secondAttribute="centerY" id="IxO-fp-Ay1"/>
+                                                <constraint firstItem="mw7-1z-cfw" firstAttribute="leading" secondItem="vII-rD-wxv" secondAttribute="leading" constant="15" id="Nex-G5-wT1"/>
+                                                <constraint firstItem="mw7-1z-cfw" firstAttribute="centerY" secondItem="vII-rD-wxv" secondAttribute="centerY" id="axx-c8-3Eu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -767,9 +805,8 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Explicit Contents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmt-DM-IW2">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explicit Contents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmt-DM-IW2">
+                                                    <rect key="frame" x="15.000000000000007" y="13" width="115.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -783,7 +820,9 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Wmt-DM-IW2" firstAttribute="centerY" secondItem="rIY-Ri-Vax" secondAttribute="centerY" id="Gbx-qQ-nuZ"/>
                                                 <constraint firstItem="gbU-TL-Sux" firstAttribute="trailing" secondItem="rIY-Ri-Vax" secondAttribute="trailing" constant="-10" id="a43-iM-gPf"/>
+                                                <constraint firstItem="Wmt-DM-IW2" firstAttribute="leading" secondItem="rIY-Ri-Vax" secondAttribute="leading" constant="15" id="c2H-iI-o6d"/>
                                                 <constraint firstItem="gbU-TL-Sux" firstAttribute="centerY" secondItem="rIY-Ri-Vax" secondAttribute="centerY" id="dAK-w0-v5z"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -795,9 +834,8 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Disable Explicit on Restart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S2-qa-Aub">
-                                                    <rect key="frame" x="16" y="13" width="256" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disable Explicit on Restart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S2-qa-Aub">
+                                                    <rect key="frame" x="15" y="13" width="178.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -811,6 +849,8 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="8S2-qa-Aub" firstAttribute="centerY" secondItem="tbQ-IZ-vYF" secondAttribute="centerY" id="1QI-7a-UNF"/>
+                                                <constraint firstItem="8S2-qa-Aub" firstAttribute="leading" secondItem="tbQ-IZ-vYF" secondAttribute="leading" constant="15" id="M33-CG-SQa"/>
                                                 <constraint firstItem="UM3-dt-UfN" firstAttribute="trailing" secondItem="tbQ-IZ-vYF" secondAttribute="trailing" constant="-10" id="XOm-gz-YgR"/>
                                                 <constraint firstItem="UM3-dt-UfN" firstAttribute="centerY" secondItem="tbQ-IZ-vYF" secondAttribute="centerY" id="lZr-cV-ja9"/>
                                             </constraints>
@@ -867,14 +907,15 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Version:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cz9-K4-ZCP">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cz9-K4-ZCP">
+                                                    <rect key="frame" x="14.999999999999996" y="13" width="55.666666666666657" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="cz9-K4-ZCP" firstAttribute="leading" secondItem="8sW-j4-xpW" secondAttribute="leading" constant="15" id="LKF-J6-w2K"/>
                                                 <constraint firstItem="cz9-K4-ZCP" firstAttribute="centerY" secondItem="8sW-j4-xpW" secondAttribute="centerY" id="MEB-Ag-8Qz"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -886,8 +927,8 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Build:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eb6-dK-KGc">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eb6-dK-KGc">
+                                                    <rect key="frame" x="14.999999999999996" y="13" width="38.666666666666657" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -895,6 +936,7 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Eb6-dK-KGc" firstAttribute="centerY" secondItem="Bb6-YJ-h4r" secondAttribute="centerY" id="V5Q-AW-uju"/>
+                                                <constraint firstItem="Eb6-dK-KGc" firstAttribute="leading" secondItem="Bb6-YJ-h4r" secondAttribute="leading" constant="15" id="pJ0-eA-ogG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -905,8 +947,8 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Github Repository" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uc-Le-eq2">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Github Repository" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Uc-Le-eq2">
+                                                    <rect key="frame" x="15.000000000000007" y="13" width="123.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
@@ -914,6 +956,7 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2Uc-Le-eq2" firstAttribute="centerY" secondItem="kZM-Ny-AEu" secondAttribute="centerY" id="LTZ-CH-aoX"/>
+                                                <constraint firstItem="2Uc-Le-eq2" firstAttribute="leading" secondItem="kZM-Ny-AEu" secondAttribute="leading" constant="15" id="yvN-iv-CUS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -928,14 +971,15 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Report an Issue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfN-Dw-UBl">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report an Issue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfN-Dw-UBl">
+                                                    <rect key="frame" x="15.000000000000007" y="13" width="106.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="pfN-Dw-UBl" firstAttribute="leading" secondItem="5jv-P4-a5t" secondAttribute="leading" constant="15" id="7ft-dC-g3R"/>
                                                 <constraint firstItem="pfN-Dw-UBl" firstAttribute="centerY" secondItem="5jv-P4-a5t" secondAttribute="centerY" id="qkt-gJ-feE"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -956,8 +1000,8 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Review Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpC-eN-yv6">
-                                                    <rect key="frame" x="16" y="13" width="90" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpC-eN-yv6">
+                                                    <rect key="frame" x="15" y="13" width="90" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
@@ -965,6 +1009,7 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="OpC-eN-yv6" firstAttribute="centerY" secondItem="kC8-aH-yCb" secondAttribute="centerY" id="96U-YX-3fM"/>
+                                                <constraint firstItem="OpC-eN-yv6" firstAttribute="leading" secondItem="kC8-aH-yCb" secondAttribute="leading" constant="15" id="JNM-V6-Jm2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -979,14 +1024,15 @@ Disable Explicit on Restart: will set to false Explicit Content when the app res
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hmtai api Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBd-Ra-Kf1">
-                                                    <rect key="frame" x="16" y="13" width="254" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hmtai api Privacy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBd-Ra-Kf1">
+                                                    <rect key="frame" x="15" y="13" width="119" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="BBd-Ra-Kf1" firstAttribute="leading" secondItem="cYE-hR-gxO" secondAttribute="leading" constant="15" id="2XF-bk-OFD"/>
                                                 <constraint firstItem="BBd-Ra-Kf1" firstAttribute="centerY" secondItem="cYE-hR-gxO" secondAttribute="centerY" id="sUV-2n-RcD"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1020,8 +1066,8 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Full License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQT-cX-vJF">
-                                                    <rect key="frame" x="16" y="13" width="81" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQT-cX-vJF">
+                                                    <rect key="frame" x="15" y="13" width="81" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1029,6 +1075,7 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ZQT-cX-vJF" firstAttribute="centerY" secondItem="GPu-Sa-3jY" secondAttribute="centerY" id="bBp-9Q-VmS"/>
+                                                <constraint firstItem="ZQT-cX-vJF" firstAttribute="leading" secondItem="GPu-Sa-3jY" secondAttribute="leading" constant="15" id="eik-Py-lWx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -1043,14 +1090,15 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SDWebImage License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz5-fd-vEc">
-                                                    <rect key="frame" x="16" y="13" width="149" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SDWebImage License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz5-fd-vEc">
+                                                    <rect key="frame" x="15" y="13" width="149" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="lz5-fd-vEc" firstAttribute="leading" secondItem="Fzf-dR-KpE" secondAttribute="leading" constant="15" id="0gS-GP-Nti"/>
                                                 <constraint firstItem="lz5-fd-vEc" firstAttribute="centerY" secondItem="Fzf-dR-KpE" secondAttribute="centerY" id="kUu-Q7-3pT"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1127,9 +1175,8 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save Images on History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIx-HT-gkM">
-                                                    <rect key="frame" x="16" y="13" width="161" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save Images on History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIx-HT-gkM">
+                                                    <rect key="frame" x="15" y="13" width="161" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1144,6 +1191,8 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="3x5-cz-wcc" firstAttribute="trailing" secondItem="tzL-ZJ-Cnc" secondAttribute="trailing" constant="-10" id="6HQ-O6-fxV"/>
+                                                <constraint firstItem="VIx-HT-gkM" firstAttribute="leading" secondItem="tzL-ZJ-Cnc" secondAttribute="leading" constant="15" id="BVt-pe-OST"/>
+                                                <constraint firstItem="VIx-HT-gkM" firstAttribute="centerY" secondItem="tzL-ZJ-Cnc" secondAttribute="centerY" id="E2T-h7-9Ly"/>
                                                 <constraint firstItem="3x5-cz-wcc" firstAttribute="centerY" secondItem="tzL-ZJ-Cnc" secondAttribute="centerY" id="dMF-Jj-qMA"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1160,9 +1209,8 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-gO-x0t">
-                                                    <rect key="frame" x="8" y="6.3333333333333321" width="311" height="30.999999999999996"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-gO-x0t">
+                                                    <rect key="frame" x="15" y="6.3333333333333321" width="131.66666666666666" height="30.999999999999996"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title=" Clear History"/>
@@ -1171,6 +1219,10 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Yyp-gO-x0t" firstAttribute="leading" secondItem="9p4-i4-pfn" secondAttribute="leading" constant="15" id="Cfi-IE-ZbZ"/>
+                                                <constraint firstItem="Yyp-gO-x0t" firstAttribute="centerY" secondItem="9p4-i4-pfn" secondAttribute="centerY" id="QZP-Fe-Ff1"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                     </tableViewCell>
@@ -1212,8 +1264,8 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="APIs Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYn-i0-l8i">
-                                                    <rect key="frame" x="16" y="13" width="84" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APIs Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYn-i0-l8i">
+                                                    <rect key="frame" x="15" y="13" width="84" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1221,6 +1273,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="aYn-i0-l8i" firstAttribute="centerY" secondItem="840-CQ-1ji" secondAttribute="centerY" id="Sa8-Yf-6NW"/>
+                                                <constraint firstItem="aYn-i0-l8i" firstAttribute="leading" secondItem="840-CQ-1ji" secondAttribute="leading" constant="15" id="Z5K-cr-sqm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1234,8 +1287,8 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="FrameWork Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuA-0T-7kg">
-                                                    <rect key="frame" x="16" y="13" width="132" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FrameWork Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuA-0T-7kg">
+                                                    <rect key="frame" x="15" y="13" width="132" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1243,6 +1296,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="OuA-0T-7kg" firstAttribute="centerY" secondItem="ziC-CK-o1c" secondAttribute="centerY" id="uvH-JJ-k8D"/>
+                                                <constraint firstItem="OuA-0T-7kg" firstAttribute="leading" secondItem="ziC-CK-o1c" secondAttribute="leading" constant="15" id="z1d-WY-TId"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -1257,8 +1311,8 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="GitHub Contribution" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7q3-Dd-i39" userLabel="Credits">
-                                                    <rect key="frame" x="16" y="13" width="138" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub Contribution" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7q3-Dd-i39" userLabel="Credits">
+                                                    <rect key="frame" x="15" y="13" width="138" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1266,6 +1320,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7q3-Dd-i39" firstAttribute="centerY" secondItem="m8g-qS-WRo" secondAttribute="centerY" id="CAY-0y-tDb"/>
+                                                <constraint firstItem="7q3-Dd-i39" firstAttribute="leading" secondItem="m8g-qS-WRo" secondAttribute="leading" constant="15" id="MQC-eZ-WiB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1336,38 +1391,6 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="ahw-KE-9a3">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="6pb-MO-nFW">
-                                        <rect key="frame" x="16" y="189.99999809265137" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6pb-MO-nFW" id="64f-xm-TWx">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7y-S7-ZOw">
-                                                    <rect key="frame" x="-205.33333333333334" y="46" width="753.66666666666663" height="46"/>
-                                                    <string key="text">Big thanks to all the developers who provided these Frameworks for public use. Without them, this project wouldn't exist. Thank you very much!</string>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Big Thanks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4c-7s-piN">
-                                                    <rect key="frame" x="111.66666666666669" y="7" width="120" height="31"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="k7y-S7-ZOw" firstAttribute="centerX" secondItem="64f-xm-TWx" secondAttribute="centerX" id="Xx7-7G-AJU"/>
-                                                <constraint firstItem="l4c-7s-piN" firstAttribute="centerX" secondItem="64f-xm-TWx" secondAttribute="centerX" id="xK8-fM-bbI"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Bim-j3-k8P" id="Rmn-4y-PXA"/>
@@ -1383,7 +1406,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1809" y="1433"/>
+            <point key="canvasLocation" x="1808.8" y="1432.7586206896553"/>
         </scene>
         <!--APIs-->
         <scene sceneID="Kbw-gt-5yk">
@@ -1696,7 +1719,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="831.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWp-Nx-xkf" id="UTM-ox-K0H">
-                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Y7X-uZ-you">
@@ -1842,38 +1865,6 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="nsV-t4-t91">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="RYt-Hy-RtG">
-                                        <rect key="frame" x="16" y="1276" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RYt-Hy-RtG" id="MwR-bM-L7j">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Special Thanks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBt-bJ-3tb">
-                                                    <rect key="frame" x="89.666666666666686" y="8" width="164" height="31"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F0-oN-GFZ">
-                                                    <rect key="frame" x="-196" y="46" width="735" height="46"/>
-                                                    <string key="text">Special thanks to all the developers who provided these APIs for public use. Without them, this project wouldn't exist. Thank you very much!</string>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="OBt-bJ-3tb" firstAttribute="centerX" secondItem="MwR-bM-L7j" secondAttribute="centerX" id="sCC-Ka-UXv"/>
-                                                <constraint firstItem="0F0-oN-GFZ" firstAttribute="centerX" secondItem="MwR-bM-L7j" secondAttribute="centerX" id="xeO-n7-wLH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="RZI-Yo-0G5" id="FMU-28-MbH"/>
@@ -1993,37 +1984,6 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="hwb-7G-ahL" appends="YES" id="Xjm-en-Zas"/>
                                         </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="0K9-9e-TqU">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="Vur-Ak-VWN">
-                                        <rect key="frame" x="16" y="189.99999809265137" width="343" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vur-Ak-VWN" id="Vzp-a9-mw9">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Big shoutout to all the amazing people who contributed and supported me to improve significantly this app!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqh-Qx-kWc">
-                                                    <rect key="frame" x="-110" y="46" width="563" height="46"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Big Shoutout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbL-CC-GBX">
-                                                    <rect key="frame" x="102" y="7" width="139" height="31"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="zqh-Qx-kWc" firstAttribute="centerX" secondItem="Vzp-a9-mw9" secondAttribute="centerX" id="Ejr-UP-UxU"/>
-                                                <constraint firstItem="fbL-CC-GBX" firstAttribute="centerX" secondItem="Vzp-a9-mw9" secondAttribute="centerX" id="u0y-Ig-skt"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
