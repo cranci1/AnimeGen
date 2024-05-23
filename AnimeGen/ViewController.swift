@@ -187,8 +187,8 @@ class ViewController: UIViewController {
             // Image View
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.55),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.60),
             
             // API button
             apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
