@@ -5,7 +5,6 @@
 //  Created by cranci on 05/05/24.
 //
 
-import UIKit
 import SwiftUI
 import Photos
 
@@ -39,7 +38,7 @@ struct HistoryView: View {
             .padding()
             .navigationBarTitle("History - \(ImageHistory.images.count) images", displayMode: .inline)
         }
-        .navigationViewStyle(DoubleColumnNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $isSaveAlertPresented) {
             Alert(title: Text("Success"), message: Text("Image saved successfully"), dismissButton: .default(Text("OK")))
         }
@@ -64,7 +63,6 @@ struct ImageGrid: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 15) {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 15) {
                 ForEach(ImageHistory.images.indices, id: \.self) { index in
                     let image = ImageHistory.images[index]
                     Image(uiImage: image)
@@ -147,7 +145,6 @@ struct ImageGridiOS13: View {
             .padding(10)
         }
     }
-}
     
     func saveImageToGallery(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 1.0),

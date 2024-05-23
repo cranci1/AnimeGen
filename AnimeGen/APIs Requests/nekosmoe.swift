@@ -12,7 +12,7 @@ extension ViewController {
     func loadImageFromNekosMoe() {
         startLoadingIndicator()
 
-        let isNSFW = UserDefaults.standard.bool(forKey: "enableExplicitContent")
+        let isNSFW = UserDefaults.standard.bool(forKey: "explicitContents")
 
         let apiEndpoint = "https://nekos.moe/api/v1/random/image"
 
