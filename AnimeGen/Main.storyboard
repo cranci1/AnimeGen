@@ -1210,7 +1210,7 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-gO-x0t">
-                                                    <rect key="frame" x="15" y="6" width="136.66666666666666" height="32"/>
+                                                    <rect key="frame" x="5" y="6" width="136.66666666666666" height="32"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title=" Clear History">
@@ -1222,7 +1222,7 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Yyp-gO-x0t" firstAttribute="leading" secondItem="9p4-i4-pfn" secondAttribute="leading" constant="15" id="Cfi-IE-ZbZ"/>
+                                                <constraint firstItem="Yyp-gO-x0t" firstAttribute="leading" secondItem="9p4-i4-pfn" secondAttribute="leading" constant="5" id="Cfi-IE-ZbZ"/>
                                                 <constraint firstItem="Yyp-gO-x0t" firstAttribute="centerY" secondItem="9p4-i4-pfn" secondAttribute="centerY" id="QZP-Fe-Ff1"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1684,7 +1684,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="731.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mst-hn-gIg" id="d1t-mQ-sS1">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NekoBot" translatesAutoresizingMaskIntoConstraints="NO" id="BaJ-S5-7fN">
@@ -1721,7 +1721,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="831.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWp-Nx-xkf" id="UTM-ox-K0H">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Y7X-uZ-you">
