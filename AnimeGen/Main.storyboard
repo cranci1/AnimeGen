@@ -512,7 +512,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
             </objects>
             <point key="canvasLocation" x="1808.8" y="-857.14285714285722"/>
         </scene>
-        <!--Test Settings-->
+        <!--Dev Settings-->
         <scene sceneID="5B1-8w-q4A">
             <objects>
                 <tableViewController id="m4x-QR-EoK" customClass="DeveloperPref" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
@@ -611,7 +611,7 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                             <outlet property="delegate" destination="m4x-QR-EoK" id="BAX-pv-Ffh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Test Settings" id="LBH-n5-QKo"/>
+                    <navigationItem key="navigationItem" title="Dev Settings" id="LBH-n5-QKo"/>
                     <connections>
                         <outlet property="DisplayAPisStuff" destination="DvM-al-uNy" id="RvV-3o-FEb"/>
                     </connections>
@@ -1210,10 +1210,12 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yyp-gO-x0t">
-                                                    <rect key="frame" x="15" y="6.3333333333333321" width="131.66666666666666" height="30.999999999999996"/>
+                                                    <rect key="frame" x="15" y="6" width="136.66666666666666" height="32"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title=" Clear History"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title=" Clear History">
+                                                        <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                                    </buttonConfiguration>
                                                     <connections>
                                                         <action selector="clearButtonTapped:" destination="j4T-B9-g7w" eventType="touchUpInside" id="n0R-Em-vsb"/>
                                                     </connections>
