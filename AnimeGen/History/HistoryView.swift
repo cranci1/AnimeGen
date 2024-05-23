@@ -39,7 +39,7 @@ struct HistoryView: View {
             .padding()
             .navigationBarTitle("History - \(ImageHistory.images.count) images", displayMode: .inline)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
         .alert(isPresented: $isSaveAlertPresented) {
             Alert(title: Text("Success"), message: Text("Image saved successfully"), dismissButton: .default(Text("OK")))
         }
@@ -55,9 +55,15 @@ struct HistoryView: View {
 struct ImageGrid: View {
     @Binding var selectedImage: UIImage?
     @Binding var isSaveAlertPresented: Bool
-    
+    @Environment(\.horizontalSizeClass) var sizeClass
+
+    var columns: [GridItem] {
+        Array(repeating: .init(.flexible()), count: sizeClass == .compact ? 3 : 5)
+    }
+
     var body: some View {
         ScrollView {
+            LazyVGrid(columns: columns, spacing: 15) {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 15) {
                 ForEach(ImageHistory.images.indices, id: \.self) { index in
                     let image = ImageHistory.images[index]
@@ -104,8 +110,11 @@ struct ImageGrid: View {
 struct ImageGridiOS13: View {
     @Binding var selectedImage: UIImage?
     @Binding var isSaveAlertPresented: Bool
-    
-    let columns: Int = 3
+    @Environment(\.horizontalSizeClass) var sizeClass
+
+    var columns: Int {
+        sizeClass == .compact ? 3 : 5
+    }
     
     var body: some View {
         ScrollView {
@@ -138,6 +147,7 @@ struct ImageGridiOS13: View {
             .padding(10)
         }
     }
+}
     
     func saveImageToGallery(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 1.0),

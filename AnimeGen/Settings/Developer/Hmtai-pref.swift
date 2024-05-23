@@ -48,7 +48,6 @@ struct HmtaiView: View {
                     .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .navigationBarHidden(true)
             
             Button(action: {
                 saveValues()

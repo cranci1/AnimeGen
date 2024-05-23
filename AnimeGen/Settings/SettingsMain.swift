@@ -2,7 +2,7 @@
 //  SettingsMain.swift
 //  AnimeGen
 //
-//  Created by Francesco on 07/05/24.
+//  Created by cranci on 07/05/24.
 //
 
 import UIKit

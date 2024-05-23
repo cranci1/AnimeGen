@@ -277,6 +277,9 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection footerTitle="Made by cranci with love" id="f97-Su-Id6" userLabel="About">
+                                <cells/>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="BaH-N7-bdh" id="eAY-45-DhR"/>

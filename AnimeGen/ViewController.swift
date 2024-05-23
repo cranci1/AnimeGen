@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  AnimeGen
 //
-//  Created by Francesco on 04/05/24.
+//  Created by cranci on 04/05/24.
 //
 
 import UIKit
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
                 .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
             shareButton.setImage(shareImage, for: .normal)
         } else {
-            let secondShareImage = UIImage(systemName: "square.and.arrow.up.on.square.fill")?
+            let secondShareImage = UIImage(systemName: "square.and.arrow.up")?
                 .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .bold))
             shareButton.setImage(secondShareImage, for: .normal)
         }

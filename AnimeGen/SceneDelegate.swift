@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  AnimeGen
 //
-//  Created by Francesco on 04/05/24.
+//  Created by cranci on 04/05/24.
 //
 
 import UIKit
