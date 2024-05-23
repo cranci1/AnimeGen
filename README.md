@@ -109,9 +109,7 @@ If you want to build the app yourself, follow these steps:
 2. Clone the repo:
 
 ```
-
 git clone https://github.com/cranci1/AnimeGen
-
 ```
 
 3. Navigate to the directory:
