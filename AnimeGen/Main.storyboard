@@ -252,8 +252,31 @@
                                             <segue destination="4EG-3l-fut" kind="show" id="hmh-2N-Awf"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="agX-W1-hO2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="Boe-Yd-q2b">
                                         <rect key="frame" x="16" y="359.00000762939453" width="343" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Boe-Yd-q2b" id="Jr1-aa-jZP">
+                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKz-Yn-1YU" userLabel="Credits">
+                                                    <rect key="frame" x="15" y="13" width="50" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sKz-Yn-1YU" firstAttribute="leading" secondItem="Jr1-aa-jZP" secondAttribute="leading" constant="15" id="DA1-gZ-W0S"/>
+                                                <constraint firstItem="sKz-Yn-1YU" firstAttribute="centerY" secondItem="Jr1-aa-jZP" secondAttribute="centerY" id="rWW-lG-hve"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wOg-Z4-rW9" kind="show" id="B1A-pI-eH4"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="agX-W1-hO2">
+                                        <rect key="frame" x="16" y="402.66667556762695" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="agX-W1-hO2" id="i9m-GG-wKf">
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
@@ -274,29 +297,6 @@
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="0ZA-XE-jX3" appends="YES" id="BhK-4B-S8O"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="Boe-Yd-q2b">
-                                        <rect key="frame" x="16" y="402.66667556762695" width="343" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Boe-Yd-q2b" id="Jr1-aa-jZP">
-                                            <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKz-Yn-1YU" userLabel="Credits">
-                                                    <rect key="frame" x="15" y="13" width="50" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="sKz-Yn-1YU" firstAttribute="leading" secondItem="Jr1-aa-jZP" secondAttribute="leading" constant="15" id="DA1-gZ-W0S"/>
-                                                <constraint firstItem="sKz-Yn-1YU" firstAttribute="centerY" secondItem="Jr1-aa-jZP" secondAttribute="centerY" id="rWW-lG-hve"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="wOg-Z4-rW9" kind="show" id="B1A-pI-eH4"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
