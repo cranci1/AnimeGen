@@ -9,36 +9,36 @@ import UIKit
 import SwiftUI
 
 class SettingsMain: UITableViewController {
-    
-    @IBOutlet weak var StepperWidth: UIStepper!
-    @IBOutlet weak var StepperHeight: UIStepper!
-    
+
+    @IBOutlet weak var stepperWidth: UIStepper!
+    @IBOutlet weak var stepperHeight: UIStepper!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        StepperWidth.value = Settings.shared.imageWidth
-        StepperHeight.value = Settings.shared.imageHeight
-        
-        StepperWidth.minimumValue = 1.0
-        StepperWidth.maximumValue = 100.0
-        
-        StepperHeight.minimumValue = 1.0
-        StepperHeight.maximumValue = 100.0
-        
-        StepperWidth.addTarget(self, action: #selector(widthStepperChanged(_:)), for: .valueChanged)
-        StepperHeight.addTarget(self, action: #selector(heightStepperChanged(_:)), for: .valueChanged)
+
+        stepperWidth.value = Settings.shared.imageWidth
+        stepperHeight.value = Settings.shared.imageHeight
+
+        stepperWidth.minimumValue = 0.1
+        stepperWidth.maximumValue = 1.0
+
+        stepperHeight.minimumValue = 0.1
+        stepperHeight.maximumValue = 1.0
+
+        stepperWidth.addTarget(self, action: #selector(widthStepperChanged(_:)), for: .valueChanged)
+        stepperHeight.addTarget(self, action: #selector(heightStepperChanged(_:)), for: .valueChanged)
     }
-    
+
     @IBAction func widthStepperChanged(_ sender: UIStepper) {
         Settings.shared.imageWidth = sender.value
         print("New imageWidth: \(Settings.shared.imageWidth)")
     }
-    
+
     @IBAction func heightStepperChanged(_ sender: UIStepper) {
         Settings.shared.imageHeight = sender.value
         print("New imageHeight: \(Settings.shared.imageHeight)")
     }
-    
+
     @IBAction func APIsStatus(_ sender: UITapGestureRecognizer) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self, let navigationController = self.navigationController else { return }
@@ -53,9 +53,9 @@ class SettingsMain: UITableViewController {
 
 class Settings {
     static let shared = Settings()
-    
-    var imageWidth: Double = 100.0
-    var imageHeight: Double = 60.0
-    
+
+    var imageWidth: Double = 1.0
+    var imageHeight: Double = 0.6
+
     private init() {}
 }
