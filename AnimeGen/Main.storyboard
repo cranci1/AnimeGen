@@ -301,7 +301,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Test" id="goz-xu-vFw" userLabel="About">
+                            <tableViewSection headerTitle="Test" id="goz-xu-vFw" userLabel="Test">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RHM-Tp-t0F">
                                         <rect key="frame" x="16" y="518.33334159851074" width="343" height="43.666667938232422"/>
