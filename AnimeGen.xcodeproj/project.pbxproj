@@ -11,6 +11,7 @@
 		133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C882BE67CAB00258EDD /* SceneDelegate.swift */; };
 		133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C8A2BE67CAB00258EDD /* ViewController.swift */; };
 		133C4C902BE67CAD00258EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133C4C8F2BE67CAD00258EDD /* Assets.xcassets */; };
+		1366F0A72C00EB7B00862707 /* ImageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1366F0A62C00EB7B00862707 /* ImageSettings.swift */; };
 		136BD7DB2BE7CA6F00ED23AE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */; };
 		136BD7DE2BE7CAA300ED23AE /* HistoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */; };
 		136BD7E02BE7CB4D00ED23AE /* RewindButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */; };
@@ -66,6 +67,7 @@
 		133C4C8A2BE67CAB00258EDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		133C4C8F2BE67CAD00258EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		133C4C942BE67CAD00258EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1366F0A62C00EB7B00862707 /* ImageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSettings.swift; sourceTree = "<group>"; };
 		136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryButton.swift; sourceTree = "<group>"; };
 		136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewindButton.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				133C4C862BE67CAB00258EDD /* AppDelegate.swift */,
 				133C4C8A2BE67CAB00258EDD /* ViewController.swift */,
 				13D4FC2C2BE7719700BC3D1C /* Secrets.swift */,
+				1366F0A62C00EB7B00862707 /* ImageSettings.swift */,
 				133C4C8F2BE67CAD00258EDD /* Assets.xcassets */,
 				13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */,
 				13D4FC2E2BE779A200BC3D1C /* LaunchScreen.storyboard */,
@@ -369,6 +372,7 @@
 				13D4FBF22BE76DCA00BC3D1C /* Web-Share.swift in Sources */,
 				13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */,
 				13D4FC242BE770EC00BC3D1C /* pic-re.swift in Sources */,
+				1366F0A72C00EB7B00862707 /* ImageSettings.swift in Sources */,
 				133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */,
 				13C1E0402BE92BB300A27DEE /* APIsCredits.swift in Sources */,
 				1393C3A92BEBC94300704137 /* AppPreff.swift in Sources */,

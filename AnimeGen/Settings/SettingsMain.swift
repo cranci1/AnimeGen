@@ -50,12 +50,3 @@ class SettingsMain: UITableViewController {
         }
     }
 }
-
-class Settings {
-    static let shared = Settings()
-
-    var imageWidth: Double = 1.0
-    var imageHeight: Double = 0.6
-
-    private init() {}
-}
