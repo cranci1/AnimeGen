@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import Combine
 
-class ViewController: UIViewController, ObservableObject {
+class ViewController: UIViewController {
     
     var imageHistory: [(UIImage, [String])] = []
     var currentPosition: Int = -1
@@ -188,8 +187,8 @@ class ViewController: UIViewController, ObservableObject {
             // Image View
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: ViewController.imageViewWidthMultiplier),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: ViewController.imageViewHeightMultiplier),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.60),
             
             // API button
             apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
@@ -297,30 +296,5 @@ class ViewController: UIViewController, ObservableObject {
 
         apiLoaders[title]?()
     }
-    
-    static var imageViewWidthMultiplier: CGFloat = 1.0 {
-        didSet {
-            // Add your handling code here if needed
-        }
-    }
-    
-    static var imageViewHeightMultiplier: CGFloat = 1.0 {
-        didSet {
-            // Add your handling code here if needed
-        }
-    }
-    
-    @Published var widthMultiplier: CGFloat = 1.0 {
-        didSet {
-            ViewController.imageViewWidthMultiplier = widthMultiplier
-        }
-    }
-    
-    @Published var heightMultiplier: CGFloat = 1.0 {
-        didSet {
-            ViewController.imageViewHeightMultiplier = heightMultiplier
-        }
-    }
-    
 }
 
