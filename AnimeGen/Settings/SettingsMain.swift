@@ -24,11 +24,11 @@ class SettingsMain: UITableViewController {
         StepperHeight.addTarget(self, action: #selector(heightStepperChanged(_:)), for: .valueChanged)
       }
     
-    @objc func widthStepperChanged(_ sender: UIStepper) {
+    @IBAction func widthStepperChanged(_ sender: UIStepper) {
         imageWidth = sender.value
     }
     
-    @objc func heightStepperChanged(_ sender: UIStepper) {
+    @IBAction func heightStepperChanged(_ sender: UIStepper) {
         imageHeight = sender.value
     }
     
