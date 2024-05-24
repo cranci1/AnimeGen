@@ -14,5 +14,5 @@ struct Secrets {
     
     static var discordChannelId = "YourChannelIdHere"
     
-    static var waifuItToken = "MTAwMTA1Njg1MDI2NDk5Nzg5OA--.MTcxNjI5NzQxOQ--.6b27e13d787c" // dont steal lol, 
+    static var waifuItToken = "MTAwMTA1Njg1MDI2NDk5Nzg5OA--.MTcxNjI5NzQxOQ--.6b27e13d787c" // dont steal lol,
 }
