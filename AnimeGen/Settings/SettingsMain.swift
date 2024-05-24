@@ -16,27 +16,25 @@ class SettingsMain: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize steppers with singleton values
         StepperWidth.value = Settings.shared.imageWidth
         StepperHeight.value = Settings.shared.imageHeight
         
-        // Set minimum and maximum values if needed
-        StepperWidth.minimumValue = 50.0
-        StepperWidth.maximumValue = 300.0
-        StepperHeight.minimumValue = 50.0
-        StepperHeight.maximumValue = 300.0
+        StepperWidth.minimumValue = 1.0
+        StepperWidth.maximumValue = 100.0
         
-        // Add target actions for steppers
+        StepperHeight.minimumValue = 1.0
+        StepperHeight.maximumValue = 100.0
+        
         StepperWidth.addTarget(self, action: #selector(widthStepperChanged(_:)), for: .valueChanged)
         StepperHeight.addTarget(self, action: #selector(heightStepperChanged(_:)), for: .valueChanged)
     }
     
-    @objc func widthStepperChanged(_ sender: UIStepper) {
+    @IBAction func widthStepperChanged(_ sender: UIStepper) {
         Settings.shared.imageWidth = sender.value
         print("New imageWidth: \(Settings.shared.imageWidth)")
     }
     
-    @objc func heightStepperChanged(_ sender: UIStepper) {
+    @IBAction func heightStepperChanged(_ sender: UIStepper) {
         Settings.shared.imageHeight = sender.value
         print("New imageHeight: \(Settings.shared.imageHeight)")
     }
