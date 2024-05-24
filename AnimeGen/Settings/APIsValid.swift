@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct APIData: Codable {
-    var supported: [String: Bool]
+    var supported: [String: String]
 }
 
 struct APIsSuppport: View {
@@ -20,25 +20,35 @@ struct APIsSuppport: View {
                 ForEach(apiData?.supported.sorted(by: { $0.key < $1.key }) ?? [], id: \.key) { (key, value) in
                     HStack {
                         Text(key)
+                            .font(.headline)
                         Spacer()
-                        if value {
+                        if value == "true" {
                             Image(systemName: "checkmark.circle.fill")
                                 .foregroundColor(.green)
-                        } else {
+                        } else if value == "false" {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundColor(.red)
+                        } else if value == "kinda" {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.yellow)
                         }
                     }
                 }
             }
             .overlay(
-                Text("Support status will not be updated instantly, but rather promptly after the APIs resume operation.")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-                    .padding(.all, 18)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .background(Color.secondary.opacity(0.1)),
+                VStack {
+                    Text("Support status will not be updated instantly, but rather promptly after the APIs resume operation.")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .background(Color(UIColor.systemBackground).opacity(0.95))
+                .cornerRadius(12)
+                .shadow(radius: 10)
+                .padding(),
                 alignment: .bottom
             )
             Button(action: {
@@ -55,7 +65,7 @@ struct APIsSuppport: View {
                         .font(.headline)
                 }
                 .padding()
-                .background(Color("AccentColor"))
+                .background(Color.blue)
                 .cornerRadius(10)
             }
             .padding()
@@ -63,7 +73,7 @@ struct APIsSuppport: View {
         .onAppear {
             fetchData()
         }
-        .navigationBarTitle("APIs Status")
+        .navigationBarTitle("APIs Status", displayMode: .inline)
     }
     
     private func fetchData() {
@@ -85,8 +95,8 @@ struct APIsSuppport: View {
                 
                 let iosVersion = UIDevice.current.systemVersion
                 if iosVersion.starts(with: "13") {
-                    decodedData.supported["pic.re"] = false
-                    decodedData.supported["Nekos api"] = false
+                    decodedData.supported["pic.re"] = "false"
+                    decodedData.supported["Nekos api"] = "false"
                 }
                 
                 DispatchQueue.main.async {
@@ -99,7 +109,7 @@ struct APIsSuppport: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct APIsSuppport_Previews: PreviewProvider {
     static var previews: some View {
         APIsSuppport()
     }
