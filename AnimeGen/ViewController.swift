@@ -57,6 +57,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let imageWidths = Settings.shared.imageWidth
+        let imageHeights = Settings.shared.imageHeight
+        
         startTime = Date()
 
         // Gestures
@@ -187,8 +190,8 @@ class ViewController: UIViewController {
             // Image View
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.60),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: imageWidths),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: imageHeights),
             
             // API button
             apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
