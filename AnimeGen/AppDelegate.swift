@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: ["enableImageStartup": true])
         UserDefaults.standard.register(defaults: ["enableTime": true])
         UserDefaults.standard.register(defaults: ["enableHistory": true])
+        UserDefaults.standard.register(defaults: ["enableButtons": true])
         
         // Override point for customization after application launch.
         return true

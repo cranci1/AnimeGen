@@ -50,6 +50,8 @@ class ViewController: UIViewController {
     
     var parentsModeLoL = UserDefaults.standard.bool(forKey: "parentsModeLoL")
     
+    var buttons = UserDefaults.standard.bool(forKey: "enableButtons")
+    
     var counter: Int = 0
     
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr"]
@@ -94,7 +96,8 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
-    
+        if buttons {
+            
         // Api Button
         apiButton = UIButton(type: .system)
         apiButton.setTitle("", for: .normal)
@@ -152,6 +155,8 @@ class ViewController: UIViewController {
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         shareButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(shareButton)
+            
+        }
         
         
         // Tags Label
@@ -234,6 +239,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleTime(_:)), name: Notification.Name("EnableTime"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleGestures(_:)), name: Notification.Name("EnableGestures"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleLightMode(_:)), name: Notification.Name("EnabledLightMode"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleButtons(_:)), name: Notification.Name("EnableButtons"), object: nil)
         
         // Content
         NotificationCenter.default.addObserver(self, selector: #selector(handleParentMode(_:)), name: Notification.Name("ParentsModeLoL"), object: nil)

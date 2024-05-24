@@ -11,18 +11,35 @@ class FeaturesApp: UITableViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var stepperWidth: UIStepper!
+    @IBOutlet weak var stepperHeight: UIStepper!
+    
     @IBOutlet weak var Animations: UISwitch!
     @IBOutlet weak var Gradient: UISwitch!
     @IBOutlet weak var Gestures: UISwitch!
     @IBOutlet weak var ActivityLabel: UISwitch!
+    @IBOutlet weak var Buttons: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        stepperWidth.value = Settings.shared.imageWidth
+        stepperHeight.value = Settings.shared.imageHeight
+
+        stepperWidth.minimumValue = 0.1
+        stepperWidth.maximumValue = 1.0
+
+        stepperHeight.minimumValue = 0.1
+        stepperHeight.maximumValue = 1.0
+
+        stepperWidth.addTarget(self, action: #selector(widthStepperChangeds(_:)), for: .valueChanged)
+        stepperHeight.addTarget(self, action: #selector(heightStepperChangeds(_:)), for: .valueChanged)
         
         Animations.isOn = UserDefaults.standard.bool(forKey: "enableAnimations")
         Gradient.isOn = UserDefaults.standard.bool(forKey: "enablegradient")
         Gestures.isOn = UserDefaults.standard.bool(forKey: "enableGestures")
         ActivityLabel.isOn = UserDefaults.standard.bool(forKey: "enableTime")
+        Buttons.isOn = UserDefaults.standard.bool(forKey: "enableButtons")
     }
     
     @IBAction func switchAnimations(_ sender: UISwitch) {
@@ -45,6 +62,22 @@ class FeaturesApp: UITableViewController {
         let isEnabled = sender.isOn
         UserDefaults.standard.set(isEnabled, forKey: "enableGestures")
         NotificationCenter.default.post(name: Notification.Name("EnableGestures"), object: nil, userInfo: ["enableGestures": isEnabled])
+    }
+    
+    @IBAction func switctchButtons(_ sender: UISwitch) {
+        let isEnabled = sender.isOn
+        UserDefaults.standard.set(isEnabled, forKey: "enableButtons")
+        NotificationCenter.default.post(name: Notification.Name("EnableButtons"), object: nil, userInfo: ["enableButtons": isEnabled])
+    }
+    
+    @IBAction func widthStepperChangeds(_ sender: UIStepper) {
+        Settings.shared.imageWidth = sender.value
+        print("New imageWidth: \(Settings.shared.imageWidth)")
+    }
+
+    @IBAction func heightStepperChangeds(_ sender: UIStepper) {
+        Settings.shared.imageHeight = sender.value
+        print("New imageHeight: \(Settings.shared.imageHeight)")
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
