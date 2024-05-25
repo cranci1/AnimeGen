@@ -9,7 +9,7 @@ import UIKit
 
 class FeaturesApp: UITableViewController {
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    // @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var stepperWidth: UIStepper!
     @IBOutlet weak var stepperHeight: UIStepper!
@@ -18,7 +18,6 @@ class FeaturesApp: UITableViewController {
     @IBOutlet weak var Gradient: UISwitch!
     @IBOutlet weak var Gestures: UISwitch!
     @IBOutlet weak var ActivityLabel: UISwitch!
-    @IBOutlet weak var Buttons: UISwitch!
     
     @IBOutlet weak var widthLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
@@ -42,7 +41,6 @@ class FeaturesApp: UITableViewController {
         Gradient.isOn = UserDefaults.standard.bool(forKey: "enablegradient")
         Gestures.isOn = UserDefaults.standard.bool(forKey: "enableGestures")
         ActivityLabel.isOn = UserDefaults.standard.bool(forKey: "enableTime")
-        Buttons.isOn = UserDefaults.standard.bool(forKey: "enableButtons")
         
         updateWidthLabel()
         updateHeightLabel()
@@ -69,32 +67,26 @@ class FeaturesApp: UITableViewController {
         UserDefaults.standard.set(isEnabled, forKey: "enableGestures")
         NotificationCenter.default.post(name: Notification.Name("EnableGestures"), object: nil, userInfo: ["enableGestures": isEnabled])
     }
-    
-    @IBAction func switctchButtons(_ sender: UISwitch) {
-        UserDefaults.standard.set(sender.isOn, forKey: "enableButtons")
-    }
-    
+        
     @IBAction func widthStepperChangeds(_ sender: UIStepper) {
         Settings.shared.imageWidth = sender.value
         updateWidthLabel()
-        print("New imageWidth: \(Settings.shared.imageWidth)")
     }
 
     @IBAction func heightStepperChangeds(_ sender: UIStepper) {
         Settings.shared.imageHeight = sender.value
         updateHeightLabel()
-        print("New imageHeight: \(Settings.shared.imageHeight)")
     }
     
-    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex
-        UserDefaults.standard.set(selectedIndex, forKey: "selectedIndex")
-        
-        let isEnabledLightMode = selectedIndex == 1
-        UserDefaults.standard.set(isEnabledLightMode, forKey: "enabledLightMode")
-        
-        NotificationCenter.default.post(name: Notification.Name("EnabledLightMode"), object: nil, userInfo: ["enabledLightMode": isEnabledLightMode])
-    }
+    // @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+    //    let selectedIndex = sender.selectedSegmentIndex
+    //    UserDefaults.standard.set(selectedIndex, forKey: "selectedIndex")
+    //
+    //    let isEnabledLightMode = selectedIndex == 1
+    //    UserDefaults.standard.set(isEnabledLightMode, forKey: "enabledLightMode")
+    //
+    //    NotificationCenter.default.post(name: Notification.Name("EnabledLightMode"), object: nil, userInfo: ["enabledLightMode": isEnabledLightMode])
+    // }
     
     func updateWidthLabel() {
         widthLabel.text = String(format: "Images Width: %.2f", Settings.shared.imageWidth)

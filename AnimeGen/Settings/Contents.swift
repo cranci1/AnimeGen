@@ -12,13 +12,11 @@ class Contents: UITableViewController {
     @IBOutlet weak var Contents: UISwitch!
     @IBOutlet weak var ParentMode: UISwitch!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         Contents.isOn = UserDefaults.standard.bool(forKey: "explicitContents")
         ParentMode.isOn = UserDefaults.standard.bool(forKey: "parentsModeLoL")
-        
     }
 
     @IBAction func switchContent(_ sender: UISwitch) {

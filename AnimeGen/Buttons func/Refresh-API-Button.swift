@@ -27,7 +27,7 @@ extension ViewController {
             loadImageFromNekosBest()
         case "waifu.pics":
             loadImageFromWaifuPics()
-        case "Hmtai api", "Hmtai":
+        case "Hmtai api":
             startHmtaiLoader()
         case "Nekos api":
             loadImageFromNekosapi()
@@ -64,11 +64,11 @@ extension ViewController {
         let apiOptions: [String]
         
         if #available(iOS 14.0, *) {
-            apiOptions = developerAPIs ? ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
-                                       : ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+            apiOptions = developerAPIs ? ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "Hmtai api", "waifu.it", "waifu.pics", "waifu.im", "pic.re"]
+                                       : ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.pics", "waifu.im", "pic.re"]
         } else {
-            apiOptions = developerAPIs ? ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai", "waifu.it", "waifu.pics", "waifu.im"]
-                                       : ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "waifu.it", "waifu.pics", "waifu.im"]
+            apiOptions = developerAPIs ? ["Purr", "kyoko", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "Hmtai api", "waifu.it", "waifu.pics", "waifu.im"]
+                                       : ["Purr", "n-sfw.com", "NekoBot", "nekos.moe", "nekos.best", "waifu.pics", "waifu.im"]
         }
         
         apiOptions.forEach { option in

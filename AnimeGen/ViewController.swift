@@ -22,15 +22,15 @@ class ViewController: UIViewController {
     
     var imageView: UIImageView!
     
-    var apiButton: UIButton!
-    var shareButton: UIButton!
-    var webButton: UIButton!
+   var apiButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var RefreshButton: UIButton!
     @IBOutlet var HeartButton: UIButton!
     @IBOutlet var RewindButton: UIButton!
+    @IBOutlet var WebButton: UIButton!
+    @IBOutlet var ShareButton: UIButton!
     
     var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
     var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
@@ -50,8 +50,6 @@ class ViewController: UIViewController {
     
     var parentsModeLoL = UserDefaults.standard.bool(forKey: "parentsModeLoL")
     
-    var buttons = UserDefaults.standard.bool(forKey: "enableButtons")
-    
     var counter: Int = 0
     
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr"]
@@ -61,6 +59,20 @@ class ViewController: UIViewController {
         
         let imageWidths = Settings.shared.imageWidth
         let imageHeights = Settings.shared.imageHeight
+        
+        if #available(iOS 15.0, *) {
+            if let image = UIImage(systemName: "square.and.arrow.up.circle.fill") {
+                ShareButton.setImage(image, for: .normal)
+            }
+        } else {
+            if let image = UIImage(systemName: "square.and.arrow.up") {
+                ShareButton.setImage(image, for: .normal)
+            }
+        }
+        
+        if let Webimage = UIImage(systemName: "safari.fill") {
+            WebButton.setImage(Webimage, for: .normal)
+        }
         
         startTime = Date()
 
@@ -96,7 +108,6 @@ class ViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
-        if buttons {
             
         // Api Button
         apiButton = UIButton(type: .system)
@@ -125,38 +136,6 @@ class ViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(activityIndicator)
-        
-        
-        // Web Button
-        webButton = UIButton(type: .system)
-        let webIcon = UIImage(systemName: "safari.fill")?
-            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
-        webButton.setImage(webIcon, for: .normal)
-        webButton.tintColor = .systemBlue
-        webButton.addTarget(self, action: #selector(webButtonTapped), for: .touchUpInside)
-        webButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(webButton)
-        
-        
-        // Share Button
-        shareButton = UIButton(type: .system)
-        if #available(iOS 15.0, *) {
-            let shareImage = UIImage(systemName: "square.and.arrow.up.circle.fill")?
-                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 25, weight: .bold))
-            shareButton.setImage(shareImage, for: .normal)
-        } else {
-            let secondShareImage = UIImage(systemName: "square.and.arrow.up")?
-                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .bold))
-            shareButton.setImage(secondShareImage, for: .normal)
-        }
-        shareButton.tintColor = .systemPurple
-        shareButton.setTitleColor(.white, for: .normal)
-        shareButton.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        shareButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(shareButton)
-            
-        }
         
         
         // Tags Label
@@ -207,14 +186,6 @@ class ViewController: UIViewController {
             // Activity button
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: RefreshButton.topAnchor, constant: -30),
-            
-            // Web button
-            webButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
-            webButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            
-            // Share button
-            shareButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
-            shareButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             
             // Tags label
             tagsLabel.topAnchor.constraint(equalTo: apiButton.bottomAnchor, constant: 16),

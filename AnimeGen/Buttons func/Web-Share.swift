@@ -9,7 +9,7 @@ import UIKit
 
 extension ViewController {
     
-    @objc func webButtonTapped() {
+    @IBAction func webButtonTapped() {
         guard let urlString = currentImageURL, let url = URL(string: urlString) else {
             print("Invalid URL string: \(currentImageURL ?? "nil")")
             showAlert(withTitle: "Error", message: "The URL is invalid.", viewController: self)
@@ -24,7 +24,7 @@ extension ViewController {
         }
     }
     
-    @objc func shareButtonTapped() {
+    @IBAction func shareButtonTapped() {
         guard let currentImage = imageView.image else {
             print("No image available for sharing.")
             showAlert(withTitle: "Error", message: "No image available for sharing.", viewController: self)
