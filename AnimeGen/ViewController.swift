@@ -239,7 +239,6 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleTime(_:)), name: Notification.Name("EnableTime"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleGestures(_:)), name: Notification.Name("EnableGestures"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleLightMode(_:)), name: Notification.Name("EnabledLightMode"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleButtons(_:)), name: Notification.Name("EnableButtons"), object: nil)
         
         // Content
         NotificationCenter.default.addObserver(self, selector: #selector(handleParentMode(_:)), name: Notification.Name("ParentsModeLoL"), object: nil)

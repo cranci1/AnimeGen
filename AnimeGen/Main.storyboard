@@ -498,13 +498,13 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="image Width" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-Oc-hEv">
-                                                    <rect key="frame" x="15" y="13" width="86.333333333333329" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="image Width:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-Oc-hEv">
+                                                    <rect key="frame" x="15" y="13" width="90.333333333333329" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="0.10000000000000001" maximumValue="1" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="TOe-1L-GWw">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="0.10000000000000001" maximumValue="1" stepValue="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="TOe-1L-GWw">
                                                     <rect key="frame" x="233" y="5" width="94" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
@@ -525,13 +525,13 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="image Height" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJd-M3-kCv">
-                                                    <rect key="frame" x="15" y="13" width="91" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Height:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJd-M3-kCv">
+                                                    <rect key="frame" x="15" y="13" width="95.666666666666671" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.59999999999999998" minimumValue="0.10000000000000001" maximumValue="1" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="45h-a0-mF3">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.59999999999999998" minimumValue="0.10000000000000001" maximumValue="1" stepValue="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="45h-a0-mF3">
                                                     <rect key="frame" x="233" y="6" width="94" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
@@ -588,9 +588,11 @@ Enable Gestures: Enable to utilize app gestures: (App Restart is required)
                         <outlet property="Buttons" destination="w9I-ox-pfk" id="1dW-ds-tpE"/>
                         <outlet property="Gestures" destination="Axu-nh-KBG" id="dnh-9P-om5"/>
                         <outlet property="Gradient" destination="VlR-Jj-EGT" id="OjE-gp-IbB"/>
+                        <outlet property="heightLabel" destination="YJd-M3-kCv" id="HyO-gK-IZZ"/>
                         <outlet property="segmentedControl" destination="VWg-Nc-mKy" id="Anm-HT-s2A"/>
                         <outlet property="stepperHeight" destination="45h-a0-mF3" id="AZB-pb-F6g"/>
                         <outlet property="stepperWidth" destination="TOe-1L-GWw" id="6wn-B2-bOC"/>
+                        <outlet property="widthLabel" destination="UDs-Oc-hEv" id="z7L-BY-PUv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZb-pI-yQY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1301,9 +1303,6 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title=" Clear History">
                                                         <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                                     </buttonConfiguration>
-                                                    <connections>
-                                                        <action selector="clearButtonTapped:" destination="j4T-B9-g7w" eventType="touchUpInside" id="n0R-Em-vsb"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1312,6 +1311,9 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Ygb-sk-Iyb" appends="YES" id="cW1-Wx-GPK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1327,6 +1329,11 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4k-W9-TJs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ygb-sk-Iyb" userLabel="clearHist">
+                    <connections>
+                        <action selector="clearButtonTapped:" destination="j4T-B9-g7w" id="om9-1M-ywA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3516" y="-857.14285714285722"/>
         </scene>

@@ -20,6 +20,9 @@ class FeaturesApp: UITableViewController {
     @IBOutlet weak var ActivityLabel: UISwitch!
     @IBOutlet weak var Buttons: UISwitch!
     
+    @IBOutlet weak var widthLabel: UILabel!
+    @IBOutlet weak var heightLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +43,9 @@ class FeaturesApp: UITableViewController {
         Gestures.isOn = UserDefaults.standard.bool(forKey: "enableGestures")
         ActivityLabel.isOn = UserDefaults.standard.bool(forKey: "enableTime")
         Buttons.isOn = UserDefaults.standard.bool(forKey: "enableButtons")
+        
+        updateWidthLabel()
+        updateHeightLabel()
     }
     
     @IBAction func switchAnimations(_ sender: UISwitch) {
@@ -65,18 +71,18 @@ class FeaturesApp: UITableViewController {
     }
     
     @IBAction func switctchButtons(_ sender: UISwitch) {
-        let isEnabled = sender.isOn
-        UserDefaults.standard.set(isEnabled, forKey: "enableButtons")
-        NotificationCenter.default.post(name: Notification.Name("EnableButtons"), object: nil, userInfo: ["enableButtons": isEnabled])
+        UserDefaults.standard.set(sender.isOn, forKey: "enableButtons")
     }
     
     @IBAction func widthStepperChangeds(_ sender: UIStepper) {
         Settings.shared.imageWidth = sender.value
+        updateWidthLabel()
         print("New imageWidth: \(Settings.shared.imageWidth)")
     }
 
     @IBAction func heightStepperChangeds(_ sender: UIStepper) {
         Settings.shared.imageHeight = sender.value
+        updateHeightLabel()
         print("New imageHeight: \(Settings.shared.imageHeight)")
     }
     
@@ -88,5 +94,13 @@ class FeaturesApp: UITableViewController {
         UserDefaults.standard.set(isEnabledLightMode, forKey: "enabledLightMode")
         
         NotificationCenter.default.post(name: Notification.Name("EnabledLightMode"), object: nil, userInfo: ["enabledLightMode": isEnabledLightMode])
+    }
+    
+    func updateWidthLabel() {
+        widthLabel.text = String(format: "Images Width: %.2f", Settings.shared.imageWidth)
+    }
+    
+    func updateHeightLabel() {
+        heightLabel.text = String(format: "Images Height: %.2f", Settings.shared.imageHeight)
     }
 }

@@ -32,10 +32,4 @@ extension ViewController {
             self.lightmode = isEnabled
         }
     }
-    
-    @objc func handleButtons(_ notification: Notification) {
-        handleNotification(notification, key: "enableButtons") { isEnabled in
-            self.buttons = isEnabled
-        }
-    }
 }
