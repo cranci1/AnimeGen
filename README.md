@@ -78,8 +78,8 @@ Thanks to all the Developer that are providing this apis for public use! By clic
 | [pic.re](https://doc.pic.re/)                              | SFW      | IMG     |   ✅   |
 | [waifu.im](https://docs.waifu.im/)                         | SFW/NSFW | IMG     |   ✅   |
 | [waifu.pics](https://waifu.pics/docs)                      | SFW/NSFW | IMG/GIF |   ✅   |
-| [Waifu.it](https://waifu.it/)                              | SFW/NSFW | IMG/GIF |   ✅   |
-| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)              | SFW/NSFW | IMG/GIF |   ⚠️   |
+| [Waifu.it](https://waifu.it/)                              | SFW/NSFW | IMG/GIF |   :x:  |
+| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)              | SFW/NSFW | IMG/GIF |   ⚠️    |
 | [nekos.best](https://docs.nekos.best/)                     | SFW      | IMG     |   ✅   |
 | [Nekos api](https://nekosapi.com/docs)                     | SFW/NSFW | IMG     |   ✅   |
 | [Nekos.moe](https://docs.nekos.moe)                        | SFW/NSFW | IMG     |   ✅   |
