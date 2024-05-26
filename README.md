@@ -33,17 +33,16 @@ along with AnimeGen. If not, see <https://www.gnu.org/licenses/>.
 - [Screenshots](#screenshots)
 - [Download](#download)
 - [APIs](#apis)
-- [Working APIs](#working-apis)
+  - [Working APIs](#working-apis)
 - [Third Party Software](#third-party-software)
 - [Acknowledgements](#acknowledgements)
 - [Build](#build)
-- [License](#license)
 
 ## Compatibility
 
-AnimeGen is designed to work smoothly on any device running iOS or iPadOS. The minimum required operating system version is **iOS 13**. This includes iPhones, iPads, and iPod touch devices that are capable of running these versions.
+AnimeGen is designed to work smoothly on any device running iOS or iPadOS 13.
 
-Please note that while AnimeGen should function on all compatible devices, the user experience may vary depending on the specific device model and its performance capabilities.
+> Please note that while AnimeGen should function on all compatible devices, the user experience may vary depending on the specific device model and its performance capabilities.
 
 ## Screenshots
 
@@ -61,7 +60,7 @@ Please note that while AnimeGen should function on all compatible devices, the u
 
 ## Download
 
-You can download the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight. Please note that the nightly-IPA may be unstable. The stable-IPA is recommended for most users.
+You can download the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight. Please note that the nightly-IPA may be unstable. *The Testflight beta build is recommended*.
 
 - [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
 - [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.7/AnimeGen.ipa)
@@ -70,6 +69,7 @@ You can download the IPA file for installation via TrollStore, AltStore, or Side
 ## APIs
 
 Thanks to all the Developer that are providing this apis for public use! By cliccking the name of each API, you will be able to see the API website.
+Without them this project wouldn't exist, so thanks very much to all of them!
 
 ### Working APIs
 
@@ -78,13 +78,13 @@ Thanks to all the Developer that are providing this apis for public use! By clic
 | [pic.re](https://doc.pic.re/)                              | SFW      | IMG     |   ✅   |
 | [waifu.im](https://docs.waifu.im/)                         | SFW/NSFW | IMG     |   ✅   |
 | [waifu.pics](https://waifu.pics/docs)                      | SFW/NSFW | IMG/GIF |   ✅   |
-| [Waifu.it](https://waifu.it/)                              | SFW/NSFW | IMG/GIF |   :x:  |
+| [Waifu.it](https://waifu.it/)                              | SFW/NSFW | IMG/GIF |   ⚠️    |
 | [Hmtai](https://hmtai.hatsunia.cfd/endpoints)              | SFW/NSFW | IMG/GIF |   ⚠️    |
 | [nekos.best](https://docs.nekos.best/)                     | SFW      | IMG     |   ✅   |
 | [Nekos api](https://nekosapi.com/docs)                     | SFW/NSFW | IMG     |   ✅   |
 | [Nekos.moe](https://docs.nekos.moe)                        | SFW/NSFW | IMG     |   ✅   |
 | [NekoBot](https://nekobot.xyz/)                            | SFW/NSFW | IMG/GIF |   ✅   |
-| [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/) | SFW/NSFW | IMG/GIF |  :x:   |
+| [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/) | SFW/NSFW | IMG/GIF |   :x:  |
 | [Purr Bot](https://purrbot.site/)                          | SFW/NSFW | IMG/GIF |   ✅   |
 | [n-sfw api](https://n-sfw.com/)                            | SFW/NSFW | IMG/GIF |   ✅   |
 
@@ -93,12 +93,12 @@ Thanks to all the Developer that are providing this apis for public use! By clic
 
 ## Third Party Software
 
-- [SDWebImage](https://github.com/SDWebImage/SDWebImage): This software is used to handle .gif images for the gallery in the app.
+- [SDWebImage](https://github.com/SDWebImage/SDWebImage): This software is used to handle .gif images for the gallery in the app. Under the [MIT License](https://github.com/SDWebImage/SDWebImage/blob/master/LICENSE)
 
 ## Acknowledgements
 
 - [NineAnimator](https://github.com/SuperMarcus/NineAnimator): Inspired the launch screen idea and provided a base for the app launch screen.
-- [Nekidev](https://github.com/Nekidev/anime-api): Provided the anime-api list used in the app.
+- [Nekidev](https://github.com/Nekidev/anime-api): Provided the anime-api list that helped me find more api to use.
 
 ## Build
 
