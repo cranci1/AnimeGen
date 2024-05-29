@@ -87,6 +87,7 @@ Without them this project wouldn't exist, so thanks very much to all of them!
 | [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/) | SFW/NSFW | IMG/GIF |   :x:  |
 | [Purr Bot](https://purrbot.site/)                          | SFW/NSFW | IMG/GIF |   ✅   |
 | [n-sfw api](https://n-sfw.com/)                            | SFW/NSFW | IMG/GIF |   ✅   |
+| [nekos.life](https://nekos.life)                           | SFW/NSFW | IMG/GIF |   ✅   |
 
 > [!Note]
 > The Hmtai api is not fully supported, [why?](https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md)

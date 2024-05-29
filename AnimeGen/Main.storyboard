@@ -427,8 +427,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="V98-pH-4gV" userLabel="activty">
-                                <string key="footerTitle">Display Activity Label: Choose to show or hide an activity control label displaying session time and images generated. (App Restart is required)</string>
+                            <tableViewSection footerTitle="Show or hide an activity control label displaying session time and images generated. (App Restart is required)" id="V98-pH-4gV" userLabel="activty">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cas-2D-59L">
                                         <rect key="frame" x="16" y="264.00000190734863" width="343" height="43.666667938232422"/>
@@ -462,7 +461,7 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="OYQ-fK-N2W" userLabel="gestures">
-                                <string key="footerTitle">Enable Gestures: Enable to utilize app gestures: (App Restart is required)
+                                <string key="footerTitle">Utilize app gestures: (App Restart is required)
 
  - Swipe Left to Right: Last Image
  - Swipe Right to Left: Generate New Image
@@ -506,7 +505,7 @@ Image Height: Manage the height of an image
 App Restart is required for both!</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="1AI-R3-5GJ">
-                                        <rect key="frame" x="16" y="538.0000057220459" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="524.0000057220459" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1AI-R3-5GJ" id="bTp-lu-pMZ">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
@@ -534,7 +533,7 @@ App Restart is required for both!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="idc-SY-N0X">
-                                        <rect key="frame" x="16" y="581.66667366027832" width="343" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="567.66667366027832" width="343" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="idc-SY-N0X" id="EWp-YD-RjA">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.666667938232422"/>
@@ -1294,6 +1293,9 @@ along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title=" Clear History">
                                                         <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="clearButtonTapped:" destination="j4T-B9-g7w" eventType="touchUpInside" id="lWl-U8-rV5"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1948,6 +1950,43 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                             <outletCollection property="gestureRecognizers" destination="pIw-Kw-YNB" appends="YES" id="2vi-s6-HnY"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="6" reuseIdentifier="service.anilist.header" rowHeight="100" id="8Df-kZ-A25" userLabel="n-sfw.com">
+                                        <rect key="frame" x="16" y="1231.6666660308838" width="343" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Df-kZ-A25" id="utp-SG-59Z">
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nekos.life" translatesAutoresizingMaskIntoConstraints="NO" id="buh-5h-Juf">
+                                                    <rect key="frame" x="16" y="6" width="88" height="88"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nekos.life" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNX-bK-fpp">
+                                                    <rect key="frame" x="112" y="35.666666666666664" width="185" height="28.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="rBA-ac-w82" appends="YES" id="tvk-Dg-60b"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -2017,6 +2056,11 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                 <tapGestureRecognizer id="pIw-Kw-YNB" userLabel="n-sfw">
                     <connections>
                         <action selector="nsfwa:" destination="RZI-Yo-0G5" id="hKU-4Q-Aj8"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rBA-ac-w82" userLabel="nekoslife">
+                    <connections>
+                        <action selector="nekoslife:" destination="RZI-Yo-0G5" id="bSU-HK-Tgt"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -2104,6 +2148,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
         <image name="kyoko" width="640" height="640"/>
         <image name="n-sfw" width="300" height="300"/>
         <image name="nekos.best" width="46" height="46"/>
+        <image name="nekos.life" width="192" height="192"/>
         <image name="nekos.moe" width="180" height="180"/>
         <image name="nekosapi" width="500" height="500"/>
         <image name="pic-re" width="192" height="192"/>

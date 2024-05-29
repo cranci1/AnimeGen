@@ -22,7 +22,7 @@ final class Settings {
         static let imageHeight: Double = 0.6
     }
 
-    private let queue = DispatchQueue(label: "com.example.SettingsQueue", attributes: .concurrent)
+    private let queue = DispatchQueue(label: "me.cranci.SettingsQueue", attributes: .concurrent)
 
     var imageWidth: Double {
         get {

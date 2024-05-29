@@ -22,6 +22,7 @@ class APIsCredits: UITableViewController {
     let kyoko = "https://api.rei.my.id/docs/ANIME/WAIFU-Generator/"
     let purrbot = "https://purrbot.site/"
     let nsfw = "https://n-sfw.com/"
+    let nekoslife = "https://nekos.life"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +80,10 @@ class APIsCredits: UITableViewController {
     
     @IBAction func nsfwa(_ sender: UITapGestureRecognizer) {
         openURL(nsfw)
+    }
+    
+    @IBAction func nekoslife(_ sender: UITapGestureRecognizer) {
+        openURL(nekoslife)
     }
 }
 

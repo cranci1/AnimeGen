@@ -270,7 +270,8 @@ class ViewController: UIViewController {
             "Purr": loadImageFromPurr,
             "NekoBot": loadImageFromNekoBot,
             "Hmtai": startHmtaiLoader,
-            "n-sfw.com": loadImageFromNSFW
+            "n-sfw.com": loadImageFromNSFW,
+            "nekos.life": loadImageFromNekosLife
         ]
 
         apiLoaders[title]?()
