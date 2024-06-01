@@ -9,50 +9,50 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // Image Handling
     var imageHistory: [(UIImage, [String])] = []
     var currentPosition: Int = -1
-
     var currentImageURL: String?
     var lastImage: UIImage?
-    var tagsLabel: UILabel!
-
-    var timeLabel: UILabel!
-    var startTime: Date?
-    var timer: Timer?
-    
     var imageView: UIImageView!
     
-   var apiButton: UIButton!
-    
+    // UI Elements
+    var tagsLabel: UILabel!
+    var timeLabel: UILabel!
+    var apiButton: UIButton!
     var activityIndicator: UIActivityIndicatorView!
-    
+
+    // IBOutlets
     @IBOutlet var RefreshButton: UIButton!
     @IBOutlet var HeartButton: UIButton!
     @IBOutlet var RewindButton: UIButton!
     @IBOutlet var WebButton: UIButton!
     @IBOutlet var ShareButton: UIButton!
-    
+
+    // Timer
+    var startTime: Date?
+    var timer: Timer?
+
+    // User Defaults
     var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
     var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
     var activity = UserDefaults.standard.bool(forKey: "enableTime")
     var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
-    
     var loadstart = UserDefaults.standard.bool(forKey: "enableImageStartup")
     var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
     // var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
-    
     var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
-    
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
     var developerAPIs = UserDefaults.standard.bool(forKey: "enableDevAPIs")
-    
     var lightmode = UserDefaults.standard.bool(forKey: "enabledLightMode")
-    
     var parentsModeLoL = UserDefaults.standard.bool(forKey: "parentsModeLoL")
-    
+
+    // Choice Properties
     var counter: Int = 0
-    
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr"]
+    
+    // Tags Expansion
+    var tagsExpanded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +73,8 @@ class ViewController: UIViewController {
         if let Webimage = UIImage(systemName: "safari.fill") {
             WebButton.setImage(Webimage, for: .normal)
         }
+        
+        setupTagLabelTapGesture()
         
         startTime = Date()
 

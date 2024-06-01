@@ -34,6 +34,21 @@ extension ViewController {
         }
 
         tagsLabel.attributedText = attributedString
+
+        tagsLabel.numberOfLines = tagsExpanded ? 0 : 1
+        tagsLabel.lineBreakMode = .byTruncatingTail
+    }
+
+    func setupTagLabelTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleTagsExpansion))
+        tagsLabel.isUserInteractionEnabled = true
+        tagsLabel.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func toggleTagsExpansion() {
+        tagsExpanded.toggle()
+        tagsLabel.numberOfLines = tagsExpanded ? 0 : 1
+        tagsLabel.lineBreakMode = tagsExpanded ? .byWordWrapping : .byTruncatingTail
     }
 
     func startLoadingIndicator() {
