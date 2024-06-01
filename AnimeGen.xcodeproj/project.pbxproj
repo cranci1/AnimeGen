@@ -21,7 +21,7 @@
 		136BD7E82BE7E24100ED23AE /* Developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7E72BE7E24100ED23AE /* Developer.swift */; };
 		1393C3A92BEBC94300704137 /* AppPreff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A62BEBC94300704137 /* AppPreff.swift */; };
 		1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A72BEBC94300704137 /* Dev-History.swift */; };
-		1393C3AB2BEBC94300704137 /* moe-content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A82BEBC94300704137 /* moe-content.swift */; };
+		1393C3AB2BEBC94300704137 /* content-tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A82BEBC94300704137 /* content-tags.swift */; };
 		13A8496B2BF479DA009A9442 /* n-sfw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496A2BF479DA009A9442 /* n-sfw.swift */; };
 		13A8496E2BF4F0E7009A9442 /* FrameWorksCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */; };
 		13A849702BF4F118009A9442 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496F2BF4F118009A9442 /* Contributor.swift */; };
@@ -78,7 +78,7 @@
 		136BD7E72BE7E24100ED23AE /* Developer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developer.swift; sourceTree = "<group>"; };
 		1393C3A62BEBC94300704137 /* AppPreff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPreff.swift; sourceTree = "<group>"; };
 		1393C3A72BEBC94300704137 /* Dev-History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dev-History.swift"; sourceTree = "<group>"; };
-		1393C3A82BEBC94300704137 /* moe-content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "moe-content.swift"; sourceTree = "<group>"; };
+		1393C3A82BEBC94300704137 /* content-tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "content-tags.swift"; sourceTree = "<group>"; };
 		13A8496A2BF479DA009A9442 /* n-sfw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "n-sfw.swift"; sourceTree = "<group>"; };
 		13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameWorksCredits.swift; sourceTree = "<group>"; };
 		13A8496F2BF4F118009A9442 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
@@ -148,6 +148,7 @@
 		133C4C852BE67CAB00258EDD /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
+				13C4BC492C0B772500B6DB43 /* Secrets-Settings */,
 				13EC98F12BEBC11500759605 /* NotificationCenter */,
 				136BD7D82BE7CA6300ED23AE /* History */,
 				13D4FBE72BE768B400BC3D1C /* Buttons func */,
@@ -157,8 +158,6 @@
 				133C4C882BE67CAB00258EDD /* SceneDelegate.swift */,
 				133C4C862BE67CAB00258EDD /* AppDelegate.swift */,
 				133C4C8A2BE67CAB00258EDD /* ViewController.swift */,
-				13D4FC2C2BE7719700BC3D1C /* Secrets.swift */,
-				1366F0A62C00EB7B00862707 /* ImageSettings.swift */,
 				133C4C8F2BE67CAD00258EDD /* Assets.xcassets */,
 				13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */,
 				13D4FC2E2BE779A200BC3D1C /* LaunchScreen.storyboard */,
@@ -193,6 +192,15 @@
 				13C1E03B2BE9068600A27DEE /* AboutPage.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		13C4BC492C0B772500B6DB43 /* Secrets-Settings */ = {
+			isa = PBXGroup;
+			children = (
+				13D4FC2C2BE7719700BC3D1C /* Secrets.swift */,
+				1366F0A62C00EB7B00862707 /* ImageSettings.swift */,
+			);
+			path = "Secrets-Settings";
 			sourceTree = "<group>";
 		};
 		13D4FBE12BE7683D00BC3D1C /* APIs Requests */ = {
@@ -279,7 +287,7 @@
 			children = (
 				1393C3A62BEBC94300704137 /* AppPreff.swift */,
 				1393C3A72BEBC94300704137 /* Dev-History.swift */,
-				1393C3A82BEBC94300704137 /* moe-content.swift */,
+				1393C3A82BEBC94300704137 /* content-tags.swift */,
 			);
 			path = NotificationCenter;
 			sourceTree = "<group>";
@@ -367,7 +375,7 @@
 				13A849702BF4F118009A9442 /* Contributor.swift in Sources */,
 				13D4FBF42BE76FC000BC3D1C /* Activity.swift in Sources */,
 				13D4FC2D2BE7719700BC3D1C /* Secrets.swift in Sources */,
-				1393C3AB2BEBC94300704137 /* moe-content.swift in Sources */,
+				1393C3AB2BEBC94300704137 /* content-tags.swift in Sources */,
 				136BD7E42BE7DFEE00ED23AE /* AppPref.swift in Sources */,
 				13D4FBEB2BE76D0600BC3D1C /* ImageExtensions.swift in Sources */,
 				13D4FBE92BE768C100BC3D1C /* HeartButton.swift in Sources */,
@@ -553,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -584,7 +592,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 1.9.5;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

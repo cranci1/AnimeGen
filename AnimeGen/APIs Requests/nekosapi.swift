@@ -112,5 +112,6 @@ extension ViewController {
         animateImageChange(with: image)
         stopLoadingIndicator()
         incrementCounter()
+        setTagsLines0()
     }
 }

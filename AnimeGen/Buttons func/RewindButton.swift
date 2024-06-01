@@ -14,7 +14,7 @@ extension ViewController {
         imageHistory.append((image, tags))
     }
         
-    @objc func rewindButtonTapped() {
+    @IBAction func rewindButtonTapped() {
         guard currentPosition > 0 else {
             print("No previous images to rewind to.")
             return

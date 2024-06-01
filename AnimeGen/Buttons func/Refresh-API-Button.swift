@@ -60,7 +60,7 @@ extension ViewController {
         }
     }
 
-    @objc func apiButtonTapped() {
+    @IBAction func apiButtonTapped() {
         let alertController = UIAlertController(title: "Select API", message: nil, preferredStyle: .actionSheet)
         
         let apiOptions: [String]

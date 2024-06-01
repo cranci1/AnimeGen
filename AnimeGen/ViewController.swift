@@ -15,12 +15,6 @@ class ViewController: UIViewController {
     var currentImageURL: String?
     var lastImage: UIImage?
     var imageView: UIImageView!
-    
-    // UI Elements
-    var tagsLabel: UILabel!
-    var timeLabel: UILabel!
-    var apiButton: UIButton!
-    var activityIndicator: UIActivityIndicatorView!
 
     // IBOutlets
     @IBOutlet var RefreshButton: UIButton!
@@ -28,6 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet var RewindButton: UIButton!
     @IBOutlet var WebButton: UIButton!
     @IBOutlet var ShareButton: UIButton!
+    @IBOutlet var apiButton: UIButton!
+    @IBOutlet var tagsLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     // Timer
     var startTime: Date?
@@ -39,7 +37,7 @@ class ViewController: UIViewController {
     var activity = UserDefaults.standard.bool(forKey: "enableTime")
     var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
     var loadstart = UserDefaults.standard.bool(forKey: "enableImageStartup")
-    var moetags = UserDefaults.standard.bool(forKey: "enableMoeTags")
+    var TagsHide = UserDefaults.standard.bool(forKey: "enableTagsHide")
     // var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
@@ -50,9 +48,6 @@ class ViewController: UIViewController {
     // Choice Properties
     var counter: Int = 0
     let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr"]
-    
-    // Tags Expansion
-    var tagsExpanded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +68,6 @@ class ViewController: UIViewController {
         if let Webimage = UIImage(systemName: "safari.fill") {
             WebButton.setImage(Webimage, for: .normal)
         }
-        
-        setupTagLabelTapGesture()
         
         startTime = Date()
 
@@ -109,35 +102,6 @@ class ViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
-        
-            
-        // Api Button
-        apiButton = UIButton(type: .system)
-        apiButton.setTitle("", for: .normal)
-        apiButton.addTarget(self, action: #selector(apiButtonTapped), for: .touchUpInside)
-        apiButton.translatesAutoresizingMaskIntoConstraints = false
-        if gradient {
-            apiButton.backgroundColor = UIColor(red: 0.4, green: 0.3, blue: 0.6, alpha: 1.0)
-        } else if !lightmode {
-            apiButton.backgroundColor = UIColor.darkGray
-        } else if lightmode {
-            apiButton.backgroundColor = UIColor.lightGray
-        }
-        apiButton.layer.cornerRadius = 10
-        apiButton.setTitleColor(UIColor.white, for: .normal)
-        view.addSubview(apiButton)
-        
-        
-        // Activity Indicator
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        if !lightmode {
-            activityIndicator.color = .white
-        } else {
-            activityIndicator.color = .black
-        }
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(activityIndicator)
         
         
         // Tags Label
@@ -202,10 +166,12 @@ class ViewController: UIViewController {
         
         if loadstart {
             loadImageAndTagsFromSelectedAPI()
+        } else {
+            self.activityIndicator.isHidden = true
         }
         
         // APIs Pref
-        NotificationCenter.default.addObserver(self, selector: #selector(handleMoeTags(_:)), name: Notification.Name("EnableMoeTagsChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleTags(_:)), name: Notification.Name("EnableTagsHide"), object: nil)
         
         // App Features
         NotificationCenter.default.addObserver(self, selector: #selector(handleGradient(_:)), name: Notification.Name("EnableGradient"), object: nil)
@@ -227,10 +193,6 @@ class ViewController: UIViewController {
         apiButton.setTitle(choices[selectedChoiceIndex], for: .normal)
         
         NotificationCenter.default.addObserver(self, selector: #selector(selectedChoiceChanged(_:)), name: Notification.Name("SelectedChoiceChanged"), object: nil)
-        
-        if loadstart {
-            loadImageAndTagsFromSelectedAPI()
-        }
     }
     
     deinit {

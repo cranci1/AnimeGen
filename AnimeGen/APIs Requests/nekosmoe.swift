@@ -83,12 +83,8 @@ extension ViewController {
                         self.addImageToHistory(image: newImage, tags: tags)
                     }
                     self.incrementCounter()
-                    
-                    if self.moetags {
-                        self.tagsLabel.isHidden = false
-                    } else {
-                        self.tagsLabel.isHidden = true
-                    }
+                    self.tagsLabel.isHidden = false
+                    self.setTagsLines0()
                 } else {
                     print("Failed to load image data.")
                 }
