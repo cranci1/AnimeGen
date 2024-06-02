@@ -14,9 +14,9 @@ extension ViewController {
              // nothing here cuz ios 14+ 💪
              completion?()
          } else {
-
-             // ios 13.x 😭
              
+             // ios 13.x 😭
+            
              let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
              let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                  completion?()
