@@ -125,12 +125,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GC3-Eg-0Yb" userLabel="apiButton">
-                                <rect key="frame" x="135" y="51.666666666666657" width="105" height="35"/>
+                                <rect key="frame" x="132.66666666666666" y="51.666666666666657" width="110" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="YWu-D4-VsU"/>
-                                    <constraint firstAttribute="width" constant="105" id="puP-Le-4w6"/>
+                                    <constraint firstAttribute="width" constant="110" id="puP-Le-4w6"/>
                                 </constraints>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="pic.re" cornerStyle="medium"/>
                                 <connections>
@@ -2309,6 +2309,9 @@ Also Thanks to all the active users of the TestFlight beta which are always help
         <namedColor name="AccentColor">
             <color red="0.3449999988079071" green="0.33700001239776611" blue="0.83899998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

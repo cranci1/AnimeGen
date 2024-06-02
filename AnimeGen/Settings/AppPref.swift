@@ -13,7 +13,7 @@ class AppPref: UITableViewController {
     
     var isPresentingActionSheet = false
     var selectedChoiceIndex = 0
-    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr"]
+    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr", "nekos.life"]
     
     @IBOutlet weak var LoadImageSwitch: UISwitch!
     @IBOutlet weak var DisplayTags: UISwitch!
