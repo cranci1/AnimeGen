@@ -59,7 +59,8 @@ class AppPref: UITableViewController {
                 self.updateSelectedChoiceIndex(index)
             })
             if let icon = UIImage(named: choiceIcons[index]) {
-                action.setValue(icon.withRenderingMode(.alwaysOriginal), forKey: "image")
+                let resizedIcon = icon.resized(to: CGSize(width: 30, height: 30))
+                action.setValue(resizedIcon.withRenderingMode(.alwaysOriginal), forKey: "image")
             }
             actionSheet.addAction(action)
         }

@@ -12,6 +12,13 @@ extension UIImage {
     var imageData: Data? {
         return self.sd_imageData()
     }
+    
+    func resized(to targetSize: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+    }
 }
 
 extension UIImageView {
