@@ -46,8 +46,8 @@ class ViewController: UIViewController {
     var parentsModeLoL = UserDefaults.standard.bool(forKey: "parentsModeLoL")
 
     // Choice Properties
-    var counter: Int = 0
-    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr", "nekos.life"]
+    var counter: Int = 9
+    let choices = ["Purr", "n-sfw.com", "nekos.life", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.pics", "waifu.im", "pic.re"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

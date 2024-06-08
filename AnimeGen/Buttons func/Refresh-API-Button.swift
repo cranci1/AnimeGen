@@ -86,7 +86,7 @@ extension ViewController {
                 self.loadImageAndTagsFromSelectedAPI()
             }
             if index < choiceIcons.count, let icon = UIImage(named: choiceIcons[index]) {
-                let resizedIcon = icon.resized(to: CGSize(width: 30, height: 30))
+                let resizedIcon = icon.resized(to: CGSize(width: 35, height: 35))
                 action.setValue(resizedIcon.withRenderingMode(.alwaysOriginal), forKey: "image")
             }
             alertController.addAction(action)
