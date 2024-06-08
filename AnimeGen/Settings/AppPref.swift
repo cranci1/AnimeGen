@@ -12,7 +12,7 @@ class AppPref: UITableViewController {
     @IBOutlet weak var APIDefa: UIButton!
     
     var isPresentingActionSheet = false
-    var selectedChoiceIndex = 1
+    var selectedChoiceIndex = 0
     
     let choices = ["Purr", "n-sfw.com", "nekos.life", "NekoBot", "nekos.moe", "Nekos api", "nekos.best", "waifu.pics", "waifu.im", "pic.re"]
     let choiceIcons = ["Purr", "n-sfw", "nekos.life", "NekoBot", "nekos.moe", "nekosapi", "nekos.best", "waifu.pics", "waifu.im", "pic-re"]
