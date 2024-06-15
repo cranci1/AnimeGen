@@ -130,7 +130,7 @@
                                     <constraint firstAttribute="height" constant="35" id="YWu-D4-VsU"/>
                                     <constraint firstAttribute="width" constant="110" id="puP-Le-4w6"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="pic.re" cornerStyle="medium"/>
                                 <connections>

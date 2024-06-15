@@ -64,7 +64,7 @@ extension ViewController {
         return mutableAttributedString
     }
     
-    func incrementCounter() {
+    @objc func incrementCounter() {
         counter += 1
         updateTimeLabel()
     }

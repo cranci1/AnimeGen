@@ -11,87 +11,104 @@ extension ViewController {
 
     func loadImageFromNekosMoe() {
         startLoadingIndicator()
-
+        
         let isNSFW = UserDefaults.standard.bool(forKey: "explicitContents")
-
         let apiEndpoint = "https://nekos.moe/api/v1/random/image"
-
-        guard var components = URLComponents(string: apiEndpoint) else {
-            print("Invalid URL")
-            stopLoadingIndicator()
+        
+        var urlComponents = URLComponents(string: apiEndpoint)
+        urlComponents?.queryItems = [URLQueryItem(name: "nsfw", value: isNSFW.description.lowercased())]
+        
+        guard let url = urlComponents?.url else {
+            handleError("Invalid URL")
             return
         }
-
-        components.queryItems = [URLQueryItem(name: "nsfw", value: isNSFW.description.lowercased())]
-
-        guard let url = components.url else {
-            print("Invalid URL")
-            stopLoadingIndicator()
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
-                guard error == nil,
-                    let httpResponse = response as? HTTPURLResponse,
-                    httpResponse.statusCode == 200,
-                    let jsonData = data,
-                    let jsonResponse = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
-                    let images = jsonResponse["images"] as? [[String: Any]],
-                    let firstImage = images.first,
-                    let imageId = firstImage["id"] as? String,
-                    let tagsArray = firstImage["tags"] as? [String] else {
-                        print("Failed to get valid response.")
-                        self.stopLoadingIndicator()
-                        return
+                if let error = error {
+                    self.handleError("Request error: \(error.localizedDescription)")
+                    return
                 }
-
-                self.updateUIWithTags(tagsArray)
-                self.loadImage(with: imageId, tags: tagsArray)
+                
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
+                      let jsonData = data else {
+                    self.handleError("Invalid response or data.")
+                    return
+                }
+                
+                self.handleImageData(jsonData)
             }
         }
-
         task.resume()
     }
 
-    private func loadImage(with imageId: String, tags: [String]?) {
-        var components = URLComponents(string: "https://nekos.moe/thumbnail/\(imageId)")
-        if let tags = tags {
-            components?.queryItems = [URLQueryItem(name: "tags", value: tags.joined(separator: ","))]
+    private func handleError(_ message: String) {
+        print(message)
+        stopLoadingIndicator()
+    }
+    
+    private func handleImageData(_ jsonData: Data) {
+        do {
+            guard let jsonResponse = try JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
+                  let images = jsonResponse["images"] as? [[String: Any]],
+                  let firstImage = images.first,
+                  let imageId = firstImage["id"] as? String,
+                  let tagsArray = firstImage["tags"] as? [String] else {
+                handleError("Failed to parse JSON response.")
+                return
+            }
+            
+            updateUIWithTags(tagsArray)
+            loadImage(with: imageId, tags: tagsArray)
+        } catch {
+            handleError("JSON parsing error: \(error.localizedDescription)")
         }
-
-        guard let url = components?.url else {
-            print("Invalid URL")
-            stopLoadingIndicator()
+    }
+    
+    private func loadImage(with imageId: String, tags: [String]?) {
+        var urlComponents = URLComponents(string: "https://nekos.moe/thumbnail/\(imageId)")
+        if let tags = tags {
+            urlComponents?.queryItems = [URLQueryItem(name: "tags", value: tags.joined(separator: ","))]
+        }
+        
+        guard let url = urlComponents?.url else {
+            handleError("Invalid URL")
             return
         }
-
+        
         let imageRequest = URLRequest(url: url)
-
-        let imageTask = URLSession.shared.dataTask(with: imageRequest) { (imageData, _, imageError) in
+        
+        let imageTask = URLSession.shared.dataTask(with: imageRequest) { data, _, error in
             DispatchQueue.main.async {
-                if let imageError = imageError {
-                    print("Image loading error: \(imageError)")
-                } else if let imageData = imageData, let newImage = UIImage(data: imageData) {
-                    self.imageView.image = newImage
-                    self.addToHistory(image: newImage)
-                    self.animateImageChange(with: newImage)
-                    if let tags = tags {
-                        self.addImageToHistory(image: newImage, tags: tags)
-                    }
-                    self.incrementCounter()
-                    self.tagsLabel.isHidden = false
-                    self.setTagsLines0()
-                } else {
-                    print("Failed to load image data.")
+                if let error = error {
+                    self.handleError("Image loading error: \(error.localizedDescription)")
+                    return
                 }
-                self.stopLoadingIndicator()
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    self.handleError("Failed to load image data.")
+                    return
+                }
+                
+                self.handleImageLoadingCompletion(image, tags: tags)
             }
         }
-
+        
         imageTask.resume()
+    }
+    
+    private func handleImageLoadingCompletion(_ image: UIImage, tags: [String]?) {
+        self.imageView.image = image
+        self.addToHistory(image: image)
+        self.animateImageChange(with: image)
+        if let tags = tags {
+            self.addImageToHistory(image: image, tags: tags)
+        }
+        self.incrementCounter()
+        self.tagsLabel.isHidden = false
+        self.setTagsLines0()
+        self.stopLoadingIndicator()
     }
 }
