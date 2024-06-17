@@ -2,7 +2,9 @@
 
 <div align="center">
 
-[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) [![Platforms](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue)](https://img.shields.io/badge/Platforms-iOS%20%7C%20iPadOS-blue) [![Testflight](https://img.shields.io/badge/Nightly-Testflight-008080)](https://testflight.apple.com/join/Qx5saHll)
+[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) [![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-orange?logo=apple&logoColor=white)](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-red?logo=apple&logoColor=white)
+[![Version](https://custom-icon-badges.demolab.com/github/v/release/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/v/release/cranci1/AnimeGen)
+[![Commit](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen) [![Testflight](https://img.shields.io/badge/Join-Testflight-008080)](https://testflight.apple.com/join/Qx5saHll)
 
 </div>
 
