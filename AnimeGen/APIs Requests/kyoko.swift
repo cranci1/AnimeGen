@@ -19,13 +19,21 @@ extension ViewController {
             guard let self = self else { return }
             
             var endpointPrefix: String
-            var categories: [String]
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsKyoko") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
+            } else {
+                if UserDefaults.standard.bool(forKey: "explicitContents") {
+                    categories = ["waifu", "neko", "trap", "blowjob"]
+                } else {
+                    categories = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
+                }
+            }
             
             if UserDefaults.standard.bool(forKey: "explicitContents") {
-                categories = ["waifu", "neko", "trap", "blowjob"]
                 endpointPrefix = "https://waifu.rei.my.id/nsfw/"
             } else {
-                categories = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
                 endpointPrefix = "https://waifu.rei.my.id/sfw/"
             }
             

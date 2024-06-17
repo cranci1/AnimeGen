@@ -18,15 +18,17 @@ extension ViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             
-            var endpointPrefix: String
-            var categories: [String]
+            let endpointPrefix: String = "https://nekobot.xyz/api/image?type="
+            var categories: [String] = []
             
-            if UserDefaults.standard.bool(forKey: "explicitContents") {
-                categories = ["hentai", "hkitsune", "hanal", "hthigh", "hboobs", "yaoi"]
-                endpointPrefix = "https://nekobot.xyz/api/image?type="
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsNekosbot") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
             } else {
-                categories = ["neko", "coffee", "food", "kemonomimi"]
-                endpointPrefix = "https://nekobot.xyz/api/image?type="
+                if UserDefaults.standard.bool(forKey: "explicitContents") {
+                    categories = ["hentai", "hkitsune", "hanal", "hthigh", "hboobs", "yaoi"]
+                } else {
+                    categories = ["neko", "coffee", "food", "kemonomimi"]
+                }
             }
             
             let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))

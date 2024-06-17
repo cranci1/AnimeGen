@@ -19,13 +19,21 @@ extension ViewController {
             guard let self = self else { return }
             
             var endpointPrefix: String
-            var categories: [String]
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsN-Sfw.Com") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
+            } else {
+                if UserDefaults.standard.bool(forKey: "explicitContents") {
+                    categories = ["anal","ass", "blowjob", "breeding", "buttplug", "cages", "ecchi", "feet", "fo", "furry", "gif", "hentai", "legs", "masturbation", "milf", "muscle", "neko", "paizuri", "petgirls", "pierced", "selfie", "smothering", "socks", "trap", "vagina", "yaoi", "yuri"]
+                } else {
+                    categories = ["bunny-girl", "charlotte", "date-a-live", "death-note", "demon-slayer", "haikyu", "hxh", "kakegurui", "konosuba", "komi", "memes", "naruto", "noragami", "one-piece", "rag", "sakurasou", "sao", "sds", "spy-x-family", "takagi-san", "toradora", "your-name"]
+                }
+            }
             
             if UserDefaults.standard.bool(forKey: "explicitContents") {
-                categories = ["anal","ass", "blowjob", "breeding", "buttplug", "cages", "ecchi", "feet", "fo", "furry", "gif", "hentai", "legs", "masturbation", "milf", "muscle", "neko", "paizuri", "petgirls", "pierced", "selfie", "smothering", "socks", "trap", "vagina", "yaoi", "yuri"]
                 endpointPrefix = "https://api.n-sfw.com/nsfw/"
             } else {
-                categories = ["bunny-girl", "charlotte", "date-a-live", "death-note", "demon-slayer", "haikyu", "hxh", "kakegurui", "konosuba", "komi", "memes", "naruto", "noragami", "one-piece", "rag", "sakurasou", "sao", "sds", "spy-x-family", "takagi-san", "toradora", "your-name"]
                 endpointPrefix = "https://api.n-sfw.com/sfw/"
             }
             

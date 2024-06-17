@@ -19,7 +19,13 @@ extension ViewController {
             guard let self = self else { return }
             
             let endpointPrefix = "https://nekos.life/api/v2/img/"
-            let categories = ["tickle", "slap", "pat", "neko", "kiss", "hug", "fox_girl", "feed", "cuddle", "ngif", "smug", "wallpaper", "gecg", "avatar", "waifu"]
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsNekos.Life") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
+            } else {
+                categories = ["tickle", "slap", "pat", "neko", "kiss", "hug", "fox_girl", "feed", "cuddle", "ngif", "smug", "gecg", "avatar", "waifu"]
+            }
             
             let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
             let randomCategory = categories[randomIndex]

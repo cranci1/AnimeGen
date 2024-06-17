@@ -12,27 +12,36 @@ extension ViewController {
     func loadImageFromNekosBest() {
         startLoadingIndicator()
 
-        let categories = ["neko", "waifu", "kitsune"]
-        
-        let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
-        let randomCategory = categories[randomIndex]
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsNekos.Best") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
+            } else {
+                categories = ["neko", "waifu", "kitsune"]
+            }
+            
+            let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
+            let randomCategory = categories[randomIndex]
 
-        let apiEndpoint = "https://nekos.best/api/v2/\(randomCategory)"
+            let apiEndpoint = "https://nekos.best/api/v2/\(randomCategory)"
 
-        guard let components = URLComponents(string: apiEndpoint) else {
-            print("Invalid URL")
-            stopLoadingIndicator()
-            return
+            guard let url = URL(string: apiEndpoint) else {
+                print("Invalid URL")
+                DispatchQueue.main.async {
+                    self.stopLoadingIndicator()
+                }
+                return
+            }
+
+            let request = URLRequest(url: url)
+            
+            DispatchQueue.main.async {
+                self.fetchImage(with: request, tag: randomCategory)
+            }
         }
-
-        guard let url = components.url else {
-            print("Invalid URL components")
-            stopLoadingIndicator()
-            return
-        }
-
-        let request = URLRequest(url: url)
-        fetchImage(with: request, tag: randomCategory)
     }
 
     private func fetchImage(with request: URLRequest, tag: String) {

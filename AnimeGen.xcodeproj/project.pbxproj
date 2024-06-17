@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132376E12C20602900D87012 /* Tags Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132376E02C20602900D87012 /* Tags Selection.swift */; };
+		132376E32C20606400D87012 /* ImageGenerationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132376E22C20606400D87012 /* ImageGenerationSettings.swift */; };
 		133C4C872BE67CAB00258EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C862BE67CAB00258EDD /* AppDelegate.swift */; };
 		133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C882BE67CAB00258EDD /* SceneDelegate.swift */; };
 		133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C8A2BE67CAB00258EDD /* ViewController.swift */; };
@@ -62,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		132376E02C20602900D87012 /* Tags Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tags Selection.swift"; sourceTree = "<group>"; };
+		132376E22C20606400D87012 /* ImageGenerationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerationSettings.swift; sourceTree = "<group>"; };
 		133C4C832BE67CAB00258EDD /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		133C4C862BE67CAB00258EDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		133C4C882BE67CAB00258EDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,8 +254,8 @@
 		13D4FC2B2BE7710C00BC3D1C /* Hmtai */ = {
 			isa = PBXGroup;
 			children = (
-				13D4FC272BE7710400BC3D1C /* HmtaiReader.swift */,
 				13D4FC282BE7710400BC3D1C /* HmtaiSender.swift */,
+				13D4FC272BE7710400BC3D1C /* HmtaiReader.swift */,
 			);
 			path = Hmtai;
 			sourceTree = "<group>";
@@ -269,6 +273,8 @@
 				13AB1D292BE93E3D009132CB /* Historyy.swift */,
 				13DD19D92BEA58B00034B014 /* SettingsMain.swift */,
 				13AC382B2BEFA34A00676546 /* APIsValid.swift */,
+				132376E02C20602900D87012 /* Tags Selection.swift */,
+				132376E22C20606400D87012 /* ImageGenerationSettings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				136BD7E42BE7DFEE00ED23AE /* AppPref.swift in Sources */,
 				13D4FBEB2BE76D0600BC3D1C /* ImageExtensions.swift in Sources */,
 				13D4FBE92BE768C100BC3D1C /* HeartButton.swift in Sources */,
+				132376E32C20606400D87012 /* ImageGenerationSettings.swift in Sources */,
 				13D4FC212BE770EC00BC3D1C /* kyoko.swift in Sources */,
 				13D4FBF22BE76DCA00BC3D1C /* Web-Share.swift in Sources */,
 				13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */,
@@ -416,6 +423,7 @@
 				13AB1D2A2BE93E3D009132CB /* Historyy.swift in Sources */,
 				133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */,
 				136BD7E62BE7E1B300ED23AE /* Contents.swift in Sources */,
+				132376E12C20602900D87012 /* Tags Selection.swift in Sources */,
 				13C1E03C2BE9068600A27DEE /* AboutPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,7 +569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.5;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -592,7 +600,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9.5;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

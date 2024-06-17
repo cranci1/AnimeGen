@@ -18,13 +18,17 @@ extension ViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self = self else { return }
             
-            let categories: [String]
             let endpointPrefix: String = "https://waifu.it/api/v4/"
-
-            if UserDefaults.standard.bool(forKey: "explicitContents") {
-                categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bully", "bye", "chase", "cheer", "cringe", "cry", "dab", "dance", "die", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kill", "kiss", "laugh", "lick", "love", "lurk", "midfing", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "punch", "run", "sad", "shoot", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stab", "stare", "suicide", "tease", "think", "thumbsup", "tickle", "triggered", "wag", "wave", "wink", "yes"]
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsWaifu.It") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
             } else {
-                categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bye", "chase", "cheer", "cringe", "cry", "cuddle", "dab", "dance", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kiss", "laugh", "lurk", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "run", "sad", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stare", "tease", "think", "thumbsup", "tickle", "wag", "wave", "wink", "yes"]
+                if UserDefaults.standard.bool(forKey: "explicitContents") {
+                    categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bully", "bye", "chase", "cheer", "cringe", "cry", "dab", "dance", "die", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kill", "kiss", "laugh", "lick", "love", "lurk", "midfing", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "punch", "run", "sad", "shoot", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stab", "stare", "suicide", "tease", "think", "thumbsup", "tickle", "triggered", "wag", "wave", "wink", "yes"]
+                } else {
+                    categories = ["angry", "baka", "bite", "blush", "bonk", "bored", "bye", "chase", "cheer", "cringe", "cry", "cuddle", "dab", "dance", "disgust", "facepalm", "feed", "glomp", "happy", "hi", "highfive", "hold", "hug", "kick", "kiss", "laugh", "lurk", "nervous", "nom", "nope", "nuzzle", "panic", "pat", "peck", "poke", "pout", "run", "sad", "shrug", "sip", "slap", "sleepy", "smile", "smug", "stare", "tease", "think", "thumbsup", "tickle", "wag", "wave", "wink", "yes"]
+                }
             }
             
             let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
@@ -38,9 +42,7 @@ extension ViewController {
                 return
             }
             
-            var request = URLRequest(url: url)
-        
-            request.setValue(Secrets.waifuItToken, forHTTPHeaderField: "Authorization")
+            let request = URLRequest(url: url)
             
             self.fetchImage(with: request, startTime: startTime, tag: randomCategory)
         }

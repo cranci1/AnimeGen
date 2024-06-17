@@ -19,13 +19,21 @@ extension ViewController {
             guard let self = self else { return }
             
             var endpointPrefix: String
-            var categories: [String]
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsWaifu.Pics") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
+            } else {
+                if UserDefaults.standard.bool(forKey: "explicitContents") {
+                    categories = ["waifu", "neko", "trap", "blowjob"]
+                } else {
+                    categories = ["waifu", "neko", "shinobu", "cuddle", "hug", "kiss", "lick", "pat", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
+                }
+            }
             
             if UserDefaults.standard.bool(forKey: "explicitContents") {
-                categories = ["waifu", "neko", "trap", "blowjob"]
                 endpointPrefix = "https://api.waifu.pics/nsfw/"
             } else {
-                categories = ["waifu", "neko", "shinobu", "cuddle", "hug", "kiss", "lick", "pat", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
                 endpointPrefix = "https://api.waifu.pics/sfw/"
             }
             

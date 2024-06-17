@@ -32,7 +32,7 @@ struct APIsSuppport: View {
                 }
             }
             .overlay(
-                Text("Support status will not be updated instantly, but rather promptly after the APIs resume operation.")
+                Text("Support status will not be updated instantly, but rather after I/users notice it.")
                     .font(.footnote)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)

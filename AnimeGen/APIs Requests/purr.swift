@@ -19,13 +19,21 @@ extension ViewController {
             guard let self = self else { return }
             
             var endpointPrefix: String
-            var categories: [String]
+            var categories: [String] = []
+            
+            if let selectedTags = UserDefaults.standard.array(forKey: "SelectedTagsPurr") as? [String], !selectedTags.isEmpty {
+                categories = selectedTags
+            } else {
+                if UserDefaults.standard.bool(forKey: "explicitContents") {
+                    categories = ["anal/gif", "blowjob/gif", "cum/gif", "fuck/gif", "neko/gif", "pussylick/gif", "solo/gif", "solo_male/gif", "threesome_fff/gif", "threesome_ffm/gif", "threesome_mmf/gif", "yuri/gif", "neko/img"]
+                } else {
+                    categories = ["angry/gif", "bite/gif", "blush/gif", "comfy/gif", "cry/gif", "cuddle/gif", "dance/gif", "eevee/gif", "fluff/gif", "holo/gif", "hug/gif", "kiss/gif", "lay/gif", "lick/gif", "neko/gif", "pat/gif", "poke/gif", "pout/gif", "slap/gif", "smile/gif", "tail/gif", "tickle/gif", "background/img", "eevee/img", "holo/img", "icon/img", "kitsune/img", "neko/img", "okami/img", "senko/img", "shiro/img"]
+                }
+            }
             
             if UserDefaults.standard.bool(forKey: "explicitContents") {
-                categories = ["anal/gif", "blowjob/gif", "cum/gif", "fuck/gif", "neko/gif", "pussylick/gif", "solo/gif", "solo_male/gif", "threesome_fff/gif", "threesome_ffm/gif", "threesome_mmf/gif", "yuri/gif", "neko/img"]
                 endpointPrefix = "https://purrbot.site/api/img/nsfw/"
             } else {
-                categories = ["angry/gif", "bite/gif", "blush/gif", "comfy/gif", "cry/gif", "cuddle/gif", "dance/gif", "eevee/gif", "fluff/gif", "holo/gif", "hug/gif", "kiss/gif", "lay/gif", "lick/gif", "neko/gif", "pat/gif", "poke/gif", "pout/gif", "slap/gif", "smile/gif", "tail/gif", "tickle/gif", "background/img", "eevee/img", "holo/img", "icon/img", "kitsune/img", "neko/img", "okami/img", "senko/img", "shiro/img"]
                 endpointPrefix = "https://purrbot.site/api/img/sfw/"
             }
             

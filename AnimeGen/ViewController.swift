@@ -47,7 +47,7 @@ class ViewController: UIViewController {
 
     // Choice Properties
     var counter: Int = 0
-    let choices = ["waifu.im", "pic.re", "waifu.pics", "waifu.it", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "n-sfw.com", "Purr", "nekos.life"]
+    let choices = ["waifu.im", "pic.re", "waifu.pics", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "nekos.life", "n-sfw.com", "Purr"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
