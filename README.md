@@ -66,7 +66,7 @@ AnimeGen is designed to work smoothly on any device running iOS or iPadOS 13.
 You can download the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight. Please note that the nightly-IPA may be unstable. *The Testflight beta build is recommended*.
 
 - [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
-- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.9/AnimeGen.ipa)
+- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v2.0.0/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
 
 ## APIs
