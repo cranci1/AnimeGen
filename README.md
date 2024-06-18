@@ -2,14 +2,15 @@
 
 <div align="center">
 
-[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) [![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-orange?logo=apple&logoColor=white)](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-red?logo=apple&logoColor=white)
+[![Build and Release IPA](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml/badge.svg)](https://github.com/cranci1/AnimeGen/actions/workflows/build.yml) 
+[![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-orange?logo=apple&logoColor=white)](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-red?logo=apple&logoColor=white)
+[![Commit](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen) 
 [![Version](https://custom-icon-badges.demolab.com/github/v/release/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/v/release/cranci1/AnimeGen)
-[![Commit](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen) [![Testflight](https://img.shields.io/badge/Join-Testflight-008080)](https://testflight.apple.com/join/Qx5saHll)
+[![Testflight](https://img.shields.io/badge/Join-Testflight-008080)](https://testflight.apple.com/join/Qx5saHll)
 
 </div>
 
 # AnimeGen
-
 AnimeGen, a mobile app developed in Swift that allows users to **save**, **generate**, and **share** anime images! Using public APIs to fetch the images. GPLv3 Licensed.
 
 ```
@@ -65,7 +66,7 @@ AnimeGen is designed to work smoothly on any device running iOS or iPadOS 13.
 You can download the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight. Please note that the nightly-IPA may be unstable. *The Testflight beta build is recommended*.
 
 - [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
-- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v1.9/AnimeGen.ipa)
+- [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v2.0.0/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
 
 ## APIs
