@@ -9,7 +9,6 @@
 </div>
 
 # AnimeGen
-
 AnimeGen, a mobile app developed in Swift that allows users to **save**, **generate**, and **share** anime images! Using public APIs to fetch the images. GPLv3 Licensed.
 
 ```
