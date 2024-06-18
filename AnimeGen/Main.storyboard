@@ -109,22 +109,6 @@
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GC3-Eg-0Yb" userLabel="apiButton">
-                                <rect key="frame" x="132.66666666666666" y="50.666666666666657" width="110" height="35"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="YWu-D4-VsU"/>
-                                    <constraint firstAttribute="width" constant="110" id="puP-Le-4w6"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="pic.re">
-                                    <backgroundConfiguration key="background" cornerRadius="8"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="apiButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="yH1-gW-1IJ"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="USr-b9-Q6A" userLabel="Activity Indicator">
                                 <rect key="frame" x="169" y="646" width="37" height="37"/>
                             </activityIndicatorView>
@@ -141,6 +125,22 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="refreshButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="gff-0G-PO7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GC3-Eg-0Yb" userLabel="apiButton">
+                                <rect key="frame" x="132.66666666666666" y="50.666666666666657" width="110" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="YWu-D4-VsU"/>
+                                    <constraint firstAttribute="width" constant="110" id="puP-Le-4w6"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="pic.re" cornerStyle="medium">
+                                    <backgroundConfiguration key="background"/>
+                                    <color key="baseBackgroundColor" systemColor="systemGray4Color"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="apiButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="yH1-gW-1IJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -930,7 +930,7 @@ App Restart is required for both!</string>
                                             <rect key="frame" x="0.0" y="0.0" width="318.33333333333331" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags Allowed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FiE-xN-7jc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allowed Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FiE-xN-7jc">
                                                     <rect key="frame" x="15" y="13" width="90.333333333333329" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -2303,7 +2303,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
             </objects>
             <point key="canvasLocation" x="2652" y="1433"/>
         </scene>
-        <!--Back-->
+        <!--Tags-->
         <scene sceneID="bS1-IS-1EV">
             <objects>
                 <viewController storyboardIdentifier="TagSelectionViewController" id="HQR-0Q-VFN" customClass="TagSelectionViewController" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
@@ -2312,7 +2312,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Zoa-X9-tbB">
-                                <rect key="frame" x="0.0" y="83" width="375" height="646"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="724"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagCell" id="En8-Ee-SpG">
                                         <rect key="frame" x="16" y="49" width="343" height="43.666667938232422"/>
@@ -2326,26 +2326,17 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hl-Kh-0gg">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Select Tags" id="NXY-dK-QeH"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1uf-2y-5o6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Zoa-X9-tbB" firstAttribute="leading" secondItem="1uf-2y-5o6" secondAttribute="leading" id="JRL-Nc-pmR"/>
-                            <constraint firstItem="5Hl-Kh-0gg" firstAttribute="trailing" secondItem="Zoa-X9-tbB" secondAttribute="trailing" id="La5-Bk-OVs"/>
+                            <constraint firstItem="Zoa-X9-tbB" firstAttribute="top" secondItem="1uf-2y-5o6" secondAttribute="top" id="TrM-5h-Cig"/>
                             <constraint firstItem="Zoa-X9-tbB" firstAttribute="centerY" secondItem="md3-z1-iWm" secondAttribute="centerY" id="Whj-CW-nbr"/>
-                            <constraint firstItem="Zoa-X9-tbB" firstAttribute="top" secondItem="5Hl-Kh-0gg" secondAttribute="bottom" constant="-5" id="csA-NQ-QQa"/>
-                            <constraint firstItem="5Hl-Kh-0gg" firstAttribute="top" secondItem="1uf-2y-5o6" secondAttribute="top" id="jcU-aJ-8ZL"/>
-                            <constraint firstItem="5Hl-Kh-0gg" firstAttribute="leading" secondItem="Zoa-X9-tbB" secondAttribute="leading" id="qtw-P1-1E5"/>
                             <constraint firstItem="Zoa-X9-tbB" firstAttribute="centerX" secondItem="md3-z1-iWm" secondAttribute="centerX" id="sug-qU-0dK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Back" id="QOo-xa-EPD"/>
+                    <navigationItem key="navigationItem" title="Tags" id="WnD-4S-I0h"/>
                     <connections>
                         <outlet property="tableView" destination="Zoa-X9-tbB" id="uvQ-6M-zd6"/>
                     </connections>
@@ -2769,8 +2760,8 @@ When none are selected, all tags will be utilized</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

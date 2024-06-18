@@ -19,7 +19,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -29,7 +29,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -39,7 +39,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -49,7 +49,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -59,7 +59,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -69,7 +69,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -79,7 +79,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -89,7 +89,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
     
@@ -99,7 +99,7 @@ class ImageGenerationSettings: UITableViewController {
         
         if let tagSelectionVC = storyboard.instantiateViewController(identifier: "TagSelectionViewController") as? TagSelectionViewController {
             tagSelectionVC.selectedAPI = selectedAPI
-            self.present(tagSelectionVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(tagSelectionVC, animated: true)
         }
     }
 }
