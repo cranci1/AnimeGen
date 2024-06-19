@@ -21,6 +21,8 @@ class TagSelectionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.title = "Tags"
+        
         configureCategoriesAndTags()
     }
     

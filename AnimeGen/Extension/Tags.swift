@@ -57,6 +57,7 @@ extension ViewController {
     }
 
     func startLoadingIndicator() {
+        self.activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
 

@@ -38,7 +38,6 @@ class ViewController: UIViewController {
     var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
     var loadstart = UserDefaults.standard.bool(forKey: "enableImageStartup")
     var TagsHide = UserDefaults.standard.bool(forKey: "enableTagsHide")
-    // var kyokobanner = UserDefaults.standard.bool(forKey: "enableKyokobanner")
     var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
     var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
     var developerAPIs = UserDefaults.standard.bool(forKey: "enableDevAPIs")
@@ -91,10 +90,6 @@ class ViewController: UIViewController {
         if gradient {
             setupGradient()
             animateGradient()
-        } else if !lightmode {
-            view.backgroundColor = UIColor(red: 0.125, green: 0.125, blue: 0.125, alpha: 1.0)
-        } else if lightmode {
-            view.backgroundColor = UIColor.white
         }
         
         // Image View
@@ -102,34 +97,6 @@ class ViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
-        
-        
-        // Tags Label
-        tagsLabel = UILabel()
-        if !lightmode{
-            tagsLabel.textColor = .white
-        } else {
-            tagsLabel.textColor = .black
-        }
-        tagsLabel.textAlignment = .center
-        tagsLabel.font = UIFont.systemFont(ofSize: 18)
-        tagsLabel.numberOfLines = 0
-        tagsLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tagsLabel)
-        
-        
-        // Time Label
-        timeLabel = UILabel()
-        if !lightmode{
-            timeLabel.textColor = .white
-        } else {
-            timeLabel.textColor = .black
-        }
-        timeLabel.textAlignment = .center
-        timeLabel.font = UIFont.systemFont(ofSize: 18)
-        timeLabel.numberOfLines = 0
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(timeLabel)
         
         timeLabel.isHidden = !activity
 

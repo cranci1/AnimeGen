@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-4L-MHC" userLabel="Rewind">
-                                <rect key="frame" x="230" y="698" width="50" height="50"/>
+                                <rect key="frame" x="230" y="691.33333333333337" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="0M7-2F-g0y"/>
                                     <constraint firstAttribute="height" constant="50" id="V2C-fC-RJe"/>
@@ -39,14 +39,14 @@
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="bottom" imagePadding="0.0">
                                     <imageReference key="image" image="arrowshape.turn.up.left.circle.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="31" scale="large" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="31" scale="large" weight="regular"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="rewindButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="JXo-G3-j8z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z56-op-3c7" userLabel="Heart">
-                                <rect key="frame" x="95" y="698" width="50" height="50"/>
+                                <rect key="frame" x="95" y="691.33333333333337" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Wlt-fT-EHz"/>
                                     <constraint firstAttribute="height" constant="50" id="sLH-lj-reh"/>
@@ -54,7 +54,7 @@
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="bottom" imagePadding="0.0">
                                     <imageReference key="image" image="heart.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="31" scale="large" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="31" scale="default" weight="regular"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="heartButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="L38-eA-prf"/>
@@ -93,7 +93,7 @@
                                     <action selector="historyButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="OX4-jy-hF3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWO-Qh-0Hy" userLabel="tags">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWO-Qh-0Hy" userLabel="tags">
                                 <rect key="frame" x="187.66666666666666" y="115.66666666666667" width="0.0" height="0.0"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -104,24 +104,24 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bck-CF-74a" userLabel="activitylabel">
-                                <rect key="frame" x="187.66666666666666" y="778" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.66666666666666" y="756.33333333333337" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="USr-b9-Q6A" userLabel="Activity Indicator">
-                                <rect key="frame" x="169" y="646" width="37" height="37"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="USr-b9-Q6A" userLabel="Activity Indicator">
+                                <rect key="frame" x="169" y="644.33333333333337" width="37" height="37"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USF-Wa-Nh3" userLabel="Refersh">
-                                <rect key="frame" x="145" y="683" width="85" height="80"/>
+                                <rect key="frame" x="145" y="681.33333333333337" width="85" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="l2F-Cg-mVr"/>
+                                    <constraint firstAttribute="height" constant="70" id="l2F-Cg-mVr"/>
                                     <constraint firstAttribute="width" constant="85" id="qIB-Yq-ipb"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemTealColor"/>
                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="bottom" imagePadding="0.0">
                                     <imageReference key="image" image="arrow.clockwise.circle.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="40" scale="large" weight="bold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="38" scale="large" weight="bold"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="refreshButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="gff-0G-PO7"/>
@@ -137,6 +137,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="pic.re" cornerStyle="medium">
                                     <backgroundConfiguration key="background"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
                                     <color key="baseBackgroundColor" systemColor="systemGray4Color"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -145,11 +146,11 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="g8n-4L-MHC" firstAttribute="centerY" secondItem="USF-Wa-Nh3" secondAttribute="centerY" id="01c-7d-0wj"/>
-                            <constraint firstItem="Bck-CF-74a" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2pk-Uz-iyL"/>
+                            <constraint firstItem="Bck-CF-74a" firstAttribute="centerY" secondItem="qmc-q2-gs9" secondAttribute="centerY" id="2pk-Uz-iyL"/>
                             <constraint firstItem="GC3-Eg-0Yb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="37y-MS-lWA"/>
                             <constraint firstItem="tWO-Qh-0Hy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3A5-o7-djs"/>
                             <constraint firstItem="NzD-Nz-XrO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="8aK-VP-Hia"/>
@@ -158,7 +159,7 @@
                             <constraint firstItem="Lr3-qX-nNj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Fhp-bx-93T"/>
                             <constraint firstItem="tWO-Qh-0Hy" firstAttribute="top" secondItem="GC3-Eg-0Yb" secondAttribute="bottom" constant="30" id="ITV-9e-Eek"/>
                             <constraint firstItem="qmc-q2-gs9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="KU9-Jh-gcT"/>
-                            <constraint firstItem="USF-Wa-Nh3" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-15" id="Q0Z-Jt-kaw"/>
+                            <constraint firstItem="USF-Wa-Nh3" firstAttribute="bottom" secondItem="Bck-CF-74a" secondAttribute="top" constant="-5" id="Q0Z-Jt-kaw"/>
                             <constraint firstItem="USr-b9-Q6A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sok-4f-Se9"/>
                             <constraint firstItem="DFZ-om-j9f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="UcE-qi-w7C"/>
                             <constraint firstItem="g8n-4L-MHC" firstAttribute="leading" secondItem="USF-Wa-Nh3" secondAttribute="trailing" id="VRu-FX-hNc"/>
@@ -2303,7 +2304,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
             </objects>
             <point key="canvasLocation" x="2652" y="1433"/>
         </scene>
-        <!--Tags-->
+        <!--Tag Selection View Controller-->
         <scene sceneID="bS1-IS-1EV">
             <objects>
                 <viewController storyboardIdentifier="TagSelectionViewController" id="HQR-0Q-VFN" customClass="TagSelectionViewController" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
@@ -2336,7 +2337,6 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                             <constraint firstItem="Zoa-X9-tbB" firstAttribute="centerX" secondItem="md3-z1-iWm" secondAttribute="centerX" id="sug-qU-0dK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tags" id="WnD-4S-I0h"/>
                     <connections>
                         <outlet property="tableView" destination="Zoa-X9-tbB" id="uvQ-6M-zd6"/>
                     </connections>
@@ -2754,8 +2754,14 @@ When none are selected, all tags will be utilized</string>
         <namedColor name="AccentColor">
             <color red="0.3449999988079071" green="0.33700001239776611" blue="0.83899998664855957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
