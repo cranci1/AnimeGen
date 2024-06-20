@@ -48,10 +48,10 @@ class AppPref: UITableViewController {
     
     @IBAction func presentActionSheet(_ sender: UIButton) {
         isPresentingActionSheet = true
-        presentChoicesActionSheet()
+        presentChoicesActionSheet(from: sender)
     }
      
-    func presentChoicesActionSheet() {
+    func presentChoicesActionSheet(from sender: UIButton) {
         let actionSheet = UIAlertController(title: "Choose Default API", message: nil, preferredStyle: .actionSheet)
         
         for (index, choice) in choices.enumerated() {
@@ -59,13 +59,18 @@ class AppPref: UITableViewController {
                 self.updateSelectedChoiceIndex(index)
             })
             if let icon = UIImage(named: choiceIcons[index]) {
-                let resizedIcon = icon.resized(to: CGSize(width: 35, height: 35))
+                let resizedIcon = icon.resizedImage(to: CGSize(width: 35, height: 35))
                 action.setValue(resizedIcon.withRenderingMode(.alwaysOriginal), forKey: "image")
             }
             actionSheet.addAction(action)
         }
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
         
         present(actionSheet, animated: true, completion: nil)
     }
@@ -80,5 +85,15 @@ class AppPref: UITableViewController {
     func updateButtonTitle() {
         let selectedChoice = choices[selectedChoiceIndex]
         APIDefa.setTitle(selectedChoice, for: .normal)
+    }
+}
+
+extension UIImage {
+    func resizedImage(to size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        draw(in: CGRect(origin: .zero, size: size))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return resizedImage ?? self
     }
 }
