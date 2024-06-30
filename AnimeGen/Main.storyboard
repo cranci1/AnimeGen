@@ -106,7 +106,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bck-CF-74a" userLabel="activitylabel">
                                 <rect key="frame" x="187.66666666666666" y="756.33333333333337" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="USr-b9-Q6A" userLabel="Activity Indicator">
@@ -1942,7 +1942,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="731.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mst-hn-gIg" id="d1t-mQ-sS1">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NekoBot" translatesAutoresizingMaskIntoConstraints="NO" id="BaJ-S5-7fN">
@@ -1979,7 +1979,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="831.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWp-Nx-xkf" id="UTM-ox-K0H">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Y7X-uZ-you">
@@ -2016,7 +2016,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="931.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BXZ-Sy-Reg" id="LRd-OU-HE2">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kyoko" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-4Q-Rbf">
@@ -2053,7 +2053,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="1031.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Idh-qs-KGR" id="nSd-i1-IEG">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Purr" translatesAutoresizingMaskIntoConstraints="NO" id="j08-uO-HJI">
@@ -2090,7 +2090,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="1131.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="poB-13-Rb5" id="4EK-hi-GOt">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="n-sfw" translatesAutoresizingMaskIntoConstraints="NO" id="eoh-Fh-BgG">
@@ -2127,7 +2127,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="1231.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Df-kZ-A25" id="utp-SG-59Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nekos.life" translatesAutoresizingMaskIntoConstraints="NO" id="buh-5h-Juf">
