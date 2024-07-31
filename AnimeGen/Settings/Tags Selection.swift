@@ -2,7 +2,7 @@
 //  Tags Selection.swift
 //  AnimeGen
 //
-//  Created by Francesco on 17/06/24.
+//  Created by cranci on 17/06/24.
 //
 
 import UIKit

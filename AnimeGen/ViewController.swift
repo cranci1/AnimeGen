@@ -83,7 +83,6 @@ class ViewController: UIViewController {
             let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(rewindButtonTapped))
             swipeRight.direction = .right
             view.addGestureRecognizer(swipeRight)
-            
         }
         
         // Gradient
