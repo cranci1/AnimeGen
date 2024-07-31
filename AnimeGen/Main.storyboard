@@ -1296,20 +1296,13 @@ Display 1 Line of Tags: This feature lets you display a single line of tags. Cli
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="License" id="Qtm-iC-Y59">
-                                <string key="footerTitle">Copyright © 2023-2024 cranci. All rights reserved.
+                                <mutableString key="footerTitle">Copyright © 2023-2024 cranci. All rights reserved.
 
-AnimeGen is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+AnimeGen is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License.
 
-AnimeGen is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+AnimeGen is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
+You should have received a copy of the GNU General Public License along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</mutableString>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="C3L-Vo-6ca">
                                         <rect key="frame" x="16" y="522.66667556762695" width="343" height="43.666667938232422"/>
@@ -1944,7 +1937,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="731.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mst-hn-gIg" id="d1t-mQ-sS1">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NekoBot" translatesAutoresizingMaskIntoConstraints="NO" id="BaJ-S5-7fN">
@@ -1981,7 +1974,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="831.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IWp-Nx-xkf" id="UTM-ox-K0H">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Hmtai" translatesAutoresizingMaskIntoConstraints="NO" id="Y7X-uZ-you">
@@ -2018,7 +2011,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="931.66666603088379" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BXZ-Sy-Reg" id="LRd-OU-HE2">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kyoko" translatesAutoresizingMaskIntoConstraints="NO" id="dW7-4Q-Rbf">
@@ -2055,7 +2048,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="1031.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Idh-qs-KGR" id="nSd-i1-IEG">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Purr" translatesAutoresizingMaskIntoConstraints="NO" id="j08-uO-HJI">
@@ -2092,7 +2085,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="1131.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="poB-13-Rb5" id="4EK-hi-GOt">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="n-sfw" translatesAutoresizingMaskIntoConstraints="NO" id="eoh-Fh-BgG">
@@ -2129,7 +2122,7 @@ Also Thanks to all the active users of the TestFlight beta which are always help
                                         <rect key="frame" x="16" y="1231.6666660308838" width="343" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Df-kZ-A25" id="utp-SG-59Z">
-                                            <rect key="frame" x="0.0" y="0.0" width="324.66666666666669" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="326.33333333333331" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nekos.life" translatesAutoresizingMaskIntoConstraints="NO" id="buh-5h-Juf">
