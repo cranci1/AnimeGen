@@ -1296,13 +1296,13 @@ Display 1 Line of Tags: This feature lets you display a single line of tags. Cli
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="License" id="Qtm-iC-Y59">
-                                <mutableString key="footerTitle">Copyright © 2023-2024 cranci. All rights reserved.
+                                <string key="footerTitle">Copyright © 2023-2024 cranci. All rights reserved.
 
 AnimeGen is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License.
 
 AnimeGen is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</mutableString>
+You should have received a copy of the GNU General Public License along with AnimeGen. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="C3L-Vo-6ca">
                                         <rect key="frame" x="16" y="522.66667556762695" width="343" height="43.666667938232422"/>
