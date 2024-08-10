@@ -188,9 +188,9 @@
 			children = (
 				134F1D6C2C6650FD00C35889 /* AnimeListing Service */,
 				134F1D362C6650FC00C35889 /* Sources */,
-				134F1D852C6650FE00C35889 /* StoryBoard - Views */,
-				134F1D392C6650FC00C35889 /* Swift - Views */,
 				134F1D582C6650FD00C35889 /* Utils */,
+				134F1D392C6650FC00C35889 /* Swift - Views */,
+				134F1D852C6650FE00C35889 /* StoryBoard - Views */,
 				133C4C882BE67CAB00258EDD /* SceneDelegate.swift */,
 				133C4C862BE67CAB00258EDD /* AppDelegate.swift */,
 				133C4C8F2BE67CAD00258EDD /* Assets.xcassets */,
@@ -212,12 +212,12 @@
 		134F1D392C6650FC00C35889 /* Swift - Views */ = {
 			isa = PBXGroup;
 			children = (
-				134F1D3A2C6650FC00C35889 /* Settings */,
 				134F1D422C6650FC00C35889 /* Home */,
-				134F1D452C6650FC00C35889 /* Anime Info */,
 				134F1D4C2C6650FC00C35889 /* Favorites */,
-				134F1D4E2C6650FC00C35889 /* Search */,
 				134F1D522C6650FC00C35889 /* Downloads */,
+				134F1D4E2C6650FC00C35889 /* Search */,
+				134F1D3A2C6650FC00C35889 /* Settings */,
+				134F1D452C6650FC00C35889 /* Anime Info */,
 			);
 			path = "Swift - Views";
 			sourceTree = "<group>";
@@ -255,9 +255,9 @@
 		134F1D452C6650FC00C35889 /* Anime Info */ = {
 			isa = PBXGroup;
 			children = (
-				134F1D462C6650FC00C35889 /* AnimeDetailService.swift */,
-				134F1D472C6650FC00C35889 /* AnimeDetailsViewController.swift */,
 				134F1D482C6650FC00C35889 /* Anime Info View */,
+				134F1D472C6650FC00C35889 /* AnimeDetailsViewController.swift */,
+				134F1D462C6650FC00C35889 /* AnimeDetailService.swift */,
 			);
 			path = "Anime Info";
 			sourceTree = "<group>";
@@ -312,10 +312,10 @@
 		134F1D582C6650FD00C35889 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				134F1D632C6650FD00C35889 /* Player */,
 				134F1D592C6650FD00C35889 /* Managers */,
 				134F1D5E2C6650FD00C35889 /* Downloaders */,
 				134F1D612C6650FD00C35889 /* Extensions */,
-				134F1D632C6650FD00C35889 /* Player */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -373,10 +373,10 @@
 		134F1D6C2C6650FD00C35889 /* AnimeListing Service */ = {
 			isa = PBXGroup;
 			children = (
-				134F1D6D2C6650FE00C35889 /* MAL-Service */,
-				134F1D732C6650FE00C35889 /* Anilist-Services */,
-				134F1D7E2C6650FE00C35889 /* Kitsu-Service */,
 				134F1D842C6650FE00C35889 /* AnimeInformation.swift */,
+				134F1D732C6650FE00C35889 /* Anilist-Services */,
+				134F1D6D2C6650FE00C35889 /* MAL-Service */,
+				134F1D7E2C6650FE00C35889 /* Kitsu-Service */,
 			);
 			path = "AnimeListing Service";
 			sourceTree = "<group>";
@@ -460,11 +460,11 @@
 		134F1D852C6650FE00C35889 /* StoryBoard - Views */ = {
 			isa = PBXGroup;
 			children = (
-				134F1D862C6650FE00C35889 /* LaunchScreen.storyboard */,
 				134F1D872C6650FE00C35889 /* CustomCells */,
 				134F1D912C6650FE00C35889 /* Main.storyboard */,
-				134F1D922C6650FE00C35889 /* AnilistAnimeInformation.storyboard */,
 				134F1D932C6650FE00C35889 /* Settings.storyboard */,
+				134F1D862C6650FE00C35889 /* LaunchScreen.storyboard */,
+				134F1D922C6650FE00C35889 /* AnilistAnimeInformation.storyboard */,
 			);
 			path = "StoryBoard - Views";
 			sourceTree = "<group>";
@@ -790,9 +790,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -822,9 +823,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
