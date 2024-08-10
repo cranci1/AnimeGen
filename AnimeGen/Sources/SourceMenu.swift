@@ -13,14 +13,14 @@ class SourceMenu {
     static func showSourceSelector(from viewController: UIViewController, sourceView: UIView?) {
         DispatchQueue.main.async {
             let sources: [(title: String, source: MediaSource, image: UIImage)] = [
-                ("AnimeWorld", .animeWorld, UIImage(named: "animeWorldIcon")!),
-                ("GoGoAnime", .gogoanime, UIImage(named: "gogoanimeIcon")!),
-                ("AnimeHeaven", .animeheaven, UIImage(named: "animeheavenIcon")!),
-                ("AnimeFire", .animefire, UIImage(named: "animefireIcon")!),
-                ("Kuramanime", .kuramanime, UIImage(named: "kuramanimeIcon")!),
-                ("JKanime", .jkanime, UIImage(named: "jkanimeIcon")!),
-                ("Anime3rb", .anime3rb, UIImage(named: "anime3rbIcon")!),
-                ("Anix", .anix, UIImage(named: "anixIcon")!)
+                ("AnimeWorld", .animeWorld, UIImage(named: "AnimeWorld")!),
+                ("GoGoAnime", .gogoanime, UIImage(named: "GoGoAnime")!),
+                ("AnimeHeaven", .animeheaven, UIImage(named: "AnimeHeaven")!),
+                ("AnimeFire", .animefire, UIImage(named: "AnimeFire")!),
+                ("Kuramanime", .kuramanime, UIImage(named: "Kuramanime")!),
+                ("JKanime", .jkanime, UIImage(named: "JKanime")!),
+                ("Anime3rb", .anime3rb, UIImage(named: "Anime3rb")!),
+                ("Anix", .anix, UIImage(named: "Anix")!)
             ]
             
             let alertController = UIAlertController(title: "Select Source", message: "Choose your preferred source for AnimeLounge.", preferredStyle: .actionSheet)
