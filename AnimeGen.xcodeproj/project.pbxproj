@@ -351,9 +351,9 @@
 		134F1D632C6650FD00C35889 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				134F1D662C6650FD00C35889 /* Source Specific */,
 				134F1D642C6650FD00C35889 /* VideoPlayerType.swift */,
 				134F1D652C6650FD00C35889 /* LandScapePlayer.swift */,
-				134F1D662C6650FD00C35889 /* Source Specific */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -361,11 +361,11 @@
 		134F1D662C6650FD00C35889 /* Source Specific */ = {
 			isa = PBXGroup;
 			children = (
-				134F1D672C6650FD00C35889 /* ExternalVideoPlayerJK.swift */,
-				134F1D682C6650FD00C35889 /* ExternalVideoPlayerKura.swift */,
 				134F1D692C6650FD00C35889 /* ExternalVideoPlayer.swift */,
-				134F1D6A2C6650FD00C35889 /* ExternalVideoPlayerAnix.swift */,
+				134F1D682C6650FD00C35889 /* ExternalVideoPlayerKura.swift */,
+				134F1D672C6650FD00C35889 /* ExternalVideoPlayerJK.swift */,
 				134F1D6B2C6650FD00C35889 /* ExternalVideoPlayer3rb.swift */,
+				134F1D6A2C6650FD00C35889 /* ExternalVideoPlayerAnix.swift */,
 			);
 			path = "Source Specific";
 			sourceTree = "<group>";
