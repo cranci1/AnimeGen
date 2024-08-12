@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  AnimeGen
+//  AnimeLounge
 //
-//  Created by cranci on 04/05/24.
+//  Created by Francesco on 20/06/24.
 //
 
 import UIKit
@@ -15,20 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var backgroundCompletionHandler: (() -> Void)?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupAudioSession()
         setupDefaultUserPreferences()
         setupGoogleCast()
         
         return true
-    }
-    
-    private func setupAudioSession() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Failed to set up AVAudioSession: \(error)")
-        }
     }
     
     private func setupDefaultUserPreferences() {
@@ -54,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme == "animelounge" {
+        if url.scheme == "ryu" {
             if let queryParams = url.queryParameters, let code = queryParams["code"] {
                 NotificationCenter.default.post(name: Notification.Name("AuthorizationCodeReceived"), object: nil, userInfo: ["code": code])
             }

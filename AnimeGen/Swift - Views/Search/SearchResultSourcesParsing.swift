@@ -137,7 +137,6 @@ extension SearchResultsViewController {
                 let title = try item.select("div.ani-name a").text()
                 let imageUrl = try item.select("img").attr("src")
                 let href = try item.select("a.poster").first()?.attr("href") ?? ""
-                print("\(href)")
                 return (title: title, imageUrl: imageUrl, href: href)
             }
         } catch {

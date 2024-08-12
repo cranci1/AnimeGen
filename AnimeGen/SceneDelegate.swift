@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  AnimeGen
+//  AnimeLounge
 //
-//  Created by cranci on 04/05/24.
+//  Created by Francesco on 20/06/24.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
         
-        if url.scheme == "animelounge" {
+        if url.scheme == "ryu" {
             if let queryParams = url.queryParameters, let code = queryParams["code"] {
                 NotificationCenter.default.post(name: Notification.Name("AuthorizationCodeReceived"), object: nil, userInfo: ["code": code])
             }

@@ -785,7 +785,7 @@
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AnimeLounge;
+				INFOPLIST_KEY_CFBundleDisplayName = Ryu;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The photo Library Addition is required to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -818,7 +818,7 @@
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AnimeLounge;
+				INFOPLIST_KEY_CFBundleDisplayName = Ryu;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The photo Library Addition is required to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

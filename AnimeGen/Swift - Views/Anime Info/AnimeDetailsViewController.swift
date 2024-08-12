@@ -10,8 +10,7 @@ import AVKit
 import WebKit
 import SwiftSoup
 import GoogleCast
-import Foundation
-import MediaPlayer
+import Kingfisher
 
 extension String {
     var nilIfEmpty: String? {
@@ -19,7 +18,7 @@ extension String {
     }
 }
 
-class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GCKRemoteMediaClientListener {
+class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GCKRemoteMediaClientListener, AVPlayerViewControllerDelegate {
     var animeTitle: String?
     var imageUrl: String?
     private var href: String?
@@ -54,6 +53,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
         updateUI()
         setupNotifications()
         checkFavoriteStatus()
+        setupAudioSession()
         setupCastButton()
         
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -269,6 +269,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                 self?.navigateToAnimeDetail(for: id)
             case .failure(let error):
                 print("Error fetching anime ID: \(error.localizedDescription)")
+                self?.showAlert(title: "Error", message: "Ryu is not able to find the anime ID from AniList")
             }
         }
     }
@@ -806,7 +807,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
     func playVideo(sourceURL: URL, cell: EpisodeCell, fullURL: String) {
         let selectedPlayer = UserDefaults.standard.string(forKey: "mediaPlayerSelected") ?? "Default"
         let isToDownload = UserDefaults.standard.bool(forKey: "isToDownload")
-
+        
         if isToDownload {
             handleDownload(sourceURL: sourceURL, fullURL: fullURL)
         } else {
@@ -884,7 +885,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             showAlert(title: "\(player) Error", message: "\(player) app is not installed.")
         }
     }
-
+    
     private func playVideoWithAVPlayer(sourceURL: URL, cell: EpisodeCell, fullURL: String) {
         if GCKCastContext.sharedInstance().castState == .connected {
             proceedWithCasting(videoURL: sourceURL)
@@ -893,9 +894,13 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             
             playerViewController = UserDefaults.standard.bool(forKey: "AlwaysLandscape") ? LandscapePlayer() : AVPlayerViewController()
             playerViewController?.player = player
+            playerViewController?.delegate = self
+            playerViewController?.entersFullScreenWhenPlaybackBegins = true
+            playerViewController?.showsPlaybackControls = true
             
             let lastPlayedTime = UserDefaults.standard.double(forKey: "lastPlayedTime_\(fullURL)")
             
+            playerViewController?.modalPresentationStyle = .fullScreen
             present(playerViewController!, animated: true) {
                 if lastPlayedTime > 0 {
                     let seekTime = CMTime(seconds: lastPlayedTime, preferredTimescale: 1)
@@ -909,6 +914,29 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             }
             
             NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+        }
+    }
+    
+    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        if self.presentedViewController == nil {
+            playerViewController.modalPresentationStyle = .fullScreen
+            present(playerViewController, animated: true) {
+                completionHandler(true)
+            }
+        } else {
+            completionHandler(true)
+        }
+    }
+    
+    private func setupAudioSession() {
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback, mode: .moviePlayback, options: .mixWithOthers)
+            try audioSession.setActive(true)
+            
+            try audioSession.overrideOutputAudioPort(.speaker)
+        } catch {
+            print("Failed to set up AVAudioSession: \(error)")
         }
     }
 
@@ -1030,6 +1058,10 @@ class ContinueWatchingCell: UICollectionViewCell {
         return blurEffectView
     }()
     
+    private var imageLoadTask: DownloadTask?
+    private var currentAnimeTitle: String?
+    private var currentEpisodeNumber: Int?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -1038,6 +1070,16 @@ class ContinueWatchingCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageLoadTask?.cancel()
+        imageView.image = nil
+        titleLabel.text = nil
+        progressView.progress = 0
+        currentAnimeTitle = nil
+        currentEpisodeNumber = nil
     }
     
     private func setupViews() {
@@ -1087,17 +1129,48 @@ class ContinueWatchingCell: UICollectionViewCell {
         ])
     }
     
+    private func getPlaceholderImage() -> UIImage {
+        UIImage(systemName: "photo.fill")?.withTintColor(.gray, renderingMode: .alwaysOriginal) ?? UIImage()
+    }
+    
+    private func getErrorPlaceholderImage() -> UIImage {
+        UIImage(systemName: "exclamationmark.triangle.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal) ?? UIImage()
+    }
+    
     func configure(with item: ContinueWatchingItem) {
         titleLabel.text = "\(item.animeTitle), Ep. \(item.episodeNumber)"
         progressView.progress = Float(item.lastPlayedTime / item.totalTime)
         
+        currentAnimeTitle = item.animeTitle
+        currentEpisodeNumber = item.episodeNumber
+        
+        imageView.image = getPlaceholderImage()
+        
         AnimeThumbnailFetcher.fetchAnimeThumbnails(for: item.animeTitle, episodeNumber: item.episodeNumber) { [weak self] imageURL in
-            guard let self = self, let imageURL = imageURL else {
+            guard let self = self,
+                  let imageURL = imageURL,
+                  self.currentAnimeTitle == item.animeTitle,
+                  self.currentEpisodeNumber == item.episodeNumber else {
                 return
             }
             
             if let url = URL(string: imageURL) {
-                self.imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+                self.imageLoadTask = self.imageView.kf.setImage(
+                    with: url,
+                    placeholder: self.getPlaceholderImage(),
+                    options: [
+                        .transition(.fade(0.2)),
+                        .cacheOriginalImage
+                    ]
+                ) { result in
+                    switch result {
+                    case .success(_):
+                        break
+                    case .failure(let error):
+                        print("Error loading image: \(error)")
+                        self.imageView.image = self.getErrorPlaceholderImage()
+                    }
+                }
             }
         }
     }
