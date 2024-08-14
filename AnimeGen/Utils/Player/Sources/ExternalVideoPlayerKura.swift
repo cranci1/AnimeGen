@@ -1,8 +1,8 @@
 //
-//  ExternalVideoPlayer3rb.swift
-//  AnimeLounge
+//  ExternalVideoPlayerKura.swift
+//  Ryu
 //
-//  Created by Francesco on 08/07/24.
+//  Created by Francesco on 09/07/24.
 //
 
 import AVKit
@@ -10,15 +10,12 @@ import WebKit
 import SwiftSoup
 import GoogleCast
 
-class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
+class ExternalVideoPlayerKura: UIViewController, GCKRemoteMediaClientListener {
     private let streamURL: String
     private var webView: WKWebView?
     private var player: AVPlayer?
     private var playerViewController: AVPlayerViewController?
     private var activityIndicator: UIActivityIndicatorView?
-    
-    private var progressView: UIProgressView?
-    private var progressLabel: UILabel?
     
     private var retryCount = 0
     private let maxRetries: Int
@@ -27,7 +24,7 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
     private var fullURL: String
     private weak var animeDetailsViewController: AnimeDetailViewController?
     private var timeObserverToken: Any?
-    
+
     init(streamURL: String, cell: EpisodeCell, fullURL: String, animeDetailsViewController: AnimeDetailViewController) {
         self.streamURL = streamURL
         self.cell = cell
@@ -86,32 +83,6 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
         webView?.load(request)
     }
     
-    private func loadIframeContent(url: URL) {
-        let request = URLRequest(url: url)
-        webView?.load(request)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
-            self?.extractVideoSource()
-        }
-    }
-    
-    private func extractIframeSource() {
-        webView?.evaluateJavaScript("document.body.innerHTML") { [weak self] (result, error) in
-            guard let self = self, let htmlString = result as? String else {
-                print("Error getting HTML: \(error?.localizedDescription ?? "Unknown error")")
-                self?.retryExtraction()
-                return
-            }
-            
-            if let iframeURL = self.extractIframeSourceURL(from: htmlString) {
-                print("Iframe src URL found: \(iframeURL.absoluteString)")
-                self.loadIframeContent(url: iframeURL)
-            } else {
-                print("No iframe source found")
-                self.retryExtraction()
-            }
-        }
-    }
-    
     private func extractVideoSource() {
         webView?.evaluateJavaScript("document.body.innerHTML") { [weak self] (result, error) in
             guard let self = self, let htmlString = result as? String else {
@@ -124,24 +95,9 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
                 print("Video source URL found: \(videoURL.absoluteString)")
                 self.handleVideoURL(url: videoURL)
             } else {
-                print("No video source found in iframe content")
+                print("No video source found")
                 self.retryExtraction()
             }
-        }
-    }
-    
-    private func extractIframeSourceURL(from htmlString: String) -> URL? {
-        do {
-            let doc: Document = try SwiftSoup.parse(htmlString)
-            guard let iframeElement = try doc.select("iframe").first(),
-                  let sourceURLString = try iframeElement.attr("src").nilIfEmpty,
-                  let sourceURL = URL(string: sourceURLString) else {
-                return nil
-            }
-            return sourceURL
-        } catch {
-            print("Error parsing HTML with SwiftSoup: \(error)")
-            return nil
         }
     }
     
@@ -187,7 +143,6 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
 
     private func handleDownload(url: URL) {
         UserDefaults.standard.set(false, forKey: "isToDownload")
-        
         self.dismiss(animated: true, completion: nil)
         
         let downloadManager = DownloadManager.shared
@@ -237,49 +192,6 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             self.playerViewController = playerViewController
             
             self.addPeriodicTimeObserver()
-        }
-    }
-    
-    private func castVideoToGoogleCast(videoURL: URL) {
-        DispatchQueue.main.async {
-            let metadata = GCKMediaMetadata(metadataType: .movie)
-            
-            if UserDefaults.standard.bool(forKey: "fullTitleCast") {
-                if let animeTitle = self.animeDetailsViewController?.animeTitle {
-                    metadata.setString(animeTitle, forKey: kGCKMetadataKeyTitle)
-                } else {
-                    print("Error: Anime title is missing.")
-                }
-            } else {
-                let episodeNumber = (self.animeDetailsViewController?.currentEpisodeIndex ?? -1) + 1
-                metadata.setString("Episode \(episodeNumber)", forKey: kGCKMetadataKeyTitle)
-            }
-            
-            if UserDefaults.standard.bool(forKey: "animeImageCast") {
-                if let imageURL = URL(string: self.animeDetailsViewController?.imageUrl ?? "") {
-                    metadata.addImage(GCKImage(url: imageURL, width: 480, height: 720))
-                } else {
-                    print("Error: Anime image URL is missing or invalid.")
-                }
-            }
-            
-            let builder = GCKMediaInformationBuilder(contentURL: videoURL)
-            builder.contentType = "video/mp4"
-            builder.metadata = metadata
-            
-            let streamTypeString = UserDefaults.standard.string(forKey: "castStreamingType") ?? "buffered"
-            switch streamTypeString {
-            case "live":
-                builder.streamType = .live
-            default:
-                builder.streamType = .buffered
-            }
-            
-            let mediaInformation = builder.build()
-            
-            if let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient {
-                remoteMediaClient.loadMedia(mediaInformation)
-            }
         }
     }
     
@@ -336,23 +248,47 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             }
         }
     }
-    
-    private func cleanup() {
-        player?.pause()
-        player = nil
-        
-        playerViewController?.willMove(toParent: nil)
-        playerViewController?.view.removeFromSuperview()
-        playerViewController?.removeFromParent()
-        playerViewController = nil
-        
-        if let timeObserverToken = timeObserverToken {
-            player?.removeTimeObserver(timeObserverToken)
-            self.timeObserverToken = nil
+    private func castVideoToGoogleCast(videoURL: URL) {
+        DispatchQueue.main.async {
+            let metadata = GCKMediaMetadata(metadataType: .movie)
+            
+            if UserDefaults.standard.bool(forKey: "fullTitleCast") {
+                if let animeTitle = self.animeDetailsViewController?.animeTitle {
+                    metadata.setString(animeTitle, forKey: kGCKMetadataKeyTitle)
+                } else {
+                    print("Error: Anime title is missing.")
+                }
+            } else {
+                let episodeNumber = (self.animeDetailsViewController?.currentEpisodeIndex ?? -1) + 1
+                metadata.setString("Episode \(episodeNumber)", forKey: kGCKMetadataKeyTitle)
+            }
+            
+            if UserDefaults.standard.bool(forKey: "animeImageCast") {
+                if let imageURL = URL(string: self.animeDetailsViewController?.imageUrl ?? "") {
+                    metadata.addImage(GCKImage(url: imageURL, width: 480, height: 720))
+                } else {
+                    print("Error: Anime image URL is missing or invalid.")
+                }
+            }
+            
+            let builder = GCKMediaInformationBuilder(contentURL: videoURL)
+            builder.contentType = "video/mp4"
+            builder.metadata = metadata
+            
+            let streamTypeString = UserDefaults.standard.string(forKey: "castStreamingType") ?? "buffered"
+            switch streamTypeString {
+            case "live":
+                builder.streamType = .live
+            default:
+                builder.streamType = .buffered
+            }
+            
+            let mediaInformation = builder.build()
+            
+            if let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient {
+                remoteMediaClient.loadMedia(mediaInformation)
+            }
         }
-        
-        webView?.stopLoading()
-        webView?.loadHTMLString("", baseURL: nil)
     }
     
     private func retryExtraction() {
@@ -371,13 +307,29 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             }
         }
     }
+    
+    private func cleanup() {
+        player?.pause()
+        player = nil
+        
+        playerViewController?.willMove(toParent: nil)
+        playerViewController?.view.removeFromSuperview()
+        playerViewController?.removeFromParent()
+        playerViewController = nil
+        
+        if let timeObserverToken = timeObserverToken {
+            player?.removeTimeObserver(timeObserverToken)
+            self.timeObserverToken = nil
+        }
+        
+        webView?.stopLoading()
+        webView?.loadHTMLString("", baseURL: nil)
+    }
 }
 
-extension ExternalVideoPlayer3rb: WKNavigationDelegate {
+extension ExternalVideoPlayerKura: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        if webView.url?.absoluteString == streamURL {
-            extractIframeSource()
-        }
+        extractVideoSource()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {

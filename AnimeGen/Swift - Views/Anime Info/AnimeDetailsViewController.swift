@@ -1,6 +1,6 @@
 //
 //  AnimeDetailsViewController.swift
-//  AnimeLounge
+//  Ryu
 //
 //  Created by Francesco on 22/06/24.
 //
@@ -11,12 +11,6 @@ import WebKit
 import SwiftSoup
 import GoogleCast
 import Kingfisher
-
-extension String {
-    var nilIfEmpty: String? {
-        return self.isEmpty ? nil : self
-    }
-}
 
 class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GCKRemoteMediaClientListener, AVPlayerViewControllerDelegate {
     var animeTitle: String?
@@ -37,6 +31,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
     
     private var isFavorite: Bool = false
     private var isSynopsisExpanded = false
+    private var isReverseSorted = false
     
     var availableQualities: [String] = []
     var hasSentUpdate = false
@@ -55,6 +50,10 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
         checkFavoriteStatus()
         setupAudioSession()
         setupCastButton()
+        
+        isReverseSorted = UserDefaults.standard.bool(forKey: "isEpisodeReverseSorted")
+        setupUserDefaultsObserver()
+        sortEpisodes()
         
         navigationController?.navigationBar.prefersLargeTitles = false
         
@@ -76,6 +75,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
         
         if let castSession = GCKCastContext.sharedInstance().sessionManager.currentCastSession,
            let remoteMediaClient = castSession.remoteMediaClient {
@@ -155,6 +155,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                     self?.airdate = details.airdate
                     self?.stars = details.stars
                     self?.episodes = details.episodes
+                    self?.sortEpisodes()
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -162,6 +163,23 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                     self?.showAlert(title: "Error", message: error.localizedDescription)
                 }
             }
+        }
+    }
+    
+    private func sortEpisodes() {
+        episodes = isReverseSorted ? episodes.sorted(by: { $0.episodeNumber > $1.episodeNumber }) : episodes.sorted(by: { $0.episodeNumber < $1.episodeNumber })
+    }
+    
+    private func setupUserDefaultsObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    @objc private func userDefaultsChanged() {
+        let newIsReverseSorted = UserDefaults.standard.bool(forKey: "isEpisodeReverseSorted")
+        if newIsReverseSorted != isReverseSorted {
+            isReverseSorted = newIsReverseSorted
+            sortEpisodes()
+            tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
         }
     }
     
@@ -299,8 +317,6 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             baseUrl = "https://anitaku.pe"
         case "AnimeHeaven":
             baseUrl = "https://animeheaven.me"
-        case "Anix":
-            baseUrl = "https://anix.to"
         default:
             baseUrl = ""
         }
@@ -404,13 +420,6 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             episodeTimeURL = episode.href
             checkUserDefault(url: fullURL, cell: cell, fullURL: episodeTimeURL)
             return
-        case "Anix":
-            baseURL = "https://anix.to"
-            episodeId = episode.href
-            fullURL = baseURL + episodeId
-            episodeTimeURL = episode.href
-            checkUserDefault(url: fullURL, cell: cell, fullURL: episodeTimeURL)
-            return
         default:
             baseURL = ""
             episodeId = episode.href
@@ -456,8 +465,6 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                 streamingVC = ExternalVideoPlayerKura(streamURL: url, cell: cell, fullURL: fullURL, animeDetailsViewController: self)
             case VideoPlayerType.playerJK:
                 streamingVC = ExternalVideoPlayerJK(streamURL: url, cell: cell, fullURL: fullURL, animeDetailsViewController: self)
-            case VideoPlayerType.playerAnix:
-                streamingVC = ExternalVideoPlayerAnix(streamURL: url, cell: cell, fullURL: fullURL, animeDetailsViewController: self)
             default:
                 return
             }
@@ -523,8 +530,6 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                     srcURL = self.extractVideoSourceURL(from: htmlString)
                 case "Anime3rb", "Kuramanime", "JKanime":
                     srcURL = URL(string: fullURL)
-                case "Anix":
-                    srcURL = URL(string: url)
                 default:
                     srcURL = self.extractIframeSourceURL(from: htmlString)
                 }
@@ -550,8 +555,6 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                         self.startStreamingButtonTapped(withURL: finalSrcURL.absoluteString, playerType: VideoPlayerType.playerKura, cell: cell, fullURL: fullURL)
                     case "JKanime":
                         self.startStreamingButtonTapped(withURL: finalSrcURL.absoluteString, playerType: VideoPlayerType.playerJK, cell: cell, fullURL: fullURL)
-                    case "Anix":
-                        self.startStreamingButtonTapped(withURL: finalSrcURL.absoluteString, playerType: VideoPlayerType.playerAnix, cell: cell, fullURL: fullURL)
                     default:
                         self.playVideo(sourceURL: finalSrcURL, cell: cell, fullURL: fullURL)
                     }
