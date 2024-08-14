@@ -45,11 +45,6 @@
 		134F1DB12C6650FE00C35889 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D622C6650FD00C35889 /* UIImage.swift */; };
 		134F1DB22C6650FE00C35889 /* VideoPlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D642C6650FD00C35889 /* VideoPlayerType.swift */; };
 		134F1DB32C6650FE00C35889 /* LandScapePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D652C6650FD00C35889 /* LandScapePlayer.swift */; };
-		134F1DB42C6650FE00C35889 /* ExternalVideoPlayerJK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D672C6650FD00C35889 /* ExternalVideoPlayerJK.swift */; };
-		134F1DB52C6650FE00C35889 /* ExternalVideoPlayerKura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D682C6650FD00C35889 /* ExternalVideoPlayerKura.swift */; };
-		134F1DB62C6650FE00C35889 /* ExternalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D692C6650FD00C35889 /* ExternalVideoPlayer.swift */; };
-		134F1DB72C6650FE00C35889 /* ExternalVideoPlayerAnix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D6A2C6650FD00C35889 /* ExternalVideoPlayerAnix.swift */; };
-		134F1DB82C6650FE00C35889 /* ExternalVideoPlayer3rb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D6B2C6650FD00C35889 /* ExternalVideoPlayer3rb.swift */; };
 		134F1DB92C6650FE00C35889 /* Jikan-Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D6E2C6650FE00C35889 /* Jikan-Info.swift */; };
 		134F1DBA2C6650FE00C35889 /* Jikan-Sesonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D702C6650FE00C35889 /* Jikan-Sesonal.swift */; };
 		134F1DBB2C6650FE00C35889 /* Jikan-Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F1D712C6650FE00C35889 /* Jikan-Trending.swift */; };
@@ -77,6 +72,10 @@
 		134F1DD12C6650FE00C35889 /* AnilistAnimeInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 134F1D922C6650FE00C35889 /* AnilistAnimeInformation.storyboard */; };
 		134F1DD22C6650FE00C35889 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 134F1D932C6650FE00C35889 /* Settings.storyboard */; };
 		134F1DD52C6651AF00C35889 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 134F1DD42C6651AF00C35889 /* Kingfisher */; };
+		1357B5212C6D1086000A2C9B /* ExternalVideoPlayerJK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */; };
+		1357B5222C6D1086000A2C9B /* ExternalVideoPlayerKura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */; };
+		1357B5232C6D1086000A2C9B /* ExternalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */; };
+		1357B5242C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */; };
 		136BD7E22BE7CCC400ED23AE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -118,11 +117,6 @@
 		134F1D622C6650FD00C35889 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		134F1D642C6650FD00C35889 /* VideoPlayerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerType.swift; sourceTree = "<group>"; };
 		134F1D652C6650FD00C35889 /* LandScapePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandScapePlayer.swift; sourceTree = "<group>"; };
-		134F1D672C6650FD00C35889 /* ExternalVideoPlayerJK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerJK.swift; sourceTree = "<group>"; };
-		134F1D682C6650FD00C35889 /* ExternalVideoPlayerKura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerKura.swift; sourceTree = "<group>"; };
-		134F1D692C6650FD00C35889 /* ExternalVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer.swift; sourceTree = "<group>"; };
-		134F1D6A2C6650FD00C35889 /* ExternalVideoPlayerAnix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerAnix.swift; sourceTree = "<group>"; };
-		134F1D6B2C6650FD00C35889 /* ExternalVideoPlayer3rb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer3rb.swift; sourceTree = "<group>"; };
 		134F1D6E2C6650FE00C35889 /* Jikan-Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Jikan-Info.swift"; sourceTree = "<group>"; };
 		134F1D702C6650FE00C35889 /* Jikan-Sesonal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Jikan-Sesonal.swift"; sourceTree = "<group>"; };
 		134F1D712C6650FE00C35889 /* Jikan-Trending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Jikan-Trending.swift"; sourceTree = "<group>"; };
@@ -149,6 +143,10 @@
 		134F1D912C6650FE00C35889 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		134F1D922C6650FE00C35889 /* AnilistAnimeInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnilistAnimeInformation.storyboard; sourceTree = "<group>"; };
 		134F1D932C6650FE00C35889 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerJK.swift; sourceTree = "<group>"; };
+		1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerKura.swift; sourceTree = "<group>"; };
+		1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer.swift; sourceTree = "<group>"; };
+		1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer3rb.swift; sourceTree = "<group>"; };
 		136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -351,23 +349,11 @@
 		134F1D632C6650FD00C35889 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				134F1D662C6650FD00C35889 /* Source Specific */,
+				1357B51C2C6D1086000A2C9B /* Sources */,
 				134F1D642C6650FD00C35889 /* VideoPlayerType.swift */,
 				134F1D652C6650FD00C35889 /* LandScapePlayer.swift */,
 			);
 			path = Player;
-			sourceTree = "<group>";
-		};
-		134F1D662C6650FD00C35889 /* Source Specific */ = {
-			isa = PBXGroup;
-			children = (
-				134F1D692C6650FD00C35889 /* ExternalVideoPlayer.swift */,
-				134F1D682C6650FD00C35889 /* ExternalVideoPlayerKura.swift */,
-				134F1D672C6650FD00C35889 /* ExternalVideoPlayerJK.swift */,
-				134F1D6B2C6650FD00C35889 /* ExternalVideoPlayer3rb.swift */,
-				134F1D6A2C6650FD00C35889 /* ExternalVideoPlayerAnix.swift */,
-			);
-			path = "Source Specific";
 			sourceTree = "<group>";
 		};
 		134F1D6C2C6650FD00C35889 /* AnimeListing Service */ = {
@@ -506,6 +492,17 @@
 			path = AiringAnimeCell;
 			sourceTree = "<group>";
 		};
+		1357B51C2C6D1086000A2C9B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */,
+				1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */,
+				1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */,
+				1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -598,12 +595,13 @@
 				134F1DC22C6650FE00C35889 /* Login.swift in Sources */,
 				134F1DC32C6650FE00C35889 /* Token.swift in Sources */,
 				134F1DC72C6650FE00C35889 /* Kitsu-Info.swift in Sources */,
+				1357B5232C6D1086000A2C9B /* ExternalVideoPlayer.swift in Sources */,
 				134F1D992C6650FE00C35889 /* SettingsViewCast.swift in Sources */,
 				134F1D942C6650FE00C35889 /* Sources.swift in Sources */,
 				134F1DCC2C6650FE00C35889 /* SlimmAnimeCell-Swift.swift in Sources */,
 				134F1DA92C6650FE00C35889 /* DownloadsViewController.swift in Sources */,
+				1357B5242C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift in Sources */,
 				134F1D9F2C6650FE00C35889 /* AnimeDetailsViewController.swift in Sources */,
-				134F1DB62C6650FE00C35889 /* ExternalVideoPlayer.swift in Sources */,
 				134F1D9A2C6650FE00C35889 /* SettingsViewDoneButton.swift in Sources */,
 				134F1DC12C6650FE00C35889 /* AniList-Sesonal.swift in Sources */,
 				134F1DC42C6650FE00C35889 /* Kitsu-Trending.swift in Sources */,
@@ -620,19 +618,16 @@
 				134F1DB12C6650FE00C35889 /* UIImage.swift in Sources */,
 				134F1D9D2C6650FE00C35889 /* FeaturedAnimeParsing.swift in Sources */,
 				134F1D9B2C6650FE00C35889 /* SettingsViewController.swift in Sources */,
-				134F1DB52C6650FE00C35889 /* ExternalVideoPlayerKura.swift in Sources */,
 				134F1DBF2C6650FE00C35889 /* AniList-Info.swift in Sources */,
 				134F1DA52C6650FE00C35889 /* SearchResultsViewController.swift in Sources */,
 				134F1DC02C6650FE00C35889 /* AniList-Trending.swift in Sources */,
 				134F1DB92C6650FE00C35889 /* Jikan-Info.swift in Sources */,
 				134F1D952C6650FE00C35889 /* SourceMenu.swift in Sources */,
 				134F1DAC2C6650FE00C35889 /* BackupManager.swift in Sources */,
-				134F1DB72C6650FE00C35889 /* ExternalVideoPlayerAnix.swift in Sources */,
 				134F1DAA2C6650FE00C35889 /* DownloadCell.swift in Sources */,
 				134F1DA02C6650FE00C35889 /* AnimeHeaderCell.swift in Sources */,
 				134F1DC62C6650FE00C35889 /* Kitsu-Airing.swift in Sources */,
 				134F1DA32C6650FE00C35889 /* FavoritesViewController.swift in Sources */,
-				134F1DB82C6650FE00C35889 /* ExternalVideoPlayer3rb.swift in Sources */,
 				133C4C872BE67CAB00258EDD /* AppDelegate.swift in Sources */,
 				133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */,
 				134F1DA62C6650FE00C35889 /* SearchResultSourcesParsing.swift in Sources */,
@@ -647,12 +642,13 @@
 				134F1D982C6650FE00C35889 /* SettingsViewSources.swift in Sources */,
 				134F1DC52C6650FE00C35889 /* Kitsu-Sesonal.swift in Sources */,
 				134F1DAE2C6650FE00C35889 /* ContinueWatchingManager.swift in Sources */,
+				1357B5212C6D1086000A2C9B /* ExternalVideoPlayerJK.swift in Sources */,
 				134F1DBD2C6650FE00C35889 /* Mutation.swift in Sources */,
 				134F1DAB2C6650FE00C35889 /* FavoriteManager.swift in Sources */,
 				134F1D962C6650FE00C35889 /* SettingsViewAbout.swift in Sources */,
 				134F1DA82C6650FE00C35889 /* ProgressDownloadCell.swift in Sources */,
 				134F1DAD2C6650FE00C35889 /* DownloadManager.swift in Sources */,
-				134F1DB42C6650FE00C35889 /* ExternalVideoPlayerJK.swift in Sources */,
+				1357B5222C6D1086000A2C9B /* ExternalVideoPlayerKura.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
