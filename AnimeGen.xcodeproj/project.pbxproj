@@ -76,6 +76,10 @@
 		1357B5222C6D1086000A2C9B /* ExternalVideoPlayerKura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */; };
 		1357B5232C6D1086000A2C9B /* ExternalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */; };
 		1357B5242C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */; };
+		135B62D52C6D11AB00A8F607 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B62D12C6D11AB00A8F607 /* Notification.swift */; };
+		135B62D62C6D11AB00A8F607 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B62D22C6D11AB00A8F607 /* String.swift */; };
+		135B62D72C6D11AB00A8F607 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B62D32C6D11AB00A8F607 /* UserDefaults.swift */; };
+		135B62D82C6D11AB00A8F607 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B62D42C6D11AB00A8F607 /* URL.swift */; };
 		136BD7E22BE7CCC400ED23AE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +151,10 @@
 		1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerKura.swift; sourceTree = "<group>"; };
 		1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer.swift; sourceTree = "<group>"; };
 		1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer3rb.swift; sourceTree = "<group>"; };
+		135B62D12C6D11AB00A8F607 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		135B62D22C6D11AB00A8F607 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		135B62D32C6D11AB00A8F607 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		135B62D42C6D11AB00A8F607 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -341,7 +349,11 @@
 		134F1D612C6650FD00C35889 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				135B62D32C6D11AB00A8F607 /* UserDefaults.swift */,
+				135B62D12C6D11AB00A8F607 /* Notification.swift */,
 				134F1D622C6650FD00C35889 /* UIImage.swift */,
+				135B62D22C6D11AB00A8F607 /* String.swift */,
+				135B62D42C6D11AB00A8F607 /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -605,6 +617,7 @@
 				134F1D9A2C6650FE00C35889 /* SettingsViewDoneButton.swift in Sources */,
 				134F1DC12C6650FE00C35889 /* AniList-Sesonal.swift in Sources */,
 				134F1DC42C6650FE00C35889 /* Kitsu-Trending.swift in Sources */,
+				135B62D82C6D11AB00A8F607 /* URL.swift in Sources */,
 				134F1DBE2C6650FE00C35889 /* AniList-Airing.swift in Sources */,
 				134F1DBB2C6650FE00C35889 /* Jikan-Trending.swift in Sources */,
 				134F1DCE2C6650FE00C35889 /* AiringAnimeCell-Swift.swift in Sources */,
@@ -636,16 +649,19 @@
 				134F1DAF2C6650FE00C35889 /* MP4Downloader.swift in Sources */,
 				134F1DA22C6650FE00C35889 /* SynopsisCell.swift in Sources */,
 				134F1DB02C6650FE00C35889 /* M3U8Downloader.swift in Sources */,
+				135B62D62C6D11AB00A8F607 /* String.swift in Sources */,
 				134F1D9C2C6650FE00C35889 /* HomeViewController.swift in Sources */,
 				134F1DC82C6650FE00C35889 /* AnimeInformation.swift in Sources */,
 				134F1D972C6650FE00C35889 /* SettingsAnimeListing.swift in Sources */,
 				134F1D982C6650FE00C35889 /* SettingsViewSources.swift in Sources */,
 				134F1DC52C6650FE00C35889 /* Kitsu-Sesonal.swift in Sources */,
 				134F1DAE2C6650FE00C35889 /* ContinueWatchingManager.swift in Sources */,
+				135B62D52C6D11AB00A8F607 /* Notification.swift in Sources */,
 				1357B5212C6D1086000A2C9B /* ExternalVideoPlayerJK.swift in Sources */,
 				134F1DBD2C6650FE00C35889 /* Mutation.swift in Sources */,
 				134F1DAB2C6650FE00C35889 /* FavoriteManager.swift in Sources */,
 				134F1D962C6650FE00C35889 /* SettingsViewAbout.swift in Sources */,
+				135B62D72C6D11AB00A8F607 /* UserDefaults.swift in Sources */,
 				134F1DA82C6650FE00C35889 /* ProgressDownloadCell.swift in Sources */,
 				134F1DAD2C6650FE00C35889 /* DownloadManager.swift in Sources */,
 				1357B5222C6D1086000A2C9B /* ExternalVideoPlayerKura.swift in Sources */,
