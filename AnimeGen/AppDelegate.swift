@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(10, forKey: "maxRetries")
         }
         
+        if UserDefaults.standard.object(forKey: "holdSpeedPlayer") == nil {
+            UserDefaults.standard.set(2, forKey: "holdSpeedPlayer")
+        }
+        
         UserDefaults.standard.register(defaults: ["fullTitleCast": true])
         UserDefaults.standard.register(defaults: ["animeImageCast": true])
     }

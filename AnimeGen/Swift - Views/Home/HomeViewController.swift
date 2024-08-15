@@ -146,13 +146,16 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
+        dateFormatter.locale = Locale.current
         let dateString = dateFormatter.string(from: currentDate)
-        dateLabel.text = "on \(dateString)"
+        
+        dateLabel.text = String(format: NSLocalizedString("on %@", comment: "Prefix for date label"), dateString)
     }
     
     func setupSelectedSourceLabel() {
         let selectedSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? "AnimeWorld"
-        selectedSourceLabel.text = "on \(selectedSource)"
+        
+        selectedSourceLabel.text = String(format: NSLocalizedString("on %@%", comment: "Prefix for slected Source"), selectedSource)
     }
     
     func setupRefreshControl() {
@@ -194,7 +197,7 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
                 self?.trendingAnime = animeList
                 self?.trendingErrorLabel.isHidden = true
             } else {
-                self?.trendingErrorLabel.text = "Unable to load trending anime. Make sure to check your connection"
+                self?.trendingErrorLabel.text = NSLocalizedString("Unable to load trending anime. Make sure to check your connection", comment: "Trending Anime loading error")
                 self?.trendingErrorLabel.isHidden = false
             }
             completion()
@@ -207,7 +210,7 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
                 self?.seasonalAnime = animeList
                 self?.seasonalErrorLabel.isHidden = true
             } else {
-                self?.seasonalErrorLabel.text = "Unable to load seasonal anime. Make sure to check your connection"
+                self?.seasonalErrorLabel.text = NSLocalizedString("Unable to load seasonal anime. Make sure to check your connection", comment: "Seasonal Anime loading error")
                 self?.seasonalErrorLabel.isHidden = false
             }
             completion()
@@ -220,7 +223,7 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
                 self?.airingAnime = animeList
                 self?.airingErrorLabel.isHidden = true
             } else {
-                self?.airingErrorLabel.text = "Unable to load airing anime. Make sure to check your connection"
+                self?.airingErrorLabel.text = NSLocalizedString("Unable to load airing anime. Make sure to check your connection", comment: "Airing Anime loading error")
                 self?.airingErrorLabel.isHidden = false
             }
             completion()
@@ -230,21 +233,31 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
     private func fetchFeaturedAnime(completion: @escaping () -> Void) {
         let selectedSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? "AnimeWorld"
         let (sourceURL, parseStrategy) = getSourceInfo(for: selectedSource)
-
+        
         guard let urlString = sourceURL, let url = URL(string: urlString), let parse = parseStrategy else {
             DispatchQueue.main.async {
+                self.featuredAnime = []
                 self.featuredErrorLabel.text = "Unable to load featured anime. Make sure to check your connection"
                 self.featuredErrorLabel.isHidden = false
+                self.featuredActivityIndicator.stopAnimating()
                 completion()
             }
             return
         }
-
+        
+        DispatchQueue.main.async {
+            self.featuredAnime = []
+            self.featuredCollectionView.reloadData()
+            self.featuredActivityIndicator.startAnimating()
+            self.featuredErrorLabel.isHidden = true
+        }
+        
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
                     self?.featuredErrorLabel.text = "Error loading featured anime"
                     self?.featuredErrorLabel.isHidden = false
+                    self?.featuredActivityIndicator.stopAnimating()
                     completion()
                 }
                 return
@@ -257,6 +270,7 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
                 let animeItems = try parse(doc)
                 
                 DispatchQueue.main.async {
+                    self?.featuredActivityIndicator.stopAnimating()
                     if !animeItems.isEmpty {
                         self?.featuredAnime = animeItems
                         self?.featuredErrorLabel.isHidden = true
@@ -264,6 +278,7 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
                         self?.featuredErrorLabel.text = "No featured anime found"
                         self?.featuredErrorLabel.isHidden = false
                     }
+                    self?.featuredCollectionView.reloadData()
                     completion()
                 }
             } catch {
@@ -271,6 +286,7 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
                 DispatchQueue.main.async {
                     self?.featuredErrorLabel.text = "Error parsing featured anime"
                     self?.featuredErrorLabel.isHidden = false
+                    self?.featuredActivityIndicator.stopAnimating()
                     completion()
                 }
             }
@@ -328,10 +344,17 @@ class HomeViewController: UITableViewController, SourceSelectionDelegate {
     
     func showRemoveAlert(for indexPath: IndexPath) {
         let item = continueWatchingItems[indexPath.item]
-        let alert = UIAlertController(title: "Remove Item", message: "Do you want to remove '\(item.animeTitle)' from continue watching?", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [weak self] _ in
+        let alertTitle = NSLocalizedString("Remove Item", comment: "Title for remove item alert")
+        let alertMessage = String(format: NSLocalizedString("Do you want to remove '%@' from continue watching?", comment: "Message for remove item alert"), item.animeTitle)
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        
+        let cancelActionTitle = NSLocalizedString("Cancel", comment: "Cancel action title")
+        let removeActionTitle = NSLocalizedString("Remove", comment: "Remove action title")
+        
+        alert.addAction(UIAlertAction(title: cancelActionTitle, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: removeActionTitle, style: .destructive, handler: { [weak self] _ in
             self?.removeContinueWatchingItem(at: indexPath)
         }))
         
