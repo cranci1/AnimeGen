@@ -82,7 +82,7 @@
 		13765CB92C6E4F95000070A5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13765CAE2C6E4F95000070A5 /* Settings.storyboard */; };
 		13765CBB2C6E4FAB000070A5 /* Jikan-Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13765CBA2C6E4FAB000070A5 /* Jikan-Info.swift */; };
 		13765CBD2C6E4FBB000070A5 /* NormalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13765CBC2C6E4FBB000070A5 /* NormalPlayer.swift */; };
-		13AAF8B72C71E53200911F0B /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AAF8B62C71E53200911F0B /* HiAnime-WebPlayer.swift */; };
+		13AAF8B82C71E67900911F0B /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AAF8B62C71E53200911F0B /* HiAnime-WebPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -620,6 +620,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13AAF8B82C71E67900911F0B /* HiAnime-WebPlayer.swift in Sources */,
 				134F1DC22C6650FE00C35889 /* Login.swift in Sources */,
 				134F1DC32C6650FE00C35889 /* Token.swift in Sources */,
 				134F1DC72C6650FE00C35889 /* Kitsu-Info.swift in Sources */,
@@ -649,7 +650,6 @@
 				134F1DBF2C6650FE00C35889 /* AniList-Info.swift in Sources */,
 				134F1DA52C6650FE00C35889 /* SearchResultsViewController.swift in Sources */,
 				134F1DC02C6650FE00C35889 /* AniList-Trending.swift in Sources */,
-				13AAF8B72C71E53200911F0B /* HiAnime-WebPlayer.swift in Sources */,
 				134F1D952C6650FE00C35889 /* SourceMenu.swift in Sources */,
 				134F1DAC2C6650FE00C35889 /* BackupManager.swift in Sources */,
 				134F1DAA2C6650FE00C35889 /* DownloadCell.swift in Sources */,
