@@ -177,6 +177,36 @@ class SearchResultsViewController: UIViewController {
         tableView.reloadData()
     }
     
+    private func showSourceSelector() {
+        let alertController = UIAlertController(title: "Select Source", message: "Please select a source to search from.", preferredStyle: .actionSheet)
+        
+        let sources = ["AnimeWorld", "GoGoAnime", "AnimeHeaven", "AnimeFire", "Kuramanime", "JKanime", "Anime3rb", "HiAnime"]
+        
+        for source in sources {
+            let action = UIAlertAction(title: source, style: .default) { [weak self] _ in
+                UserDefaults.standard.set(source, forKey: "selectedMediaSource")
+                self?.selectedSource = source
+                self?.refreshResults()
+            }
+            alertController.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func refreshResults() {
+        fetchResults()
+    }
+    
     private func fetchResults() {
         loadingIndicator.startAnimating()
         tableView.isHidden = true
@@ -184,7 +214,8 @@ class SearchResultsViewController: UIViewController {
         noResultsLabel.isHidden = true
 
         guard let selectedSource = UserDefaults.standard.string(forKey: "selectedMediaSource") else {
-            showError("No media source selected.")
+            loadingIndicator.stopAnimating()
+            showSourceSelector()
             return
         }
 
@@ -272,6 +303,9 @@ class SearchResultsViewController: UIViewController {
         case "Anime3rb":
             url = "https://anime3rb.com/search"
             parameters["q"] = query
+        case "HiAnime":
+            url = "https://aniwatch.cranci.xyz/anime/search"
+            parameters["q"] = query
         default:
             return nil
         }
@@ -290,31 +324,46 @@ class SearchResultsViewController: UIViewController {
     }
 
     func parseHTML(html: String, for source: MediaSource) -> [(title: String, imageUrl: String, href: String)] {
-        do {
-            let document = try SwiftSoup.parse(html)
-            return parseDocument(document, for: source)
-        } catch {
-            print("Error parsing HTML: \(error.localizedDescription)")
-            return []
+        switch source {
+        case .hianime:
+            return parseDocument(nil, jsonString: html, for: source)
+        default:
+            do {
+                let document = try SwiftSoup.parse(html)
+                return parseDocument(document, jsonString: nil, for: source)
+            } catch {
+                print("Error parsing HTML: \(error.localizedDescription)")
+                return []
+            }
         }
     }
 
-    private func parseDocument(_ document: Document, for source: MediaSource) -> [(title: String, imageUrl: String, href: String)] {
+    private func parseDocument(_ document: Document?, jsonString: String?, for source: MediaSource) -> [(title: String, imageUrl: String, href: String)] {
         switch source {
         case .animeWorld:
+            guard let document = document else { return [] }
             return parseAnimeWorld(document)
         case .gogoanime:
+            guard let document = document else { return [] }
             return parseGoGoAnime(document)
         case .animeheaven:
+            guard let document = document else { return [] }
             return parseAnimeHeaven(document)
         case .animefire:
+            guard let document = document else { return [] }
             return parseAnimeFire(document)
         case .kuramanime:
+            guard let document = document else { return [] }
             return parseKuramanime(document)
         case .jkanime:
+            guard let document = document else { return [] }
             return parseJKanime(document)
         case .anime3rb:
+            guard let document = document else { return [] }
             return parseAnime3rb(document)
+        case .hianime:
+            guard let jsonString = jsonString else { return [] }
+            return parseHiAnime(jsonString)
         }
     }
 
@@ -393,7 +442,6 @@ extension SearchResultsViewController: UIContextMenuInteractionDelegate {
             baseUrl = "https://anitaku.pe"
         case "AnimeHeaven":
             baseUrl = "https://animeheaven.me/"
-
         default:
             baseUrl = ""
         }
