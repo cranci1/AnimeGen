@@ -82,7 +82,7 @@
 		13765CB92C6E4F95000070A5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13765CAE2C6E4F95000070A5 /* Settings.storyboard */; };
 		13765CBB2C6E4FAB000070A5 /* Jikan-Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13765CBA2C6E4FAB000070A5 /* Jikan-Info.swift */; };
 		13765CBD2C6E4FBB000070A5 /* NormalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13765CBC2C6E4FBB000070A5 /* NormalPlayer.swift */; };
-		13AAF8B52C71E2D600911F0B /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AAF8B42C71E2D600911F0B /* HiAnime-WebPlayer.swift */; };
+		13AAF8B72C71E53200911F0B /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AAF8B62C71E53200911F0B /* HiAnime-WebPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,7 +159,7 @@
 		13765CAF2C6E4F95000070A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = AnimeGen/Base.lproj/Settings.storyboard; sourceTree = SOURCE_ROOT; };
 		13765CBA2C6E4FAB000070A5 /* Jikan-Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Jikan-Info.swift"; sourceTree = "<group>"; };
 		13765CBC2C6E4FBB000070A5 /* NormalPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalPlayer.swift; sourceTree = "<group>"; };
-		13AAF8B42C71E2D600911F0B /* HiAnime-WebPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HiAnime-WebPlayer.swift"; sourceTree = "<group>"; };
+		13AAF8B62C71E53200911F0B /* HiAnime-WebPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HiAnime-WebPlayer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -525,7 +525,7 @@
 		13AAF8B32C71E2D600911F0B /* WebView Player */ = {
 			isa = PBXGroup;
 			children = (
-				13AAF8B42C71E2D600911F0B /* HiAnime-WebPlayer.swift */,
+				13AAF8B62C71E53200911F0B /* HiAnime-WebPlayer.swift */,
 			);
 			name = "WebView Player";
 			path = "../../../../Ryu/Ryu/Utils/Player/WebView Player";
@@ -649,7 +649,7 @@
 				134F1DBF2C6650FE00C35889 /* AniList-Info.swift in Sources */,
 				134F1DA52C6650FE00C35889 /* SearchResultsViewController.swift in Sources */,
 				134F1DC02C6650FE00C35889 /* AniList-Trending.swift in Sources */,
-				13AAF8B52C71E2D600911F0B /* HiAnime-WebPlayer.swift in Sources */,
+				13AAF8B72C71E53200911F0B /* HiAnime-WebPlayer.swift in Sources */,
 				134F1D952C6650FE00C35889 /* SourceMenu.swift in Sources */,
 				134F1DAC2C6650FE00C35889 /* BackupManager.swift in Sources */,
 				134F1DAA2C6650FE00C35889 /* DownloadCell.swift in Sources */,
