@@ -44,6 +44,14 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
         setupLoadingView()
         openWebView(fullURL: streamURL)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UserDefaults.standard.bool(forKey: "AlwaysLandscape") {
+            return .landscape
+        } else {
+            return .all
+        }
+    }
 
     private func setupLoadingView() {
         view.backgroundColor = .secondarySystemBackground
@@ -257,7 +265,6 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
     }
 
     private func handleDownloadorPlayback(url: URL) {
-        UserDefaults.standard.set(false, forKey: "isToDownload")
         loadQualityOptions(from: url) { success, error in
             if success {
                 self.showQualitySelection()
@@ -310,12 +317,6 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
     private func presentQualityPicker() {
         let alert = UIAlertController(title: "Select Quality", message: nil, preferredStyle: .actionSheet)
         
-        let animeTitle = self.animeDetailsViewController?.animeTitle ?? "Anime"
-        let episodeNumber = (self.animeDetailsViewController?.currentEpisodeIndex ?? 0) + 1
-        
-        let safeAnimeTitle = animeTitle.replacingOccurrences(of: "[^a-zA-Z0-9]", with: "_", options: .regularExpression)
-        let baseFileName = "\(safeAnimeTitle)_Episode_\(episodeNumber)"
-        
         for option in qualityOptions {
             alert.addAction(UIAlertAction(title: option.name, style: .default, handler: { _ in
                 self.handleQualitySelection(option: option)
@@ -323,6 +324,14 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
         }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = alert.popoverPresentationController {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -340,6 +349,7 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
                 let outputFileName = "\(baseFileName)_\(option.name)"
                 self.downloader.downloadAndCombineM3U8(url: url, outputFileName: outputFileName)
                 self.dismiss(animated: true, completion: nil)
+                UserDefaults.standard.set(false, forKey: "isToDownload")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     self.animeDetailsViewController?.showAlert(title: "Download Started", message: "Check your notifications and also the folder in the Files app to see when your episode is downloaded")

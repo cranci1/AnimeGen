@@ -55,6 +55,14 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
         cleanup()
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UserDefaults.standard.bool(forKey: "AlwaysLandscape") {
+            return .landscape
+        } else {
+            return .all
+        }
+    }
+    
     private func setupUI() {
         view.backgroundColor = UIColor.secondarySystemBackground
         setupActivityIndicator()
@@ -185,6 +193,8 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             if GCKCastContext.sharedInstance().sessionManager.hasConnectedCastSession() {
                 self.castVideoToGoogleCast(videoURL: url)
                 self.dismiss(animated: true, completion: nil)
+            } else if UserDefaults.standard.bool(forKey: "isToDownload") {
+                self.handleDownload(url: url)
             } else {
                 self.playOrCastVideo(url: url)
             }
