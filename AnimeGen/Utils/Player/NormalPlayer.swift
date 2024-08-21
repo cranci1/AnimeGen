@@ -5,7 +5,6 @@
 //  Created by Francesco on 15/08/24.
 //
 
-import UIKit
 import AVKit
 
 class NormalPlayer: AVPlayerViewController {
@@ -19,7 +18,7 @@ class NormalPlayer: AVPlayerViewController {
     
     private func setupHoldGesture() {
         holdGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleHoldGesture(_:)))
-        holdGesture?.minimumPressDuration = 0.1
+        holdGesture?.minimumPressDuration = 0.5
         if let holdGesture = holdGesture {
             view.addGestureRecognizer(holdGesture)
         }
