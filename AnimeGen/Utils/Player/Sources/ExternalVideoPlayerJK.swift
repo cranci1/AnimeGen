@@ -26,7 +26,7 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
     
     private var originalRate: Float = 1.0
     private var holdGesture: UILongPressGestureRecognizer?
-
+    
     init(streamURL: String, cell: EpisodeCell, fullURL: String, animeDetailsViewController: AnimeDetailViewController) {
         self.streamURL = streamURL
         self.cell = cell
@@ -44,6 +44,11 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
         setupUI()
         loadInitialURL()
         setupHoldGesture()
+        setupNotificationObserver()
+    }
+    
+    private func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: .AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -62,8 +67,16 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
-
+    
     override var childForHomeIndicatorAutoHidden: UIViewController? {
+        return playerViewController
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var childForStatusBarHidden: UIViewController? {
         return playerViewController
     }
     
@@ -160,17 +173,18 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
         DispatchQueue.main.async {
             self.activityIndicator?.stopAnimating()
             
-            if let selectedPlayer = UserDefaults.standard.string(forKey: "mediaPlayerSelected") {
-                if selectedPlayer == "VLC" || selectedPlayer == "Infuse" || selectedPlayer == "OutPlayer" {
-                    self.animeDetailsViewController?.openInExternalPlayer(player: selectedPlayer, url: url)
-                    self.dismiss(animated: true, completion: nil)
-                    return
-                }
-            }
+            let selectedPlayer = UserDefaults.standard.string(forKey: "mediaPlayerSelected")
             
-            if GCKCastContext.sharedInstance().sessionManager.hasConnectedCastSession() {
+            if selectedPlayer == "VLC" || selectedPlayer == "Infuse" || selectedPlayer == "OutPlayer" {
+                self.animeDetailsViewController?.openInExternalPlayer(player: selectedPlayer!, url: url)
+            } else if selectedPlayer == "Experimental" {
+                let videoTitle = self.animeDetailsViewController?.animeTitle ?? "Anime"
+                let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url)
+                customPlayerVC.modalPresentationStyle = .fullScreen
+                customPlayerVC.delegate = self
+                self.present(customPlayerVC, animated: true, completion: nil)
+            } else if GCKCastContext.sharedInstance().sessionManager.hasConnectedCastSession() {
                 self.castVideoToGoogleCast(videoURL: url)
-                self.dismiss(animated: true, completion: nil)
             } else {
                 self.playOrCastVideo(url: url)
             }
@@ -250,8 +264,8 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
             guard let self = self,
                   let currentItem = self.player?.currentItem,
                   currentItem.duration.seconds.isFinite else {
-                return
-            }
+                      return
+                  }
             
             let currentTime = time.seconds
             let duration = currentItem.duration.seconds
@@ -298,6 +312,60 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
         }
     }
     
+    func playNextEpisode() {
+        guard let animeDetailsViewController = self.animeDetailsViewController else {
+            print("Error: animeDetailsViewController is nil")
+            return
+        }
+        
+        if animeDetailsViewController.isReverseSorted {
+            animeDetailsViewController.currentEpisodeIndex -= 1
+            if animeDetailsViewController.currentEpisodeIndex >= 0 {
+                playEpisode(at: animeDetailsViewController.currentEpisodeIndex)
+            } else {
+                animeDetailsViewController.currentEpisodeIndex = 0
+            }
+        } else {
+            animeDetailsViewController.currentEpisodeIndex += 1
+            if animeDetailsViewController.currentEpisodeIndex < animeDetailsViewController.episodes.count {
+                playEpisode(at: animeDetailsViewController.currentEpisodeIndex)
+            } else {
+                animeDetailsViewController.currentEpisodeIndex = animeDetailsViewController.episodes.count - 1
+            }
+        }
+    }
+    
+    private func playEpisode(at index: Int) {
+        guard let animeDetailsViewController = self.animeDetailsViewController,
+              index >= 0 && index < animeDetailsViewController.episodes.count else {
+                  return
+              }
+        
+        let nextEpisode = animeDetailsViewController.episodes[index]
+        if let cell = animeDetailsViewController.tableView.cellForRow(at: IndexPath(row: index, section: 2)) as? EpisodeCell {
+            animeDetailsViewController.episodeSelected(episode: nextEpisode, cell: cell)
+        }
+    }
+    
+    @objc func playerItemDidReachEnd(notification: Notification) {
+        if UserDefaults.standard.bool(forKey: "AutoPlay") {
+            guard let animeDetailsViewController = self.animeDetailsViewController else { return }
+            let hasNextEpisode = animeDetailsViewController.isReverseSorted ?
+            (animeDetailsViewController.currentEpisodeIndex > 0) :
+            (animeDetailsViewController.currentEpisodeIndex < animeDetailsViewController.episodes.count - 1)
+            
+            if hasNextEpisode {
+                self.dismiss(animated: true) { [weak self] in
+                    self?.playNextEpisode()
+                }
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     private func cleanup() {
         player?.pause()
         player = nil
@@ -316,6 +384,10 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
         webView?.loadHTMLString("", baseURL: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private func retryExtraction() {
         retryCount += 1
         if retryCount < maxRetries {
@@ -331,5 +403,11 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
                 self.dismiss(animated: true)
             }
         }
+    }
+}
+
+extension ExternalVideoPlayerJK: CustomPlayerViewDelegate {
+    func customPlayerViewDidDismiss() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

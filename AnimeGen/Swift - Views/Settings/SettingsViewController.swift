@@ -86,7 +86,8 @@ class SettingsViewController: UITableViewController {
         let defaultIcon = UIImage(systemName: "play.rectangle.fill")
         let infuseIcon = UIImage(systemName: "flame")
         let vlcIcon = UIImage(systemName: "film")
-        let outIcon = UIImage(systemName: "play.circle.fill")
+        let outplayerIcon = UIImage(systemName: "play.circle.fill")
+        let experimentalIcon = UIImage(systemName: "bolt")
 
         let action1 = UIAction(title: "Default", image: defaultIcon, handler: { [weak self] _ in
             UserDefaults.standard.set("Default", forKey: "mediaPlayerSelected")
@@ -100,12 +101,16 @@ class SettingsViewController: UITableViewController {
             UserDefaults.standard.set("Infuse", forKey: "mediaPlayerSelected")
             self?.playerButton.setTitle("Infuse", for: .normal)
         })
-        let action4 = UIAction(title: "Outplayer", image: outIcon, handler: { [weak self] _ in
-            UserDefaults.standard.set("Outplayer", forKey: "mediaPlayerSelected")
-            self?.playerButton.setTitle("Outplayer", for: .normal)
+        let action4 = UIAction(title: "OutPlayer", image: outplayerIcon, handler: { [weak self] _ in
+            UserDefaults.standard.set("OutPlayer", forKey: "mediaPlayerSelected")
+            self?.playerButton.setTitle("OutPlayer", for: .normal)
+        })
+        let action5 = UIAction(title: "Experimental", image: experimentalIcon, handler: { [weak self] _ in
+            UserDefaults.standard.set("Experimental", forKey: "mediaPlayerSelected")
+            self?.playerButton.setTitle("Experimental", for: .normal)
         })
 
-        let menu = UIMenu(title: "Select Media Player", children: [action1, action2, action3, action4])
+        let menu = UIMenu(title: "Select Media Player", children: [action1, action2, action3, action4, action5])
         
         playerButton.menu = menu
         playerButton.showsMenuAsPrimaryAction = true
