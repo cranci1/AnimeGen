@@ -27,6 +27,10 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     private var subtitlesURL: URL?
     private var originalBrightness: CGFloat = UIScreen.main.brightness
     private var isFullBrightness = false
+    private var cell: EpisodeCell
+    private var fullURL: String
+    private var hasSentUpdate = false
+    private var animeDetailsViewController: AnimeDetailViewController?
     
     private var subtitles: [SubtitleCue] = []
     private var subtitleTimer: Timer?
@@ -171,7 +175,9 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         return label
     }()
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, cell: EpisodeCell, fullURL: String) {
+        self.cell = cell
+        self.fullURL = fullURL
         super.init(frame: frame)
         setupPlayer()
         setupUI()
@@ -185,8 +191,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        if let timeObserverToken = timeObserverToken {
-            player?.removeTimeObserver(timeObserverToken)
+        if let token = timeObserverToken {
+            player?.removeTimeObserver(token)
         }
     }
     
@@ -262,8 +268,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             
             playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            playPauseButton.widthAnchor.constraint(equalToConstant: 45),
-            playPauseButton.heightAnchor.constraint(equalToConstant: 50),
+            playPauseButton.widthAnchor.constraint(equalToConstant: 55),
+            playPauseButton.heightAnchor.constraint(equalToConstant: 60),
             
             rewindButton.trailingAnchor.constraint(equalTo: playPauseButton.leadingAnchor, constant: -20),
             rewindButton.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor),
@@ -281,10 +287,10 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             playerProgress.heightAnchor.constraint(equalToConstant: 8),
             
             currentTimeLabel.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
-            currentTimeLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -10),
+            currentTimeLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -30),
             
             totalTimeLabel.trailingAnchor.constraint(equalTo: playerProgress.trailingAnchor),
-            totalTimeLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -10),
+            totalTimeLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -30),
             
             settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             settingsButton.trailingAnchor.constraint(equalTo: totalTimeLabel.trailingAnchor),
@@ -292,8 +298,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             speedButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             speedButton.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: -5),
             
-            dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            dismissButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15),
+            dismissButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
             dismissButton.widthAnchor.constraint(equalToConstant: 30),
             dismissButton.heightAnchor.constraint(equalToConstant: 30),
             
@@ -327,11 +333,15 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         playerLayer?.frame = self.bounds
     }
     
-    func setVideo(url: URL, title: String, subURL: URL? = nil) {
+    func setVideo(url: URL, title: String, subURL: URL? = nil, cell: EpisodeCell, fullURL: String) {
         self.videoTitle = title
         titleLabel.text = title
         self.baseURL = url.deletingLastPathComponent()
         self.subtitlesURL = subURL
+        self.cell = cell
+        self.fullURL = fullURL
+        
+        let lastPlayedTime = UserDefaults.standard.double(forKey: "lastPlayedTime_\(fullURL)")
         
         if url.pathExtension == "m3u8" {
             parseM3U8(url: url) { [weak self] in
@@ -339,6 +349,12 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
                 
                 if let highestQualityIndex = self.qualities.indices.last {
                     self.setQuality(index: highestQualityIndex)
+                    
+                    if lastPlayedTime > 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.player?.seek(to: CMTime(seconds: lastPlayedTime, preferredTimescale: 1))
+                        }
+                    }
                 }
                 
                 self.updateSettingsMenu()
@@ -348,6 +364,10 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             player?.replaceCurrentItem(with: playerItem)
             qualities.removeAll()
             updateSettingsMenu()
+            
+            if lastPlayedTime > 0 {
+                player?.seek(to: CMTime(seconds: lastPlayedTime, preferredTimescale: 1))
+            }
         }
         
         if let subtitlesURL = subtitlesURL {
@@ -360,6 +380,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             subtitleTimer?.invalidate()
             subtitleTimer = nil
         }
+        
+        addPeriodicTimeObserver(fullURL: fullURL, cell: cell)
     }
     
     func play() {
@@ -446,6 +468,83 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         }
     }
     
+    private func addPeriodicTimeObserver(fullURL: String, cell: EpisodeCell) {
+        let interval = CMTime(seconds: 1.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserverToken = player?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            guard let self = self,
+                  let currentItem = self.player?.currentItem,
+                  currentItem.duration.seconds.isFinite else {
+                return
+            }
+            
+            let currentTime = time.seconds
+            let duration = currentItem.duration.seconds
+            let progress = currentTime / duration
+            let remainingTime = duration - currentTime
+            
+            self.cell.updatePlaybackProgress(progress: Float(progress), remainingTime: remainingTime)
+            
+            UserDefaults.standard.set(currentTime, forKey: "lastPlayedTime_\(fullURL)")
+            UserDefaults.standard.set(duration, forKey: "totalTime_\(fullURL)")
+            
+            let episodeNumber = Int(self.cell.episodeNumber) ?? 0
+            let selectedMediaSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? "AnimeWorld"
+            
+            let continueWatchingItem = ContinueWatchingItem(
+                animeTitle: self.videoTitle,
+                episodeTitle: "Ep. \(episodeNumber)",
+                episodeNumber: episodeNumber,
+                imageURL: self.animeDetailsViewController?.imageUrl ?? "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg",
+                fullURL: fullURL,
+                lastPlayedTime: currentTime,
+                totalTime: duration,
+                source: selectedMediaSource
+            )
+            ContinueWatchingManager.shared.saveItem(continueWatchingItem)
+            
+            if remainingTime < 120 && !(self.hasSentUpdate) {
+                let cleanedTitle = self.cleanTitle(self.videoTitle)
+                
+                self.fetchAnimeID(title: cleanedTitle) { animeID in
+                    let aniListMutation = AniListMutation()
+                    aniListMutation.updateAnimeProgress(animeId: animeID, episodeNumber: Int(self.cell.episodeNumber) ?? 0) { result in
+                        switch result {
+                        case .success():
+                            print("Successfully updated anime progress.")
+                        case .failure(let error):
+                            print("Failed to update anime progress: \(error.localizedDescription)")
+                        }
+                    }
+                    
+                    self.hasSentUpdate = true
+                }
+            }
+        }
+    }
+    
+    func fetchAnimeID(title: String, completion: @escaping (Int) -> Void) {
+        AnimeService.fetchAnimeID(byTitle: title) { result in
+            switch result {
+            case .success(let id):
+                completion(id)
+            case .failure(let error):
+                print("Error fetching anime ID: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func cleanTitle(_ title: String) -> String {
+        let unwantedStrings = ["(ITA)", "(Dub)", "(Dub ID)", "(Dublado)"]
+        var cleanedTitle = title
+        
+        for unwanted in unwantedStrings {
+            cleanedTitle = cleanedTitle.replacingOccurrences(of: unwanted, with: "")
+        }
+        
+        cleanedTitle = cleanedTitle.replacingOccurrences(of: "\"", with: "")
+        return cleanedTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     private func updatePlayPauseButton() {
         let isPlaying = player?.rate != 0
         let imageName = isPlaying ? "pause.fill" : "play.fill"
@@ -476,7 +575,9 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         let duration = CMTimeGetSeconds(currentItem.duration)
         
         currentTimeLabel.text = timeString(from: currentTime)
-        totalTimeLabel.text = timeString(from: duration)
+        
+        let remainingTime = duration - currentTime
+        totalTimeLabel.text = "-" + timeString(from: remainingTime)
         
         if duration > 0 {
             playerProgress.progress = Float(max(0, min(currentTime / duration, 1)))
@@ -536,9 +637,16 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         let progress = location.x / playerProgress.bounds.width
         
         switch gesture.state {
-        case .began, .changed:
+        case .began:
+            UIView.animate(withDuration: 0.2) {
+                self.playerProgress.transform = CGAffineTransform(scaleX: 1.0, y: 1.5)
+            }
+        case .changed:
             playerProgress.progress = Float(progress)
         case .ended:
+            UIView.animate(withDuration: 0.2) {
+                self.playerProgress.transform = CGAffineTransform.identity
+            }
             guard let duration = player?.currentItem?.duration else { return }
             let seekTime = CMTime(seconds: Double(progress) * CMTimeGetSeconds(duration), preferredTimescale: 1)
             player?.seek(to: seekTime)
@@ -708,6 +816,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     }
     
     @objc private func dismissButtonTapped() {
+        self.hasSentUpdate = false
         findViewController()?.dismiss(animated: true, completion: nil)
     }
     

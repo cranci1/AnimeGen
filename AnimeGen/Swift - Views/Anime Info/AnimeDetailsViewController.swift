@@ -13,7 +13,7 @@ import GoogleCast
 import Kingfisher
 import SafariServices
 
-class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GCKRemoteMediaClientListener, AVPlayerViewControllerDelegate {
+class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientListener, AVPlayerViewControllerDelegate {
     var animeTitle: String?
     var imageUrl: String?
     var href: String?
@@ -319,6 +319,8 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             baseUrl = "https://anitaku.pe"
         case "AnimeHeaven":
             baseUrl = "https://animeheaven.me/"
+        case "HiAnime":
+            baseUrl = "https://hianime.to/watch/"
         default:
             baseUrl = ""
         }
@@ -331,12 +333,8 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             return
         }
         
-        UIApplication.shared.open(url, options: [:]) { success in
-            if !success {
-                print("Failed to open URL: \(url)")
-                self.showAlert(withTitle: "Error", message: "Failed to open the URL.")
-            }
-        }
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
     
     private func refreshAnimeDetails() {
@@ -442,7 +440,23 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
     }
     
     @objc private func openInWeb(fullURL: String) {
-        guard let url = URL(string: fullURL) else {
+        let selectedMediaSource = UserDefaults.standard.string(forKey: "selectedMediaSource")
+        
+        if selectedMediaSource == "HiAnime" {
+            if let extractedID = extractEpisodeId(from: fullURL) {
+                let hiAnimeURL = "https://hianime.to/watch/\(extractedID)"
+                print(hiAnimeURL)
+                openSafariViewController(with: hiAnimeURL)
+            } else {
+                showAlert(title: "Error", message: "Unable to extract episode ID")
+            }
+        } else {
+            openSafariViewController(with: fullURL)
+        }
+    }
+    
+    private func openSafariViewController(with urlString: String) {
+        guard let url = URL(string: urlString) else {
             showAlert(title: "Error", message: "Unable to open the webpage")
             return
         }
@@ -565,7 +579,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                                     print("No caption URL selected")
                                     return
                                 }
-                                self.openHiAnimeExperimental(url: sourceURL, subURL: selectedCaptionURL)
+                                self.openHiAnimeExperimental(url: sourceURL, subURL: selectedCaptionURL, cell: cell, fullURL: fullURL)
                             }
                         }
                     }
@@ -669,7 +683,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                 case "GoGoAnime":
                     srcURL = self.extractIframeSourceURL(from: htmlString)
                 case "ZoroTv":
-                    self.extractIframeAndGetM3U8URL(from: htmlString) { [weak self] result in
+                    self.extractIframeAndGetM3U8URL(from: htmlString, cell: cell, fullURL: fullURL) { [weak self] result in
                         guard let self = self else { return }
                         guard let m3u8URL = result else {
                             print("Error extracting m3u8 URL")
@@ -718,7 +732,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
         }.resume()
     }
     
-    func extractIframeAndGetM3U8URL(from htmlString: String, completion: @escaping (URL?) -> Void) {
+    func extractIframeAndGetM3U8URL(from htmlString: String, cell: EpisodeCell, fullURL: String, completion: @escaping (URL?) -> Void) {
         do {
             let doc = try SwiftSoup.parse(htmlString)
             
@@ -756,7 +770,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
                             
                             if selectedPlayer == "Experimental" {
                                 DispatchQueue.main.async {
-                                    self.openVideo(url: m3u8URL)
+                                    self.openVideo(url: m3u8URL, cell: cell, fullURL: fullURL)
                                 }
                             } else {
                                 self.loadQualityOptions(from: m3u8URL) { success, error in
@@ -791,9 +805,9 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
         }
     }
     
-    func openVideo(url: URL) {
-        let videoTitle = animeTitle
-        let viewController = CustomPlayerView(videoTitle: videoTitle ?? "", videoURL: url)
+    func openVideo(url: URL, cell: EpisodeCell, fullURL: String) {
+        let videoTitle = animeTitle!
+        let viewController = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: cell, fullURL: fullURL)
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true, completion: nil)
     }
@@ -1377,7 +1391,7 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
             openInExternalPlayer(player: player, url: sourceURL)
         case "Experimental":
             let videoTitle = animeTitle
-            let viewController = CustomPlayerView(videoTitle: videoTitle ?? "", videoURL: sourceURL)
+            let viewController = CustomPlayerView(videoTitle: videoTitle ?? "", videoURL: sourceURL, cell: cell, fullURL: fullURL)
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: true, completion: nil)
         default:
@@ -1413,9 +1427,9 @@ class AnimeDetailViewController: UITableViewController, WKNavigationDelegate, GC
         }
     }
     
-    func openHiAnimeExperimental(url: URL, subURL: URL) {
-        let videoTitle = animeTitle
-        let viewController = CustomPlayerView(videoTitle: videoTitle ?? "", videoURL: url, subURL: subURL)
+    func openHiAnimeExperimental(url: URL, subURL: URL, cell: EpisodeCell, fullURL: String) {
+        let videoTitle = animeTitle!
+        let viewController = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: cell, fullURL: fullURL)
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true, completion: nil)
     }

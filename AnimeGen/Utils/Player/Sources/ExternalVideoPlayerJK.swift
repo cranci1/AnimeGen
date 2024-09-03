@@ -17,7 +17,7 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
     private var activityIndicator: UIActivityIndicatorView?
     
     private var retryCount = 0
-    private let maxRetries = 10
+    private let maxRetries: Int
     
     private var cell: EpisodeCell
     private var fullURL: String
@@ -32,6 +32,10 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
         self.cell = cell
         self.fullURL = fullURL
         self.animeDetailsViewController = animeDetailsViewController
+        
+        let userDefaultsRetries = UserDefaults.standard.integer(forKey: "maxRetries")
+        self.maxRetries = userDefaultsRetries > 0 ? userDefaultsRetries : 10
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -182,7 +186,7 @@ class ExternalVideoPlayerJK: UIViewController, WKNavigationDelegate, GCKRemoteMe
                     self.animeDetailsViewController?.openInExternalPlayer(player: selectedPlayer, url: url)
                 } else if selectedPlayer == "Experimental" {
                     let videoTitle = self.animeDetailsViewController?.animeTitle ?? "Anime"
-                    let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url)
+                    let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: self.cell, fullURL: self.fullURL)
                     customPlayerVC.modalPresentationStyle = .fullScreen
                     customPlayerVC.delegate = self
                     self.present(customPlayerVC, animated: true, completion: nil)
