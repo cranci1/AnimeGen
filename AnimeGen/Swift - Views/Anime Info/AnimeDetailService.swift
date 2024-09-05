@@ -33,7 +33,7 @@ class AnimeDetailService {
         case .animeheaven:
             baseUrl = "https://animeheaven.me/"
         case .hianime:
-            baseUrl = "https://aniwatch.cranci.xyz/anime/info?id="
+            baseUrl = "https://aniwatch-api-dusky.vercel.app/anime/info?id="
         case .animefire, .kuramanime, .jkanime, .anime3rb, .zorotv:
             baseUrl = ""
         }
@@ -150,7 +150,7 @@ class AnimeDetailService {
     }
     
     static func fetchHiAnimeEpisodes(from href: String, completion: @escaping (Result<[Episode], Error>) -> Void) {
-        let baseUrl = "https://aniwatch.cranci.xyz/anime/episodes/"
+        let baseUrl = "https://aniwatch-api-dusky.vercel.app/anime/episodes/"
         let fullUrl = baseUrl + href
         
         AF.request(fullUrl).responseJSON { response in
@@ -174,7 +174,7 @@ class AnimeDetailService {
                     
                     let episodeNumber = "\(number)"
                     let hrefID = episodeId
-                    let href = "https://aniwatch.cranci.xyz/anime/episode-srcs?id=" + hrefID
+                    let href = "https://aniwatch-api-dusky.vercel.app/anime/episode-srcs?id=" + hrefID
                     
                     return Episode(number: episodeNumber, href: href, downloadUrl: "")
                 }
@@ -240,20 +240,18 @@ class AnimeDetailService {
                     }
                 }
             case .animeheaven:
-                episodes = episodeElements.compactMap { element in
-                    guard let episodeNumberElement = try? element.select("div.watch2.bc.c").first() else {
-                        return nil
-                    }
-                    
-                    let episodeNumber = try? episodeNumberElement.text().trimmingCharacters(in: .whitespacesAndNewlines)
-                    let href = try? element.attr("href")
-                    
-                    if let episodeNumber = episodeNumber, let href = href {
-                        return Episode(number: episodeNumber, href: href, downloadUrl: "")
-                    } else {
-                        return nil
-                    }
-                }
+                 episodes = episodeElements.compactMap { element in
+                     do {
+                         let episodeNumber = try element.select("div.watch2.bc").first()?.text().trimmingCharacters(in: .whitespacesAndNewlines)
+                         let episodeHref = try element.attr("href")
+                         
+                         guard let episodeNumber = episodeNumber else { return nil }
+                         return Episode(number: episodeNumber, href: episodeHref, downloadUrl: "")
+                     } catch {
+                         print("Error parsing AnimeHeaven episode: \(error.localizedDescription)")
+                         return nil
+                     }
+                 }
             case .animefire:
                 var filmCount = 0
                 episodes = episodeElements.compactMap { element in
@@ -274,7 +272,7 @@ class AnimeDetailService {
                             return Episode(number: episodeNumber, href: href, downloadUrl: "")
                         }
                     } catch {
-                        print("Error parsing episode: \(error.localizedDescription)")
+                        print("Error parsing AnimeFire episode: \(error.localizedDescription)")
                     }
                     return nil
                 }
@@ -313,7 +311,7 @@ class AnimeDetailService {
                         
                         return Episode(number: episodeNumber, href: href, downloadUrl: "")
                     } catch {
-                        print("Error parsing episode: \(error.localizedDescription)")
+                        print("Error parsing Anime3rb episode: \(error.localizedDescription)")
                         return nil
                     }
                 }

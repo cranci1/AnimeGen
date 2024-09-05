@@ -238,6 +238,12 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     private func showOptionsMenu() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        let advancedSettingsAction = UIAlertAction(title: "Advanced Settings", style: .default) { [weak self] _ in
+            self?.showAdvancedSettingsMenu()
+        }
+        advancedSettingsAction.setValue(UIImage(systemName: "gear"), forKey: "image")
+        alertController.addAction(advancedSettingsAction)
+        
         let fetchIDAction = UIAlertAction(title: "AniList Info", style: .default) { [weak self] _ in
             guard let self = self else { return }
             let cleanedTitle = self.cleanTitle(self.animeTitle ?? "Title")
@@ -270,6 +276,54 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
         present(alertController, animated: true, completion: nil)
     }
     
+    private func showAdvancedSettingsMenu() {
+        let alertController = UIAlertController(title: "Advanced Settings", message: nil, preferredStyle: .actionSheet)
+        
+        let customAniListIDAction = UIAlertAction(title: "Custom AniList ID", style: .default) { [weak self] _ in
+            self?.customAniListID()
+        }
+        customAniListIDAction.setValue(UIImage(systemName: "pencil"), forKey: "image")
+        alertController.addAction(customAniListIDAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = view
+            popoverController.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func customAniListID() {
+        let alert = UIAlertController(title: "Custom AniList ID", message: "Enter a custom AniList ID for this anime:", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "AniList ID"
+            if let animeTitle = self.animeTitle {
+                let customID = UserDefaults.standard.string(forKey: "customAniListID_\(animeTitle)")
+                textField.text = customID
+            }
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            if let animeTitle = self?.animeTitle, let textField = alert.textFields?.first, let customID = textField.text, !customID.isEmpty {
+                UserDefaults.standard.setValue(customID, forKey: "customAniListID_\(animeTitle)")
+            } else {
+                self?.showAlert(title: "Error", message: "AniList ID cannot be empty.")
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     func cleanTitle(_ title: String) -> String {
         let unwantedStrings = ["(ITA)", "(Dub)", "(Dub ID)", "(Dublado)"]
         var cleanedTitle = title
@@ -283,13 +337,17 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     }
     
     private func fetchAndNavigateToAnime(title: String) {
-        AnimeService.fetchAnimeID(byTitle: title) { [weak self] result in
-            switch result {
-            case .success(let id):
-                self?.navigateToAnimeDetail(for: id)
-            case .failure(let error):
-                print("Error fetching anime ID: \(error.localizedDescription)")
-                self?.showAlert(title: "Error", message: "Ryu is not able to find the anime ID from AniList")
+        if let customID = UserDefaults.standard.string(forKey: "customAniListID_\(animeTitle ?? "")") {
+            navigateToAnimeDetail(for: Int(customID) ?? 0)
+        } else {
+            AnimeService.fetchAnimeID(byTitle: title) { [weak self] result in
+                switch result {
+                case .success(let id):
+                    self?.navigateToAnimeDetail(for: id)
+                case .failure(let error):
+                    print("Error fetching anime ID: \(error.localizedDescription)")
+                    self?.showAlert(title: "Error", message: "Unable to find the anime ID from AniList")
+                }
             }
         }
     }
@@ -563,7 +621,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                 }
                 
                 self.selectServer(servers: servers, preferredServer: preferredServer) { server in
-                    let finalURL = "https://aniwatch.cranci.xyz/anime/episode-srcs?id=\(episodeId)&category=\(category)&server=\(server)"
+                    let finalURL = "https://aniwatch-api-dusky.vercel.app/anime/episode-srcs?id=\(episodeId)&category=\(category)&server=\(server)"
                     print(finalURL)
                     
                     self.fetchHiAnimeData(from: finalURL) { sourceURL, captionURLs in
@@ -574,13 +632,15 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                                 return
                             }
                             
-                            self.selectSubtitles(captionURLs: captionURLs) { selectedCaptionURL in
-                                guard let selectedCaptionURL = selectedCaptionURL else {
-                                    print("No caption URL selected")
-                                    return
+                            let subtitleURL: URL = {
+                                if let url = captionURLs?[UserDefaults.standard.string(forKey: "subtitleHiPrefe") ?? "English"] {
+                                    return url
+                                } else {
+                                    return URL(string: "https://nosubtitlesfor.you")!
                                 }
-                                self.openHiAnimeExperimental(url: sourceURL, subURL: selectedCaptionURL, cell: cell, fullURL: fullURL)
-                            }
+                            }()
+                            
+                            self.openHiAnimeExperimental(url: sourceURL, subURL: subtitleURL, cell: cell, fullURL: fullURL)
                         }
                     }
                 }
@@ -685,12 +745,14 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                 case "ZoroTv":
                     self.extractIframeAndGetM3U8URL(from: htmlString, cell: cell, fullURL: fullURL) { [weak self] result in
                         guard let self = self else { return }
-                        guard let m3u8URL = result else {
-                            print("Error extracting m3u8 URL")
-                            self.showAlert(title: "Error", message: "Error extracting the m3u8 URL")
-                            return
+                        DispatchQueue.main.async {
+                            guard let m3u8URL = result else {
+                                print("Error extracting m3u8 URL")
+                                self.showAlert(title: "Error", message: "Error extracting the m3u8 URL")
+                                return
+                            }
+                            self.playVideo(sourceURL: m3u8URL, cell: cell, fullURL: fullURL)
                         }
-                        self.playVideo(sourceURL: m3u8URL, cell: cell, fullURL: fullURL)
                     }
                     return
                 case "AnimeFire":
@@ -942,7 +1004,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     }
     
     func fetchEpisodeOptions(episodeId: String, completion: @escaping ([String: [[String: Any]]]) -> Void) {
-        let url = URL(string: "https://aniwatch.cranci.xyz/anime/servers?episodeId=\(episodeId)")!
+        let url = URL(string: "https://aniwatch-api-dusky.vercel.app/anime/servers?episodeId=\(episodeId)")!
         print(url)
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -954,9 +1016,10 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let raw = json["raw"] as? [[String: Any]],
                    let sub = json["sub"] as? [[String: Any]],
                    let dub = json["dub"] as? [[String: Any]] {
-                    completion(["sub": sub, "dub": dub])
+                    completion(["raw": raw,"sub": sub, "dub": dub])
                 } else {
                     completion([:])
                 }
@@ -969,11 +1032,18 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     
     func presentDubSubSelection(options: [String: [[String: Any]]], completion: @escaping (String) -> Void) {
         DispatchQueue.main.async {
+            let rawOptions = options["raw"]
             let subOptions = options["sub"]
             let dubOptions = options["dub"]
             
-            if let subOptions = subOptions, !subOptions.isEmpty, let dubOptions = dubOptions, !dubOptions.isEmpty {
+            if let rawOptions = rawOptions, !rawOptions.isEmpty,
+               let subOptions = subOptions, !subOptions.isEmpty,
+               let dubOptions = dubOptions, !dubOptions.isEmpty {
                 let alert = UIAlertController(title: "Select Audio", message: nil, preferredStyle: .actionSheet)
+                
+                alert.addAction(UIAlertAction(title: "Raw", style: .default) { _ in
+                    completion("raw")
+                })
                 
                 alert.addAction(UIAlertAction(title: "Subtitled", style: .default) { _ in
                     completion("sub")
@@ -1001,6 +1071,8 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                 completion("sub")
             } else if let dubOptions = dubOptions, !dubOptions.isEmpty {
                 completion("dub")
+            } else if let rawOptions = rawOptions, !rawOptions.isEmpty {
+                completion("raw")
             } else {
                 print("No audio options available")
                 self.showAlert(title: "Error", message: "No audio options available")
@@ -1506,7 +1578,6 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             
             UserDefaults.standard.set(currentTime, forKey: "lastPlayedTime_\(fullURL)")
             UserDefaults.standard.set(duration, forKey: "totalTime_\(fullURL)")
-            print(fullURL)
             
             let episodeNumber = Int(cell.episodeNumber) ?? 0
             let selectedMediaSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? "AnimeWorld"
@@ -1523,7 +1594,9 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             )
             ContinueWatchingManager.shared.saveItem(continueWatchingItem)
             
-            if remainingTime < 120 && !self.hasSentUpdate {
+            let shouldSendPushUpdates = UserDefaults.standard.bool(forKey: "sendPushUpdates")
+            
+            if shouldSendPushUpdates && remainingTime < 120 && !self.hasSentUpdate {
                 let cleanedTitle = self.cleanTitle(self.animeTitle ?? "Unknown Anime")
                 
                 self.fetchAnimeID(title: cleanedTitle) { animeID in
@@ -1544,6 +1617,15 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     }
     
     func fetchAnimeID(title: String, completion: @escaping (Int) -> Void) {
+        if let animeTitle = self.animeTitle {
+            let customID = UserDefaults.standard.string(forKey: "customAniListID_\(animeTitle)")
+            
+            if let customID = customID, let id = Int(customID) {
+                completion(id)
+                return
+            }
+        }
+        
         AnimeService.fetchAnimeID(byTitle: title) { result in
             switch result {
             case .success(let id):
