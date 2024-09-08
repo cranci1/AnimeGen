@@ -322,6 +322,7 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             else if let selectedPlayer = UserDefaults.standard.string(forKey: "mediaPlayerSelected") {
                 if selectedPlayer == "VLC" || selectedPlayer == "Infuse" || selectedPlayer == "OutPlayer" {
                     self.animeDetailsViewController?.openInExternalPlayer(player: selectedPlayer, url: url)
+                    self.dismiss(animated: true, completion: nil)
                 } else if selectedPlayer == "Experimental" {
                     let videoTitle = self.animeDetailsViewController?.animeTitle ?? "Anime"
                     let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: self.cell, fullURL: self.fullURL)
@@ -426,7 +427,14 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             let mediaInformation = builder.build()
             
             if let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient {
-                remoteMediaClient.loadMedia(mediaInformation)
+                let lastPlayedTime = UserDefaults.standard.double(forKey: "lastPlayedTime_\(self.fullURL)")
+                if lastPlayedTime > 0 {
+                    let options = GCKMediaLoadOptions()
+                    options.playPosition = TimeInterval(lastPlayedTime)
+                    remoteMediaClient.loadMedia(mediaInformation, with: options)
+                } else {
+                    remoteMediaClient.loadMedia(mediaInformation)
+                }
             }
         }
     }

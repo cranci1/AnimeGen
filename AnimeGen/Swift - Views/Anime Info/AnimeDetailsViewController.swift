@@ -316,9 +316,17 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
+        let revertAction = UIAlertAction(title: "Revert", style: .default) { [weak self] _ in
+            if let animeTitle = self?.animeTitle {
+                UserDefaults.standard.removeObject(forKey: "customAniListID_\(animeTitle)")
+                self?.showAlert(title: "Reverted", message: "The custom AniList ID has been cleared.")
+            }
+        }
+
         alert.addAction(saveAction)
+        alert.addAction(revertAction)
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
@@ -632,15 +640,10 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                                 return
                             }
                             
-                            let subtitleURL: URL = {
-                                if let url = captionURLs?[UserDefaults.standard.string(forKey: "subtitleHiPrefe") ?? "English"] {
-                                    return url
-                                } else {
-                                    return URL(string: "https://nosubtitlesfor.you")!
-                                }
-                            }()
-                            
-                            self.openHiAnimeExperimental(url: sourceURL, subURL: subtitleURL, cell: cell, fullURL: fullURL)
+                            self.selectSubtitles(captionURLs: captionURLs) { selectedSubtitleURL in
+                                let subtitleURL = selectedSubtitleURL ?? URL(string: "https://nosubtitlesfor.you")!
+                                self.openHiAnimeExperimental(url: sourceURL, subURL: subtitleURL, cell: cell, fullURL: fullURL)
+                            }
                         }
                     }
                 }
@@ -674,9 +677,8 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             return
         }
         
-        let preferredSubtitles = UserDefaults.standard.string(forKey: "subtitleHiPrefe") ?? "English"
-        
-        if let preferredURL = captionURLs[preferredSubtitles] {
+        if let preferredSubtitles = UserDefaults.standard.string(forKey: "subtitleHiPrefe"),
+           let preferredURL = captionURLs[preferredSubtitles] {
             completion(preferredURL)
         } else {
             DispatchQueue.main.async {
@@ -747,8 +749,8 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                         guard let self = self else { return }
                         DispatchQueue.main.async {
                             guard let m3u8URL = result else {
-                                print("Error extracting m3u8 URL")
-                                self.showAlert(title: "Error", message: "Error extracting the m3u8 URL")
+                                print("Error getting the video URL")
+                                self.showAlert(title: "Error", message: "Error getting the video URL")
                                 return
                             }
                             self.playVideo(sourceURL: m3u8URL, cell: cell, fullURL: fullURL)
@@ -1227,7 +1229,13 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             
             let mediaLoadOptions = GCKMediaLoadOptions()
             mediaLoadOptions.autoplay = true
-            mediaLoadOptions.playPosition = 0
+            
+            let lastPlayedTime = UserDefaults.standard.double(forKey: "lastPlayedTime_\(videoURL)")
+            if lastPlayedTime > 0 {
+                mediaLoadOptions.playPosition = lastPlayedTime
+            } else {
+                mediaLoadOptions.playPosition = 0
+            }
             
             if let castSession = GCKCastContext.sharedInstance().sessionManager.currentCastSession,
                let remoteMediaClient = castSession.remoteMediaClient {
@@ -1501,7 +1509,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     
     func openHiAnimeExperimental(url: URL, subURL: URL, cell: EpisodeCell, fullURL: String) {
         let videoTitle = animeTitle!
-        let viewController = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: cell, fullURL: fullURL)
+        let viewController = CustomPlayerView(videoTitle: videoTitle, videoURL: url, subURL: subURL, cell: cell, fullURL: fullURL)
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true, completion: nil)
     }
@@ -1827,7 +1835,7 @@ class AnimeThumbnailFetcher {
     static let apiUrl = "https://api.ani.zip/mappings?anilist_id="
     
     static func fetchAnimeThumbnails(for title: String, episodeNumber: Int, completion: @escaping (String?) -> Void) {
-        fetchAnimeID(for: cleanTitle(title: title)) { anilistId in
+        fetchAnimeID(for: title) { anilistId in
             guard let anilistId = anilistId else {
                 completion(nil)
                 return
@@ -1866,7 +1874,14 @@ class AnimeThumbnailFetcher {
     }
     
     static func fetchAnimeID(for title: String, completion: @escaping (Int?) -> Void) {
-        AnimeService.fetchAnimeID(byTitle: cleanTitle(title: title)) { result in
+        if let customID = UserDefaults.standard.string(forKey: "customAniListID_\(title)"),
+           let id = Int(customID) {
+            completion(id)
+            return
+        }
+        
+        let cleanedTitle = cleanTitle(title: title)
+        AnimeService.fetchAnimeID(byTitle: cleanedTitle) { result in
             switch result {
             case .success(let id):
                 completion(id)

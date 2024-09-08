@@ -32,6 +32,15 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     private var hasSentUpdate = false
     private var animeDetailsViewController: AnimeDetailViewController?
     
+    private var skipButtons: [UIButton] = []
+    private var skipIntervalViews: [UIView] = []
+    private var skipIntervals: [(String, TimeInterval, TimeInterval, String)] = []
+    private var autoSkipTimer: Timer?
+    
+    private var hasVotedForSkipTimes = false
+    private var hasSkippedIntro = false
+    private var hasSkippedOutro = false
+    
     private var subtitles: [SubtitleCue] = []
     private var subtitleTimer: Timer?
     private var subtitleFontSize: CGFloat = 18
@@ -263,7 +272,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             controlsContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             titleLabel.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: playerProgress.topAnchor, constant: -10),
+            titleLabel.bottomAnchor.constraint(equalTo: playerProgress.topAnchor, constant: -6),
             titleLabel.trailingAnchor.constraint(equalTo: speedButton.leadingAnchor),
             
             playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -331,6 +340,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         playerLayer?.frame = self.bounds
+        updateProgressBarWithSkipIntervals()
     }
     
     func setVideo(url: URL, title: String, subURL: URL? = nil, cell: EpisodeCell, fullURL: String) {
@@ -382,6 +392,23 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         }
         
         addPeriodicTimeObserver(fullURL: fullURL, cell: cell)
+        resetSkipFlags()
+        skipIntervals.removeAll()
+        removeSkipIntervalViews()
+        
+        fetchAnimeID(title: cleanTitle(title)) { [weak self] anilistID in
+            self?.fetchMALID(anilistID: anilistID) { malID in
+                guard let malID = malID else { return }
+                let episodeNumber = Int(cell.episodeNumber) ?? 1
+                self?.fetchSkipTimes(malID: malID, episodeNumber: episodeNumber) { skipTimes in
+                    DispatchQueue.main.async {
+                        self?.skipIntervals = skipTimes
+                        self?.updateSkipButtons()
+                        self?.setupSkipButtonUpdates()
+                    }
+                }
+            }
+        }
     }
     
     func play() {
@@ -474,8 +501,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             guard let self = self,
                   let currentItem = self.player?.currentItem,
                   currentItem.duration.seconds.isFinite else {
-                return
-            }
+                      return
+                  }
             
             let currentTime = time.seconds
             let duration = currentItem.duration.seconds
@@ -592,6 +619,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         
         if duration > 0 {
             playerProgress.progress = Float(max(0, min(currentTime / duration, 1)))
+            updateProgressBarWithSkipIntervals()
         } else {
             playerProgress.progress = 0
         }
@@ -815,7 +843,6 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     }
     
     @objc private func playerItemDidReachEnd(notification: Notification) {
-        player?.seek(to: .zero)
         player?.pause()
         updatePlayPauseButton()
         
@@ -823,6 +850,21 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             UIScreen.main.brightness = originalBrightness
             isFullBrightness = false
             updateSettingsMenu()
+        }
+        
+        showControls()
+        
+        playerProgress.progress = 1.0
+        
+        if let duration = player?.currentItem?.duration {
+            currentTimeLabel.text = timeString(from: CMTimeGetSeconds(duration))
+            totalTimeLabel.text = "-00:00"
+        }
+        
+        if UserDefaults.standard.bool(forKey: "skipFeedbacks") && !hasVotedForSkipTimes {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.showSkipVoteAlert()
+            }
         }
     }
     
@@ -849,7 +891,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     }
     
     @objc private func updateSubtitle() {
-        guard !areSubtitlesHidden, let player = player, let playerItem = player.currentItem else { return }
+        guard !areSubtitlesHidden, let player = player else { return }
         
         let currentTime = player.currentTime()
         
@@ -873,5 +915,239 @@ extension UIView {
         } else {
             return nil
         }
+    }
+}
+
+extension CustomVideoPlayerView {
+    func fetchMALID(anilistID: Int, completion: @escaping (Int?) -> Void) {
+        let urlString = "https://api.ani.zip/mappings?anilist_id=\(anilistID)"
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let mappings = json["mappings"] as? [String: Any],
+                   let malID = mappings["mal_id"] as? Int {
+                    completion(malID)
+                } else {
+                    completion(nil)
+                }
+            } catch {
+                print("Error parsing JSON: \(error)")
+                completion(nil)
+            }
+        }.resume()
+    }
+    
+    func fetchSkipTimes(malID: Int, episodeNumber: Int, completion: @escaping ([(String, TimeInterval, TimeInterval, String)]) -> Void) {
+        let urlString = "https://api.aniskip.com/v1/skip-times/\(malID)/\(episodeNumber)?types=op&types=ed"
+        guard let url = URL(string: urlString) else {
+            completion([])
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                completion([])
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let results = json["results"] as? [[String: Any]] {
+                    let skipTimes = results.compactMap { result -> (String, TimeInterval, TimeInterval, String)? in
+                        guard let interval = result["interval"] as? [String: Double],
+                              let startTime = interval["start_time"],
+                              let endTime = interval["end_time"],
+                              let skipType = result["skip_type"] as? String,
+                              let skipId = result["skip_id"] as? String else {
+                                  return nil
+                              }
+                        return (skipType, startTime, endTime, skipId)
+                    }
+                    completion(skipTimes)
+                } else {
+                    completion([])
+                }
+            } catch {
+                print("Error parsing JSON: \(error)")
+                completion([])
+            }
+        }.resume()
+    }
+    
+    private func updateSkipButtons() {
+        for button in skipButtons {
+            button.removeFromSuperview()
+        }
+        skipButtons.removeAll()
+        for (index, interval) in skipIntervals.enumerated() {
+            let button = UIButton(type: .system)
+            button.setTitle(interval.0 == "op" ? "Skip Intro" : "Skip Ending", for: .normal)
+            button.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+            button.setTitleColor(.white, for: .normal)
+            button.layer.cornerRadius = 5
+            button.tag = index
+            button.addTarget(self, action: #selector(skipButtonTapped(_:)), for: .touchUpInside)
+            button.alpha = 0
+            
+            addSubview(button)
+            skipButtons.append(button)
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                button.trailingAnchor.constraint(equalTo: speedButton.leadingAnchor, constant: -6),
+                button.topAnchor.constraint(equalTo: settingsButton.bottomAnchor),
+                button.widthAnchor.constraint(equalToConstant: 100),
+                button.heightAnchor.constraint(equalToConstant: 30)
+            ])
+        }
+    }
+    
+    @objc private func updateSkipButtonsVisibility() {
+        guard let currentTime = player?.currentTime().seconds else { return }
+        
+        for (index, interval) in skipIntervals.enumerated() {
+            let button = skipButtons[index]
+            let isWithinInterval = currentTime >= interval.1 && currentTime <= interval.2
+            
+            UIView.animate(withDuration: 0.3) {
+                button.alpha = isWithinInterval ? 1 : 0
+            }
+            
+            if isWithinInterval {
+                let shouldAutoSkip: Bool
+                var hasSkipped: Bool
+                
+                if interval.0 == "op" {
+                    shouldAutoSkip = UserDefaults.standard.bool(forKey: "autoSkipIntro")
+                    hasSkipped = hasSkippedIntro
+                } else {
+                    shouldAutoSkip = UserDefaults.standard.bool(forKey: "autoSkipOutro")
+                    hasSkipped = hasSkippedOutro
+                }
+                
+                if shouldAutoSkip && !hasSkipped {
+                    
+                    player?.seek(to: CMTime(seconds: interval.2, preferredTimescale: 1))
+                    if interval.0 == "op" {
+                        hasSkippedIntro = true
+                    } else {
+                        hasSkippedOutro = true
+                    }
+                    UIView.animate(withDuration: 0.3) {
+                        button.alpha = 0
+                    }
+                }
+            }
+        }
+    }
+    
+    func resetSkipFlags() {
+        hasSkippedIntro = false
+        hasSkippedOutro = false
+    }
+    
+    private func setupSkipButtonUpdates() {
+        let interval = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        player?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] _ in
+            self?.updateSkipButtonsVisibility()
+        }
+    }
+    
+    @objc private func skipButtonTapped(_ sender: UIButton) {
+        let interval = skipIntervals[sender.tag]
+        player?.seek(to: CMTime(seconds: interval.2, preferredTimescale: 1))
+        autoSkipTimer?.invalidate()
+    }
+    
+    private func updateProgressBarWithSkipIntervals() {
+        removeSkipIntervalViews()
+        
+        guard let duration = player?.currentItem?.duration.seconds, duration > 0 else { return }
+        
+        for interval in skipIntervals {
+            let startPercentage = CGFloat(interval.1 / duration)
+            let endPercentage = CGFloat(interval.2 / duration)
+            
+            let skipView = UIView()
+            skipView.backgroundColor = .systemTeal
+            skipView.alpha = 0.5
+            
+            playerProgress.addSubview(skipView)
+            skipIntervalViews.append(skipView)
+            
+            skipView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                skipView.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor, constant: playerProgress.bounds.width * startPercentage),
+                skipView.widthAnchor.constraint(equalToConstant: playerProgress.bounds.width * (endPercentage - startPercentage)),
+                skipView.topAnchor.constraint(equalTo: playerProgress.topAnchor),
+                skipView.bottomAnchor.constraint(equalTo: playerProgress.bottomAnchor)
+            ])
+        }
+    }
+    
+    private func removeSkipIntervalViews() {
+        for view in skipIntervalViews {
+            view.removeFromSuperview()
+        }
+        skipIntervalViews.removeAll()
+    }
+    
+    private func showSkipVoteAlert() {
+        guard let viewController = self.findViewController() else { return }
+        
+        let alert = UIAlertController(title: "Rate Skip Timestamps", message: "Were the skip timestamps accurate?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Upvote - Good skips", style: .default) { [weak self] _ in
+            self?.voteForSkipTimes(voteType: "upvote")
+        })
+        
+        alert.addAction(UIAlertAction(title: "Downvote - Bad skips", style: .default) { [weak self] _ in
+            self?.voteForSkipTimes(voteType: "downvote")
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+        
+        viewController.present(alert, animated: true)
+    }
+    
+    private func voteForSkipTimes(voteType: String) {
+        for interval in skipIntervals {
+            let skipId = interval.3
+            sendVote(skipId: skipId, voteType: voteType)
+        }
+        hasVotedForSkipTimes = true
+    }
+    
+    private func sendVote(skipId: String, voteType: String) {
+        let urlString = "https://api.aniskip.com/v1/skip-times/vote/\(skipId)"
+        guard let url = URL(string: urlString) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept")
+        
+        let payload = ["vote_type": voteType]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: payload)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error sending vote: \(error.localizedDescription)")
+            } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 201 {
+                print("Vote sent successfully")
+            } else {
+                print("Unexpected response from server")
+            }
+        }.resume()
     }
 }

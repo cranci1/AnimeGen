@@ -85,6 +85,7 @@
 		13902BB02C7B6EF300596A2C /* CustomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13902BAE2C7B6EF200596A2C /* CustomPlayer.swift */; };
 		13902BB12C7B6EF300596A2C /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13902BAF2C7B6EF300596A2C /* CustomPlayerView.swift */; };
 		13902BB42C7B6F0200596A2C /* SubtitlesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13902BB32C7B6F0200596A2C /* SubtitlesLoader.swift */; };
+		1397821C2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */; };
 		13E113AC2C7487FF00FD0FA1 /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E113AB2C7487FE00FD0FA1 /* HiAnime-WebPlayer.swift */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 		13902BAE2C7B6EF200596A2C /* CustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlayer.swift; sourceTree = "<group>"; };
 		13902BAF2C7B6EF300596A2C /* CustomPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		13902BB32C7B6F0200596A2C /* SubtitlesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitlesLoader.swift; sourceTree = "<group>"; };
+		1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewAniSkip.swift; sourceTree = "<group>"; };
 		13E113AB2C7487FE00FD0FA1 /* HiAnime-WebPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HiAnime-WebPlayer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 				134F1D3E2C6650FC00C35889 /* SettingsViewSources.swift */,
 				134F1D3F2C6650FC00C35889 /* SettingsViewCast.swift */,
 				134F1D402C6650FC00C35889 /* SettingsViewDoneButton.swift */,
+				1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */,
 			);
 			path = SubPages;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				134F1DC82C6650FE00C35889 /* AnimeInformation.swift in Sources */,
 				134F1D972C6650FE00C35889 /* SettingsAnimeListing.swift in Sources */,
 				134F1D982C6650FE00C35889 /* SettingsViewSources.swift in Sources */,
+				1397821C2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift in Sources */,
 				134F1DC52C6650FE00C35889 /* Kitsu-Sesonal.swift in Sources */,
 				134F1DAE2C6650FE00C35889 /* ContinueWatchingManager.swift in Sources */,
 				135B62D52C6D11AB00A8F607 /* Notification.swift in Sources */,
