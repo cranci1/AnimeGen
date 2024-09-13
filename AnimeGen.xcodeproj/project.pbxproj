@@ -87,6 +87,7 @@
 		13902BB42C7B6F0200596A2C /* SubtitlesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13902BB32C7B6F0200596A2C /* SubtitlesLoader.swift */; };
 		1397821C2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */; };
 		13E113AC2C7487FF00FD0FA1 /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E113AB2C7487FE00FD0FA1 /* HiAnime-WebPlayer.swift */; };
+		13F3EA132C9452500098B1C8 /* HanashiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3EA122C9452500098B1C8 /* HanashiAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +169,7 @@
 		13902BB32C7B6F0200596A2C /* SubtitlesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtitlesLoader.swift; sourceTree = "<group>"; };
 		1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewAniSkip.swift; sourceTree = "<group>"; };
 		13E113AB2C7487FE00FD0FA1 /* HiAnime-WebPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HiAnime-WebPlayer.swift"; sourceTree = "<group>"; };
+		13F3EA122C9452500098B1C8 /* HanashiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HanashiAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 		134F1D362C6650FC00C35889 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				13F3EA112C9452480098B1C8 /* Hanashi */,
 				134F1D382C6650FC00C35889 /* SourceMenu.swift */,
 				134F1D372C6650FC00C35889 /* Sources.swift */,
 			);
@@ -558,6 +561,14 @@
 			path = "WebView Player";
 			sourceTree = "<group>";
 		};
+		13F3EA112C9452480098B1C8 /* Hanashi */ = {
+			isa = PBXGroup;
+			children = (
+				13F3EA122C9452500098B1C8 /* HanashiAPI.swift */,
+			);
+			path = Hanashi;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -676,6 +687,7 @@
 				134F1D9B2C6650FE00C35889 /* SettingsViewController.swift in Sources */,
 				134F1DBF2C6650FE00C35889 /* AniList-Info.swift in Sources */,
 				134F1DA52C6650FE00C35889 /* SearchResultsViewController.swift in Sources */,
+				13F3EA132C9452500098B1C8 /* HanashiAPI.swift in Sources */,
 				134F1DC02C6650FE00C35889 /* AniList-Trending.swift in Sources */,
 				13E113AC2C7487FF00FD0FA1 /* HiAnime-WebPlayer.swift in Sources */,
 				134F1D952C6650FE00C35889 /* SourceMenu.swift in Sources */,
