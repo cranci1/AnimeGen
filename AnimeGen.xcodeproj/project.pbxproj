@@ -480,9 +480,9 @@
 		1357B51C2C6D1086000A2C9B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */,
 				1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */,
 				1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */,
-				1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */,
 				1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */,
 			);
 			path = Sources;
