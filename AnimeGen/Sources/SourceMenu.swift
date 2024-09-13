@@ -9,7 +9,7 @@ import UIKit
 
 class SourceMenu {
     static weak var delegate: SourceSelectionDelegate?
-
+    
     static func showSourceSelector(from viewController: UIViewController, sourceView: UIView?, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async {
             let sources: [(title: String, source: MediaSource, language: String)] = [
@@ -20,8 +20,7 @@ class SourceMenu {
                 ("Kuramanime", .kuramanime, "🇮🇩"),
                 ("JKanime", .jkanime, "🇪🇸"),
                 ("Anime3rb", .anime3rb, "🇸🇦"),
-                ("HiAnime", .hianime, "🇺🇸"),
-                ("ZoroTv", .zorotv, "🇺🇸")
+                ("HiAnime", .hianime, "🇺🇸")
             ]
             
             let alertController = UIAlertController(title: "Select Source", message: "Choose your preferred source.", preferredStyle: .actionSheet)

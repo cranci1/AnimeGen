@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class SettingsViewSources: UITableViewController {
     
     @IBOutlet weak var retryMethod: UIButton!
@@ -16,7 +15,6 @@ class SettingsViewSources: UITableViewController {
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var serverButton: UIButton!
     @IBOutlet weak var subtitlesButton: UIButton!
-    @IBOutlet weak var hideButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +23,6 @@ class SettingsViewSources: UITableViewController {
         setupAudioMenu()
         setupServerMenu()
         setupSubtitlesMenu()
-        setupHideMenu()
         
         if let selectedOption = UserDefaults.standard.string(forKey: "preferredQuality") {
             qualityPrefered.setTitle(selectedOption, for: .normal)
@@ -85,7 +82,7 @@ class SettingsViewSources: UITableViewController {
             UserDefaults.standard.set("1080p", forKey: "preferredQuality")
             self?.qualityPrefered.setTitle("1080p", for: .normal)
         })
-
+        
         let menu = UIMenu(title: "Select Prefered Quality", children: [action1, action2, action3, action4])
         
         qualityPrefered.menu = menu
@@ -109,7 +106,7 @@ class SettingsViewSources: UITableViewController {
             UserDefaults.standard.set("raw", forKey: "audioHiPrefe")
             self?.audioButton.setTitle("raw", for: .normal)
         })
-
+        
         let menu = UIMenu(title: "Select Prefered Audio", children: [action1, action2, action3])
         
         audioButton.menu = menu
@@ -129,8 +126,12 @@ class SettingsViewSources: UITableViewController {
             UserDefaults.standard.set("hd-2", forKey: "serverHiPrefe")
             self?.serverButton.setTitle("hd-2", for: .normal)
         })
-
-        let menu = UIMenu(title: "Select Prefered Server", children: [action1, action2])
+        let action3 = UIAction(title: "Always Ask", handler: { [weak self] _ in
+            UserDefaults.standard.set("Always Ask", forKey: "serverHiPrefe")
+            self?.serverButton.setTitle("Always Ask", for: .normal)
+        })
+        
+        let menu = UIMenu(title: "Select Prefered Server", children: [action1, action2, action3])
         
         serverButton.menu = menu
         serverButton.showsMenuAsPrimaryAction = true
@@ -149,7 +150,7 @@ class SettingsViewSources: UITableViewController {
             UserDefaults.standard.set("Always Ask", forKey: "subtitleHiPrefe")
             self?.subtitlesButton.setTitle("Always Ask", for: .normal)
         })
-
+        
         let menu = UIMenu(title: "Select Subtitles Language", children: [action1, action2])
         
         subtitlesButton.menu = menu
@@ -157,26 +158,6 @@ class SettingsViewSources: UITableViewController {
         
         if let selectedOption = UserDefaults.standard.string(forKey: "subtitleHiPrefe") {
             subtitlesButton.setTitle(selectedOption, for: .normal)
-        }
-    }
-    
-    func setupHideMenu() {
-        let action1 = UIAction(title: "Yes", handler: { [weak self] _ in
-            UserDefaults.standard.set(true, forKey: "hideWebPlayer")
-            self?.hideButton.setTitle("Yes", for: .normal)
-        })
-        let action2 = UIAction(title: "No", handler: { [weak self] _ in
-            UserDefaults.standard.set(false, forKey: "hideWebPlayer")
-            self?.hideButton.setTitle("No", for: .normal)
-        })
-        
-        let menu = UIMenu(title: "Hide the webplayer?", children: [action1, action2])
-        
-        hideButton.menu = menu
-        hideButton.showsMenuAsPrimaryAction = true
-        
-        if let selectedOption = UserDefaults.standard.value(forKey: "hideWebPlayer") as? Bool {
-            hideButton.setTitle(selectedOption ? "Yes" : "No", for: .normal)
         }
     }
     

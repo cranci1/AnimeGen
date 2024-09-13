@@ -119,7 +119,7 @@ class SearchResultsViewController: UIViewController {
             alertController.addAction(dubAction)
             alertController.addAction(subAction)
         case "AnimeWorld":
-            let itaAction = UIAlertAction(title: "Dub", style: .default) { [weak self] _ in
+            let itaAction = UIAlertAction(title: "ITA", style: .default) { [weak self] _ in
                 self?.filterResults(option: .ita)
             }
             alertController.addAction(itaAction)
@@ -180,7 +180,7 @@ class SearchResultsViewController: UIViewController {
     private func showSourceSelector() {
         let alertController = UIAlertController(title: "Select Source", message: "Please select a source to search from.", preferredStyle: .actionSheet)
         
-        let sources = ["AnimeWorld", "GoGoAnime", "AnimeHeaven", "AnimeFire", "Kuramanime", "JKanime", "Anime3rb", "HiAnime", "ZoroTv"]
+        let sources = ["AnimeWorld", "GoGoAnime", "AnimeHeaven", "AnimeFire", "Kuramanime", "JKanime", "Anime3rb", "HiAnime"]
         
         for source in sources {
             let action = UIAlertAction(title: source, style: .default) { [weak self] _ in
@@ -224,55 +224,95 @@ class SearchResultsViewController: UIViewController {
             return
         }
         
-        AF.request(urlParameters.url, method: .get, parameters: urlParameters.parameters).responseString { [weak self] response in
-            guard let self = self else { return }
-            self.loadingIndicator.stopAnimating()
-            
-            switch response.result {
-            case .success(let value):
-                let results = self.parseHTML(html: value, for: MediaSource(rawValue: selectedSource) ?? .animeWorld)
-                self.searchResults = results
-                self.filteredResults = results
-                if results.isEmpty {
-                    self.showNoResults()
-                } else {
-                    self.tableView.isHidden = false
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                if let httpStatusCode = response.response?.statusCode {
-                    switch httpStatusCode {
-                    case 400:
-                        self.showError("Bad request. Please check your input and try again.")
-                    case 403:
-                        self.showError("Access forbidden. You don't have permission to access this resource.")
-                    case 404:
-                        self.showError("Resource not found. Please try a different search.")
-                    case 429:
-                        self.showError("Too many requests. Please slow down and try again later.")
-                    case 500:
-                        self.showError("Internal server error. Please try again later.")
-                    case 502:
-                        self.showError("Bad gateway. The server is temporarily unable to handle the request.")
-                    case 503:
-                        self.showError("Service unavailable. Please try again later.")
-                    case 504:
-                        self.showError("Gateway timeout. The server took too long to respond.")
-                    default:
-                        self.showError("Unexpected error occurred. Please try again later.")
+        if selectedSource == "Hanashi" {
+            DispatchQueue.main.async {
+                self.fetchHanashiResults(urlParameters: urlParameters)
+            }
+        } else {
+            AF.request(urlParameters.url, method: .get, parameters: urlParameters.parameters).responseString { [weak self] response in
+                guard let self = self else { return }
+                self.loadingIndicator.stopAnimating()
+                
+                switch response.result {
+                case .success(let value):
+                    let results = self.parseHTML(html: value, for: MediaSource(rawValue: selectedSource) ?? .animeWorld)
+                    self.searchResults = results
+                    self.filteredResults = results
+                    if results.isEmpty {
+                        self.showNoResults()
+                    } else {
+                        self.tableView.isHidden = false
+                        self.tableView.reloadData()
                     }
-                } else if let nsError = error as NSError?, nsError.domain == NSURLErrorDomain {
-                    switch nsError.code {
-                    case NSURLErrorNotConnectedToInternet:
-                        self.showError("No internet connection. Please check your network and try again.")
-                    case NSURLErrorTimedOut:
-                        self.showError("Request timed out. Please try again later.")
-                    default:
-                        self.showError("Network error occurred. Please try again later.")
+                case .failure(let error):
+                    if let httpStatusCode = response.response?.statusCode {
+                        switch httpStatusCode {
+                        case 400:
+                            self.showError("Bad request. Please check your input and try again.")
+                        case 403:
+                            self.showError("Access forbidden. You don't have permission to access this resource.")
+                        case 404:
+                            self.showError("Resource not found. Please try a different search.")
+                        case 429:
+                            self.showError("Too many requests. Please slow down and try again later.")
+                        case 500:
+                            self.showError("Internal server error. Please try again later.")
+                        case 502:
+                            self.showError("Bad gateway. The server is temporarily unable to handle the request.")
+                        case 503:
+                            self.showError("Service unavailable. Please try again later.")
+                        case 504:
+                            self.showError("Gateway timeout. The server took too long to respond.")
+                        default:
+                            self.showError("Unexpected error occurred. Please try again later.")
+                        }
+                    } else if let nsError = error as NSError?, nsError.domain == NSURLErrorDomain {
+                        switch nsError.code {
+                        case NSURLErrorNotConnectedToInternet:
+                            self.showError("No internet connection. Please check your network and try again.")
+                        case NSURLErrorTimedOut:
+                            self.showError("Request timed out. Please try again later.")
+                        default:
+                            self.showError("Network error occurred. Please try again later.")
+                        }
+                    } else {
+                        self.showError("Failed to fetch data. Please try again later.")
                     }
-                } else {
-                    self.showError("Failed to fetch data. Please try again later.")
                 }
+            }
+        }
+    }
+    
+    private func fetchHanashiResults(urlParameters: (url: String, parameters: Parameters)) {
+        HanashiAPI.getHanashiToken(refreshToken: "") { [weak self] result in
+            switch result {
+            case .success(let accessToken):
+                let headers: HTTPHeaders = [
+                    "Authorization": "Bearer \(accessToken)"
+                ]
+                
+                AF.request(urlParameters.url, method: .get, parameters: urlParameters.parameters, headers: headers)
+                    .responseString { [weak self] response in
+                        guard let self = self else { return }
+                        self.loadingIndicator.stopAnimating()
+                        
+                        switch response.result {
+                        case .success(let value):
+                            let results = self.parseHTML(html: value, for: .hanashi)
+                            self.searchResults = results
+                            self.filteredResults = results
+                            if results.isEmpty {
+                                self.showNoResults()
+                            } else {
+                                self.tableView.isHidden = false
+                                self.tableView.reloadData()
+                            }
+                        case .failure:
+                            self.showError("Failed to fetch data from Hanashi. Please try again later.")
+                        }
+                    }
+            case .failure:
+                self?.showError("Failed to authenticate with Hanashi. Please try again later.")
             }
         }
     }
@@ -304,11 +344,16 @@ class SearchResultsViewController: UIViewController {
             url = "https://anime3rb.com/search"
             parameters["q"] = query
         case "HiAnime":
-            url = "https://aniwatch-api-dusky.vercel.app/anime/search"
+            let baseUrls = [
+                "https://aniwatch-api-dusky.vercel.app/anime/search",
+                "https://aniwatch-api-cranci.vercel.app/anime/search"
+            ]
+            url = baseUrls.randomElement()!
             parameters["q"] = query
-        case "ZoroTv":
-            url = "https://zorotv.com.in/"
-            parameters["s"] = query
+        case "Hanashi":
+            url = "https://api.hanashi.to/api/item/search"
+            parameters["q"] = query
+            parameters["limit"] = 25
         default:
             return nil
         }
@@ -328,7 +373,7 @@ class SearchResultsViewController: UIViewController {
     
     func parseHTML(html: String, for source: MediaSource) -> [(title: String, imageUrl: String, href: String)] {
         switch source {
-        case .hianime:
+        case .hianime, .hanashi:
             return parseDocument(nil, jsonString: html, for: source)
         default:
             do {
@@ -367,15 +412,17 @@ class SearchResultsViewController: UIViewController {
         case .hianime:
             guard let jsonString = jsonString else { return [] }
             return parseHiAnime(jsonString)
-        case .zorotv:
-            guard let document = document else { return [] }
-            return parseZoroTv(document)
+        case .hanashi:
+            guard let jsonString = jsonString else { return [] }
+            return parseHanashi(jsonString)
         }
     }
     
     private func navigateToAnimeDetail(title: String, imageUrl: String, href: String) {
         let detailVC = AnimeDetailViewController()
-        detailVC.configure(title: title, imageUrl: imageUrl, href: href)
+        let selectedMedaiSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? ""
+        
+        detailVC.configure(title: title, imageUrl: imageUrl, href: href, source: selectedMedaiSource)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -418,7 +465,8 @@ extension SearchResultsViewController: UIContextMenuInteractionDelegate {
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: {
             let detailVC = AnimeDetailViewController()
-            detailVC.configure(title: result.title, imageUrl: result.imageUrl, href: result.href)
+            let selectedMedaiSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? ""
+            detailVC.configure(title: result.title, imageUrl: result.imageUrl, href: result.href, source: selectedMedaiSource)
             return detailVC
         }, actionProvider: { _ in
             let openAction = UIAction(title: "Open", image: UIImage(systemName: "arrow.up.right.square")) { [weak self] _ in

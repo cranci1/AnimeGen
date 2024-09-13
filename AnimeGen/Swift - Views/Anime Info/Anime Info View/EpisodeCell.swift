@@ -171,7 +171,7 @@ class EpisodeCell: UITableViewCell {
     }
     
     private func updateDownloadButtonVisibility() {
-        if selectedMediaSource == "JKanime" || selectedMediaSource == "HiAnime" || selectedMediaSource == "ZoroTv" {
+        if selectedMediaSource == "JKanime" || selectedMediaSource == "HiAnime" {
             downloadButton.isHidden = true
         } else {
             downloadButton.isHidden = false
@@ -280,6 +280,7 @@ class EpisodeCell: UITableViewCell {
                     
                     if playbackProgressView.progress > 0 {
                         menuItems.append(UIMenuItem(title: "Clear Progress", action: #selector(clearProgress)))
+                        menuItems.append(UIMenuItem(title: "Rewatch", action: #selector(rewatch)))
                     }
                 }
             } else {

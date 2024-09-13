@@ -152,23 +152,36 @@ extension SearchResultsViewController {
                 return (title: title, imageUrl: imageUrl, href: href)
             }
         } catch {
-            print("Error parsing JSON: \(error.localizedDescription)")
+            print("Error parsing HiAnime JSON: \(error.localizedDescription)")
             return []
         }
     }
     
-    func parseZoroTv(_ document: Document) -> [(title: String, imageUrl: String, href: String)] {
+    func parseHanashi(_ jsonString: String) -> [(title: String, imageUrl: String, href: String)] {
+        print(jsonString)
+        guard let data = jsonString.data(using: .utf8) else { return [] }
         do {
-            let items = try document.select("div.listupd article")
-            return try items.map { item -> (title: String, imageUrl: String, href: String) in
-                let title = try item.select("h2").text()
-                let imageUrl = try item.select("img").attr("src")
-                let href = try item.select("a").first()?.attr("href") ?? ""
-                return (title: title, imageUrl: imageUrl, href: href)
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+                return json.compactMap { item in
+                    guard let id = item["id"] as? String,
+                          let names = item["name"] as? [[String: String]],
+                          let images = item["images"] as? [String: [[String: Any]]] else {
+                              return nil
+                          }
+                    
+                    let title = names.first { $0["locale"] == "de-DE" }?["name"] ?? names.first?["name"] ?? ""
+                    
+                    let coverImages = images["cover"] ?? []
+                    let pngImage = coverImages.first { $0["format"] as? String == "png" }
+                    let parImageURL = pngImage?["source"] as? String ?? ""
+                    let imageUrl = "https://api.hanashi.to/public/" + parImageURL
+                    
+                    return (title: title, imageUrl: imageUrl, href: id)
+                }
             }
         } catch {
-            print("Error parsing Anime3rb: \(error.localizedDescription)")
-            return []
+            print("Error parsing Hanashi JSON: \(error.localizedDescription)")
         }
+        return []
     }
 }

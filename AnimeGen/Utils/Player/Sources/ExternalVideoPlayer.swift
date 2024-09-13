@@ -317,7 +317,7 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
                 if selectedPlayer == "VLC" || selectedPlayer == "Infuse" || selectedPlayer == "OutPlayer" {
                     self.animeDetailsViewController?.openInExternalPlayer(player: selectedPlayer, url: url)
                     self.dismiss(animated: true, completion: nil)
-                } else if selectedPlayer == "Experimental" {
+                } else if selectedPlayer == "Custom" {
                     let videoTitle = self.animeDetailsViewController?.animeTitle ?? "Anime"
                     let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: self.cell, fullURL: self.fullURL)
                     customPlayerVC.modalPresentationStyle = .fullScreen
@@ -474,11 +474,17 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
                         currentName = nil
                     }
                 }
-                self.qualityOptions = newQualityOptions
-                print("Parsed quality options: \(self.qualityOptions)")
                 
                 DispatchQueue.main.async {
-                    completion(true, nil)
+                    if newQualityOptions.isEmpty {
+                        print("No quality options found")
+                        let error = NSError(domain: "M3U8ErrorDomain", code: -2, userInfo: [NSLocalizedDescriptionKey: "No quality options found"])
+                        retryOrDismiss(error: error)
+                    } else {
+                        self.qualityOptions = newQualityOptions
+                        print("Parsed quality options: \(self.qualityOptions)")
+                        completion(true, nil)
+                    }
                 }
             }
             task.resume()
@@ -487,16 +493,17 @@ class ExternalVideoPlayer: UIViewController, WKNavigationDelegate, WKScriptMessa
         func retryOrDismiss(error: Error) {
             retryCount += 1
             if retryCount < maxRetries {
+                print("Retrying parsing attempt \(retryCount)...")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    print("Retrying parsing attempt \(retryCount)...")
                     attemptParsing()
                 }
             } else {
                 print("Max retries reached. Dismissing view.")
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true) {
+                        completion(false, error)
+                    }
                 }
-                completion(false, error)
             }
         }
         

@@ -11,11 +11,20 @@ import AVFoundation
 struct SubtitleCue {
     let startTime: CMTime
     let endTime: CMTime
-    var text: String
+    var originalText: String
+    var translations: [String: String] = [:]
+    
+    mutating func setTranslation(_ text: String, for language: String) {
+        translations[language] = text
+    }
+    
+    func getTranslation(for language: String) -> String? {
+        return translations[language]
+    }
 }
 
 class SubtitlesLoader {
-    static func parseVTT(data: Data) -> [SubtitleCue] {
+    static func parseVTT(data: Data, completion: @escaping ([SubtitleCue]) -> Void) {
         var cues: [SubtitleCue] = []
         let text = String(data: data, encoding: .utf8) ?? ""
         
@@ -30,16 +39,36 @@ class SubtitlesLoader {
                 if times.count == 2 {
                     let startTime = timeToCMTime(timeString: times[0].trimmingCharacters(in: .whitespacesAndNewlines))
                     let endTime = timeToCMTime(timeString: times[1].trimmingCharacters(in: .whitespacesAndNewlines))
-                    currentCue = SubtitleCue(startTime: startTime, endTime: endTime, text: "")
+                    currentCue = SubtitleCue(startTime: startTime, endTime: endTime, originalText: "")
                 }
             } else if !lineStr.isEmpty {
-                currentCue?.text += removeHTMLTags(from: lineStr) + "\n"
+                currentCue?.originalText += removeHTMLTags(from: lineStr) + "\n"
             } else if let cue = currentCue {
                 cues.append(cue)
                 currentCue = nil
             }
         }
-        return cues
+        
+        completion(cues)
+    }
+    
+    static func getTranslatedSubtitle(_ subtitle: SubtitleCue, completion: @escaping (SubtitleCue) -> Void) {
+        let isTranslationEnabled = UserDefaults.standard.bool(forKey: "googleTranslation")
+        let targetLanguage = UserDefaults.standard.string(forKey: "translationLanguage") ?? "en"
+        
+        if isTranslationEnabled {
+            if subtitle.getTranslation(for: targetLanguage) != nil {
+                completion(subtitle)
+            } else {
+                var modifiedSubtitle = subtitle
+                translateText(subtitle.originalText, targetLang: targetLanguage) { translatedText in
+                    modifiedSubtitle.setTranslation(translatedText, for: targetLanguage)
+                    completion(modifiedSubtitle)
+                }
+            }
+        } else {
+            completion(subtitle)
+        }
     }
     
     private static func timeToCMTime(timeString: String) -> CMTime {
@@ -79,5 +108,61 @@ class SubtitlesLoader {
         let range = NSRange(location: 0, length: text.utf16.count)
         return regex?.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "") ?? text
     }
-}
+    
+    private static func translateText(_ text: String, targetLang: String, completion: @escaping (String) -> Void) {
+        guard UserDefaults.standard.bool(forKey: "googleTranslation") else {
+            completion(text)
+            return
+        }
+        
+        let customURLString = UserDefaults.standard.string(forKey: "savedTranslatorInstance")
+        let urlString = customURLString ?? "https://translate-api-first.vercel.app/api/translate"
 
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion(text)
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let payload: [String: Any] = [
+            "text": text,
+            "source_lang": "auto",
+            "target_lang": targetLang
+        ]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: payload)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: \(error!.localizedDescription)")
+                completion(text)
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received.")
+                completion(text)
+                return
+            }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let translatedText = json["data"] as? String {
+                    completion(translatedText)
+                } else {
+                    completion(text)
+                }
+            } catch {
+                print("JSON parsing error: \(error.localizedDescription)")
+                completion(text)
+            }
+        }
+        
+        task.resume()
+    }
+
+}

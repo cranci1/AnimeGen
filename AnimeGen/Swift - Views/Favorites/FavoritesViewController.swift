@@ -68,7 +68,7 @@ class FavoritesViewController: UIViewController {
     
     private func setupNavigationBar() {
         let tealColor = UIColor.systemTeal
-
+        
         let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
         editButton.tintColor = tealColor
         
@@ -208,7 +208,9 @@ extension FavoritesViewController: UICollectionViewDelegate {
     
     func navigateToAnimeDetail(title: String, imageUrl: String, href: String) {
         let detailVC = AnimeDetailViewController()
-        detailVC.configure(title: title, imageUrl: imageUrl, href: href)
+        let selectedMedaiSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? ""
+        
+        detailVC.configure(title: title, imageUrl: imageUrl, href: href, source: selectedMedaiSource)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -361,14 +361,20 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="h6L-ec-PVL">
-                                        <rect key="frame" x="20" y="778" width="374" height="43.5"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Custom Player" id="T39-2A-mxZ">
+                                <string key="footerTitle">This featureds are made to work only on the "Custom" media player. (not by choice)
+The Real Time Translation is only made to work on the HiAnime source, since it has a softsub subtitles type.</string>
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="TNs-QJ-X3d">
+                                        <rect key="frame" x="20" y="858" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h6L-ec-PVL" id="ZGG-5l-KAA">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TNs-QJ-X3d" id="C3n-J2-pYD">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoSkip Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W5-7X-g4F">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AutoSkip Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEh-c4-OqT">
                                                     <rect key="frame" x="15" y="13" width="148" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -376,12 +382,35 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4W5-7X-g4F" firstAttribute="centerY" secondItem="ZGG-5l-KAA" secondAttribute="centerY" id="3wR-67-ShR"/>
-                                                <constraint firstItem="4W5-7X-g4F" firstAttribute="leading" secondItem="ZGG-5l-KAA" secondAttribute="leading" constant="15" id="Qkd-Ql-eWL"/>
+                                                <constraint firstItem="vEh-c4-OqT" firstAttribute="leading" secondItem="C3n-J2-pYD" secondAttribute="leading" constant="15" id="QHR-C9-sIj"/>
+                                                <constraint firstItem="vEh-c4-OqT" firstAttribute="centerY" secondItem="C3n-J2-pYD" secondAttribute="centerY" id="XaG-Lx-TXa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="OtB-8B-u3a" kind="show" id="ygI-Pe-PoB"/>
+                                            <segue destination="OtB-8B-u3a" kind="show" id="rmy-QO-6Tc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="XTU-wy-rjh">
+                                        <rect key="frame" x="20" y="901.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XTU-wy-rjh" id="FW5-6Z-D6W">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Time Translation Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyY-6f-8hG">
+                                                    <rect key="frame" x="15" y="13" width="233" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YyY-6f-8hG" firstAttribute="leading" secondItem="FW5-6Z-D6W" secondAttribute="leading" constant="15" id="x0r-4Z-qDn"/>
+                                                <constraint firstItem="YyY-6f-8hG" firstAttribute="centerY" secondItem="FW5-6Z-D6W" secondAttribute="centerY" id="yKt-WX-T4c"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="sox-ZS-6at" kind="show" id="0qd-XA-mBy"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -389,7 +418,7 @@
                             <tableViewSection headerTitle="Home Configuration" id="NpK-mw-Ph6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="GOv-Nu-HBP">
-                                        <rect key="frame" x="20" y="894" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1045.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOv-Nu-HBP" id="cZi-Uj-rTb">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -416,13 +445,13 @@
                             <tableViewSection headerTitle="Datas" id="y8g-0P-qDQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hfE-We-1uZ">
-                                        <rect key="frame" x="20" y="987.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1139" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hfE-We-1uZ" id="xJ2-Ge-9P0">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Backup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oye-d6-1Hv">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Create Backup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oye-d6-1Hv">
                                                     <rect key="frame" x="15" y="13" width="101" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="AccentColor"/>
@@ -440,7 +469,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MCd-19-KYt">
-                                        <rect key="frame" x="20" y="1031" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1182.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MCd-19-KYt" id="q9N-QI-RRZ">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -464,7 +493,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mQq-1t-gtR">
-                                        <rect key="frame" x="20" y="1074.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1226" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mQq-1t-gtR" id="tiP-rb-fIJ">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -478,8 +507,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZNc-C1-eRY" firstAttribute="leading" secondItem="tiP-rb-fIJ" secondAttribute="leading" constant="15" id="d8c-G0-fsl"/>
-                                                <constraint firstItem="ZNc-C1-eRY" firstAttribute="centerY" secondItem="tiP-rb-fIJ" secondAttribute="centerY" id="uG2-WB-RcN"/>
+                                                <constraint firstItem="ZNc-C1-eRY" firstAttribute="centerY" secondItem="tiP-rb-fIJ" secondAttribute="centerY" id="83k-En-95Q"/>
+                                                <constraint firstItem="ZNc-C1-eRY" firstAttribute="leading" secondItem="tiP-rb-fIJ" secondAttribute="leading" constant="15" id="f6h-8l-rv9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -488,7 +517,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HUR-n8-Rbx">
-                                        <rect key="frame" x="20" y="1118" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1269.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HUR-n8-Rbx" id="bHB-r2-4FI">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -502,8 +531,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Qbf-58-ZPz" firstAttribute="leading" secondItem="bHB-r2-4FI" secondAttribute="leading" constant="15" id="Ob8-Ky-XGS"/>
-                                                <constraint firstItem="Qbf-58-ZPz" firstAttribute="centerY" secondItem="bHB-r2-4FI" secondAttribute="centerY" id="s36-gP-pCa"/>
+                                                <constraint firstItem="Qbf-58-ZPz" firstAttribute="centerY" secondItem="bHB-r2-4FI" secondAttribute="centerY" id="B71-3o-DRx"/>
+                                                <constraint firstItem="Qbf-58-ZPz" firstAttribute="leading" secondItem="bHB-r2-4FI" secondAttribute="leading" constant="15" id="wsE-Ao-z3S"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -512,7 +541,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SUn-bk-K3o">
-                                        <rect key="frame" x="20" y="1161.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1313" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SUn-bk-K3o" id="K0P-lj-MW7">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -526,8 +555,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qav-l0-TMc" firstAttribute="centerY" secondItem="K0P-lj-MW7" secondAttribute="centerY" id="TaA-KB-rpR"/>
-                                                <constraint firstItem="qav-l0-TMc" firstAttribute="leading" secondItem="K0P-lj-MW7" secondAttribute="leading" constant="15" id="UDK-PF-qgC"/>
+                                                <constraint firstItem="qav-l0-TMc" firstAttribute="centerY" secondItem="K0P-lj-MW7" secondAttribute="centerY" id="g7j-7f-Ma9"/>
+                                                <constraint firstItem="qav-l0-TMc" firstAttribute="leading" secondItem="K0P-lj-MW7" secondAttribute="leading" constant="15" id="sKe-qe-Apd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -536,7 +565,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nUw-b7-C1T">
-                                        <rect key="frame" x="20" y="1205" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="1356.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nUw-b7-C1T" id="zBm-wD-CZR">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -550,8 +579,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8V1-Vb-S8x" firstAttribute="centerY" secondItem="zBm-wD-CZR" secondAttribute="centerY" id="SB8-rp-7AJ"/>
-                                                <constraint firstItem="8V1-Vb-S8x" firstAttribute="leading" secondItem="zBm-wD-CZR" secondAttribute="leading" constant="15" id="iPB-Sp-gnI"/>
+                                                <constraint firstItem="8V1-Vb-S8x" firstAttribute="centerY" secondItem="zBm-wD-CZR" secondAttribute="centerY" id="eGQ-IZ-XtX"/>
+                                                <constraint firstItem="8V1-Vb-S8x" firstAttribute="leading" secondItem="zBm-wD-CZR" secondAttribute="leading" constant="15" id="x96-Nv-uPF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -635,15 +664,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="About Ryu" id="12i-Tl-sd4">
-                                <string key="footerTitle">Ryu is a free, open source iOS app, developed by cranci. The app is under the GNU General Public License version 3. 
+                                <string key="footerTitle">Ryu is a free, open source iOS app, developed by cranci. The app is under the GNU GPLv3.0 
 
 Ryu is also not made to promote piracy. Its just a streaming app, all the contents are not stored in any server. </string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tq6-ws-kMz">
-                                        <rect key="frame" x="20" y="32" width="374" height="44"/>
+                                        <rect key="frame" x="20" y="32" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tq6-ws-kMz" id="cII-Cg-Sqo">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxN-nY-MRO">
@@ -668,7 +697,7 @@ Ryu is also not made to promote piracy. Its just a streaming app, all the conten
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jAG-3C-jat">
-                                        <rect key="frame" x="20" y="76" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="75.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jAG-3C-jat" id="Gdq-C6-xzx">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -696,7 +725,7 @@ Ryu is also not made to promote piracy. Its just a streaming app, all the conten
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qVD-qi-mRG">
-                                        <rect key="frame" x="20" y="119.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="119" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qVD-qi-mRG" id="uPt-gv-rql">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -720,7 +749,7 @@ Ryu is also not made to promote piracy. Its just a streaming app, all the conten
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hnH-hg-ggD">
-                                        <rect key="frame" x="20" y="163" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="162.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hnH-hg-ggD" id="33a-sB-LaZ">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -744,7 +773,7 @@ Ryu is also not made to promote piracy. Its just a streaming app, all the conten
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Fgy-G7-OYD">
-                                        <rect key="frame" x="20" y="206.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="206" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fgy-G7-OYD" id="ANt-qn-9fI">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -773,7 +802,7 @@ Ryu is also not made to promote piracy. Its just a streaming app, all the conten
                                 <string key="footerTitle">Ryu prioritizes user privacy and does not store any personal data. All generated images are not retained by the app. If a user chooses to download an episode, it will only be stored locally in their device storage or on the Downloads Page in the app. We are committed to ensuring a secure and private experience for our users.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oBQ-XV-Yb3">
-                                        <rect key="frame" x="20" y="386" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="371.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oBQ-XV-Yb3" id="iwq-sG-PiT">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -808,7 +837,7 @@ Ryu is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 You should have received a copy of the GNU General Public License along with Ryu. If not, see &lt;https://www.gnu.org/licenses/&gt;.</string>
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HkG-T8-RWQ">
-                                        <rect key="frame" x="20" y="565.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="551" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HkG-T8-RWQ" id="w93-1l-591">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -836,7 +865,7 @@ You should have received a copy of the GNU General Public License along with Ryu
                             <tableViewSection headerTitle="Credits" footerTitle="Find all the credits to all the projects used to make this app possible." id="Mkr-5S-bqG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="w4T-NN-0Re">
-                                        <rect key="frame" x="20" y="885" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="870.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w4T-NN-0Re" id="94Y-a6-fSO">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -959,7 +988,6 @@ The Streaming type is the method to stream the episode, can be 'buffered' that w
                                                     <rect key="frame" x="310" y="6.5" width="51" height="31"/>
                                                     <color key="onTintColor" name="AccentColor"/>
                                                     <connections>
-                                                        <action selector="animeImageToggle:" destination="iYA-2R-889" eventType="valueChanged" id="x4X-Yh-Zfl"/>
                                                         <action selector="fullTitleToggle:" destination="iYA-2R-889" eventType="valueChanged" id="FdK-nS-KLc"/>
                                                     </connections>
                                                 </switch>
@@ -979,22 +1007,25 @@ The Streaming type is the method to stream the episode, can be 'buffered' that w
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Anime Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iS-di-kBf">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e0L-Sv-Jup">
+                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <color key="onTintColor" name="AccentColor"/>
+                                                    <connections>
+                                                        <action selector="animeImageToggle:" destination="iYA-2R-889" eventType="valueChanged" id="eVI-wZ-ySw"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Anime Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-dX-2YJ">
                                                     <rect key="frame" x="15" y="13" width="120" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e0L-Sv-Jup">
-                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
-                                                    <color key="onTintColor" name="AccentColor"/>
-                                                </switch>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="e0L-Sv-Jup" firstAttribute="centerY" secondItem="mM9-Bq-Mv0" secondAttribute="centerY" id="Kft-fC-dCv"/>
-                                                <constraint firstItem="3iS-di-kBf" firstAttribute="leading" secondItem="mM9-Bq-Mv0" secondAttribute="leading" constant="15" id="NrU-2e-R39"/>
                                                 <constraint firstItem="e0L-Sv-Jup" firstAttribute="trailing" secondItem="mM9-Bq-Mv0" secondAttribute="trailing" constant="-15" id="UgR-V3-SGL"/>
-                                                <constraint firstItem="3iS-di-kBf" firstAttribute="centerY" secondItem="mM9-Bq-Mv0" secondAttribute="centerY" id="qFm-au-0Pu"/>
+                                                <constraint firstItem="aTG-dX-2YJ" firstAttribute="centerY" secondItem="mM9-Bq-Mv0" secondAttribute="centerY" id="aPf-5h-ahi"/>
+                                                <constraint firstItem="aTG-dX-2YJ" firstAttribute="leading" secondItem="mM9-Bq-Mv0" secondAttribute="leading" constant="15" id="d8g-UR-8ZW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1061,7 +1092,7 @@ The Streaming type is the method to stream the episode, can be 'buffered' that w
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="AniList" id="aA9-OL-lkL">
-                                <string key="footerTitle">Ryu is not affiliated with AniList.co
+                                <string key="footerTitle">Ryu is not affiliated with AniList.co in any way
 
 Note that push updates might occasionally be inaccurate due to differences between the anime's name and its title on AniList.</string>
                                 <cells>
@@ -1363,40 +1394,12 @@ Note that push updates might occasionally be inaccurate due to differences betwe
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9Tg-Ks-ZhD">
-                                        <rect key="frame" x="20" y="451.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Tg-Ks-ZhD" id="NhP-7n-phX">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide Web Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkf-xc-xII">
-                                                    <rect key="frame" x="15" y="13" width="113" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oL-GO-Paj">
-                                                    <rect key="frame" x="317" y="6.5" width="47" height="31"/>
-                                                    <color key="tintColor" name="AccentColor"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Yes"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="0oL-GO-Paj" firstAttribute="centerY" secondItem="NhP-7n-phX" secondAttribute="centerY" id="2yt-GW-Wwb"/>
-                                                <constraint firstItem="lkf-xc-xII" firstAttribute="leading" secondItem="NhP-7n-phX" secondAttribute="leading" constant="15" id="CkL-0B-XwD"/>
-                                                <constraint firstItem="lkf-xc-xII" firstAttribute="centerY" secondItem="NhP-7n-phX" secondAttribute="centerY" id="J4R-eD-dfj"/>
-                                                <constraint firstItem="0oL-GO-Paj" firstAttribute="trailing" secondItem="NhP-7n-phX" secondAttribute="trailing" constant="-10" id="yCO-Gl-hLH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Informations" footerTitle="Find some informations about each source" id="fYK-Yn-lEn">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="m1a-0k-gXI">
-                                        <rect key="frame" x="20" y="575" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="531.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m1a-0k-gXI" id="Gc0-9A-Dxt">
                                             <rect key="frame" x="0.0" y="0.0" width="345.5" height="43.5"/>
@@ -1436,7 +1439,6 @@ Note that push updates might occasionally be inaccurate due to differences betwe
                     </navigationItem>
                     <connections>
                         <outlet property="audioButton" destination="ew1-sf-bu3" id="uYv-W7-Rgd"/>
-                        <outlet property="hideButton" destination="0oL-GO-Paj" id="Van-Jw-eR1"/>
                         <outlet property="qualityPrefered" destination="5Al-V9-xiO" id="kwd-cH-FFf"/>
                         <outlet property="retryMethod" destination="bTS-4X-xtJ" id="2iX-Ch-zBc"/>
                         <outlet property="serverButton" destination="JUh-bG-hKS" id="Uzf-Q4-FmV"/>
@@ -1547,37 +1549,6 @@ Note that push updates might occasionally be inaccurate due to differences betwe
                                                 <constraint firstItem="FC9-AC-F7A" firstAttribute="bottom" secondItem="doq-G9-mrG" secondAttribute="bottomMargin" id="yxc-qh-E36"/>
                                                 <constraint firstItem="FC9-AC-F7A" firstAttribute="bottom" secondItem="MDZ-Im-TjN" secondAttribute="bottom" id="z6A-P4-iBK"/>
                                                 <constraint firstItem="MDZ-Im-TjN" firstAttribute="trailing" secondItem="doq-G9-mrG" secondAttribute="trailingMargin" id="zzO-mL-9NM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="gxq-R7-fOC">
-                                        <rect key="frame" x="20" y="318" width="374" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gxq-R7-fOC" id="nVI-bh-NGc">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZoroTv" translatesAutoresizingMaskIntoConstraints="NO" id="zCK-nK-uwA">
-                                                    <rect key="frame" x="20" y="11" width="78" height="78"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="78" id="wpL-9S-4wT"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZoroTv is an English streaming service that provides both DUB and SUB. Downloads are not working." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aun-Zb-3Rf">
-                                                    <rect key="frame" x="106" y="11" width="248" height="78"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="aun-Zb-3Rf" firstAttribute="leading" secondItem="zCK-nK-uwA" secondAttribute="trailing" constant="8" id="06r-F1-2IY"/>
-                                                <constraint firstItem="zCK-nK-uwA" firstAttribute="bottom" secondItem="aun-Zb-3Rf" secondAttribute="bottom" id="F9w-yr-85u"/>
-                                                <constraint firstItem="zCK-nK-uwA" firstAttribute="bottom" secondItem="nVI-bh-NGc" secondAttribute="bottomMargin" id="G64-tB-IM9"/>
-                                                <constraint firstItem="zCK-nK-uwA" firstAttribute="leading" secondItem="nVI-bh-NGc" secondAttribute="leadingMargin" id="LYZ-O9-dVs"/>
-                                                <constraint firstItem="zCK-nK-uwA" firstAttribute="top" secondItem="nVI-bh-NGc" secondAttribute="topMargin" id="uBu-jP-meC"/>
-                                                <constraint firstItem="aun-Zb-3Rf" firstAttribute="trailing" secondItem="nVI-bh-NGc" secondAttribute="trailingMargin" id="wQm-K9-NfO"/>
-                                                <constraint firstItem="zCK-nK-uwA" firstAttribute="top" secondItem="aun-Zb-3Rf" secondAttribute="top" id="xA9-z0-ONZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2173,7 +2144,7 @@ Note that push updates might occasionally be inaccurate due to differences betwe
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="APIs" footerTitle="This APIs are used for: HiAnime informations parsing, Anime TimeStamps parsing." id="OAc-k8-ZBT">
+                            <tableViewSection headerTitle="APIs" footerTitle="This APIs are used for: HiAnime informations parsing, for the Anime TimeStamps parsing and the Real Time translation." id="OAc-k8-ZBT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="dY4-GX-1eb">
                                         <rect key="frame" x="20" y="286" width="374" height="43.5"/>
@@ -2215,12 +2186,32 @@ Note that push updates might occasionally be inaccurate due to differences betwe
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fIJ-38-CKR">
+                                        <rect key="frame" x="20" y="373" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fIJ-38-CKR" id="9ow-Az-oDQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deeplx-vercel api - MIT License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyd-B1-N1B">
+                                                    <rect key="frame" x="15" y="13" width="217" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nyd-B1-N1B" firstAttribute="centerY" secondItem="9ow-Az-oDQ" secondAttribute="centerY" id="9JD-ds-olr"/>
+                                                <constraint firstItem="nyd-B1-N1B" firstAttribute="leading" secondItem="9ow-Az-oDQ" secondAttribute="leading" constant="15" id="Ic1-rU-OFw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Apps" footerTitle="Thanks to the beautiful looking UI of NineAnimator that inspired me in to making this project." id="2ui-DN-1Wv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0nj-Re-vwF">
-                                        <rect key="frame" x="20" y="453" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="510.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0nj-Re-vwF" id="bc9-Hw-9FO">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -2241,8 +2232,7 @@ Note that push updates might occasionally be inaccurate due to differences betwe
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="H0N-WH-gJe">
-                                <string key="footerTitle">Thanks to all the creators of this projects, without their help Ryu would not be the same without this frameworks, apis and apps. </string>
+                            <tableViewSection footerTitle="Thanks to all the creators of this projects, Ryu would not be the same without this frameworks, apis and apps. Thanks a lot" id="H0N-WH-gJe">
                                 <cells/>
                             </tableViewSection>
                         </sections>
@@ -2366,6 +2356,44 @@ Please report wrong TimeStamps in their discord server. The Ryu Team is not affi
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="self-hosting" id="zRg-Mf-xM6">
+                                <string key="footerTitle">Make sure to use the full URL with the final "/" and starting "https://"
+
+exaple: "https://api.aniskip.com/"
+
+Use this featured if you are able to host it your self to prevent downtime or mass requests slowdown.</string>
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bRy-Be-ent">
+                                        <rect key="frame" x="20" y="284.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bRy-Be-ent" id="Yjk-4Z-0A4">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use custom Instance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQv-e6-arZ">
+                                                    <rect key="frame" x="15" y="13" width="144" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oQ6-qj-ZmW">
+                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <color key="onTintColor" name="AccentColor"/>
+                                                    <connections>
+                                                        <action selector="urlToggle:" destination="OtB-8B-u3a" eventType="valueChanged" id="e3R-nU-tzM"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NQv-e6-arZ" firstAttribute="centerY" secondItem="Yjk-4Z-0A4" secondAttribute="centerY" id="Gkd-9g-ziU"/>
+                                                <constraint firstItem="oQ6-qj-ZmW" firstAttribute="centerY" secondItem="Yjk-4Z-0A4" secondAttribute="centerY" id="Kvw-jW-DZw"/>
+                                                <constraint firstItem="oQ6-qj-ZmW" firstAttribute="trailing" secondItem="Yjk-4Z-0A4" secondAttribute="trailing" constant="-15" id="SAT-Vh-as8"/>
+                                                <constraint firstItem="NQv-e6-arZ" firstAttribute="leading" secondItem="Yjk-4Z-0A4" secondAttribute="leading" constant="15" id="ep4-gn-iDw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="OtB-8B-u3a" id="bAz-V7-f8C"/>
@@ -2384,11 +2412,150 @@ Please report wrong TimeStamps in their discord server. The Ryu Team is not affi
                         <outlet property="feedbacksSwitch" destination="3gp-ZB-YGx" id="NUx-oe-Xje"/>
                         <outlet property="introSwitch" destination="oWc-cE-fOp" id="TXk-EK-haA"/>
                         <outlet property="outroSwitch" destination="jHj-iB-7nm" id="SZB-MT-zVF"/>
+                        <outlet property="urlSwitch" destination="oQ6-qj-ZmW" id="Vdd-g8-03z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAh-7Y-pmU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238" y="217"/>
+            <point key="canvasLocation" x="2237.68115942029" y="216.96428571428569"/>
+        </scene>
+        <!--Translation-->
+        <scene sceneID="77F-n4-nRp">
+            <objects>
+                <tableViewController id="sox-ZS-6at" customClass="SettingsViewTranslation" customModule="Ryu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="dJE-yG-J2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <sections>
+                            <tableViewSection headerTitle="General" id="3CD-7Z-CGr">
+                                <string key="footerTitle">Thanks to the Deeplx-Vercel API, created by bropines, for providing an easy and efficient translation solution. The API instance is fully self-hosted on my Vercel account, so no data is made public.
+
+
+The real-time translation feature translates all subtitles of the episode using the Deeplx API. However, as with any automated translation, there may be occasional inaccuracies, so some text might not have the exact meaning of the original language.
+
+
+The translation feature can be toggled directly within the custom player, where users can also switch between languages.</string>
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="c0c-OS-Nip">
+                                        <rect key="frame" x="20" y="32" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c0c-OS-Nip" id="hXK-sn-y8a">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real-Time Translation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZP-sf-ed7">
+                                                    <rect key="frame" x="15" y="13" width="149" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NjA-6h-mpq">
+                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <color key="onTintColor" name="AccentColor"/>
+                                                    <connections>
+                                                        <action selector="translationToggle:" destination="sox-ZS-6at" eventType="valueChanged" id="fxY-HQ-0PA"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NjA-6h-mpq" firstAttribute="centerY" secondItem="hXK-sn-y8a" secondAttribute="centerY" id="2T4-Y4-9Rv"/>
+                                                <constraint firstItem="OZP-sf-ed7" firstAttribute="leading" secondItem="hXK-sn-y8a" secondAttribute="leading" constant="15" id="6KP-Xu-NGR"/>
+                                                <constraint firstItem="OZP-sf-ed7" firstAttribute="centerY" secondItem="hXK-sn-y8a" secondAttribute="centerY" id="epC-J4-byo"/>
+                                                <constraint firstItem="NjA-6h-mpq" firstAttribute="trailing" secondItem="hXK-sn-y8a" secondAttribute="trailing" constant="-15" id="xgA-AF-QGc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bgr-8z-jxc">
+                                        <rect key="frame" x="20" y="75.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bgr-8z-jxc" id="CBT-a8-dEf">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Translation Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOj-wP-37e">
+                                                    <rect key="frame" x="15" y="13" width="147" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxP-DR-FJs">
+                                                    <rect key="frame" x="298" y="6.5" width="71" height="31"/>
+                                                    <color key="tintColor" name="AccentColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="English"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XxP-DR-FJs" firstAttribute="centerY" secondItem="CBT-a8-dEf" secondAttribute="centerY" id="Dbo-sG-RM5"/>
+                                                <constraint firstItem="AOj-wP-37e" firstAttribute="leading" secondItem="CBT-a8-dEf" secondAttribute="leading" constant="15" id="Krp-h5-vYP"/>
+                                                <constraint firstItem="AOj-wP-37e" firstAttribute="centerY" secondItem="CBT-a8-dEf" secondAttribute="centerY" id="UVt-uC-lvB"/>
+                                                <constraint firstItem="XxP-DR-FJs" firstAttribute="trailing" secondItem="CBT-a8-dEf" secondAttribute="trailing" constant="-5" id="jmZ-BR-71C"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="self-hosting" id="Aqt-WS-8et">
+                                <string key="footerTitle">Make sure to use the full URL WITHOUT the final "/" and starting "https://"
+
+exaple: "https://translate-api-first.vercel.app/api/translate"
+
+Use this featured if you are able to host it your self to prevent downtime or mass requests slowdown.</string>
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tjN-cO-1Pu">
+                                        <rect key="frame" x="20" y="395" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tjN-cO-1Pu" id="biD-O2-Wtj">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use custom Instance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-Fh-2zT">
+                                                    <rect key="frame" x="15" y="13" width="144" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Igf-4L-ICB">
+                                                    <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <color key="onTintColor" name="AccentColor"/>
+                                                    <connections>
+                                                        <action selector="urlToggle:" destination="sox-ZS-6at" eventType="valueChanged" id="uKX-Yq-zxg"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7m0-Fh-2zT" firstAttribute="leading" secondItem="biD-O2-Wtj" secondAttribute="leading" constant="15" id="0uV-xY-D3E"/>
+                                                <constraint firstItem="7m0-Fh-2zT" firstAttribute="centerY" secondItem="biD-O2-Wtj" secondAttribute="centerY" id="geF-3k-OAW"/>
+                                                <constraint firstItem="Igf-4L-ICB" firstAttribute="centerY" secondItem="biD-O2-Wtj" secondAttribute="centerY" id="qQv-hC-Yfl"/>
+                                                <constraint firstItem="Igf-4L-ICB" firstAttribute="trailing" secondItem="biD-O2-Wtj" secondAttribute="trailing" constant="-15" id="t9a-A7-zuE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="sox-ZS-6at" id="dKd-TA-Svd"/>
+                            <outlet property="delegate" destination="sox-ZS-6at" id="Blg-6E-gs9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Translation" id="bAm-SA-kFL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="N1Z-fq-bhv">
+                            <color key="tintColor" name="AccentColor"/>
+                            <connections>
+                                <action selector="closeButtonTapped" destination="sox-ZS-6at" id="WsC-Sf-c2q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="customInstanceSwitch" destination="Igf-4L-ICB" id="8lW-bT-AP7"/>
+                        <outlet property="preferedLanguage" destination="XxP-DR-FJs" id="25u-aG-mR9"/>
+                        <outlet property="translationSwitch" destination="NjA-6h-mpq" id="5lU-kb-VFK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8p4-bD-XLk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3141" y="217"/>
         </scene>
     </scenes>
     <resources>
@@ -2401,7 +2568,6 @@ Please report wrong TimeStamps in their discord server. The Ryu Team is not affi
         <image name="HiAnime" width="512" height="512"/>
         <image name="JKanime" width="92" height="92"/>
         <image name="Kuramanime" width="150" height="150"/>
-        <image name="ZoroTv" width="172" height="172"/>
         <namedColor name="AccentColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

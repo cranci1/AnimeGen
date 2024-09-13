@@ -7,10 +7,10 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 import AVFoundation
 
 class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
-    
     private var player: AVPlayer?
     private var playerLayer: AVPlayerLayer?
     private var isControlsVisible = true
@@ -30,8 +30,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     private var cell: EpisodeCell
     private var fullURL: String
     private var hasSentUpdate = false
-    private var animeDetailsViewController: AnimeDetailViewController?
     
+    private var skipButtonsBottomConstraint: NSLayoutConstraint?
     private var skipButtons: [UIButton] = []
     private var skipIntervalViews: [UIView] = []
     private var skipIntervals: [(String, TimeInterval, TimeInterval, String)] = []
@@ -41,9 +41,15 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     private var hasSkippedIntro = false
     private var hasSkippedOutro = false
     
+    private var isSeeking = false
+    private var seekThumbWidthConstraint: NSLayoutConstraint?
+    private var seekThumbCenterXConstraint: NSLayoutConstraint?
+    
     private var subtitles: [SubtitleCue] = []
+    private var currentSubtitleIndex: Int?
+    private var lastTranslationLanguage: String?
     private var subtitleTimer: Timer?
-    private var subtitleFontSize: CGFloat = 18
+    private var subtitleFontSize: CGFloat = 16
     private var subtitleColor: UIColor = .white
     private var subtitleBorderWidth: CGFloat = 1
     private var subtitleBorderColor: UIColor = .black
@@ -77,17 +83,26 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         return imageView
     }()
     
+    private lazy var progressBarContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     private lazy var playerProgress: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .default)
         progress.progressTintColor = .white
         progress.trackTintColor = .gray
         progress.translatesAutoresizingMaskIntoConstraints = false
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleProgressPan(_:)))
-        progress.addGestureRecognizer(panGesture)
-        progress.isUserInteractionEnabled = true
-        
         return progress
+    }()
+    
+    private lazy var seekThumb: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var currentTimeLabel: UILabel = {
@@ -152,6 +167,14 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         return label
     }()
     
+    private lazy var episodeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var dismissButton: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "xmark"))
         imageView.tintColor = .white
@@ -182,6 +205,15 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         label.layer.shadowRadius = subtitleBorderWidth
         label.layer.masksToBounds = false
         return label
+    }()
+    
+    private lazy var airplayButton: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "airplayvideo"))
+        imageView.tintColor = .white
+        imageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(airplayButtonTapped))
+        imageView.addGestureRecognizer(tapGesture)
+        return imageView
     }()
     
     init(frame: CGRect, cell: EpisodeCell, fullURL: String) {
@@ -230,6 +262,9 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         addSubview(speedIndicatorLabel)
         addSubview(controlsContainerView)
         addSubview(subtitlesLabel)
+        addSubview(progressBarContainer)
+        progressBarContainer.addSubview(playerProgress)
+        progressBarContainer.addSubview(seekThumb)
         controlsContainerView.addSubview(playPauseButton)
         controlsContainerView.addSubview(rewindButton)
         controlsContainerView.addSubview(forwardButton)
@@ -241,6 +276,8 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         controlsContainerView.addSubview(titleLabel)
         controlsContainerView.addSubview(dismissButton)
         controlsContainerView.addSubview(pipButton)
+        controlsContainerView.addSubview(episodeLabel)
+        controlsContainerView.addSubview(airplayButton)
         
         speedIndicatorLabel.translatesAutoresizingMaskIntoConstraints = false
         speedIndicatorBackgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -256,9 +293,12 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         pipButton.translatesAutoresizingMaskIntoConstraints = false
         subtitlesLabel.translatesAutoresizingMaskIntoConstraints = false
+        episodeLabel.translatesAutoresizingMaskIntoConstraints = false
+        progressBarContainer.translatesAutoresizingMaskIntoConstraints = false
+        airplayButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            speedIndicatorLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            speedIndicatorLabel.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor, constant: -10),
             speedIndicatorLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             speedIndicatorBackgroundView.centerXAnchor.constraint(equalTo: speedIndicatorLabel.centerXAnchor),
@@ -272,28 +312,39 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             controlsContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             titleLabel.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: playerProgress.topAnchor, constant: -6),
+            titleLabel.bottomAnchor.constraint(equalTo: playerProgress.topAnchor, constant: -4),
             titleLabel.trailingAnchor.constraint(equalTo: speedButton.leadingAnchor),
+            
+            episodeLabel.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
+            episodeLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor),
             
             playPauseButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             playPauseButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             playPauseButton.widthAnchor.constraint(equalToConstant: 50),
             playPauseButton.heightAnchor.constraint(equalToConstant: 55),
             
-            rewindButton.trailingAnchor.constraint(equalTo: playPauseButton.leadingAnchor, constant: -20),
+            rewindButton.trailingAnchor.constraint(equalTo: playPauseButton.leadingAnchor, constant: -80),
             rewindButton.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor),
-            rewindButton.widthAnchor.constraint(equalToConstant: 35),
-            rewindButton.heightAnchor.constraint(equalToConstant: 35),
+            rewindButton.widthAnchor.constraint(equalToConstant: 30),
+            rewindButton.heightAnchor.constraint(equalToConstant: 30),
             
-            forwardButton.leadingAnchor.constraint(equalTo: playPauseButton.trailingAnchor, constant: 20),
+            forwardButton.leadingAnchor.constraint(equalTo: playPauseButton.trailingAnchor, constant: 80),
             forwardButton.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor),
-            forwardButton.widthAnchor.constraint(equalToConstant: 35),
-            forwardButton.heightAnchor.constraint(equalToConstant: 35),
+            forwardButton.widthAnchor.constraint(equalToConstant: 30),
+            forwardButton.heightAnchor.constraint(equalToConstant: 30),
             
-            playerProgress.leadingAnchor.constraint(equalTo: controlsContainerView.leadingAnchor, constant: 20),
-            playerProgress.trailingAnchor.constraint(equalTo: controlsContainerView.trailingAnchor, constant: -20),
+            progressBarContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
+            progressBarContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            progressBarContainer.bottomAnchor.constraint(equalTo: currentTimeLabel.topAnchor),
+            progressBarContainer.heightAnchor.constraint(equalToConstant: 17),
+            
+            playerProgress.leadingAnchor.constraint(equalTo: controlsContainerView.leadingAnchor, constant: 30),
+            playerProgress.trailingAnchor.constraint(equalTo: controlsContainerView.trailingAnchor, constant: -30),
             playerProgress.bottomAnchor.constraint(equalTo: currentTimeLabel.topAnchor, constant: -5),
             playerProgress.heightAnchor.constraint(equalToConstant: 8),
+            
+            seekThumb.centerYAnchor.constraint(equalTo: playerProgress.centerYAnchor),
+            seekThumb.heightAnchor.constraint(equalToConstant: 16),
             
             currentTimeLabel.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
             currentTimeLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -30),
@@ -302,24 +353,43 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             totalTimeLabel.bottomAnchor.constraint(equalTo: controlsContainerView.bottomAnchor, constant: -30),
             
             settingsButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            settingsButton.trailingAnchor.constraint(equalTo: totalTimeLabel.trailingAnchor),
+            settingsButton.trailingAnchor.constraint(equalTo: playerProgress.trailingAnchor),
+            settingsButton.widthAnchor.constraint(equalToConstant: 30),
             
             speedButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            speedButton.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: -5),
+            speedButton.trailingAnchor.constraint(equalTo: settingsButton.leadingAnchor),
+            speedButton.widthAnchor.constraint(equalToConstant: 30),
             
-            dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 15),
-            dismissButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            dismissButton.widthAnchor.constraint(equalToConstant: 30),
-            dismissButton.heightAnchor.constraint(equalToConstant: 30),
+            dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30),
+            dismissButton.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
+            dismissButton.widthAnchor.constraint(equalToConstant: 25),
+            dismissButton.heightAnchor.constraint(equalToConstant: 25),
             
             pipButton.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor),
-            pipButton.leadingAnchor.constraint(equalTo: dismissButton.trailingAnchor, constant: 10),
-            pipButton.widthAnchor.constraint(equalToConstant: 35),
-            pipButton.heightAnchor.constraint(equalToConstant: 30),
+            pipButton.leadingAnchor.constraint(equalTo: dismissButton.trailingAnchor, constant: 30),
+            pipButton.widthAnchor.constraint(equalToConstant: 30),
+            pipButton.heightAnchor.constraint(equalToConstant: 25),
+            
+            airplayButton.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor),
+            airplayButton.leadingAnchor.constraint(equalTo: pipButton.trailingAnchor, constant: 15),
+            airplayButton.widthAnchor.constraint(equalToConstant: 25),
+            airplayButton.heightAnchor.constraint(equalToConstant: 25),
             
             subtitlesLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            subtitlesLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            subtitlesLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            subtitlesLabel.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
+            subtitlesLabel.trailingAnchor.constraint(equalTo: playerProgress.trailingAnchor)
         ])
+        
+        let episodeNumber = Int(self.cell.episodeNumber) ?? 0
+        episodeLabel.text = "Episode " + String(episodeNumber)
+        
+        seekThumbWidthConstraint = seekThumb.widthAnchor.constraint(equalToConstant: 16)
+        seekThumbCenterXConstraint = seekThumb.centerXAnchor.constraint(equalTo: playerProgress.leadingAnchor)
+        seekThumbWidthConstraint?.isActive = true
+        seekThumbCenterXConstraint?.isActive = true
+        
+        hideSeekThumb()
     }
     
     private func updateSubtitleAppearance() {
@@ -335,6 +405,26 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         addGestureRecognizer(longPressGesture)
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handleProgressPan(_:)))
+        progressBarContainer.addGestureRecognizer(panGesture)
+        
+        let tap2Gesture = UITapGestureRecognizer(target: self, action: #selector(handleProgressTap(_:)))
+        progressBarContainer.addGestureRecognizer(tap2Gesture)
+    }
+    
+    @objc private func airplayButtonTapped() {
+        let rect = CGRect(x: -100, y: 0, width: 0, height: 0)
+        let airplayVolume = MPVolumeView(frame: rect)
+        airplayVolume.showsVolumeSlider = false
+        self.addSubview(airplayVolume)
+        for view: UIView in airplayVolume.subviews {
+            if let button = view as? UIButton {
+                button.sendActions(for: .touchUpInside)
+                break
+            }
+        }
+        airplayVolume.removeFromSuperview()
     }
     
     override func layoutSubviews() {
@@ -457,7 +547,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         guard index < qualities.count else { return }
         
         currentQualityIndex = index
-        let (name, filename) = qualities[index]
+        let (_, filename) = qualities[index]
         
         guard let baseURL = baseURL else { return }
         let fullURL = baseURL.appendingPathComponent(filename)
@@ -521,7 +611,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
                 animeTitle: self.videoTitle,
                 episodeTitle: "Ep. \(episodeNumber)",
                 episodeNumber: episodeNumber,
-                imageURL: self.animeDetailsViewController?.imageUrl ?? "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg",
+                imageURL: "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg",
                 fullURL: fullURL,
                 lastPlayedTime: currentTime,
                 totalTime: duration,
@@ -606,37 +696,106 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         }
     }
     
-    private func updateTimeLabels() {
-        guard let currentItem = player?.currentItem else { return }
+    @objc private func handleProgressPan(_ gesture: UIPanGestureRecognizer) {
+        let location = gesture.location(in: progressBarContainer)
+        let progress = max(0, min(1, (location.x - 20) / (progressBarContainer.bounds.width - 40)))
         
-        let currentTime = CMTimeGetSeconds(player?.currentTime() ?? .zero)
+        switch gesture.state {
+        case .began:
+            isSeeking = true
+            showSeekThumb()
+            updateSeekThumbPosition(progress: CGFloat(progress))
+        case .changed:
+            updateSeekThumbPosition(progress: CGFloat(progress))
+            updateTimeLabels(progress: Double(progress))
+            seek(to: progress)
+        case .ended:
+            isSeeking = false
+            hideSeekThumb()
+            seek(to: progress)
+        default:
+            break
+        }
+    }
+    
+    @objc private func handleProgressTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: progressBarContainer)
+        let progress = max(0, min(1, (location.x - 20) / (progressBarContainer.bounds.width - 40)))
+        seek(to: progress)
+    }
+    
+    private func showSeekThumb() {
+        UIView.animate(withDuration: 0.2) {
+            self.seekThumbWidthConstraint?.constant = 16
+            self.seekThumb.alpha = 1
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func hideSeekThumb() {
+        UIView.animate(withDuration: 0.2) {
+            self.seekThumbWidthConstraint?.constant = 4
+            self.seekThumb.alpha = 0
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func updateSeekThumbPosition(progress: CGFloat) {
+        let thumbCenterX = playerProgress.frame.width * progress
+        seekThumbCenterXConstraint?.constant = thumbCenterX
+        layoutIfNeeded()
+    }
+    
+    private func seek(to progress: Double) {
+        guard let duration = player?.currentItem?.duration else { return }
+        let seekTime = CMTime(seconds: progress * CMTimeGetSeconds(duration), preferredTimescale: 1)
+        player?.seek(to: seekTime)
+    }
+    
+    private func updateTimeLabels() {
+        guard let currentItem = player?.currentItem,
+              let player = player else { return }
+        
+        let currentTime = CMTimeGetSeconds(player.currentTime())
         let duration = CMTimeGetSeconds(currentItem.duration)
         
-        currentTimeLabel.text = timeString(from: currentTime)
+        guard duration > 0 else { return }
         
-        let remainingTime = duration - currentTime
+        let progress = currentTime / duration
+        updateTimeLabels(progress: progress)
+    }
+    
+    private func updateTimeLabels(progress: Double) {
+        guard let duration = player?.currentItem?.duration else { return }
+        let currentTime = progress * CMTimeGetSeconds(duration)
+        let remainingTime = CMTimeGetSeconds(duration) - currentTime
+        
+        currentTimeLabel.text = timeString(from: currentTime)
         totalTimeLabel.text = "-" + timeString(from: remainingTime)
         
-        if duration > 0 {
-            playerProgress.progress = Float(max(0, min(currentTime / duration, 1)))
-            updateProgressBarWithSkipIntervals()
-        } else {
-            playerProgress.progress = 0
-        }
+        playerProgress.progress = Float(progress)
+        updateProgressBarWithSkipIntervals()
     }
     
     private func showControls() {
         isControlsVisible = true
         UIView.animate(withDuration: 0.3) {
             self.controlsContainerView.alpha = 1
+            self.progressBarContainer.alpha = 1
+            self.skipButtonsBottomConstraint?.constant = -5
+            self.layoutIfNeeded()
         }
         resetHideControlsTimer()
     }
     
     private func hideControls() {
-        isControlsVisible = false
-        UIView.animate(withDuration: 0.3) {
-            self.controlsContainerView.alpha = 0
+        if !isSeeking {
+            isControlsVisible = false
+            UIView.animate(withDuration: 0.3) {
+                self.controlsContainerView.alpha = 0
+                self.skipButtonsBottomConstraint?.constant = 30
+                self.layoutIfNeeded()
+            }
         }
     }
     
@@ -659,39 +818,19 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     
     @objc private func rewindButtonTapped() {
         guard let currentTime = player?.currentTime() else { return }
-        let newTime = CMTimeSubtract(currentTime, CMTime(seconds: 10, preferredTimescale: 1))
-        player?.seek(to: newTime)
-        resetHideControlsTimer()
-    }
-    
-    @objc private func forwardButtonTapped() {
-        guard let currentTime = player?.currentTime() else { return }
-        let newTime = CMTimeAdd(currentTime, CMTime(seconds: 10, preferredTimescale: 1))
-        player?.seek(to: newTime)
-        resetHideControlsTimer()
-    }
-    
-    @objc private func handleProgressPan(_ gesture: UIPanGestureRecognizer) {
-        let location = gesture.location(in: playerProgress)
-        let progress = location.x / playerProgress.bounds.width
         
-        switch gesture.state {
-        case .began:
-            UIView.animate(withDuration: 0.2) {
-                self.playerProgress.transform = CGAffineTransform(scaleX: 1.0, y: 1.5)
-            }
-        case .changed:
-            playerProgress.progress = Float(progress)
-        case .ended:
-            UIView.animate(withDuration: 0.2) {
-                self.playerProgress.transform = CGAffineTransform.identity
-            }
-            guard let duration = player?.currentItem?.duration else { return }
-            let seekTime = CMTime(seconds: Double(progress) * CMTimeGetSeconds(duration), preferredTimescale: 1)
-            player?.seek(to: seekTime)
-        default:
-            break
-        }
+        let newTime = max(CMTimeGetSeconds(currentTime) - 10, 0)
+        player?.seek(to: CMTime(seconds: newTime, preferredTimescale: 1))
+        resetHideControlsTimer()
+    }
+
+    @objc private func forwardButtonTapped() {
+        guard let currentTime = player?.currentTime(),
+              let duration = player?.currentItem?.duration else { return }
+        
+        let newTime = min(CMTimeGetSeconds(currentTime) + 10, CMTimeGetSeconds(duration))
+        player?.seek(to: CMTime(seconds: newTime, preferredTimescale: 1))
+        resetHideControlsTimer()
     }
     
     @objc private func handleTap() {
@@ -790,8 +929,54 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
                 self?.toggleSubtitles()
             }
             
-            let subtitleSettingsSubmenu = UIMenu(title: "Subtitle Settings", image: UIImage(systemName: "captions.bubble"), children: [
+            let isGoogleTranslateEnabled = UserDefaults.standard.bool(forKey: "googleTranslation")
+            let subtitlesTranslationAction = UIAction(title: "Subtitles Translation", state: isGoogleTranslateEnabled ? .on : .off) { _ in
+                UserDefaults.standard.set(!isGoogleTranslateEnabled, forKey: "googleTranslation")
+                self.updateSettingsMenu()
+            }
+            
+            let currentLanguage = UserDefaults.standard.string(forKey: "translationLanguage") ?? "en"
+            let languageOptions: [(String, String)] = [
+                ("ar", "Arabic"),
+                ("bg", "Bulgarian"),
+                ("cs", "Czech"),
+                ("da", "Danish"),
+                ("de", "German"),
+                ("el", "Greek"),
+                ("es", "Spanish"),
+                ("et", "Estonian"),
+                ("fi", "Finnish"),
+                ("fr", "French"),
+                ("hu", "Hungarian"),
+                ("id", "Indonesian"),
+                ("it", "Italian"),
+                ("ja", "Japanese"),
+                ("ko", "Korean"),
+                ("lt", "Lithuanian"),
+                ("lv", "Latvian"),
+                ("nl", "Dutch"),
+                ("pl", "Polish"),
+                ("pt", "Portuguese"),
+                ("ro", "Romanian"),
+                ("ru", "Russian"),
+                ("sk", "Slovak"),
+                ("sl", "Slovenian"),
+                ("sv", "Swedish"),
+                ("tr", "Turkish"),
+                ("uk", "Ukrainian")
+            ]
+            let languageItems = languageOptions.map { (code, name) in
+                UIAction(title: name, state: currentLanguage == code ? .on : .off) { _ in
+                    UserDefaults.standard.set(code, forKey: "translationLanguage")
+                    self.updateSettingsMenu()
+                }
+            }
+            let languageSubmenu = UIMenu(title: "Translation Language", children: languageItems)
+            
+            let subtitleSettingsSubmenu = UIMenu(title: "Subtitles Settings", image: UIImage(systemName: "captions.bubble"), children: [
                 hideSubtitlesAction,
+                subtitlesTranslationAction,
+                languageSubmenu,
                 fontSizeSubmenu,
                 colorSubmenu,
                 borderWidthSubmenu
@@ -886,7 +1071,12 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     private func loadSubtitles(from url: URL) {
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self, let data = data else { return }
-            self.subtitles = SubtitlesLoader.parseVTT(data: data)
+            
+            SubtitlesLoader.parseVTT(data: data) { [weak self] cues in
+                DispatchQueue.main.async {
+                    self?.subtitles = cues
+                }
+            }
         }.resume()
     }
     
@@ -894,15 +1084,32 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         guard !areSubtitlesHidden, let player = player else { return }
         
         let currentTime = player.currentTime()
+        let isTranslationEnabled = UserDefaults.standard.bool(forKey: "googleTranslation")
+        let currentTranslationLanguage = UserDefaults.standard.string(forKey: "translationLanguage") ?? "en"
         
-        for cue in subtitles {
-            if CMTimeCompare(currentTime, cue.startTime) >= 0 && CMTimeCompare(currentTime, cue.endTime) <= 0 {
-                subtitlesLabel.text = cue.text
-                return
+        if let index = subtitles.firstIndex(where: {
+            CMTimeCompare(currentTime, $0.startTime) >= 0 && CMTimeCompare(currentTime, $0.endTime) <= 0
+        }) {
+            if index != currentSubtitleIndex || lastTranslationLanguage != currentTranslationLanguage {
+                currentSubtitleIndex = index
+                lastTranslationLanguage = currentTranslationLanguage
+                
+                SubtitlesLoader.getTranslatedSubtitle(subtitles[index] as SubtitleCue) { [weak self] translatedCue in
+                    DispatchQueue.main.async {
+                        if self?.currentSubtitleIndex == index {
+                            if isTranslationEnabled {
+                                self?.subtitlesLabel.text = translatedCue.getTranslation(for: currentTranslationLanguage) ?? translatedCue.originalText
+                            } else {
+                                self?.subtitlesLabel.text = translatedCue.originalText
+                            }
+                        }
+                    }
+                }
             }
+        } else {
+            currentSubtitleIndex = nil
+            subtitlesLabel.text = nil
         }
-        
-        subtitlesLabel.text = nil
     }
 }
 
@@ -948,14 +1155,26 @@ extension CustomVideoPlayerView {
     }
     
     func fetchSkipTimes(malID: Int, episodeNumber: Int, completion: @escaping ([(String, TimeInterval, TimeInterval, String)]) -> Void) {
-        let urlString = "https://api.aniskip.com/v1/skip-times/\(malID)/\(episodeNumber)?types=op&types=ed"
-        guard let url = URL(string: urlString) else {
+        let savedAniSkipInstance = UserDefaults.standard.string(forKey: "savedAniSkipInstance") ?? ""
+        
+        let baseURL = savedAniSkipInstance.isEmpty ? "https://api.aniskip.com/" : savedAniSkipInstance
+        let endpoint = "v1/skip-times/\(malID)/\(episodeNumber)?types=op&types=ed"
+        
+        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
+            print("Invalid URL")
             completion([])
             return
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Network error: \(error)")
+                completion([])
+                return
+            }
+            
             guard let data = data else {
+                print("No data received")
                 completion([])
                 return
             }
@@ -963,6 +1182,7 @@ extension CustomVideoPlayerView {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                    let results = json["results"] as? [[String: Any]] {
+                    
                     let skipTimes = results.compactMap { result -> (String, TimeInterval, TimeInterval, String)? in
                         guard let interval = result["interval"] as? [String: Double],
                               let startTime = interval["start_time"],
@@ -973,8 +1193,10 @@ extension CustomVideoPlayerView {
                               }
                         return (skipType, startTime, endTime, skipId)
                     }
+                    
                     completion(skipTimes)
                 } else {
+                    print("Invalid JSON format")
                     completion([])
                 }
             } catch {
@@ -989,25 +1211,32 @@ extension CustomVideoPlayerView {
             button.removeFromSuperview()
         }
         skipButtons.removeAll()
+
         for (index, interval) in skipIntervals.enumerated() {
             let button = UIButton(type: .system)
-            button.setTitle(interval.0 == "op" ? "Skip Intro" : "Skip Ending", for: .normal)
-            button.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-            button.setTitleColor(.white, for: .normal)
-            button.layer.cornerRadius = 5
+
+            button.setTitle(interval.0 == "op" ? "SKIP INTRO" : "SKIP OUTRO", for: .normal)
+            button.backgroundColor = UIColor.white
+            button.setTitleColor(.black, for: .normal)
+            button.layer.cornerRadius = 16
+            button.layer.masksToBounds = true
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+
             button.tag = index
             button.addTarget(self, action: #selector(skipButtonTapped(_:)), for: .touchUpInside)
             button.alpha = 0
-            
+
             addSubview(button)
             skipButtons.append(button)
-            
+
             button.translatesAutoresizingMaskIntoConstraints = false
+            let bottomConstraint = button.bottomAnchor.constraint(equalTo: settingsButton.topAnchor, constant: isControlsVisible ? -5 : 30)
+            skipButtonsBottomConstraint = bottomConstraint
             NSLayoutConstraint.activate([
-                button.trailingAnchor.constraint(equalTo: speedButton.leadingAnchor, constant: -6),
-                button.topAnchor.constraint(equalTo: settingsButton.bottomAnchor),
-                button.widthAnchor.constraint(equalToConstant: 100),
-                button.heightAnchor.constraint(equalToConstant: 30)
+                button.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
+                bottomConstraint,
+                button.widthAnchor.constraint(equalToConstant: 110),
+                button.heightAnchor.constraint(equalToConstant: 35)
             ])
         }
     }
@@ -1129,8 +1358,13 @@ extension CustomVideoPlayerView {
     }
     
     private func sendVote(skipId: String, voteType: String) {
-        let urlString = "https://api.aniskip.com/v1/skip-times/vote/\(skipId)"
-        guard let url = URL(string: urlString) else { return }
+        let baseURL = "https://api.aniskip.com/"
+        let endpoint = "v1/skip-times/vote/\(skipId)"
+        
+        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
+            print("Invalid URL")
+            return
+        }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
