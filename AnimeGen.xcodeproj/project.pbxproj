@@ -88,6 +88,7 @@
 		1397821C2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */; };
 		13E113AC2C7487FF00FD0FA1 /* HiAnime-WebPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E113AB2C7487FE00FD0FA1 /* HiAnime-WebPlayer.swift */; };
 		13F3EA132C9452500098B1C8 /* HanashiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3EA122C9452500098B1C8 /* HanashiAPI.swift */; };
+		13F3EA152C94653C0098B1C8 /* SettingsViewTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3EA142C94653C0098B1C8 /* SettingsViewTranslation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,7 @@
 		1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewAniSkip.swift; sourceTree = "<group>"; };
 		13E113AB2C7487FE00FD0FA1 /* HiAnime-WebPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HiAnime-WebPlayer.swift"; sourceTree = "<group>"; };
 		13F3EA122C9452500098B1C8 /* HanashiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HanashiAPI.swift; sourceTree = "<group>"; };
+		13F3EA142C94653C0098B1C8 /* SettingsViewTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewTranslation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 				134F1D3E2C6650FC00C35889 /* SettingsViewSources.swift */,
 				134F1D3F2C6650FC00C35889 /* SettingsViewCast.swift */,
 				134F1D402C6650FC00C35889 /* SettingsViewDoneButton.swift */,
+				13F3EA142C94653C0098B1C8 /* SettingsViewTranslation.swift */,
 				1397821B2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift */,
 			);
 			path = SubPages;
@@ -701,6 +704,7 @@
 				13902BB12C7B6EF300596A2C /* CustomPlayerView.swift in Sources */,
 				133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */,
 				134F1DA62C6650FE00C35889 /* SearchResultSourcesParsing.swift in Sources */,
+				13F3EA152C94653C0098B1C8 /* SettingsViewTranslation.swift in Sources */,
 				13765CB22C6E4F95000070A5 /* FavoriteCell-Swift.swift in Sources */,
 				134F1DBA2C6650FE00C35889 /* Jikan-Sesonal.swift in Sources */,
 				134F1DBC2C6650FE00C35889 /* Jikan-Airing.swift in Sources */,
