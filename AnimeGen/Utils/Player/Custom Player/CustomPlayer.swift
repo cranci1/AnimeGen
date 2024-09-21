@@ -30,6 +30,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
     private var cell: EpisodeCell
     private var fullURL: String
     private var hasSentUpdate = false
+    private var animeImage: String
     
     private var skipButtonsBottomConstraint: NSLayoutConstraint?
     private var skipButtons: [UIButton] = []
@@ -216,9 +217,10 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
         return imageView
     }()
     
-    init(frame: CGRect, cell: EpisodeCell, fullURL: String) {
+    init(frame: CGRect, cell: EpisodeCell, fullURL: String, image: String) {
         self.cell = cell
         self.fullURL = fullURL
+        self.animeImage = image
         super.init(frame: frame)
         setupPlayer()
         setupUI()
@@ -256,6 +258,18 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             pipController?.delegate = self
         }
     }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if playPauseButton.point(inside: convert(point, to: playPauseButton), with: event) {
+            if !isControlsVisible {
+                showControls()
+            }
+            return playPauseButton
+        }
+        
+        return super.hitTest(point, with: event)
+    }
+
     
     private func setupUI() {
         addSubview(speedIndicatorBackgroundView)
@@ -333,15 +347,15 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             forwardButton.widthAnchor.constraint(equalToConstant: 30),
             forwardButton.heightAnchor.constraint(equalToConstant: 30),
             
-            progressBarContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            progressBarContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            progressBarContainer.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            progressBarContainer.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             progressBarContainer.bottomAnchor.constraint(equalTo: currentTimeLabel.topAnchor),
             progressBarContainer.heightAnchor.constraint(equalToConstant: 17),
             
-            playerProgress.leadingAnchor.constraint(equalTo: controlsContainerView.leadingAnchor, constant: 30),
-            playerProgress.trailingAnchor.constraint(equalTo: controlsContainerView.trailingAnchor, constant: -30),
+            playerProgress.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            playerProgress.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
             playerProgress.bottomAnchor.constraint(equalTo: currentTimeLabel.topAnchor, constant: -5),
-            playerProgress.heightAnchor.constraint(equalToConstant: 8),
+            playerProgress.heightAnchor.constraint(equalToConstant: 6),
             
             seekThumb.centerYAnchor.constraint(equalTo: playerProgress.centerYAnchor),
             seekThumb.heightAnchor.constraint(equalToConstant: 16),
@@ -361,18 +375,18 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             speedButton.widthAnchor.constraint(equalToConstant: 30),
             
             dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30),
-            dismissButton.leadingAnchor.constraint(equalTo: playerProgress.leadingAnchor),
+            dismissButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             dismissButton.widthAnchor.constraint(equalToConstant: 25),
             dismissButton.heightAnchor.constraint(equalToConstant: 25),
             
             pipButton.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor),
-            pipButton.leadingAnchor.constraint(equalTo: dismissButton.trailingAnchor, constant: 30),
+            pipButton.leadingAnchor.constraint(equalTo: dismissButton.trailingAnchor, constant: 25),
             pipButton.widthAnchor.constraint(equalToConstant: 30),
             pipButton.heightAnchor.constraint(equalToConstant: 25),
             
             airplayButton.centerYAnchor.constraint(equalTo: dismissButton.centerYAnchor),
-            airplayButton.leadingAnchor.constraint(equalTo: pipButton.trailingAnchor, constant: 15),
-            airplayButton.widthAnchor.constraint(equalToConstant: 25),
+            airplayButton.leadingAnchor.constraint(equalTo: pipButton.trailingAnchor, constant: 20),
+            airplayButton.widthAnchor.constraint(equalToConstant: 28),
             airplayButton.heightAnchor.constraint(equalToConstant: 25),
             
             subtitlesLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -611,7 +625,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
                 animeTitle: self.videoTitle,
                 episodeTitle: "Ep. \(episodeNumber)",
                 episodeNumber: episodeNumber,
-                imageURL: "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg",
+                imageURL: self.animeImage,
                 fullURL: fullURL,
                 lastPlayedTime: currentTime,
                 totalTime: duration,
@@ -793,7 +807,7 @@ class CustomVideoPlayerView: UIView, AVPictureInPictureControllerDelegate {
             isControlsVisible = false
             UIView.animate(withDuration: 0.3) {
                 self.controlsContainerView.alpha = 0
-                self.skipButtonsBottomConstraint?.constant = 30
+                self.skipButtonsBottomConstraint?.constant = 35
                 self.layoutIfNeeded()
             }
         }
@@ -1214,13 +1228,24 @@ extension CustomVideoPlayerView {
 
         for (index, interval) in skipIntervals.enumerated() {
             let button = UIButton(type: .system)
-
-            button.setTitle(interval.0 == "op" ? "SKIP INTRO" : "SKIP OUTRO", for: .normal)
+            
+            let title = interval.0 == "op" ? "SKIP"  : "SKIP"
+            
+            let icon = UIImage(systemName: "forward.fill")
+            button.setImage(icon, for: .normal)
+            button.tintColor = .black
+            
+            button.setTitle(title, for: .normal)
             button.backgroundColor = UIColor.white
             button.setTitleColor(.black, for: .normal)
             button.layer.cornerRadius = 16
             button.layer.masksToBounds = true
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: -5)
+            
+            button.contentHorizontalAlignment = .center
 
             button.tag = index
             button.addTarget(self, action: #selector(skipButtonTapped(_:)), for: .touchUpInside)
@@ -1228,14 +1253,14 @@ extension CustomVideoPlayerView {
 
             addSubview(button)
             skipButtons.append(button)
-
+            
             button.translatesAutoresizingMaskIntoConstraints = false
-            let bottomConstraint = button.bottomAnchor.constraint(equalTo: settingsButton.topAnchor, constant: isControlsVisible ? -5 : 30)
+            let bottomConstraint = button.bottomAnchor.constraint(equalTo: settingsButton.topAnchor, constant: isControlsVisible ? -5 : 35)
             skipButtonsBottomConstraint = bottomConstraint
             NSLayoutConstraint.activate([
                 button.trailingAnchor.constraint(equalTo: settingsButton.trailingAnchor),
                 bottomConstraint,
-                button.widthAnchor.constraint(equalToConstant: 110),
+                button.widthAnchor.constraint(equalToConstant: 90),
                 button.heightAnchor.constraint(equalToConstant: 35)
             ])
         }

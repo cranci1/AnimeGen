@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1326D3C62C9F112700DEBDD2 /* AnimeDetailsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3C52C9F112700DEBDD2 /* AnimeDetailsMethods.swift */; };
+		1326D3C82C9F113100DEBDD2 /* ContinueWatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3C72C9F113100DEBDD2 /* ContinueWatchingCell.swift */; };
+		1326D3CD2C9F115700DEBDD2 /* ExternalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3CB2C9F115700DEBDD2 /* ExternalVideoPlayer.swift */; };
+		1326D3CE2C9F115700DEBDD2 /* ExternalVideoPlayerGoGo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3CC2C9F115700DEBDD2 /* ExternalVideoPlayerGoGo2.swift */; };
 		133C4C872BE67CAB00258EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C862BE67CAB00258EDD /* AppDelegate.swift */; };
 		133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C882BE67CAB00258EDD /* SceneDelegate.swift */; };
 		133C4C902BE67CAD00258EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133C4C8F2BE67CAD00258EDD /* Assets.xcassets */; };
@@ -63,7 +67,6 @@
 		134F1DD52C6651AF00C35889 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 134F1DD42C6651AF00C35889 /* Kingfisher */; };
 		1357B5212C6D1086000A2C9B /* ExternalVideoPlayerJK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */; };
 		1357B5222C6D1086000A2C9B /* ExternalVideoPlayerKura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */; };
-		1357B5232C6D1086000A2C9B /* ExternalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */; };
 		1357B5242C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */; };
 		135B62D52C6D11AB00A8F607 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B62D12C6D11AB00A8F607 /* Notification.swift */; };
 		135B62D62C6D11AB00A8F607 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135B62D22C6D11AB00A8F607 /* String.swift */; };
@@ -92,6 +95,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1326D3C52C9F112700DEBDD2 /* AnimeDetailsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeDetailsMethods.swift; sourceTree = "<group>"; };
+		1326D3C72C9F113100DEBDD2 /* ContinueWatchingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinueWatchingCell.swift; sourceTree = "<group>"; };
+		1326D3CB2C9F115700DEBDD2 /* ExternalVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer.swift; sourceTree = "<group>"; };
+		1326D3CC2C9F115700DEBDD2 /* ExternalVideoPlayerGoGo2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerGoGo2.swift; sourceTree = "<group>"; };
 		133C4C832BE67CAB00258EDD /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		133C4C862BE67CAB00258EDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		133C4C882BE67CAB00258EDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,7 +153,6 @@
 		134F1D842C6650FE00C35889 /* AnimeInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeInformation.swift; sourceTree = "<group>"; };
 		1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerJK.swift; sourceTree = "<group>"; };
 		1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayerKura.swift; sourceTree = "<group>"; };
-		1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer.swift; sourceTree = "<group>"; };
 		1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer3rb.swift; sourceTree = "<group>"; };
 		135B62D12C6D11AB00A8F607 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		135B62D22C6D11AB00A8F607 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -189,6 +195,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1326D3CA2C9F115700DEBDD2 /* GoGoAnime */ = {
+			isa = PBXGroup;
+			children = (
+				1326D3CB2C9F115700DEBDD2 /* ExternalVideoPlayer.swift */,
+				1326D3CC2C9F115700DEBDD2 /* ExternalVideoPlayerGoGo2.swift */,
+			);
+			path = GoGoAnime;
+			sourceTree = "<group>";
+		};
 		133C4C7A2BE67CAB00258EDD = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				134F1D432C6650FC00C35889 /* HomeViewController.swift */,
+				1326D3C72C9F113100DEBDD2 /* ContinueWatchingCell.swift */,
 				134F1D442C6650FC00C35889 /* FeaturedAnimeParsing.swift */,
 			);
 			path = Home;
@@ -282,6 +298,7 @@
 			children = (
 				134F1D482C6650FC00C35889 /* Anime Info View */,
 				134F1D472C6650FC00C35889 /* AnimeDetailsViewController.swift */,
+				1326D3C52C9F112700DEBDD2 /* AnimeDetailsMethods.swift */,
 				134F1D462C6650FC00C35889 /* AnimeDetailService.swift */,
 			);
 			path = "Anime Info";
@@ -480,7 +497,7 @@
 		1357B51C2C6D1086000A2C9B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1357B51F2C6D1086000A2C9B /* ExternalVideoPlayer.swift */,
+				1326D3CA2C9F115700DEBDD2 /* GoGoAnime */,
 				1357B51D2C6D1086000A2C9B /* ExternalVideoPlayerJK.swift */,
 				1357B51E2C6D1086000A2C9B /* ExternalVideoPlayerKura.swift */,
 				1357B5202C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift */,
@@ -664,11 +681,11 @@
 				134F1DC22C6650FE00C35889 /* Login.swift in Sources */,
 				134F1DC32C6650FE00C35889 /* Token.swift in Sources */,
 				134F1DC72C6650FE00C35889 /* Kitsu-Info.swift in Sources */,
-				1357B5232C6D1086000A2C9B /* ExternalVideoPlayer.swift in Sources */,
 				134F1D992C6650FE00C35889 /* SettingsViewCast.swift in Sources */,
 				134F1D942C6650FE00C35889 /* Sources.swift in Sources */,
 				134F1DA92C6650FE00C35889 /* DownloadsViewController.swift in Sources */,
 				13765CBB2C6E4FAB000070A5 /* Jikan-Info.swift in Sources */,
+				1326D3C62C9F112700DEBDD2 /* AnimeDetailsMethods.swift in Sources */,
 				1357B5242C6D1086000A2C9B /* ExternalVideoPlayer3rb.swift in Sources */,
 				134F1D9F2C6650FE00C35889 /* AnimeDetailsViewController.swift in Sources */,
 				134F1D9A2C6650FE00C35889 /* SettingsViewDoneButton.swift in Sources */,
@@ -708,17 +725,20 @@
 				13765CB22C6E4F95000070A5 /* FavoriteCell-Swift.swift in Sources */,
 				134F1DBA2C6650FE00C35889 /* Jikan-Sesonal.swift in Sources */,
 				134F1DBC2C6650FE00C35889 /* Jikan-Airing.swift in Sources */,
+				1326D3CD2C9F115700DEBDD2 /* ExternalVideoPlayer.swift in Sources */,
 				134F1DAF2C6650FE00C35889 /* MP4Downloader.swift in Sources */,
 				134F1DA22C6650FE00C35889 /* SynopsisCell.swift in Sources */,
 				134F1DB02C6650FE00C35889 /* M3U8Downloader.swift in Sources */,
 				135B62D62C6D11AB00A8F607 /* String.swift in Sources */,
 				134F1D9C2C6650FE00C35889 /* HomeViewController.swift in Sources */,
 				134F1DC82C6650FE00C35889 /* AnimeInformation.swift in Sources */,
+				1326D3CE2C9F115700DEBDD2 /* ExternalVideoPlayerGoGo2.swift in Sources */,
 				134F1D972C6650FE00C35889 /* SettingsAnimeListing.swift in Sources */,
 				134F1D982C6650FE00C35889 /* SettingsViewSources.swift in Sources */,
 				1397821C2C8D88AB007AB9C0 /* SettingsViewAniSkip.swift in Sources */,
 				134F1DC52C6650FE00C35889 /* Kitsu-Sesonal.swift in Sources */,
 				134F1DAE2C6650FE00C35889 /* ContinueWatchingManager.swift in Sources */,
+				1326D3C82C9F113100DEBDD2 /* ContinueWatchingCell.swift in Sources */,
 				135B62D52C6D11AB00A8F607 /* Notification.swift in Sources */,
 				1357B5212C6D1086000A2C9B /* ExternalVideoPlayerJK.swift in Sources */,
 				134F1DBD2C6650FE00C35889 /* Mutation.swift in Sources */,

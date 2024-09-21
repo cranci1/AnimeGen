@@ -62,6 +62,7 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        UserDefaults.standard.set(false, forKey: "isToDownload")
         cleanup()
     }
     
@@ -332,7 +333,8 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
                     self.dismiss(animated: true, completion: nil)
                 } else if selectedPlayer == "Custom" {
                     let videoTitle = self.animeDetailsViewController?.animeTitle ?? "Anime"
-                    let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: self.cell, fullURL: self.fullURL)
+                    let imageURL = self.animeDetailsViewController?.imageUrl ?? ""
+                    let customPlayerVC = CustomPlayerView(videoTitle: videoTitle, videoURL: url, cell: self.cell, fullURL: self.fullURL, image: imageURL)
                     customPlayerVC.modalPresentationStyle = .fullScreen
                     customPlayerVC.delegate = self
                     self.present(customPlayerVC, animated: true, completion: nil)
@@ -465,13 +467,13 @@ class ExternalVideoPlayer3rb: UIViewController, GCKRemoteMediaClientListener {
             UserDefaults.standard.set(currentTime, forKey: "lastPlayedTime_\(self.fullURL)")
             UserDefaults.standard.set(duration, forKey: "totalTime_\(self.fullURL)")
             
-            let episodeNumber = Int(self.cell.episodeNumber) ?? 0
+            let episodeNumber = self.animeDetailsViewController?.episodes[self.animeDetailsViewController!.currentEpisodeIndex].number ?? "0"
             let selectedMediaSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? "AnimeWorld"
             
             let continueWatchingItem = ContinueWatchingItem(
                 animeTitle: self.animeDetailsViewController?.animeTitle ?? "Unknown Anime",
                 episodeTitle: "Ep. \(episodeNumber)",
-                episodeNumber: episodeNumber,
+                episodeNumber: Int(episodeNumber) ?? 0,
                 imageURL: self.animeDetailsViewController?.imageUrl ?? "",
                 fullURL: self.fullURL,
                 lastPlayedTime: currentTime,
