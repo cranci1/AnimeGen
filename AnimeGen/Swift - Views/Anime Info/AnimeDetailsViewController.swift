@@ -686,9 +686,9 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                 
                 switch selectedMediaSource {
                 case "GoGoAnime":
-                    if gogoFetcher == "Secondary" {
+                    if gogoFetcher == "Default" {
                         srcURL = self.extractIframeSourceURL(from: htmlString)
-                    } else if gogoFetcher == "Default" {
+                    } else if gogoFetcher == "Secondary" {
                         srcURL = self.extractDownloadLink(from: htmlString)
                     }
                 case "AnimeFire":
@@ -710,7 +710,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
                 DispatchQueue.main.async {
                     switch selectedMediaSource {
                     case "GoGoAnime":
-                        let playerType = gogoFetcher == "Default" ? VideoPlayerType.standard : VideoPlayerType.playerGoGo2
+                        let playerType = gogoFetcher == "Secondary" ? VideoPlayerType.standard : VideoPlayerType.playerGoGo2
                         self.startStreamingButtonTapped(withURL: finalSrcURL.absoluteString, captionURL: "", playerType: playerType, cell: cell, fullURL: fullURL)
                     case "AnimeFire":
                         self.fetchVideoDataAndChooseQuality(from: finalSrcURL.absoluteString) { selectedURL in
@@ -976,6 +976,11 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             
             UserDefaults.standard.set(currentTime, forKey: "lastPlayedTime_\(fullURL)")
             UserDefaults.standard.set(duration, forKey: "totalTime_\(fullURL)")
+            
+            guard self.currentEpisodeIndex >= 0 && self.currentEpisodeIndex < self.episodes.count else {
+                print("Error: currentEpisodeIndex out of bounds")
+                return
+            }
             
             let episodeNumber = self.episodes[self.currentEpisodeIndex].number
             let selectedMediaSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? "AnimeWorld"
