@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131B94642CA58E2100D21DFC /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131B94632CA58E2100D21DFC /* Collection.swift */; };
 		1326D3C62C9F112700DEBDD2 /* AnimeDetailsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3C52C9F112700DEBDD2 /* AnimeDetailsMethods.swift */; };
 		1326D3C82C9F113100DEBDD2 /* ContinueWatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3C72C9F113100DEBDD2 /* ContinueWatchingCell.swift */; };
 		1326D3CD2C9F115700DEBDD2 /* ExternalVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1326D3CB2C9F115700DEBDD2 /* ExternalVideoPlayer.swift */; };
@@ -95,6 +96,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		131B94632CA58E2100D21DFC /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		1326D3C52C9F112700DEBDD2 /* AnimeDetailsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeDetailsMethods.swift; sourceTree = "<group>"; };
 		1326D3C72C9F113100DEBDD2 /* ContinueWatchingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinueWatchingCell.swift; sourceTree = "<group>"; };
 		1326D3CB2C9F115700DEBDD2 /* ExternalVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalVideoPlayer.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				135B62D32C6D11AB00A8F607 /* UserDefaults.swift */,
+				131B94632CA58E2100D21DFC /* Collection.swift */,
 				135B62D12C6D11AB00A8F607 /* Notification.swift */,
 				134F1D622C6650FD00C35889 /* UIImage.swift */,
 				135B62D22C6D11AB00A8F607 /* String.swift */,
@@ -745,6 +748,7 @@
 				13902BB42C7B6F0200596A2C /* SubtitlesLoader.swift in Sources */,
 				134F1DAB2C6650FE00C35889 /* FavoriteManager.swift in Sources */,
 				134F1D962C6650FE00C35889 /* SettingsViewAbout.swift in Sources */,
+				131B94642CA58E2100D21DFC /* Collection.swift in Sources */,
 				135B62D72C6D11AB00A8F607 /* UserDefaults.swift in Sources */,
 				134F1DA82C6650FE00C35889 /* ProgressDownloadCell.swift in Sources */,
 				134F1DAD2C6650FE00C35889 /* DownloadManager.swift in Sources */,
