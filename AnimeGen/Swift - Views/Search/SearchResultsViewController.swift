@@ -236,12 +236,17 @@ class SearchResultsViewController: UIViewController {
         
         guard let urlParameters = getUrlAndParameters(for: selectedSource) else {
             showError("Unsupported media source.")
+            showSourceSelector()
             return
         }
         
         if selectedSource == "Hanashi" {
             DispatchQueue.main.async {
                 self.fetchHanashiResults(urlParameters: urlParameters)
+            }
+        } else if selectedSource == "JKanime" {
+            DispatchQueue.main.async {
+                self.fetchJKanimeResults(urlParameters: urlParameters)
             }
         } else {
             AF.request(urlParameters.url, method: .get, parameters: urlParameters.parameters).responseString { [weak self] response in
@@ -332,6 +337,44 @@ class SearchResultsViewController: UIViewController {
         }
     }
     
+    private func fetchJKanimeResults(urlParameters: (url: String, parameters: Parameters)) {
+        let group = DispatchGroup()
+        var allResults: [(title: String, imageUrl: String, href: String)] = []
+        
+        group.enter()
+        AF.request(urlParameters.url, method: .get, parameters: urlParameters.parameters).responseString { [weak self] response in
+            defer { group.leave() }
+            if let value = try? response.result.get(),
+               let document = try? SwiftSoup.parse(value),
+               let results = self?.parseJKanime(document) {
+                allResults.append(contentsOf: results)
+            }
+        }
+        
+        let secondPageUrl = urlParameters.url + "/2"
+        group.enter()
+        AF.request(secondPageUrl, method: .get, parameters: urlParameters.parameters).responseString { [weak self] response in
+            defer { group.leave() }
+            if let value = try? response.result.get(),
+               let document = try? SwiftSoup.parse(value),
+               let results = self?.parseJKanime(document) {
+                allResults.append(contentsOf: results)
+            }
+        }
+        
+        group.notify(queue: .main) { [weak self] in
+            self?.loadingIndicator.stopAnimating()
+            self?.searchResults = allResults
+            self?.filteredResults = allResults
+            if allResults.isEmpty {
+                self?.showNoResults()
+            } else {
+                self?.tableView.isHidden = false
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
     private func getUrlAndParameters(for source: String) -> (url: String, parameters: Parameters)? {
         let url: String
         var parameters: Parameters = [:]
@@ -347,7 +390,7 @@ class SearchResultsViewController: UIViewController {
             url = "https://animeheaven.me/search.php"
             parameters["s"] = query
         case "AnimeFire":
-            let encodedQuery = query.lowercased().addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? query
+            let encodedQuery = query.lowercased().replacingOccurrences(of: " ", with: "-").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? query
             url = "https://animefire.plus/pesquisar/\(encodedQuery)"
         case "Kuramanime":
             url = "https://kuramanime.dad/anime"

@@ -31,10 +31,10 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     var isFavorite: Bool = false
     var isSynopsisExpanded = false
     var isReverseSorted = false
+    var hasSentUpdate = false
     
     var availableQualities: [String] = []
     var qualityOptions: [(name: String, fileName: String)] = []
-    var hasSentUpdate = false
     
     func configure(title: String, imageUrl: String, href: String, source: String) {
         self.animeTitle = title
@@ -62,8 +62,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
         setupUserDefaultsObserver()
         sortEpisodes()
         
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
+        navigationItem.largeTitleDisplayMode = .never
         for (index, episode) in episodes.enumerated() {
             if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 2)) as? EpisodeCell {
                 cell.loadSavedProgress(for: episode.href)
@@ -73,6 +72,21 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
         if let firstEpisodeHref = episodes.first?.href {
             currentEpisodeIndex = episodes.firstIndex(where: { $0.href == firstEpisodeHref }) ?? 0
         }
+        
+        setupRefreshControl()
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .secondarySystemBackground
+    }
+
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+    }
+
+    @objc private func handleRefresh() {
+        refreshAnimeDetails()
     }
     
     private func setupCastButton() {
@@ -243,6 +257,12 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     private func showOptionsMenu() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        let trackingServicesAction = UIAlertAction(title: "Tracking Services", style: .default) { [weak self] _ in
+            self?.fetchAnimeIDAndMappings()
+        }
+        trackingServicesAction.setValue(UIImage(systemName: "list.bullet"), forKey: "image")
+        alertController.addAction(trackingServicesAction)
+        
         let advancedSettingsAction = UIAlertAction(title: "Advanced Settings", style: .default) { [weak self] _ in
             self?.showAdvancedSettingsMenu()
         }
@@ -263,12 +283,6 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
         openOnWebAction.setValue(UIImage(systemName: "safari"), forKey: "image")
         alertController.addAction(openOnWebAction)
         
-        let refreshAction = UIAlertAction(title: "Refresh", style: .default) { [weak self] _ in
-            self?.refreshAnimeDetails()
-        }
-        refreshAction.setValue(UIImage(systemName: "arrow.clockwise"), forKey: "image")
-        alertController.addAction(refreshAction)
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
@@ -279,6 +293,124 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
         }
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func fetchAnimeIDAndMappings() {
+        guard let title = self.animeTitle else {
+            self.showAlert(title: "Error", message: "Anime title is not available.")
+            return
+        }
+        
+        let cleanedTitle = cleanTitle(title)
+        AnimeService.fetchAnimeID(byTitle: cleanedTitle) { [weak self] result in
+            switch result {
+            case .success(let id):
+                self?.fetchMappingsAndShowOptions(animeID: id)
+            case .failure(let error):
+                print("Error fetching anime ID: \(error.localizedDescription)")
+                self?.showAlert(title: "Error", message: "Unable to find the anime ID from AniList.")
+            }
+        }
+    }
+    
+    private func fetchMappingsAndShowOptions(animeID: Int) {
+        let urlString = "https://api.ani.zip/mappings?anilist_id=\(animeID)"
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error fetching mappings: \(error)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error", message: "Unable to fetch mappings.")
+                }
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let mappings = json["mappings"] as? [String: Any] {
+                    DispatchQueue.main.async {
+                        self.showTrackingOptions(mappings: mappings)
+                    }
+                }
+            } catch {
+                print("Error parsing JSON: \(error)")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error", message: "Unable to parse mappings.")
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    private func showTrackingOptions(mappings: [String: Any]) {
+        let alertController = UIAlertController(title: "Tracking Services", message: nil, preferredStyle: .actionSheet)
+        
+        let blacklist: Set<String> = ["type", "anilist_id", "themoviedb_id", "thetvdb_id"]
+        
+        let filteredMappings = mappings.filter { !blacklist.contains($0.key) }
+        let sortedMappings = filteredMappings.sorted { $0.key < $1.key }
+        
+        for (key, value) in sortedMappings {
+            let formattedServiceName = key.replacingOccurrences(of: "_id", with: "").capitalized
+            
+            if let id = value as? String {
+                let action = UIAlertAction(title: formattedServiceName, style: .default) { [weak self] _ in
+                    self?.openTrackingServiceURL(for: key, id: id)
+                }
+                alertController.addAction(action)
+            } else if let id = value as? Int {
+                let action = UIAlertAction(title: formattedServiceName, style: .default) { [weak self] _ in
+                    self?.openTrackingServiceURL(for: key, id: String(id))
+                }
+                alertController.addAction(action)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    private func openTrackingServiceURL(for service: String, id: String) {
+        var prefix = ""
+        
+        switch service {
+        case "animeplanet_id":
+            prefix = "https://animeplanet.com/anime/"
+        case "kitsu_id":
+            prefix = "https://kitsu.app/anime/"
+        case "mal_id":
+            prefix = "https://myanimelist.net/anime/"
+        case "anisearch_id":
+            prefix = "https://anisearch.com/anime/"
+        case "anidb_id":
+            prefix = "https://anidb.net/anime/"
+        case "notifymoe_id":
+            prefix = "https://notify.moe/anime/"
+        case "livechart_id":
+            prefix = "https://livechart.me/anime/"
+        case "imdb_id":
+            prefix = "https://www.imdb.com/title/"
+        default:
+            print("Unknown service.")
+            return
+        }
+        
+        let urlString = "\(prefix)\(id)"
+        if let url = URL(string: urlString) {
+            let safariVC = SFSafariViewController(url: url)
+            DispatchQueue.main.async {
+                self.present(safariVC, animated: true, completion: nil)
+            }
+        }
     }
     
     private func showAdvancedSettingsMenu() {
@@ -406,26 +538,21 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     }
     
     private func refreshAnimeDetails() {
-        let loadingIndicator = UIActivityIndicatorView(style: .medium)
-        loadingIndicator.startAnimating()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loadingIndicator)
-        
         if let href = href {
             AnimeDetailService.fetchAnimeDetails(from: href) { [weak self] result in
                 DispatchQueue.main.async {
-                    self?.navigationItem.rightBarButtonItem = nil
+                    self?.refreshControl?.endRefreshing()
                     
                     switch result {
                     case .success(let details):
                         self?.updateAnimeDetails(with: details)
-                        self?.setupCastButton()
                     case .failure(let error):
                         self?.showAlert(withTitle: "Refresh Failed", message: error.localizedDescription)
-                        self?.setupCastButton()
                     }
                 }
             }
         } else {
+            refreshControl?.endRefreshing()
             showAlert(withTitle: "Error", message: "Unable to refresh. No valid URL found.")
         }
     }
