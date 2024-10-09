@@ -46,7 +46,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UserDefaults.standard.set(source, forKey: "selectedMediaSource")
-        self.tableView.reloadData()
+        sortEpisodes()
     }
     
     override func viewDidLoad() {
@@ -277,11 +277,14 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
         fetchIDAction.setValue(UIImage(systemName: "info.circle"), forKey: "image")
         alertController.addAction(fetchIDAction)
         
-        let openOnWebAction = UIAlertAction(title: "Open in Web", style: .default) { [weak self] _ in
-            self?.openAnimeOnWeb()
+        let selectedMediaSource = UserDefaults.standard.string(forKey: "selectedMediaSource") ?? ""
+        if selectedMediaSource != "Anilibria" {
+            let openOnWebAction = UIAlertAction(title: "Open in Web", style: .default) { [weak self] _ in
+                self?.openAnimeOnWeb()
+            }
+            openOnWebAction.setValue(UIImage(systemName: "safari"), forKey: "image")
+            alertController.addAction(openOnWebAction)
         }
-        openOnWebAction.setValue(UIImage(systemName: "safari"), forKey: "image")
-        alertController.addAction(openOnWebAction)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
@@ -1147,7 +1150,12 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
     }
     
     func fetchAnimeID(title: String, completion: @escaping (Int) -> Void) {
-        if let animeTitle = self.animeTitle {
+        var updatedTitle = title
+        if UserDefaults.standard.string(forKey: "selectedMediaSource") == "Anilibria" {
+            if !self.aliases.isEmpty {
+                updatedTitle = self.aliases
+            }
+        } else if let animeTitle = self.animeTitle {
             let customID = UserDefaults.standard.string(forKey: "customAniListID_\(animeTitle)")
             
             if let customID = customID, let id = Int(customID) {
@@ -1156,7 +1164,7 @@ class AnimeDetailViewController: UITableViewController, GCKRemoteMediaClientList
             }
         }
         
-        AnimeService.fetchAnimeID(byTitle: title) { result in
+        AnimeService.fetchAnimeID(byTitle: updatedTitle) { result in
             switch result {
             case .success(let id):
                 completion(id)

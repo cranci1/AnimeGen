@@ -158,7 +158,6 @@ extension SearchResultsViewController {
     }
     
     func parseHanashi(_ jsonString: String) -> [(title: String, imageUrl: String, href: String)] {
-        print(jsonString)
         guard let data = jsonString.data(using: .utf8) else { return [] }
         do {
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
@@ -183,5 +182,37 @@ extension SearchResultsViewController {
             print("Error parsing Hanashi JSON: \(error.localizedDescription)")
         }
         return []
+    }
+    
+    func parseAnilibria(_ jsonString: String) -> [(title: String, imageUrl: String, href: String)] {
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            return []
+        }
+        
+        do {
+            guard let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+                  let list = jsonObject["list"] as? [[String: Any]] else {
+                return []
+            }
+            
+            return list.compactMap { anime -> (title: String, imageUrl: String, href: String)? in
+                guard let id = anime["id"] as? Int,
+                      let names = anime["names"] as? [String: Any],
+                      let posters = anime["posters"] as? [String: Any],
+                      let mediumPoster = posters["medium"] as? [String: Any],
+                      let imageUrl = mediumPoster["url"] as? String else {
+                    return nil
+                }
+                
+                let title = (names["ru"] as? String) ?? (names["en"] as? String) ?? "Unknown Title"
+                let imageURL = "https://anilibria.tv/" + imageUrl
+                let href = String(id)
+                
+                return (title: title, imageUrl: imageURL, href: href)
+            }
+        } catch {
+            print("Error parsing Anilibria JSON: \(error.localizedDescription)")
+            return []
+        }
     }
 }

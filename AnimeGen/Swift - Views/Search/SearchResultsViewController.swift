@@ -194,7 +194,7 @@ class SearchResultsViewController: UIViewController {
     private func showSourceSelector() {
         let alertController = UIAlertController(title: "Select Source", message: "Please select a source to search from.", preferredStyle: .actionSheet)
         
-        let sources = ["AnimeWorld", "GoGoAnime", "AnimeHeaven", "AnimeFire", "Kuramanime", "JKanime", "Anime3rb", "HiAnime"]
+        let sources = ["AnimeWorld", "GoGoAnime", "AnimeHeaven", "AnimeFire", "Kuramanime", "JKanime", "Anime3rb", "HiAnime", "Hanashi", "Anilibria"]
         
         for source in sources {
             let action = UIAlertAction(title: source, style: .default) { [weak self] _ in
@@ -412,6 +412,10 @@ class SearchResultsViewController: UIViewController {
             url = "https://api.hanashi.to/api/item/search"
             parameters["q"] = query
             parameters["limit"] = 25
+        case "Anilibria":
+            url = "https://api.anilibria.tv/v3/title/search"
+            parameters["search"] = query
+            parameters["filter"] = "id,names,posters"
         default:
             return nil
         }
@@ -436,7 +440,7 @@ class SearchResultsViewController: UIViewController {
     
     func parseHTML(html: String, for source: MediaSource) -> [(title: String, imageUrl: String, href: String)] {
         switch source {
-        case .hianime, .hanashi:
+        case .hianime, .hanashi, .anilibria:
             return parseDocument(nil, jsonString: html, for: source)
         default:
             do {
@@ -478,6 +482,9 @@ class SearchResultsViewController: UIViewController {
         case .hanashi:
             guard let jsonString = jsonString else { return [] }
             return parseHanashi(jsonString)
+        case .anilibria:
+            guard let jsonString = jsonString else { return [] }
+            return parseAnilibria(jsonString)
         }
     }
     
