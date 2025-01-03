@@ -76,7 +76,7 @@ extension ViewController {
             
             guard let data = data,
                   let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                  let imageUrlString = jsonResponse["url"] as? String else {
+                  let imageUrlString = jsonResponse["url_usa"] as? String else {
                 print("Invalid image data or missing response headers")
                 DispatchQueue.main.async {
                     self.stopLoadingIndicator()
