@@ -36,7 +36,6 @@ along with AnimeGen. If not, see <https://www.gnu.org/licenses/>.
 - [Screenshots](#screenshots)
 - [Download](#download)
 - [APIs](#apis)
-  - [Working APIs](#working-apis)
 - [Third Party Software](#third-party-software)
 - [Acknowledgements](#acknowledgements)
 - [Build](#build)
@@ -74,26 +73,25 @@ You can download the IPA file for installation via TrollStore, AltStore, or Side
 Thanks to all the Developer that are providing this apis for public use! By cliccking the name of each API, you will be able to see the API website.
 Without them this project wouldn't exist, so thanks very much to all of them!
 
-### Working APIs
-
 | APIs                                                       | Type     | Format  | Status |
 | ---------------------------------------------------------- | -------- | ------- | :----: |
-| [pic.re](https://doc.pic.re/)                              | SFW      | IMG     |   ✅   |
-| [waifu.im](https://docs.waifu.im/)                         | SFW/NSFW | IMG     |   ✅   |
-| [waifu.pics](https://waifu.pics/docs)                      | SFW/NSFW | IMG/GIF |   ✅   |
-| [Waifu.it](https://waifu.it/)                              | SFW/NSFW | IMG/GIF |   ⚠️    |
-| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)              | SFW/NSFW | IMG/GIF |   ⚠️    |
-| [nekos.best](https://docs.nekos.best/)                     | SFW      | IMG     |   ✅   |
-| [Nekos api](https://nekosapi.com/docs)                     | SFW/NSFW | IMG     |   ✅   |
-| [Nekos.moe](https://docs.nekos.moe)                        | SFW/NSFW | IMG     |   ✅   |
-| [NekoBot](https://nekobot.xyz/)                            | SFW/NSFW | IMG/GIF |   ✅   |
+| [pic.re](https://doc.pic.re/)                               | SFW      | IMG     |   ✅   |
+| [waifu.im](https://docs.waifu.im/)                          | SFW/NSFW | IMG     |   ✅   |
+| [waifu.pics](https://waifu.pics/docs)                       | SFW/NSFW | IMG/GIF |   ✅   |
+| [Waifu.it](https://waifu.it/)                               | SFW/NSFW | IMG/GIF |   ⚠️   |
+| [Hmtai](https://hmtai.hatsunia.cfd/endpoints)              | SFW/NSFW | IMG/GIF |   ⚠️   |
+| [nekos.best](https://docs.nekos.best/)                      | SFW      | IMG     |   ✅   |
+| [Nekos api](https://nekosapi.com/docs)                      | SFW/NSFW | IMG     |   :x:  |
+| [Nekos.moe](https://docs.nekos.moe)                         | SFW/NSFW | IMG     |   ✅   |
+| [NekoBot](https://nekobot.xyz/)                             | SFW/NSFW | IMG/GIF |   ✅  |
 | [Kyoko](https://api.rei.my.id/docs/ANIME/WAIFU-Generator/) | SFW/NSFW | IMG/GIF |   :x:  |
-| [Purr Bot](https://purrbot.site/)                          | SFW/NSFW | IMG/GIF |   ✅   |
-| [n-sfw api](https://n-sfw.com/)                            | SFW/NSFW | IMG/GIF |   ✅   |
-| [nekos.life](https://nekos.life)                           | SFW/NSFW | IMG/GIF |   ✅   |
+| [Purr Bot](https://purrbot.site/)                           | SFW/NSFW | IMG/GIF |   ✅   |
+| [n-sfw api](https://n-sfw.com/)                             | SFW/NSFW | IMG/GIF |   ✅   |
+| [nekos.life](https://nekos.life)                            | SFW/NSFW | IMG/GIF |   ✅   |
 
 > [!Note]
 > The Hmtai api is not fully supported, [why?](https://github.com/cranci1/AnimeGen/blob/main/Privacy/Hmtai.md)
+> Same applies to the Waifu.it api, it requires a token.
 
 ## Third Party Software
 
