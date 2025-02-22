@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 import Kingfisher
 
 enum ImageSource: String {
@@ -14,7 +15,6 @@ enum ImageSource: String {
 }
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var heartButton: UIButton!
@@ -146,5 +146,37 @@ class ViewController: UIViewController {
     
     func saveSelectedSource() {
         UserDefaults.standard.set(currentSource.rawValue, forKey: "selectedSource")
+    }
+    
+    @IBAction func heartButtonTapped(_ sender: UIButton) {
+        guard let image = imageView.image else {
+            print("No image available to save")
+            return
+        }
+        
+        PHPhotoLibrary.requestAuthorization { [weak self] status in
+            guard let self = self else { return }
+            
+            switch status {
+            case .authorized, .limited:
+                DispatchQueue.main.async {
+                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageCompletion(_:didFinishSavingWithError:contextInfo:)), nil)
+                }
+            case .denied, .restricted:
+                print("Photo library access denied or restricted.")
+            case .notDetermined:
+                print("Photo library access not determined.")
+            @unknown default:
+                print("Unknown authorization status")
+            }
+        }
+    }
+    
+    @objc func imageCompletion(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("Error saving image: \(error.localizedDescription)")
+        } else {
+            print("Image saved to photo library successfully!")
+        }
     }
 }
