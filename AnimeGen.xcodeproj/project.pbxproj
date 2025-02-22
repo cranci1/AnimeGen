@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1353D2972D6A362C00EC7423 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1353D2962D6A362C00EC7423 /* Kingfisher */; };
+		1353D2992D6A369100EC7423 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353D2982D6A369100EC7423 /* URLSession.swift */; };
 		13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3852F2D462C14006B6FA6 /* AppDelegate.swift */; };
 		13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385312D462C14006B6FA6 /* SceneDelegate.swift */; };
 		13F385342D462C14006B6FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385332D462C14006B6FA6 /* ViewController.swift */; };
@@ -16,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1353D2982D6A369100EC7423 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		13F3852C2D462C14006B6FA6 /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F3852F2D462C14006B6FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F385312D462C14006B6FA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,12 +34,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1353D2972D6A362C00EC7423 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1353D29A2D6A384A00EC7423 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1353D2982D6A369100EC7423 /* URLSession.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		13F385232D462C14006B6FA6 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +68,13 @@
 		13F3852E2D462C14006B6FA6 /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
+				1353D29A2D6A384A00EC7423 /* Extensions */,
 				13F3852F2D462C14006B6FA6 /* AppDelegate.swift */,
 				13F385312D462C14006B6FA6 /* SceneDelegate.swift */,
 				13F385332D462C14006B6FA6 /* ViewController.swift */,
 				13F385352D462C14006B6FA6 /* Main.storyboard */,
-				13F385382D462C16006B6FA6 /* Assets.xcassets */,
 				13F3853A2D462C16006B6FA6 /* LaunchScreen.storyboard */,
+				13F385382D462C16006B6FA6 /* Assets.xcassets */,
 				13F3853D2D462C16006B6FA6 /* Info.plist */,
 			);
 			path = AnimeGen;
@@ -83,6 +96,9 @@
 			dependencies = (
 			);
 			name = AnimeGen;
+			packageProductDependencies = (
+				1353D2962D6A362C00EC7423 /* Kingfisher */,
+			);
 			productName = AnimeGen;
 			productReference = 13F3852C2D462C14006B6FA6 /* AnimeGen.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +127,9 @@
 				Base,
 			);
 			mainGroup = 13F385232D462C14006B6FA6;
+			packageReferences = (
+				1353D2952D6A362C00EC7423 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 13F3852D2D462C14006B6FA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,6 +159,7 @@
 			files = (
 				13F385342D462C14006B6FA6 /* ViewController.swift in Sources */,
 				13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */,
+				1353D2992D6A369100EC7423 /* URLSession.swift in Sources */,
 				13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +317,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,7 +346,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,6 +382,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1353D2952D6A362C00EC7423 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = exactVersion;
+				version = 7.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1353D2962D6A362C00EC7423 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1353D2952D6A362C00EC7423 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 13F385242D462C14006B6FA6 /* Project object */;
 }
