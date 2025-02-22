@@ -1,13 +1,16 @@
 //
+//  ViewController.swift
+//  AnimeGen
+//
 //  Created by Francesco on 26/01/25.
 //
 
 import UIKit
 import Kingfisher
 
-enum ImageSource {
-    case picRe
-    case waifuIm
+enum ImageSource: String {
+    case picRe = "picRe"
+    case waifuIm = "waifuIm"
 }
 
 class ViewController: UIViewController {
@@ -20,9 +23,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var sourceButton: UIButton!
     
     var currentSource: ImageSource = .picRe
+    var imageHistory: [URL] = []
+    var currentImageIndex: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let savedSource = UserDefaults.standard.string(forKey: "selectedSource"),
+           let imageSource = ImageSource(rawValue: savedSource) {
+            currentSource = imageSource
+        }
+        
         setupSourceButtonMenu()
         loadNewImage()
     }
@@ -35,12 +46,14 @@ class ViewController: UIViewController {
     func createSourceMenu() -> UIMenu {
         let picReAction = UIAction(title: "pic.re", image: nil, state: (currentSource == .picRe) ? .on : .off) { [weak self] (action) in
             self?.currentSource = .picRe
+            self?.saveSelectedSource()
             self?.loadNewImage()
             self?.setupSourceButtonMenu()
         }
         
         let waifuImAction = UIAction(title: "waifu.im", image: nil, state: (currentSource == .waifuIm) ? .on : .off) { [weak self] (action) in
             self?.currentSource = .waifuIm
+            self?.saveSelectedSource()
             self?.loadNewImage()
             self?.setupSourceButtonMenu()
         }
@@ -63,7 +76,7 @@ class ViewController: UIViewController {
     }
     
     func fetchImageFromWaifuIm() {
-        let url = URL(string: "https://api.waifu.im/search")!
+        let url = URL(string: "https://api.waifu.im/search?is_nsfw=false")!
         
         let task = URLSession.custom.dataTask(with: url) { [weak self] (data, response, error) in
             guard let self = self else { return }
@@ -99,10 +112,13 @@ class ViewController: UIViewController {
     }
     
     func loadImage(from url: URL) {
-        imageView.kf.setImage(with: url) { result in
+        imageView.kf.setImage(with: url, options: [.keepCurrentImageWhileLoading]) { result in
             switch result {
-            case .success(let value):
-                print("Image: \(value.image). Got from: \(value.cacheType)")
+            case .success:
+                if self.imageHistory.isEmpty || url != self.imageHistory.last {
+                    self.imageHistory.append(url)
+                }
+                self.currentImageIndex = self.imageHistory.count - 1
             case .failure(let error):
                 print("Error: \(error)")
             }
@@ -111,5 +127,24 @@ class ViewController: UIViewController {
     
     @IBAction func refreshButtonTapped(_ sender: UIButton) {
         loadNewImage()
+    }
+    
+    @IBAction func rewindButtonTapped(_ sender: UIButton) {
+        guard !imageHistory.isEmpty else {
+            print("No images in history.")
+            return
+        }
+        
+        if currentImageIndex > 0 {
+            currentImageIndex -= 1
+            let previousImageUrl = imageHistory[currentImageIndex]
+            self.imageView.kf.setImage(with: previousImageUrl)
+        } else {
+            print("first image")
+        }
+    }
+    
+    func saveSelectedSource() {
+        UserDefaults.standard.set(currentSource.rawValue, forKey: "selectedSource")
     }
 }
