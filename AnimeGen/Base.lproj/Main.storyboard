@@ -72,7 +72,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dRD-xg-ViT">
-                                <rect key="frame" x="20" y="44" width="374" height="742"/>
+                                <rect key="frame" x="20" y="44" width="374" height="735"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WP-a4-FsC" userLabel="Refresh">
                                 <rect key="frame" x="20" y="818" width="50" height="44"/>
@@ -103,7 +103,7 @@
                             <constraint firstItem="2WP-a4-FsC" firstAttribute="baseline" secondItem="dOl-eX-zUN" secondAttribute="baseline" id="TqZ-fD-AET"/>
                             <constraint firstItem="hjE-wv-osT" firstAttribute="baseline" secondItem="iu1-rj-E9E" secondAttribute="firstBaseline" id="Vf7-q0-gtP"/>
                             <constraint firstItem="hjE-wv-osT" firstAttribute="baseline" secondItem="iu1-rj-E9E" secondAttribute="baseline" id="gck-XD-a2j"/>
-                            <constraint firstItem="cSM-Ph-NbR" firstAttribute="top" secondItem="dRD-xg-ViT" secondAttribute="bottom" constant="18" id="tAr-jE-C8r"/>
+                            <constraint firstItem="cSM-Ph-NbR" firstAttribute="top" secondItem="dRD-xg-ViT" secondAttribute="bottom" constant="25" id="tAr-jE-C8r"/>
                             <constraint firstItem="cSM-Ph-NbR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="v7I-Zf-kZH"/>
                             <constraint firstItem="iu1-rj-E9E" firstAttribute="bottom" secondItem="cSM-Ph-NbR" secondAttribute="bottom" id="wmF-YX-lOU"/>
                         </constraints>
