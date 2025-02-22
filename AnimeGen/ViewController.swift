@@ -63,7 +63,7 @@ class ViewController: UIViewController {
     }
     
     func fetchImageFromWaifuIm() {
-        let url = URL(string: "https://api.waifu.im/search")!
+        let url = URL(string: "https://api.waifu.im/search?is_nsfw=true")!
         
         let task = URLSession.custom.dataTask(with: url) { [weak self] (data, response, error) in
             guard let self = self else { return }
