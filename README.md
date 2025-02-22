@@ -1,3 +1,6 @@
+# Currently being rewritten for the version v3.0.0
+
+
 ![AnimeGen Banner](Images/banner.jpeg)
 
 <div align="center">
