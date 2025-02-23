@@ -32,7 +32,7 @@
                                     <action selector="refreshButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QaJ-OJ-CV7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOl-eX-zUN" userLabel="Refresh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOl-eX-zUN" userLabel="Source">
                                 <rect key="frame" x="344" y="818" width="50" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="7Mp-hE-6v5"/>
@@ -74,16 +74,19 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dRD-xg-ViT">
                                 <rect key="frame" x="20" y="44" width="374" height="735"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WP-a4-FsC" userLabel="Refresh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WP-a4-FsC" userLabel="Safari">
                                 <rect key="frame" x="20" y="818" width="50" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="NRs-GA-6g0"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="gear.circle.fill" catalog="system" symbolScale="large"/>
+                                    <imageReference key="image" image="safari.fill" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25" scale="large" weight="bold"/>
                                     <color key="baseForegroundColor" systemColor="systemPurpleColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="safariButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ugK-Fq-gsl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -113,7 +116,7 @@
                         <outlet property="imageView" destination="dRD-xg-ViT" id="Rg6-ub-k0l"/>
                         <outlet property="refreshButton" destination="cSM-Ph-NbR" id="K5m-YN-2OO"/>
                         <outlet property="rewindButton" destination="hjE-wv-osT" id="eGW-HX-Kls"/>
-                        <outlet property="settingsButton" destination="2WP-a4-FsC" id="4ae-AC-OkZ"/>
+                        <outlet property="safariButton" destination="2WP-a4-FsC" id="iu6-XO-r0K"/>
                         <outlet property="sourceButton" destination="dOl-eX-zUN" id="2co-Gr-pva"/>
                     </connections>
                 </viewController>
@@ -126,8 +129,8 @@
         <image name="arrow.clockwise.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.down.heart.fill" catalog="system" width="128" height="109"/>
         <image name="arrowshape.turn.up.left.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="gear.circle.fill" catalog="system" width="128" height="121"/>
         <image name="list.bullet.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="safari.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
