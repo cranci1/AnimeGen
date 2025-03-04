@@ -1,7 +1,4 @@
-# Currently being rewritten for the version v3.0.0
-
-
-![AnimeGen Banner](Images/banner.jpeg)
+![AnimeGen Banner](https://raw.githubusercontent.com/cranci1/AnimeGen/a1ea2503e6ea63c47130f89e027cda18f7d28c0a/Images/banner.jpeg)
 
 <div align="center">
 
@@ -9,7 +6,7 @@
 [![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2013.0%2B-orange?logo=apple&logoColor=white)](https://img.shields.io/badge/Platform-iOS%20%7C%20iPadOS%2014.0%2B-red?logo=apple&logoColor=white)
 [![Commit](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/last-commit/cranci1/AnimeGen) 
 [![Version](https://custom-icon-badges.demolab.com/github/v/release/cranci1/AnimeGen)](https://custom-icon-badges.demolab.com/github/v/release/cranci1/AnimeGen)
-[![Testflight](https://img.shields.io/badge/Join-Testflight-008080)](https://testflight.apple.com/join/Qx5saHll)
+[![Testflight](https://img.shields.io/badge/Join-Testflight-008080)](https://testflight.apple.com/join/jqx2hEkN)
 
 </div>
 
@@ -41,25 +38,14 @@ along with AnimeGen. If not, see <https://www.gnu.org/licenses/>.
 - [Third Party Software](#third-party-software)
 - [Build](#build)
 
-## Screenshots
-
-<div align="center">
-<table>
-  <tbody>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/cranci1/AnimeGen/main/Images/screenshots/apis.png" width=200px></td>
-    <td><img src="https://raw.githubusercontent.com/cranci1/AnimeGen/main/Images/screenshots/history.png" width=200px></td>
-    <td><img src="https://raw.githubusercontent.com/cranci1/AnimeGen/main/Images/screenshots/tags.png" width=200px></td>
-  </tr>
-  </tbody>
-</table>
-</div>
+## Screenshot
+Yeah i need to add them
 
 ## Download
 
 You can download the IPA file for installation via TrollStore, AltStore, or Sideloadly. Alternatively, you can install the app via TestFlight. Please note that the nightly-IPA may be unstable. *The Testflight beta build is recommended*.
 
-- [Testflight beta](https://testflight.apple.com/join/Qx5saHll)
+- [Testflight beta](https://testflight.apple.com/join/jqx2hEkN)
 - [Download stable-IPA](https://github.com/cranci1/AnimeGen/releases/download/v2.0.0/AnimeGen.ipa)
 - [Download nightly-IPA](https://nightly.link/cranci1/AnimeGen/workflows/build/main/AnimeGen-IPA.zip)
 
@@ -70,8 +56,15 @@ Without them this project wouldn't exist, so thanks very much to all of them!
 
 | APIs                                                       | Type     | Format  | Status |
 | ---------------------------------------------------------- | -------- | ------- | :----: |
-| [pic.re](https://doc.pic.re/)                               | SFW      | IMG     |   ✅   |
-| [waifu.im](https://docs.waifu.im/)                           | SFW     | IMG     |   ✅   |
+| [pic.re](https://doc.pic.re/)                              | SFW      | IMG     |   ✅   |
+| [waifu.im](https://docs.waifu.im/)                         | SFW      | IMG     |   ✅   |
+| [waifu.pics](https://waifu.pics)                           | SFW      | IMG     |   ✅   |
+| [nekos.best](https://waifu.best)                           | SFW      | IMG     |   ✅   |
+| [nekos.life](https://waifu.life)                           | SFW      | IMG     |   ✅   |
+| [nekos api](https://nekosapi.com/)                         | SFW      | IMG     |   ✅   |
+| [nekos.moe](https://nekos.moe/)                            | SFW      | IMG     |   ✅   |
+| [nekobot.xyz](https://nekobot.xyz/)                        | SFW      | IMG     |   ✅   |
+| [purrbot.site](https://purrbot.site)                       | SFW      | IMG     |   ✅   |
 
 ## Third Party Software
 
