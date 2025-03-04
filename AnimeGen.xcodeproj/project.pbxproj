@@ -64,7 +64,6 @@
 		137BE1F02D6B09470009C8D0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				137BE1F12D6B0C7C0009C8D0 /* Sources */,
 				1353D29A2D6A384A00EC7423 /* Extensions */,
 			);
 			path = Utils;
@@ -76,7 +75,8 @@
 				137BE1F22D6B0C850009C8D0 /* pic-re.swift */,
 				137BE1F42D6B0CB90009C8D0 /* waifu-im.swift */,
 			);
-			path = Sources;
+			name = Sources;
+			path = ../Sources;
 			sourceTree = "<group>";
 		};
 		13F385232D462C14006B6FA6 = {
@@ -98,6 +98,7 @@
 		13F3852E2D462C14006B6FA6 /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
+				137BE1F12D6B0C7C0009C8D0 /* Sources */,
 				137BE1F02D6B09470009C8D0 /* Utils */,
 				137BE1ED2D6B09300009C8D0 /* Views */,
 				13F3852F2D462C14006B6FA6 /* AppDelegate.swift */,
