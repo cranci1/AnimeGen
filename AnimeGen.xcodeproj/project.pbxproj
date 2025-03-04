@@ -7,307 +7,132 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		132376E12C20602900D87012 /* Tags Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132376E02C20602900D87012 /* Tags Selection.swift */; };
-		132376E32C20606400D87012 /* ImageGenerationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132376E22C20606400D87012 /* ImageGenerationSettings.swift */; };
-		133C4C872BE67CAB00258EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C862BE67CAB00258EDD /* AppDelegate.swift */; };
-		133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C882BE67CAB00258EDD /* SceneDelegate.swift */; };
-		133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133C4C8A2BE67CAB00258EDD /* ViewController.swift */; };
-		133C4C902BE67CAD00258EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 133C4C8F2BE67CAD00258EDD /* Assets.xcassets */; };
-		1366F0A72C00EB7B00862707 /* ImageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1366F0A62C00EB7B00862707 /* ImageSettings.swift */; };
-		136BD7DB2BE7CA6F00ED23AE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */; };
-		136BD7DE2BE7CAA300ED23AE /* HistoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */; };
-		136BD7E02BE7CB4D00ED23AE /* RewindButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */; };
-		136BD7E22BE7CCC400ED23AE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */; };
-		136BD7E42BE7DFEE00ED23AE /* AppPref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7E32BE7DFEE00ED23AE /* AppPref.swift */; };
-		136BD7E62BE7E1B300ED23AE /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7E52BE7E1B300ED23AE /* Contents.swift */; };
-		136BD7E82BE7E24100ED23AE /* Developer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136BD7E72BE7E24100ED23AE /* Developer.swift */; };
-		1393C3A92BEBC94300704137 /* AppPreff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A62BEBC94300704137 /* AppPreff.swift */; };
-		1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A72BEBC94300704137 /* Dev-History.swift */; };
-		1393C3AB2BEBC94300704137 /* content-tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1393C3A82BEBC94300704137 /* content-tags.swift */; };
-		13A8496B2BF479DA009A9442 /* n-sfw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496A2BF479DA009A9442 /* n-sfw.swift */; };
-		13A8496E2BF4F0E7009A9442 /* FrameWorksCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */; };
-		13A849702BF4F118009A9442 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A8496F2BF4F118009A9442 /* Contributor.swift */; };
-		13AB1D2A2BE93E3D009132CB /* Historyy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AB1D292BE93E3D009132CB /* Historyy.swift */; };
-		13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC382B2BEFA34A00676546 /* APIsValid.swift */; };
-		13C1E03C2BE9068600A27DEE /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1E03B2BE9068600A27DEE /* AboutPage.swift */; };
-		13C1E03E2BE9183400A27DEE /* Credits-Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1E03D2BE9183400A27DEE /* Credits-Images.xcassets */; };
-		13C1E0402BE92BB300A27DEE /* APIsCredits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */; };
-		13C861652C033DE70066DC71 /* nekos-life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C861642C033DE70066DC71 /* nekos-life.swift */; };
-		13D4FBE02BE7661A00BC3D1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */; };
-		13D4FBE62BE7689500BC3D1C /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBE52BE7689400BC3D1C /* Tags.swift */; };
-		13D4FBE92BE768C100BC3D1C /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBE82BE768C100BC3D1C /* HeartButton.swift */; };
-		13D4FBEB2BE76D0600BC3D1C /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBEA2BE76D0600BC3D1C /* ImageExtensions.swift */; };
-		13D4FBF02BE76D4000BC3D1C /* popup-Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBEF2BE76D4000BC3D1C /* popup-Banner.swift */; };
-		13D4FBF22BE76DCA00BC3D1C /* Web-Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBF12BE76DCA00BC3D1C /* Web-Share.swift */; };
-		13D4FBF42BE76FC000BC3D1C /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBF32BE76FC000BC3D1C /* Activity.swift */; };
-		13D4FBF62BE76FF600BC3D1C /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBF52BE76FF600BC3D1C /* Gradient.swift */; };
-		13D4FBF82BE7706D00BC3D1C /* Refresh-API-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FBF72BE7706D00BC3D1C /* Refresh-API-Button.swift */; };
-		13D4FC1C2BE770EC00BC3D1C /* purr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC112BE770EB00BC3D1C /* purr.swift */; };
-		13D4FC1D2BE770EC00BC3D1C /* waifu-it.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC122BE770EB00BC3D1C /* waifu-it.swift */; };
-		13D4FC1E2BE770EC00BC3D1C /* waifu-im.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC132BE770EC00BC3D1C /* waifu-im.swift */; };
-		13D4FC202BE770EC00BC3D1C /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC152BE770EC00BC3D1C /* waifu-pics.swift */; };
-		13D4FC212BE770EC00BC3D1C /* kyoko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC162BE770EC00BC3D1C /* kyoko.swift */; };
-		13D4FC222BE770EC00BC3D1C /* nekosmoe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC172BE770EC00BC3D1C /* nekosmoe.swift */; };
-		13D4FC232BE770EC00BC3D1C /* nekosbot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC182BE770EC00BC3D1C /* nekosbot.swift */; };
-		13D4FC242BE770EC00BC3D1C /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC192BE770EC00BC3D1C /* pic-re.swift */; };
-		13D4FC252BE770EC00BC3D1C /* nekosapi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC1A2BE770EC00BC3D1C /* nekosapi.swift */; };
-		13D4FC262BE770EC00BC3D1C /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC1B2BE770EC00BC3D1C /* nekos-best.swift */; };
-		13D4FC292BE7710500BC3D1C /* HmtaiReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC272BE7710400BC3D1C /* HmtaiReader.swift */; };
-		13D4FC2A2BE7710500BC3D1C /* HmtaiSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC282BE7710400BC3D1C /* HmtaiSender.swift */; };
-		13D4FC2D2BE7719700BC3D1C /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC2C2BE7719700BC3D1C /* Secrets.swift */; };
-		13D4FC2F2BE779A200BC3D1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC2E2BE779A200BC3D1C /* LaunchScreen.storyboard */; };
-		13D4FC372BE780C900BC3D1C /* FeaturesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D4FC362BE780C900BC3D1C /* FeaturesApp.swift */; };
-		13DD19DA2BEA58B00034B014 /* SettingsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD19D92BEA58B00034B014 /* SettingsMain.swift */; };
-		13DD19DD2BEA64620034B014 /* waifu-it-pref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD19DC2BEA64620034B014 /* waifu-it-pref.swift */; };
-		13DD19DF2BEA64650034B014 /* Hmtai-pref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DD19DE2BEA64650034B014 /* Hmtai-pref.swift */; };
-		13EC98FA2BEBC68F00759605 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 13EC98F92BEBC68F00759605 /* SDWebImage */; };
+		1353D2992D6A369100EC7423 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353D2982D6A369100EC7423 /* URLSession.swift */; };
+		137BE1E82D6A3D0A0009C8D0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 137BE1E72D6A3D0A0009C8D0 /* Kingfisher */; };
+		138424572D771210002FEC32 /* nekos-moe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424522D771210002FEC32 /* nekos-moe.swift */; };
+		138424582D771210002FEC32 /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424532D771210002FEC32 /* waifu-pics.swift */; };
+		138424592D771210002FEC32 /* waifu-im.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424542D771210002FEC32 /* waifu-im.swift */; };
+		1384245A2D771210002FEC32 /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424552D771210002FEC32 /* pic-re.swift */; };
+		1384245B2D771210002FEC32 /* purr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424562D771210002FEC32 /* purr.swift */; };
+		1384245D2D77132E002FEC32 /* neko-bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384245C2D77132E002FEC32 /* neko-bot.swift */; };
+		1384245F2D7713E5002FEC32 /* nekos-api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384245E2D7713E5002FEC32 /* nekos-api.swift */; };
+		138424612D7714CF002FEC32 /* nekos-life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424602D7714CF002FEC32 /* nekos-life.swift */; };
+		138424632D77158E002FEC32 /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424622D77158E002FEC32 /* nekos-best.swift */; };
+		13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3852F2D462C14006B6FA6 /* AppDelegate.swift */; };
+		13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385312D462C14006B6FA6 /* SceneDelegate.swift */; };
+		13F385342D462C14006B6FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385332D462C14006B6FA6 /* ViewController.swift */; };
+		13F385372D462C14006B6FA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F385352D462C14006B6FA6 /* Main.storyboard */; };
+		13F385392D462C16006B6FA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F385382D462C16006B6FA6 /* Assets.xcassets */; };
+		13F3853C2D462C16006B6FA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F3853A2D462C16006B6FA6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		132376E02C20602900D87012 /* Tags Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tags Selection.swift"; sourceTree = "<group>"; };
-		132376E22C20606400D87012 /* ImageGenerationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerationSettings.swift; sourceTree = "<group>"; };
-		133C4C832BE67CAB00258EDD /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		133C4C862BE67CAB00258EDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		133C4C882BE67CAB00258EDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		133C4C8A2BE67CAB00258EDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		133C4C8F2BE67CAD00258EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		133C4C942BE67CAD00258EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1366F0A62C00EB7B00862707 /* ImageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSettings.swift; sourceTree = "<group>"; };
-		136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryButton.swift; sourceTree = "<group>"; };
-		136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewindButton.swift; sourceTree = "<group>"; };
-		136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		136BD7E32BE7DFEE00ED23AE /* AppPref.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPref.swift; sourceTree = "<group>"; };
-		136BD7E52BE7E1B300ED23AE /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
-		136BD7E72BE7E24100ED23AE /* Developer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developer.swift; sourceTree = "<group>"; };
-		1393C3A62BEBC94300704137 /* AppPreff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPreff.swift; sourceTree = "<group>"; };
-		1393C3A72BEBC94300704137 /* Dev-History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dev-History.swift"; sourceTree = "<group>"; };
-		1393C3A82BEBC94300704137 /* content-tags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "content-tags.swift"; sourceTree = "<group>"; };
-		13A8496A2BF479DA009A9442 /* n-sfw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "n-sfw.swift"; sourceTree = "<group>"; };
-		13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameWorksCredits.swift; sourceTree = "<group>"; };
-		13A8496F2BF4F118009A9442 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
-		13AB1D292BE93E3D009132CB /* Historyy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Historyy.swift; sourceTree = "<group>"; };
-		13AC382B2BEFA34A00676546 /* APIsValid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsValid.swift; sourceTree = "<group>"; };
-		13C1E03B2BE9068600A27DEE /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
-		13C1E03D2BE9183400A27DEE /* Credits-Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Credits-Images.xcassets"; sourceTree = "<group>"; };
-		13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIsCredits.swift; sourceTree = "<group>"; };
-		13C861642C033DE70066DC71 /* nekos-life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-life.swift"; sourceTree = "<group>"; };
-		13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		13D4FBE52BE7689400BC3D1C /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
-		13D4FBE82BE768C100BC3D1C /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
-		13D4FBEA2BE76D0600BC3D1C /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
-		13D4FBEF2BE76D4000BC3D1C /* popup-Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "popup-Banner.swift"; sourceTree = "<group>"; };
-		13D4FBF12BE76DCA00BC3D1C /* Web-Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web-Share.swift"; sourceTree = "<group>"; };
-		13D4FBF32BE76FC000BC3D1C /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		13D4FBF52BE76FF600BC3D1C /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
-		13D4FBF72BE7706D00BC3D1C /* Refresh-API-Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Refresh-API-Button.swift"; sourceTree = "<group>"; };
-		13D4FC112BE770EB00BC3D1C /* purr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = purr.swift; sourceTree = "<group>"; };
-		13D4FC122BE770EB00BC3D1C /* waifu-it.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-it.swift"; sourceTree = "<group>"; };
-		13D4FC132BE770EC00BC3D1C /* waifu-im.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
-		13D4FC152BE770EC00BC3D1C /* waifu-pics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
-		13D4FC162BE770EC00BC3D1C /* kyoko.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kyoko.swift; sourceTree = "<group>"; };
-		13D4FC172BE770EC00BC3D1C /* nekosmoe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nekosmoe.swift; sourceTree = "<group>"; };
-		13D4FC182BE770EC00BC3D1C /* nekosbot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nekosbot.swift; sourceTree = "<group>"; };
-		13D4FC192BE770EC00BC3D1C /* pic-re.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
-		13D4FC1A2BE770EC00BC3D1C /* nekosapi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nekosapi.swift; sourceTree = "<group>"; };
-		13D4FC1B2BE770EC00BC3D1C /* nekos-best.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
-		13D4FC272BE7710400BC3D1C /* HmtaiReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiReader.swift; sourceTree = "<group>"; };
-		13D4FC282BE7710400BC3D1C /* HmtaiSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HmtaiSender.swift; sourceTree = "<group>"; };
-		13D4FC2C2BE7719700BC3D1C /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		13D4FC2E2BE779A200BC3D1C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		13D4FC362BE780C900BC3D1C /* FeaturesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesApp.swift; sourceTree = "<group>"; };
-		13DD19D92BEA58B00034B014 /* SettingsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMain.swift; sourceTree = "<group>"; };
-		13DD19DC2BEA64620034B014 /* waifu-it-pref.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-it-pref.swift"; sourceTree = "<group>"; };
-		13DD19DE2BEA64650034B014 /* Hmtai-pref.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hmtai-pref.swift"; sourceTree = "<group>"; };
+		1353D2982D6A369100EC7423 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		138424522D771210002FEC32 /* nekos-moe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "nekos-moe.swift"; sourceTree = "<group>"; };
+		138424532D771210002FEC32 /* waifu-pics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
+		138424542D771210002FEC32 /* waifu-im.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
+		138424552D771210002FEC32 /* pic-re.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
+		138424562D771210002FEC32 /* purr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = purr.swift; sourceTree = "<group>"; };
+		1384245C2D77132E002FEC32 /* neko-bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "neko-bot.swift"; sourceTree = "<group>"; };
+		1384245E2D7713E5002FEC32 /* nekos-api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-api.swift"; sourceTree = "<group>"; };
+		138424602D7714CF002FEC32 /* nekos-life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-life.swift"; sourceTree = "<group>"; };
+		138424622D77158E002FEC32 /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
+		13F3852C2D462C14006B6FA6 /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13F3852F2D462C14006B6FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		13F385312D462C14006B6FA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		13F385332D462C14006B6FA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		13F385362D462C14006B6FA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		13F385382D462C16006B6FA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		13F3853B2D462C16006B6FA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		13F3853D2D462C16006B6FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		133C4C802BE67CAB00258EDD /* Frameworks */ = {
+		13F385292D462C14006B6FA6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13EC98FA2BEBC68F00759605 /* SDWebImage in Frameworks */,
+				137BE1E82D6A3D0A0009C8D0 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		133C4C7A2BE67CAB00258EDD = {
+		1353D29A2D6A384A00EC7423 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				133C4C852BE67CAB00258EDD /* AnimeGen */,
-				133C4C842BE67CAB00258EDD /* Products */,
+				1353D2982D6A369100EC7423 /* URLSession.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		137BE1F02D6B09470009C8D0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1353D29A2D6A384A00EC7423 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		138424512D771202002FEC32 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				138424552D771210002FEC32 /* pic-re.swift */,
+				138424542D771210002FEC32 /* waifu-im.swift */,
+				138424532D771210002FEC32 /* waifu-pics.swift */,
+				138424522D771210002FEC32 /* nekos-moe.swift */,
+				1384245C2D77132E002FEC32 /* neko-bot.swift */,
+				1384245E2D7713E5002FEC32 /* nekos-api.swift */,
+				138424622D77158E002FEC32 /* nekos-best.swift */,
+				138424602D7714CF002FEC32 /* nekos-life.swift */,
+				138424562D771210002FEC32 /* purr.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		13F385232D462C14006B6FA6 = {
+			isa = PBXGroup;
+			children = (
+				13F3852E2D462C14006B6FA6 /* AnimeGen */,
+				13F3852D2D462C14006B6FA6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		133C4C842BE67CAB00258EDD /* Products */ = {
+		13F3852D2D462C14006B6FA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				133C4C832BE67CAB00258EDD /* AnimeGen.app */,
+				13F3852C2D462C14006B6FA6 /* AnimeGen.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		133C4C852BE67CAB00258EDD /* AnimeGen */ = {
+		13F3852E2D462C14006B6FA6 /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
-				13C4BC492C0B772500B6DB43 /* Secrets-Settings */,
-				13EC98F12BEBC11500759605 /* NotificationCenter */,
-				136BD7D82BE7CA6300ED23AE /* History */,
-				13D4FBE72BE768B400BC3D1C /* Buttons func */,
-				13D4FBE42BE7688700BC3D1C /* Extension */,
-				13D4FBE12BE7683D00BC3D1C /* APIs Requests */,
-				13D4FC352BE780BE00BC3D1C /* Settings */,
-				133C4C882BE67CAB00258EDD /* SceneDelegate.swift */,
-				133C4C862BE67CAB00258EDD /* AppDelegate.swift */,
-				133C4C8A2BE67CAB00258EDD /* ViewController.swift */,
-				133C4C8F2BE67CAD00258EDD /* Assets.xcassets */,
-				13D4FBDF2BE7661A00BC3D1C /* Main.storyboard */,
-				13D4FC2E2BE779A200BC3D1C /* LaunchScreen.storyboard */,
-				133C4C942BE67CAD00258EDD /* Info.plist */,
-				136BD7E12BE7CCC400ED23AE /* PrivacyInfo.xcprivacy */,
+				138424512D771202002FEC32 /* Sources */,
+				137BE1F02D6B09470009C8D0 /* Utils */,
+				13F3852F2D462C14006B6FA6 /* AppDelegate.swift */,
+				13F385332D462C14006B6FA6 /* ViewController.swift */,
+				13F385312D462C14006B6FA6 /* SceneDelegate.swift */,
+				13F385352D462C14006B6FA6 /* Main.storyboard */,
+				13F3853A2D462C16006B6FA6 /* LaunchScreen.storyboard */,
+				13F385382D462C16006B6FA6 /* Assets.xcassets */,
+				13F3853D2D462C16006B6FA6 /* Info.plist */,
 			);
 			path = AnimeGen;
-			sourceTree = "<group>";
-		};
-		136BD7D82BE7CA6300ED23AE /* History */ = {
-			isa = PBXGroup;
-			children = (
-				136BD7D92BE7CA6F00ED23AE /* HistoryView.swift */,
-			);
-			path = History;
-			sourceTree = "<group>";
-		};
-		13A8496C2BF4F0B8009A9442 /* Credits */ = {
-			isa = PBXGroup;
-			children = (
-				13C1E03D2BE9183400A27DEE /* Credits-Images.xcassets */,
-				13C1E03F2BE92BB300A27DEE /* APIsCredits.swift */,
-				13A8496D2BF4F0E7009A9442 /* FrameWorksCredits.swift */,
-				13A8496F2BF4F118009A9442 /* Contributor.swift */,
-			);
-			path = Credits;
-			sourceTree = "<group>";
-		};
-		13C1E03A2BE9067700A27DEE /* About */ = {
-			isa = PBXGroup;
-			children = (
-				13C1E03B2BE9068600A27DEE /* AboutPage.swift */,
-			);
-			path = About;
-			sourceTree = "<group>";
-		};
-		13C4BC492C0B772500B6DB43 /* Secrets-Settings */ = {
-			isa = PBXGroup;
-			children = (
-				13D4FC2C2BE7719700BC3D1C /* Secrets.swift */,
-				1366F0A62C00EB7B00862707 /* ImageSettings.swift */,
-			);
-			path = "Secrets-Settings";
-			sourceTree = "<group>";
-		};
-		13D4FBE12BE7683D00BC3D1C /* APIs Requests */ = {
-			isa = PBXGroup;
-			children = (
-				13D4FC2B2BE7710C00BC3D1C /* Hmtai */,
-				13D4FC192BE770EC00BC3D1C /* pic-re.swift */,
-				13D4FC162BE770EC00BC3D1C /* kyoko.swift */,
-				13D4FC1B2BE770EC00BC3D1C /* nekos-best.swift */,
-				13D4FC1A2BE770EC00BC3D1C /* nekosapi.swift */,
-				13D4FC182BE770EC00BC3D1C /* nekosbot.swift */,
-				13D4FC172BE770EC00BC3D1C /* nekosmoe.swift */,
-				13D4FC112BE770EB00BC3D1C /* purr.swift */,
-				13D4FC132BE770EC00BC3D1C /* waifu-im.swift */,
-				13D4FC122BE770EB00BC3D1C /* waifu-it.swift */,
-				13D4FC152BE770EC00BC3D1C /* waifu-pics.swift */,
-				13A8496A2BF479DA009A9442 /* n-sfw.swift */,
-				13C861642C033DE70066DC71 /* nekos-life.swift */,
-			);
-			path = "APIs Requests";
-			sourceTree = "<group>";
-		};
-		13D4FBE42BE7688700BC3D1C /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				13D4FBE52BE7689400BC3D1C /* Tags.swift */,
-				13D4FBEA2BE76D0600BC3D1C /* ImageExtensions.swift */,
-				13D4FBEF2BE76D4000BC3D1C /* popup-Banner.swift */,
-				13D4FBF32BE76FC000BC3D1C /* Activity.swift */,
-				13D4FBF52BE76FF600BC3D1C /* Gradient.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		13D4FBE72BE768B400BC3D1C /* Buttons func */ = {
-			isa = PBXGroup;
-			children = (
-				13D4FBE82BE768C100BC3D1C /* HeartButton.swift */,
-				13D4FBF12BE76DCA00BC3D1C /* Web-Share.swift */,
-				13D4FBF72BE7706D00BC3D1C /* Refresh-API-Button.swift */,
-				136BD7DD2BE7CAA300ED23AE /* HistoryButton.swift */,
-				136BD7DF2BE7CB4D00ED23AE /* RewindButton.swift */,
-			);
-			path = "Buttons func";
-			sourceTree = "<group>";
-		};
-		13D4FC2B2BE7710C00BC3D1C /* Hmtai */ = {
-			isa = PBXGroup;
-			children = (
-				13D4FC282BE7710400BC3D1C /* HmtaiSender.swift */,
-				13D4FC272BE7710400BC3D1C /* HmtaiReader.swift */,
-			);
-			path = Hmtai;
-			sourceTree = "<group>";
-		};
-		13D4FC352BE780BE00BC3D1C /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				13A8496C2BF4F0B8009A9442 /* Credits */,
-				13DD19DB2BEA64590034B014 /* Developer */,
-				13C1E03A2BE9067700A27DEE /* About */,
-				136BD7E32BE7DFEE00ED23AE /* AppPref.swift */,
-				13D4FC362BE780C900BC3D1C /* FeaturesApp.swift */,
-				136BD7E52BE7E1B300ED23AE /* Contents.swift */,
-				136BD7E72BE7E24100ED23AE /* Developer.swift */,
-				13AB1D292BE93E3D009132CB /* Historyy.swift */,
-				13DD19D92BEA58B00034B014 /* SettingsMain.swift */,
-				13AC382B2BEFA34A00676546 /* APIsValid.swift */,
-				132376E02C20602900D87012 /* Tags Selection.swift */,
-				132376E22C20606400D87012 /* ImageGenerationSettings.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		13DD19DB2BEA64590034B014 /* Developer */ = {
-			isa = PBXGroup;
-			children = (
-				13DD19DE2BEA64650034B014 /* Hmtai-pref.swift */,
-				13DD19DC2BEA64620034B014 /* waifu-it-pref.swift */,
-			);
-			path = Developer;
-			sourceTree = "<group>";
-		};
-		13EC98F12BEBC11500759605 /* NotificationCenter */ = {
-			isa = PBXGroup;
-			children = (
-				1393C3A62BEBC94300704137 /* AppPreff.swift */,
-				1393C3A72BEBC94300704137 /* Dev-History.swift */,
-				1393C3A82BEBC94300704137 /* content-tags.swift */,
-			);
-			path = NotificationCenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		133C4C822BE67CAB00258EDD /* AnimeGen */ = {
+		13F3852B2D462C14006B6FA6 /* AnimeGen */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 133C4C972BE67CAD00258EDD /* Build configuration list for PBXNativeTarget "AnimeGen" */;
+			buildConfigurationList = 13F385402D462C16006B6FA6 /* Build configuration list for PBXNativeTarget "AnimeGen" */;
 			buildPhases = (
-				133C4C7F2BE67CAB00258EDD /* Sources */,
-				133C4C802BE67CAB00258EDD /* Frameworks */,
-				133C4C812BE67CAB00258EDD /* Resources */,
+				13F385282D462C14006B6FA6 /* Sources */,
+				13F385292D462C14006B6FA6 /* Frameworks */,
+				13F3852A2D462C14006B6FA6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -315,28 +140,28 @@
 			);
 			name = AnimeGen;
 			packageProductDependencies = (
-				13EC98F92BEBC68F00759605 /* SDWebImage */,
+				137BE1E72D6A3D0A0009C8D0 /* Kingfisher */,
 			);
 			productName = AnimeGen;
-			productReference = 133C4C832BE67CAB00258EDD /* AnimeGen.app */;
+			productReference = 13F3852C2D462C14006B6FA6 /* AnimeGen.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		133C4C7B2BE67CAB00258EDD /* Project object */ = {
+		13F385242D462C14006B6FA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					133C4C822BE67CAB00258EDD = {
+					13F3852B2D462C14006B6FA6 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
-			buildConfigurationList = 133C4C7E2BE67CAB00258EDD /* Build configuration list for PBXProject "AnimeGen" */;
+			buildConfigurationList = 13F385272D462C14006B6FA6 /* Build configuration list for PBXProject "AnimeGen" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -344,94 +169,76 @@
 				en,
 				Base,
 			);
-			mainGroup = 133C4C7A2BE67CAB00258EDD;
+			mainGroup = 13F385232D462C14006B6FA6;
 			packageReferences = (
-				13EC98F82BEBC68F00759605 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				137BE1E62D6A3D0A0009C8D0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
-			productRefGroup = 133C4C842BE67CAB00258EDD /* Products */;
+			productRefGroup = 13F3852D2D462C14006B6FA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				133C4C822BE67CAB00258EDD /* AnimeGen */,
+				13F3852B2D462C14006B6FA6 /* AnimeGen */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		133C4C812BE67CAB00258EDD /* Resources */ = {
+		13F3852A2D462C14006B6FA6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13D4FC2F2BE779A200BC3D1C /* LaunchScreen.storyboard in Resources */,
-				13C1E03E2BE9183400A27DEE /* Credits-Images.xcassets in Resources */,
-				133C4C902BE67CAD00258EDD /* Assets.xcassets in Resources */,
-				136BD7E22BE7CCC400ED23AE /* PrivacyInfo.xcprivacy in Resources */,
-				13D4FBE02BE7661A00BC3D1C /* Main.storyboard in Resources */,
+				13F3853C2D462C16006B6FA6 /* LaunchScreen.storyboard in Resources */,
+				13F385392D462C16006B6FA6 /* Assets.xcassets in Resources */,
+				13F385372D462C14006B6FA6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		133C4C7F2BE67CAB00258EDD /* Sources */ = {
+		13F385282D462C14006B6FA6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13DD19DA2BEA58B00034B014 /* SettingsMain.swift in Sources */,
-				13A849702BF4F118009A9442 /* Contributor.swift in Sources */,
-				13D4FBF42BE76FC000BC3D1C /* Activity.swift in Sources */,
-				13D4FC2D2BE7719700BC3D1C /* Secrets.swift in Sources */,
-				1393C3AB2BEBC94300704137 /* content-tags.swift in Sources */,
-				136BD7E42BE7DFEE00ED23AE /* AppPref.swift in Sources */,
-				13D4FBEB2BE76D0600BC3D1C /* ImageExtensions.swift in Sources */,
-				13D4FBE92BE768C100BC3D1C /* HeartButton.swift in Sources */,
-				132376E32C20606400D87012 /* ImageGenerationSettings.swift in Sources */,
-				13D4FC212BE770EC00BC3D1C /* kyoko.swift in Sources */,
-				13D4FBF22BE76DCA00BC3D1C /* Web-Share.swift in Sources */,
-				13AC382C2BEFA34A00676546 /* APIsValid.swift in Sources */,
-				13D4FC242BE770EC00BC3D1C /* pic-re.swift in Sources */,
-				1366F0A72C00EB7B00862707 /* ImageSettings.swift in Sources */,
-				133C4C8B2BE67CAB00258EDD /* ViewController.swift in Sources */,
-				13C1E0402BE92BB300A27DEE /* APIsCredits.swift in Sources */,
-				1393C3A92BEBC94300704137 /* AppPreff.swift in Sources */,
-				136BD7DE2BE7CAA300ED23AE /* HistoryButton.swift in Sources */,
-				13DD19DD2BEA64620034B014 /* waifu-it-pref.swift in Sources */,
-				13D4FC202BE770EC00BC3D1C /* waifu-pics.swift in Sources */,
-				13A8496E2BF4F0E7009A9442 /* FrameWorksCredits.swift in Sources */,
-				13D4FBF82BE7706D00BC3D1C /* Refresh-API-Button.swift in Sources */,
-				13D4FC1E2BE770EC00BC3D1C /* waifu-im.swift in Sources */,
-				13D4FC1D2BE770EC00BC3D1C /* waifu-it.swift in Sources */,
-				1393C3AA2BEBC94300704137 /* Dev-History.swift in Sources */,
-				13C861652C033DE70066DC71 /* nekos-life.swift in Sources */,
-				13D4FC1C2BE770EC00BC3D1C /* purr.swift in Sources */,
-				13D4FC292BE7710500BC3D1C /* HmtaiReader.swift in Sources */,
-				136BD7E82BE7E24100ED23AE /* Developer.swift in Sources */,
-				13D4FBF02BE76D4000BC3D1C /* popup-Banner.swift in Sources */,
-				13D4FC2A2BE7710500BC3D1C /* HmtaiSender.swift in Sources */,
-				13D4FC262BE770EC00BC3D1C /* nekos-best.swift in Sources */,
-				136BD7DB2BE7CA6F00ED23AE /* HistoryView.swift in Sources */,
-				13D4FC232BE770EC00BC3D1C /* nekosbot.swift in Sources */,
-				13D4FC222BE770EC00BC3D1C /* nekosmoe.swift in Sources */,
-				13D4FC252BE770EC00BC3D1C /* nekosapi.swift in Sources */,
-				136BD7E02BE7CB4D00ED23AE /* RewindButton.swift in Sources */,
-				13D4FC372BE780C900BC3D1C /* FeaturesApp.swift in Sources */,
-				13D4FBE62BE7689500BC3D1C /* Tags.swift in Sources */,
-				13D4FBF62BE76FF600BC3D1C /* Gradient.swift in Sources */,
-				13DD19DF2BEA64650034B014 /* Hmtai-pref.swift in Sources */,
-				13A8496B2BF479DA009A9442 /* n-sfw.swift in Sources */,
-				133C4C872BE67CAB00258EDD /* AppDelegate.swift in Sources */,
-				13AB1D2A2BE93E3D009132CB /* Historyy.swift in Sources */,
-				133C4C892BE67CAB00258EDD /* SceneDelegate.swift in Sources */,
-				136BD7E62BE7E1B300ED23AE /* Contents.swift in Sources */,
-				132376E12C20602900D87012 /* Tags Selection.swift in Sources */,
-				13C1E03C2BE9068600A27DEE /* AboutPage.swift in Sources */,
+				138424632D77158E002FEC32 /* nekos-best.swift in Sources */,
+				1384245D2D77132E002FEC32 /* neko-bot.swift in Sources */,
+				1384245F2D7713E5002FEC32 /* nekos-api.swift in Sources */,
+				13F385342D462C14006B6FA6 /* ViewController.swift in Sources */,
+				13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */,
+				138424612D7714CF002FEC32 /* nekos-life.swift in Sources */,
+				1353D2992D6A369100EC7423 /* URLSession.swift in Sources */,
+				138424572D771210002FEC32 /* nekos-moe.swift in Sources */,
+				13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */,
+				138424582D771210002FEC32 /* waifu-pics.swift in Sources */,
+				1384245B2D771210002FEC32 /* purr.swift in Sources */,
+				138424592D771210002FEC32 /* waifu-im.swift in Sources */,
+				1384245A2D771210002FEC32 /* pic-re.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		13F385352D462C14006B6FA6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13F385362D462C14006B6FA6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		13F3853A2D462C16006B6FA6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13F3853B2D462C16006B6FA6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		133C4C952BE67CAD00258EDD /* Debug */ = {
+		13F3853E2D462C16006B6FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -482,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -492,7 +299,7 @@
 			};
 			name = Debug;
 		};
-		133C4C962BE67CAD00258EDD /* Release */ = {
+		13F3853F2D462C16006B6FA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -537,7 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -547,7 +354,7 @@
 			};
 			name = Release;
 		};
-		133C4C982BE67CAD00258EDD /* Debug */ = {
+		13F385412D462C16006B6FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -557,19 +364,17 @@
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The photo Library Addition is required to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -578,7 +383,7 @@
 			};
 			name = Debug;
 		};
-		133C4C992BE67CAD00258EDD /* Release */ = {
+		13F385422D462C16006B6FA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -588,19 +393,17 @@
 				DEVELOPMENT_TEAM = 399LMK6Q2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimeGen/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "The photo Library Addition is required to save images.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cranci.AnimeGen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -612,20 +415,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		133C4C7E2BE67CAB00258EDD /* Build configuration list for PBXProject "AnimeGen" */ = {
+		13F385272D462C14006B6FA6 /* Build configuration list for PBXProject "AnimeGen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				133C4C952BE67CAD00258EDD /* Debug */,
-				133C4C962BE67CAD00258EDD /* Release */,
+				13F3853E2D462C16006B6FA6 /* Debug */,
+				13F3853F2D462C16006B6FA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		133C4C972BE67CAD00258EDD /* Build configuration list for PBXNativeTarget "AnimeGen" */ = {
+		13F385402D462C16006B6FA6 /* Build configuration list for PBXNativeTarget "AnimeGen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				133C4C982BE67CAD00258EDD /* Debug */,
-				133C4C992BE67CAD00258EDD /* Release */,
+				13F385412D462C16006B6FA6 /* Debug */,
+				13F385422D462C16006B6FA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -633,23 +436,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		13EC98F82BEBC68F00759605 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		137BE1E62D6A3D0A0009C8D0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = exactVersion;
+				version = 7.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		13EC98F92BEBC68F00759605 /* SDWebImage */ = {
+		137BE1E72D6A3D0A0009C8D0 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 13EC98F82BEBC68F00759605 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
+			package = 137BE1E62D6A3D0A0009C8D0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 133C4C7B2BE67CAB00258EDD /* Project object */;
+	rootObject = 13F385242D462C14006B6FA6 /* Project object */;
 }

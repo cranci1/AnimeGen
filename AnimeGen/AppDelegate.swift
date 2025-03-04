@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  AnimeGen
 //
-//  Created by cranci on 04/05/24.
+//  Created by Francesco on 26/01/25.
 //
 
 import UIKit
@@ -10,16 +10,9 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        UserDefaults.standard.register(defaults: ["enableAnimations": true])
-        UserDefaults.standard.register(defaults: ["enableTags": true])
-        UserDefaults.standard.register(defaults: ["enableGestures": true])
-        UserDefaults.standard.register(defaults: ["enableKyokobanner": true])
-        UserDefaults.standard.register(defaults: ["enableImageStartup": true])
-        UserDefaults.standard.register(defaults: ["enableTime": true])
-        UserDefaults.standard.register(defaults: ["enableHistory": true])
-        
         // Override point for customization after application launch.
         return true
     }
@@ -38,11 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
-        if UserDefaults.standard.bool(forKey: "parentsModeLoL") {
-            UserDefaults.standard.set(false, forKey: "explicitContents")
-        }
-    }
 
 }
 

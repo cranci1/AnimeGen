@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "SDWebImage",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImage",
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
-          "branch": "master",
-          "revision": "e55cb041d05fc20a8b32c56249ab7e4b907c1dcb",
-          "version": null
+          "branch": null,
+          "revision": "b6f62758f21a8c03cd64f4009c037cfa580a256e",
+          "version": "7.9.1"
         }
       }
     ]

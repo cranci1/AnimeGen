@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AnimeGen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSM-Ph-NbR" userLabel="Refresh">
+                                <rect key="frame" x="167" y="804" width="80" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="6Ef-KV-lba"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="arrow.clockwise.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="40" scale="large" weight="bold"/>
+                                    <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="refreshButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QaJ-OJ-CV7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOl-eX-zUN" userLabel="Source">
+                                <rect key="frame" x="344" y="818" width="50" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7Mp-hE-6v5"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="list.bullet.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25" scale="large" weight="bold"/>
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iu1-rj-E9E" userLabel="Heart">
+                                <rect key="frame" x="247" y="804" width="60" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="AwV-zh-Gkq"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="arrow.down.heart.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="35" scale="large" weight="bold"/>
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="heartButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ohl-gl-W3P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjE-wv-osT" userLabel="Rewind">
+                                <rect key="frame" x="107" y="805" width="60" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="QvT-uP-YKX"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="arrowshape.turn.up.left.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="35" scale="large" weight="bold"/>
+                                    <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="rewindButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1cr-hj-yNb"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dRD-xg-ViT">
+                                <rect key="frame" x="20" y="44" width="374" height="735"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2WP-a4-FsC" userLabel="Safari">
+                                <rect key="frame" x="20" y="818" width="50" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="NRs-GA-6g0"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="safari.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25" scale="large" weight="bold"/>
+                                    <color key="baseForegroundColor" systemColor="systemPurpleColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="safariButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ugK-Fq-gsl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hjE-wv-osT" firstAttribute="trailing" secondItem="cSM-Ph-NbR" secondAttribute="leading" id="01g-mB-NKQ"/>
+                            <constraint firstItem="dRD-xg-ViT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4ex-SG-Xli"/>
+                            <constraint firstItem="iu1-rj-E9E" firstAttribute="leading" secondItem="cSM-Ph-NbR" secondAttribute="trailing" id="7eV-9k-l08"/>
+                            <constraint firstItem="dRD-xg-ViT" firstAttribute="trailing" secondItem="dOl-eX-zUN" secondAttribute="trailing" id="91d-bg-LK1"/>
+                            <constraint firstItem="dRD-xg-ViT" firstAttribute="centerX" secondItem="cSM-Ph-NbR" secondAttribute="centerX" id="9w6-ae-M8z"/>
+                            <constraint firstItem="cSM-Ph-NbR" firstAttribute="trailing" secondItem="iu1-rj-E9E" secondAttribute="leading" id="A9J-1X-9sC"/>
+                            <constraint firstItem="cSM-Ph-NbR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BLL-Bf-pJs"/>
+                            <constraint firstItem="dRD-xg-ViT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="DP8-Q4-YKB"/>
+                            <constraint firstItem="iu1-rj-E9E" firstAttribute="top" secondItem="cSM-Ph-NbR" secondAttribute="top" id="FCH-SD-xLm"/>
+                            <constraint firstItem="dOl-eX-zUN" firstAttribute="bottom" secondItem="iu1-rj-E9E" secondAttribute="bottom" id="Fki-6Y-uqD"/>
+                            <constraint firstItem="2WP-a4-FsC" firstAttribute="leading" secondItem="dRD-xg-ViT" secondAttribute="leading" id="PS6-nn-CEg"/>
+                            <constraint firstItem="2WP-a4-FsC" firstAttribute="baseline" secondItem="dOl-eX-zUN" secondAttribute="baseline" id="TqZ-fD-AET"/>
+                            <constraint firstItem="hjE-wv-osT" firstAttribute="baseline" secondItem="iu1-rj-E9E" secondAttribute="firstBaseline" id="Vf7-q0-gtP"/>
+                            <constraint firstItem="hjE-wv-osT" firstAttribute="baseline" secondItem="iu1-rj-E9E" secondAttribute="baseline" id="gck-XD-a2j"/>
+                            <constraint firstItem="cSM-Ph-NbR" firstAttribute="top" secondItem="dRD-xg-ViT" secondAttribute="bottom" constant="25" id="tAr-jE-C8r"/>
+                            <constraint firstItem="cSM-Ph-NbR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="v7I-Zf-kZH"/>
+                            <constraint firstItem="iu1-rj-E9E" firstAttribute="bottom" secondItem="cSM-Ph-NbR" secondAttribute="bottom" id="wmF-YX-lOU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="heartButton" destination="iu1-rj-E9E" id="S4Z-aD-Bdo"/>
+                        <outlet property="imageView" destination="dRD-xg-ViT" id="Rg6-ub-k0l"/>
+                        <outlet property="refreshButton" destination="cSM-Ph-NbR" id="K5m-YN-2OO"/>
+                        <outlet property="rewindButton" destination="hjE-wv-osT" id="eGW-HX-Kls"/>
+                        <outlet property="safariButton" destination="2WP-a4-FsC" id="iu6-XO-r0K"/>
+                        <outlet property="sourceButton" destination="dOl-eX-zUN" id="2co-Gr-pva"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="88.392857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.clockwise.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="arrow.down.heart.fill" catalog="system" width="128" height="109"/>
+        <image name="arrowshape.turn.up.left.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="list.bullet.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="safari.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

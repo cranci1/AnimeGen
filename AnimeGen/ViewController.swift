@@ -2,209 +2,229 @@
 //  ViewController.swift
 //  AnimeGen
 //
-//  Created by cranci on 04/05/24.
+//  Created by Francesco on 26/01/25.
 //
 
 import UIKit
+import Photos
+import Kingfisher
+import SafariServices
+
+enum ImageSource: String {
+    case waifuIm = "waifuIm"
+    case picRe = "picRe"
+    case waifupics = "waifuPics"
+    case purr = "purr"
+    case nekosMoe = "nekosMoe"
+    case nekoBot = "nekoBot"
+    case nekosApi = "nekosApi"
+    case nekosBest = "nekosBest"
+    case nekosLife = "nekosLife"
+}
 
 class ViewController: UIViewController {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var rewindButton: UIButton!
+    @IBOutlet weak var safariButton: UIButton!
+    @IBOutlet weak var sourceButton: UIButton!
     
-    // Image Handling
-    var imageHistory: [(UIImage, [String])] = []
-    var currentPosition: Int = -1
-    var currentImageURL: String?
-    var lastImage: UIImage?
-    var imageView: UIImageView!
-
-    // IBOutlets
-    @IBOutlet var RefreshButton: UIButton!
-    @IBOutlet var HeartButton: UIButton!
-    @IBOutlet var RewindButton: UIButton!
-    @IBOutlet var WebButton: UIButton!
-    @IBOutlet var ShareButton: UIButton!
-    @IBOutlet var apiButton: UIButton!
-    @IBOutlet var tagsLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-
-    // Timer
-    var startTime: Date?
-    var timer: Timer?
-
-    // User Defaults
-    var enableAnimations = UserDefaults.standard.bool(forKey: "enableAnimations")
-    var gradient = UserDefaults.standard.bool(forKey: "enablegradient")
-    var activity = UserDefaults.standard.bool(forKey: "enableTime")
-    var gestures = UserDefaults.standard.bool(forKey: "enableGestures")
-    var loadstart = UserDefaults.standard.bool(forKey: "enableImageStartup")
-    var TagsHide = UserDefaults.standard.bool(forKey: "enableTagsHide")
-    var HistoryTrue = UserDefaults.standard.bool(forKey: "enableHistory")
-    var alert = UserDefaults.standard.bool(forKey: "enableDeveloperAlert")
-    var developerAPIs = UserDefaults.standard.bool(forKey: "enableDevAPIs")
-    var lightmode = UserDefaults.standard.bool(forKey: "enabledLightMode")
-    var parentsModeLoL = UserDefaults.standard.bool(forKey: "parentsModeLoL")
-
-    // Choice Properties
-    var counter: Int = 0
-    let choices = ["waifu.im", "pic.re", "waifu.pics", "nekos.best", "Nekos api", "nekos.moe", "NekoBot", "nekos.life", "n-sfw.com", "Purr"]
+    var currentSource: ImageSource = .waifuIm
+    var imageHistory: [URL] = []
+    var currentImageIndex: Int = -1
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imageWidths = Settings.shared.imageWidth
-        let imageHeights = Settings.shared.imageHeight
-        
-        if #available(iOS 15.0, *) {
-            if let image = UIImage(systemName: "square.and.arrow.up.circle.fill") {
-                ShareButton.setImage(image, for: .normal)
-            }
-        } else {
-            if let image = UIImage(systemName: "square.and.arrow.up") {
-                ShareButton.setImage(image, for: .normal)
-            }
-        }
-        
-        if let Webimage = UIImage(systemName: "safari.fill") {
-            WebButton.setImage(Webimage, for: .normal)
-        }
-        
-        startTime = Date()
-
-        // Gestures
-        if gestures {
-            let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(heartButtonTapped))
-            tripleTapGesture.numberOfTapsRequired = 3
-            view.addGestureRecognizer(tripleTapGesture)
-
-            let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(refreshButtonTapped))
-            swipeLeft.direction = .left
-            view.addGestureRecognizer(swipeLeft)
-
-            let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(rewindButtonTapped))
-            swipeRight.direction = .right
-            view.addGestureRecognizer(swipeRight)
-        }
-        
-        // Gradient
-        if gradient {
-            setupGradient()
-            animateGradient()
-        }
-        
-        // Image View
-        imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
-        
-        timeLabel.isHidden = !activity
-
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
-        
+        view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
-            
-            // Image View
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: imageWidths),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: imageHeights),
-            
-            // API button
-            apiButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            apiButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            apiButton.heightAnchor.constraint(equalToConstant: 40),
-            apiButton.widthAnchor.constraint(equalToConstant: 120),
-            
-            // Activity button
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: RefreshButton.topAnchor, constant: -30),
-            
-            // Tags label
-            tagsLabel.topAnchor.constraint(equalTo: apiButton.bottomAnchor, constant: 16),
-            tagsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            tagsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
-            // Time label
-            timeLabel.bottomAnchor.constraint(equalTo: RefreshButton.bottomAnchor, constant: 25),
-            timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
-            ])
+            activityIndicator.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            activityIndicator.topAnchor.constraint(equalTo: imageView.bottomAnchor)
+        ])
         
-        if loadstart {
-            loadImageAndTagsFromSelectedAPI()
+        if let savedSource = UserDefaults.standard.string(forKey: "selectedSource"),
+           let imageSource = ImageSource(rawValue: savedSource) {
+            currentSource = imageSource
+        }
+        
+        setupSourceButtonMenu()
+        loadNewImage()
+    }
+    
+    func setupSourceButtonMenu() {
+        sourceButton.menu = createSourceMenu()
+        sourceButton.showsMenuAsPrimaryAction = true
+    }
+    
+    func createSourceMenu() -> UIMenu {
+        let sources: [ImageSource] = [.waifuIm, .picRe, .waifupics, .purr, .nekosMoe, .nekoBot, .nekosApi, .nekosBest, .nekosLife]
+        
+        let actions = sources.map { source in
+            UIAction(title: source.rawValue, state: (currentSource == source) ? .on : .off) { [weak self] _ in
+                self?.currentSource = source
+                self?.saveSelectedSource()
+                self?.loadNewImage()
+                self?.setupSourceButtonMenu()
+            }
+        }
+        
+        return UIMenu(title: "Select Source", children: actions)
+    }
+    
+    func loadNewImage() {
+        activityIndicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            switch self.currentSource {
+            case .waifuIm:
+                self.fetchImageFromWaifuIm()
+            case .picRe:
+                self.fetchImageFromPicRe()
+            case .waifupics:
+                self.fetchImageFromWaifuPics()
+            case .purr:
+                self.fetchImageFromPurr()
+            case .nekosMoe:
+                self.fetchImageFromNekosMoe()
+            case .nekoBot:
+                self.fetchImageFromNekoBot()
+            case .nekosApi:
+                self.fetchImageFromNekosApi()
+            case .nekosBest:
+                self.fetchImageFromNekosBest()
+            case .nekosLife:
+                self.fetchImageFromNekosLife()
+            }
+        }
+    }
+    
+    func loadImage(from url: URL) {
+        imageView.kf.setImage(with: url, options: [.keepCurrentImageWhileLoading]) { [weak self] result in
+            guard let self = self else { return }
+            self.activityIndicator.stopAnimating()
+            
+            switch result {
+            case .success:
+                if self.imageHistory.isEmpty || url != self.imageHistory.last {
+                    self.imageHistory.append(url)
+                }
+                self.currentImageIndex = self.imageHistory.count - 1
+            case .failure(let error):
+                print("Error: \(error)")
+                self.showErrorAlert(message: "Failed to load image.")
+            }
+        }
+    }
+    
+    @IBAction func safariButtonTapped(_ sender: UIButton) {
+        guard currentImageIndex >= 0, currentImageIndex < imageHistory.count else {
+            print("No valid image URL available")
+            return
+        }
+        
+        let currentURL = imageHistory[currentImageIndex]
+        let safariVC = SFSafariViewController(url: currentURL)
+        present(safariVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func refreshButtonTapped(_ sender: UIButton) {
+        loadNewImage()
+    }
+    
+    @IBAction func rewindButtonTapped(_ sender: UIButton) {
+        guard !imageHistory.isEmpty else {
+            print("No images in history.")
+            return
+        }
+        
+        if currentImageIndex > 0 {
+            currentImageIndex -= 1
+            let previousImageUrl = imageHistory[currentImageIndex]
+            self.imageView.kf.setImage(with: previousImageUrl)
         } else {
-            self.activityIndicator.isHidden = true
+            print("first image")
         }
         
-        // APIs Pref
-        NotificationCenter.default.addObserver(self, selector: #selector(handleTags(_:)), name: Notification.Name("EnableTagsHide"), object: nil)
-        
-        // App Features
-        NotificationCenter.default.addObserver(self, selector: #selector(handleGradient(_:)), name: Notification.Name("EnableGradient"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleTime(_:)), name: Notification.Name("EnableTime"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleGestures(_:)), name: Notification.Name("EnableGestures"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLightMode(_:)), name: Notification.Name("EnabledLightMode"), object: nil)
-        
-        // Content
-        NotificationCenter.default.addObserver(self, selector: #selector(handleParentMode(_:)), name: Notification.Name("ParentsModeLoL"), object: nil)
-        
-        // Developer
-        NotificationCenter.default.addObserver(self, selector: #selector(handleHmtaiShowcase(_:)), name: Notification.Name("EnableDevAPIs"), object: nil)
-        
-        // History
-        NotificationCenter.default.addObserver(self, selector: #selector(handleHsistory(_:)), name: Notification.Name("EnableHistory"), object: nil)
-        
-        // Choice of the settings default app.
-        let selectedChoiceIndex = UserDefaults.standard.integer(forKey: "SelectedChoiceIndex")
-        apiButton.setTitle(choices[selectedChoiceIndex], for: .normal)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(selectedChoiceChanged(_:)), name: Notification.Name("SelectedChoiceChanged"), object: nil)
+        if currentImageIndex == 0 {
+            showAlert(message: "This is the first image in history.")
+        }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    func saveSelectedSource() {
+        UserDefaults.standard.set(currentSource.rawValue, forKey: "selectedSource")
     }
     
-    // Choice listener
-    @objc func selectedChoiceChanged(_ notification: Notification) {
-        guard let selectedIndex = notification.object as? Int else { return }
-        guard selectedIndex >= 0 && selectedIndex < choices.count else { return }
-        apiButton.setTitle(choices[selectedIndex], for: .normal)
-    }
-    
-    // Function to make the Notification of the UserDefault work
-    @objc func handleNotification(_ notification: Notification, key: String, action: (Bool) -> Void) {
-        guard let userInfo = notification.userInfo,
-              let isEnabled = userInfo[key] as? Bool else {
+    @IBAction func heartButtonTapped(_ sender: UIButton) {
+        guard let image = imageView.image else {
+            print("No image available to save")
             return
         }
-        action(isEnabled)
-    }
-
-    // load image from the api
-    func loadImageAndTagsFromSelectedAPI() {
-        guard let title = apiButton.title(for: .normal) else {
-            return
+        
+        PHPhotoLibrary.requestAuthorization { [weak self] status in
+            guard let self = self else { return }
+            
+            switch status {
+            case .authorized, .limited:
+                DispatchQueue.main.async {
+                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageCompletion(_:didFinishSavingWithError:contextInfo:)), nil)
+                }
+            case .denied, .restricted:
+                print("Photo library access denied or restricted.")
+                self.showPhotoLibraryAccessDeniedAlert()
+            case .notDetermined:
+                print("Photo library access not determined.")
+            @unknown default:
+                print("Unknown authorization status")
+            }
         }
-
-        let apiLoaders: [String: () -> Void] = [
-            "pic.re": loadImageFromPicRe,
-            "waifu.im": loadImageFromWaifuIm,
-            "waifu.it": loadImageFromWaifuIt,
-            "nekos.best": loadImageFromNekosBest,
-            "waifu.pics": loadImageFromWaifuPics,
-            "Nekos api": loadImageFromNekosapi,
-            "nekos.moe": loadImageFromNekosMoe,
-            "Hmtai api": startHmtaiLoader,
-            "kyoko": loadImageFromKyoko,
-            "Purr": loadImageFromPurr,
-            "NekoBot": loadImageFromNekoBot,
-            "Hmtai": startHmtaiLoader,
-            "n-sfw.com": loadImageFromNSFW,
-            "nekos.life": loadImageFromNekosLife
-        ]
-
-        apiLoaders[title]?()
+    }
+    
+    @objc func imageCompletion(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print("Error saving image: \(error.localizedDescription)")
+            showAlert(message: "Error saving image: \(error.localizedDescription)")
+        } else {
+            print("Image saved to photo library successfully!")
+            showAlert(message: "Image saved to photo library successfully!")
+        }
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showPhotoLibraryAccessDeniedAlert() {
+        let alert = UIAlertController(
+            title: "Photo Library Access Denied",
+            message: "Please allow access to your photo library in Settings to save images.",
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "Go to Settings", style: .default, handler: { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
     }
 }
-
