@@ -13,6 +13,13 @@ import SafariServices
 enum ImageSource: String {
     case waifuIm = "waifuIm"
     case picRe = "picRe"
+    case waifupics = "waifuPics"
+    case purr = "purr"
+    case nekosMoe = "nekosMoe"
+    case nekoBot = "nekoBot"
+    case nekosApi = "nekosApi"
+    case nekosBest = "nekosBest"
+    case nekosLife = "nekosLife"
 }
 
 class ViewController: UIViewController {
@@ -58,31 +65,44 @@ class ViewController: UIViewController {
     }
     
     func createSourceMenu() -> UIMenu {
-        let waifuImAction = UIAction(title: "waifu.im", image: nil, state: (currentSource == .waifuIm) ? .on : .off) { [weak self] (action) in
-            self?.currentSource = .waifuIm
-            self?.saveSelectedSource()
-            self?.loadNewImage()
-            self?.setupSourceButtonMenu()
+        let sources: [ImageSource] = [.waifuIm, .picRe, .waifupics, .purr, .nekosMoe, .nekoBot, .nekosApi, .nekosBest, .nekosLife]
+        
+        let actions = sources.map { source in
+            UIAction(title: source.rawValue, state: (currentSource == source) ? .on : .off) { [weak self] _ in
+                self?.currentSource = source
+                self?.saveSelectedSource()
+                self?.loadNewImage()
+                self?.setupSourceButtonMenu()
+            }
         }
         
-        let picReAction = UIAction(title: "pic.re", image: nil, state: (currentSource == .picRe) ? .on : .off) { [weak self] (action) in
-            self?.currentSource = .picRe
-            self?.saveSelectedSource()
-            self?.loadNewImage()
-            self?.setupSourceButtonMenu()
-        }
-        
-        return UIMenu(title: "Select Source", children: [waifuImAction, picReAction])
+        return UIMenu(title: "Select Source", children: actions)
     }
     
     func loadNewImage() {
         activityIndicator.startAnimating()
         
-        switch currentSource {
-        case .waifuIm:
-            fetchImageFromWaifuIm()
-        case .picRe:
-            fetchImageFromPicRe()
+        DispatchQueue.main.async {
+            switch self.currentSource {
+            case .waifuIm:
+                self.fetchImageFromWaifuIm()
+            case .picRe:
+                self.fetchImageFromPicRe()
+            case .waifupics:
+                self.fetchImageFromWaifuPics()
+            case .purr:
+                self.fetchImageFromPurr()
+            case .nekosMoe:
+                self.fetchImageFromNekosMoe()
+            case .nekoBot:
+                self.fetchImageFromNekoBot()
+            case .nekosApi:
+                self.fetchImageFromNekosApi()
+            case .nekosBest:
+                self.fetchImageFromNekosBest()
+            case .nekosLife:
+                self.fetchImageFromNekosLife()
+            }
         }
     }
     

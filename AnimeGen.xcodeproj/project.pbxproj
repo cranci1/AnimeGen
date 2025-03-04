@@ -9,8 +9,15 @@
 /* Begin PBXBuildFile section */
 		1353D2992D6A369100EC7423 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353D2982D6A369100EC7423 /* URLSession.swift */; };
 		137BE1E82D6A3D0A0009C8D0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 137BE1E72D6A3D0A0009C8D0 /* Kingfisher */; };
-		137BE1F32D6B0C850009C8D0 /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137BE1F22D6B0C850009C8D0 /* pic-re.swift */; };
-		137BE1F52D6B0CB90009C8D0 /* waifu-im.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137BE1F42D6B0CB90009C8D0 /* waifu-im.swift */; };
+		138424572D771210002FEC32 /* nekos-moe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424522D771210002FEC32 /* nekos-moe.swift */; };
+		138424582D771210002FEC32 /* waifu-pics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424532D771210002FEC32 /* waifu-pics.swift */; };
+		138424592D771210002FEC32 /* waifu-im.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424542D771210002FEC32 /* waifu-im.swift */; };
+		1384245A2D771210002FEC32 /* pic-re.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424552D771210002FEC32 /* pic-re.swift */; };
+		1384245B2D771210002FEC32 /* purr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424562D771210002FEC32 /* purr.swift */; };
+		1384245D2D77132E002FEC32 /* neko-bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384245C2D77132E002FEC32 /* neko-bot.swift */; };
+		1384245F2D7713E5002FEC32 /* nekos-api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384245E2D7713E5002FEC32 /* nekos-api.swift */; };
+		138424612D7714CF002FEC32 /* nekos-life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424602D7714CF002FEC32 /* nekos-life.swift */; };
+		138424632D77158E002FEC32 /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424622D77158E002FEC32 /* nekos-best.swift */; };
 		13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3852F2D462C14006B6FA6 /* AppDelegate.swift */; };
 		13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385312D462C14006B6FA6 /* SceneDelegate.swift */; };
 		13F385342D462C14006B6FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385332D462C14006B6FA6 /* ViewController.swift */; };
@@ -21,8 +28,15 @@
 
 /* Begin PBXFileReference section */
 		1353D2982D6A369100EC7423 /* URLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
-		137BE1F22D6B0C850009C8D0 /* pic-re.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
-		137BE1F42D6B0CB90009C8D0 /* waifu-im.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
+		138424522D771210002FEC32 /* nekos-moe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "nekos-moe.swift"; sourceTree = "<group>"; };
+		138424532D771210002FEC32 /* waifu-pics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-pics.swift"; sourceTree = "<group>"; };
+		138424542D771210002FEC32 /* waifu-im.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "waifu-im.swift"; sourceTree = "<group>"; };
+		138424552D771210002FEC32 /* pic-re.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "pic-re.swift"; sourceTree = "<group>"; };
+		138424562D771210002FEC32 /* purr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = purr.swift; sourceTree = "<group>"; };
+		1384245C2D77132E002FEC32 /* neko-bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "neko-bot.swift"; sourceTree = "<group>"; };
+		1384245E2D7713E5002FEC32 /* nekos-api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-api.swift"; sourceTree = "<group>"; };
+		138424602D7714CF002FEC32 /* nekos-life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-life.swift"; sourceTree = "<group>"; };
+		138424622D77158E002FEC32 /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
 		13F3852C2D462C14006B6FA6 /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F3852F2D462C14006B6FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F385312D462C14006B6FA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,14 +67,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		137BE1ED2D6B09300009C8D0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				13F385332D462C14006B6FA6 /* ViewController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		137BE1F02D6B09470009C8D0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,14 +75,20 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		137BE1F12D6B0C7C0009C8D0 /* Sources */ = {
+		138424512D771202002FEC32 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				137BE1F22D6B0C850009C8D0 /* pic-re.swift */,
-				137BE1F42D6B0CB90009C8D0 /* waifu-im.swift */,
+				138424552D771210002FEC32 /* pic-re.swift */,
+				138424542D771210002FEC32 /* waifu-im.swift */,
+				138424532D771210002FEC32 /* waifu-pics.swift */,
+				138424522D771210002FEC32 /* nekos-moe.swift */,
+				1384245C2D77132E002FEC32 /* neko-bot.swift */,
+				1384245E2D7713E5002FEC32 /* nekos-api.swift */,
+				138424622D77158E002FEC32 /* nekos-best.swift */,
+				138424602D7714CF002FEC32 /* nekos-life.swift */,
+				138424562D771210002FEC32 /* purr.swift */,
 			);
-			name = Sources;
-			path = ../Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		13F385232D462C14006B6FA6 = {
@@ -98,10 +110,10 @@
 		13F3852E2D462C14006B6FA6 /* AnimeGen */ = {
 			isa = PBXGroup;
 			children = (
-				137BE1F12D6B0C7C0009C8D0 /* Sources */,
+				138424512D771202002FEC32 /* Sources */,
 				137BE1F02D6B09470009C8D0 /* Utils */,
-				137BE1ED2D6B09300009C8D0 /* Views */,
 				13F3852F2D462C14006B6FA6 /* AppDelegate.swift */,
+				13F385332D462C14006B6FA6 /* ViewController.swift */,
 				13F385312D462C14006B6FA6 /* SceneDelegate.swift */,
 				13F385352D462C14006B6FA6 /* Main.storyboard */,
 				13F3853A2D462C16006B6FA6 /* LaunchScreen.storyboard */,
@@ -188,12 +200,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				138424632D77158E002FEC32 /* nekos-best.swift in Sources */,
+				1384245D2D77132E002FEC32 /* neko-bot.swift in Sources */,
+				1384245F2D7713E5002FEC32 /* nekos-api.swift in Sources */,
 				13F385342D462C14006B6FA6 /* ViewController.swift in Sources */,
 				13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */,
+				138424612D7714CF002FEC32 /* nekos-life.swift in Sources */,
 				1353D2992D6A369100EC7423 /* URLSession.swift in Sources */,
-				137BE1F32D6B0C850009C8D0 /* pic-re.swift in Sources */,
-				137BE1F52D6B0CB90009C8D0 /* waifu-im.swift in Sources */,
+				138424572D771210002FEC32 /* nekos-moe.swift in Sources */,
 				13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */,
+				138424582D771210002FEC32 /* waifu-pics.swift in Sources */,
+				1384245B2D771210002FEC32 /* purr.swift in Sources */,
+				138424592D771210002FEC32 /* waifu-im.swift in Sources */,
+				1384245A2D771210002FEC32 /* pic-re.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
