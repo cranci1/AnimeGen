@@ -248,7 +248,7 @@ struct SettingsView: View {
                                 SettingsNavigationRow(icon: "info.circle", titleKey: "About Sora")
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://github.com/cranci1/Sora")!) {
                                 SettingsNavigationRow(
                                     icon: "chevron.left.forwardslash.chevron.right",
@@ -258,7 +258,7 @@ struct SettingsView: View {
                                 )
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://discord.gg/x7hppDWFDZ")!) {
                                 SettingsNavigationRow(
                                     icon: "bubble.left.and.bubble.right",
@@ -268,7 +268,7 @@ struct SettingsView: View {
                                 )
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://github.com/cranci1/Sora/issues")!) {
                                 SettingsNavigationRow(
                                     icon: "exclamationmark.circle",
@@ -278,7 +278,7 @@ struct SettingsView: View {
                                 )
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://github.com/cranci1/Sora/blob/dev/LICENSE")!) {
                                 SettingsNavigationRow(
                                     icon: "doc.text",
@@ -306,8 +306,8 @@ struct SettingsView: View {
                         )
                         .padding(.horizontal, 20)
                     }
-
-                    Text("Sora \(version) by cranci1")
+                    
+                    Text("Sora 1.0.0 - cranci1")
                         .font(.footnote)
                         .foregroundStyle(.gray)
                         .frame(maxWidth: .infinity, alignment: .center)
