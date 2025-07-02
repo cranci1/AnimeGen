@@ -59,30 +59,48 @@ extension JSController {
                     let group = DispatchGroup()
                     group.enter()
                     var chaptersArr: [[String: Any]] = []
+                    var hasLeftGroup = false
+                    let groupQueue = DispatchQueue(label: "extractChapters.group")
+                    
                     let thenBlock: @convention(block) (JSValue) -> Void = { jsValue in
                         Logger.shared.log("extractChapters thenBlock: \(jsValue)", type: "Debug")
-                        if let arr = jsValue.toArray() as? [[String: Any]] {
-                            Logger.shared.log("extractChapters: parsed as array, count = \(arr.count)", type: "Debug")
-                            chaptersArr = arr
-                        } else if let jsonString = jsValue.toString(), let data = jsonString.data(using: .utf8) {
-                            do {
-                                if let arr = try JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
-                                    Logger.shared.log("extractChapters: parsed as JSON string, count = \(arr.count)", type: "Debug")
-                                    chaptersArr = arr
-                                } else {
-                                    Logger.shared.log("extractChapters: JSON string did not parse to array", type: "Error")
-                                }
-                            } catch {
-                                Logger.shared.log("JSON parsing error of extractChapters: \(error)", type: "Error")
+                        groupQueue.sync {
+                            guard !hasLeftGroup else {
+                                Logger.shared.log("extractChapters: thenBlock called but group already left", type: "Debug")
+                                return
                             }
-                        } else {
-                            Logger.shared.log("extractChapters: could not parse result", type: "Error")
+                            hasLeftGroup = true
+                            
+                            if let arr = jsValue.toArray() as? [[String: Any]] {
+                                Logger.shared.log("extractChapters: parsed as array, count = \(arr.count)", type: "Debug")
+                                chaptersArr = arr
+                            } else if let jsonString = jsValue.toString(), let data = jsonString.data(using: .utf8) {
+                                do {
+                                    if let arr = try JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
+                                        Logger.shared.log("extractChapters: parsed as JSON string, count = \(arr.count)", type: "Debug")
+                                        chaptersArr = arr
+                                    } else {
+                                        Logger.shared.log("extractChapters: JSON string did not parse to array", type: "Error")
+                                    }
+                                } catch {
+                                    Logger.shared.log("JSON parsing error of extractChapters: \(error)", type: "Error")
+                                }
+                            } else {
+                                Logger.shared.log("extractChapters: could not parse result", type: "Error")
+                            }
+                            group.leave()
                         }
-                        group.leave()
                     }
                     let catchBlock: @convention(block) (JSValue) -> Void = { jsValue in
                         Logger.shared.log("extractChapters catchBlock: \(jsValue)", type: "Error")
-                        group.leave()
+                        groupQueue.sync {
+                            guard !hasLeftGroup else {
+                                Logger.shared.log("extractChapters: catchBlock called but group already left", type: "Debug")
+                                return
+                            }
+                            hasLeftGroup = true
+                            group.leave()
+                        }
                     }
                     result.invokeMethod("then", withArguments: [thenBlock])
                     result.invokeMethod("catch", withArguments: [catchBlock])
@@ -182,24 +200,42 @@ extension JSController {
                     group.enter()
                     var extractedText = ""
                     var extractError: Error? = nil
+                    var hasLeftGroup = false
+                    let groupQueue = DispatchQueue(label: "extractText.group")
                     
                     let thenBlock: @convention(block) (JSValue) -> Void = { jsValue in
                         Logger.shared.log("extractText thenBlock: received value", type: "Debug")
-                        if let text = jsValue.toString(), !text.isEmpty {
-                            Logger.shared.log("extractText: successfully extracted text", type: "Debug")
-                            extractedText = text
-                        } else {
-                            extractError = JSError.emptyContent
+                        groupQueue.sync {
+                            guard !hasLeftGroup else {
+                                Logger.shared.log("extractText: thenBlock called but group already left", type: "Debug")
+                                return
+                            }
+                            hasLeftGroup = true
+                            
+                            if let text = jsValue.toString(), !text.isEmpty {
+                                Logger.shared.log("extractText: successfully extracted text", type: "Debug")
+                                extractedText = text
+                            } else {
+                                extractError = JSError.emptyContent
+                            }
+                            group.leave()
                         }
-                        group.leave()
                     }
                     
                     let catchBlock: @convention(block) (JSValue) -> Void = { jsValue in
                         Logger.shared.log("extractText catchBlock: \(jsValue)", type: "Error")
-                        if extractedText.isEmpty { 
-                            extractError = JSError.jsException(jsValue.toString() ?? "Unknown error")
+                        groupQueue.sync {
+                            guard !hasLeftGroup else {
+                                Logger.shared.log("extractText: catchBlock called but group already left", type: "Debug")
+                                return
+                            }
+                            hasLeftGroup = true
+                            
+                            if extractedText.isEmpty {
+                                extractError = JSError.jsException(jsValue.toString() ?? "Unknown error")
+                            }
+                            group.leave()
                         }
-                        group.leave()
                     }
                     
                     result.invokeMethod("then", withArguments: [thenBlock])
@@ -277,8 +313,8 @@ extension JSController {
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
-        guard let httpResponse = response as? HTTPURLResponse, 
-              (200...299).contains(httpResponse.statusCode) else {
+        guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode) else {
             Logger.shared.log("Direct fetch failed with status code: \((response as? HTTPURLResponse)?.statusCode ?? -1)", type: "Error")
             throw JSError.invalidResponse
         }
@@ -317,4 +353,4 @@ extension JSController {
         Logger.shared.log("Direct fetch successful, content length: \(content.count)", type: "Debug")
         return content
     }
-} 
+}

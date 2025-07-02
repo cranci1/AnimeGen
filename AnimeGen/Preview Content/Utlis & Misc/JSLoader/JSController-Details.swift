@@ -9,7 +9,6 @@ import Foundation
 import JavaScriptCore
 
 extension JSController {
-    
     func fetchDetails(url: String, completion: @escaping ([MediaItem], [EpisodeLink]) -> Void) {
         guard let url = URL(string: url) else {
             completion([], [])
@@ -94,41 +93,64 @@ extension JSController {
         let dispatchGroup = DispatchGroup()
         
         dispatchGroup.enter()
+        var hasLeftDetailsGroup = false
+        let detailsGroupQueue = DispatchQueue(label: "details.group")
+        
         let promiseValueDetails = extractDetailsFunction.call(withArguments: [url.absoluteString])
         guard let promiseDetails = promiseValueDetails else {
             Logger.shared.log("extractDetails did not return a Promise", type: "Error")
-            dispatchGroup.leave()
+            detailsGroupQueue.sync {
+                guard !hasLeftDetailsGroup else { return }
+                hasLeftDetailsGroup = true
+                dispatchGroup.leave()
+            }
             completion([], [])
             return
         }
         
         let thenBlockDetails: @convention(block) (JSValue) -> Void = { result in
-            if let jsonOfDetails = result.toString(),
-               let dataDetails = jsonOfDetails.data(using: .utf8) {
-                do {
-                    if let array = try JSONSerialization.jsonObject(with: dataDetails, options: []) as? [[String: Any]] {
-                        resultItems = array.map { item -> MediaItem in
-                            MediaItem(
-                                description: item["description"] as? String ?? "",
-                                aliases: item["aliases"] as? String ?? "",
-                                airdate: item["airdate"] as? String ?? ""
-                            )
-                        }
-                    } else {
-                        Logger.shared.log("Failed to parse JSON of extractDetails", type: "Error")
-                    }
-                } catch {
-                    Logger.shared.log("JSON parsing error of extract details: \(error)", type: "Error")
+            detailsGroupQueue.sync {
+                guard !hasLeftDetailsGroup else {
+                    Logger.shared.log("extractDetails: thenBlock called but group already left", type: "Debug")
+                    return
                 }
-            } else {
-                Logger.shared.log("Result is not a string of extractDetails", type: "Error")
+                hasLeftDetailsGroup = true
+                
+                if let jsonOfDetails = result.toString(),
+                   let dataDetails = jsonOfDetails.data(using: .utf8) {
+                    do {
+                        if let array = try JSONSerialization.jsonObject(with: dataDetails, options: []) as? [[String: Any]] {
+                            resultItems = array.map { item -> MediaItem in
+                                MediaItem(
+                                    description: item["description"] as? String ?? "",
+                                    aliases: item["aliases"] as? String ?? "",
+                                    airdate: item["airdate"] as? String ?? ""
+                                )
+                            }
+                        } else {
+                            Logger.shared.log("Failed to parse JSON of extractDetails", type: "Error")
+                        }
+                    } catch {
+                        Logger.shared.log("JSON parsing error of extract details: \(error)", type: "Error")
+                    }
+                } else {
+                    Logger.shared.log("Result is not a string of extractDetails", type: "Error")
+                }
+                dispatchGroup.leave()
             }
-            dispatchGroup.leave()
         }
         
         let catchBlockDetails: @convention(block) (JSValue) -> Void = { error in
-            Logger.shared.log("Promise rejected of extractDetails: \(String(describing: error.toString()))", type: "Error")
-            dispatchGroup.leave()
+            detailsGroupQueue.sync {
+                guard !hasLeftDetailsGroup else {
+                    Logger.shared.log("extractDetails: catchBlock called but group already left", type: "Debug")
+                    return
+                }
+                hasLeftDetailsGroup = true
+                
+                Logger.shared.log("Promise rejected of extractDetails: \(String(describing: error.toString()))", type: "Error")
+                dispatchGroup.leave()
+            }
         }
         
         let thenFunctionDetails = JSValue(object: thenBlockDetails, in: context)
@@ -140,50 +162,80 @@ extension JSController {
         dispatchGroup.enter()
         let promiseValueEpisodes = extractEpisodesFunction.call(withArguments: [url.absoluteString])
         
+        var hasLeftEpisodesGroup = false
+        let episodesGroupQueue = DispatchQueue(label: "episodes.group")
+        
         let timeoutWorkItem = DispatchWorkItem {
             Logger.shared.log("Timeout for extractEpisodes", type: "Warning")
-            dispatchGroup.leave()
+            episodesGroupQueue.sync {
+                guard !hasLeftEpisodesGroup else {
+                    Logger.shared.log("extractEpisodes: timeout called but group already left", type: "Debug")
+                    return
+                }
+                hasLeftEpisodesGroup = true
+                dispatchGroup.leave()
+            }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: timeoutWorkItem)
         
         guard let promiseEpisodes = promiseValueEpisodes else {
             Logger.shared.log("extractEpisodes did not return a Promise", type: "Error")
             timeoutWorkItem.cancel()
-            dispatchGroup.leave()
+            episodesGroupQueue.sync {
+                guard !hasLeftEpisodesGroup else { return }
+                hasLeftEpisodesGroup = true
+                dispatchGroup.leave()
+            }
             completion([], [])
             return
         }
         
         let thenBlockEpisodes: @convention(block) (JSValue) -> Void = { result in
             timeoutWorkItem.cancel()
-            if let jsonOfEpisodes = result.toString(),
-               let dataEpisodes = jsonOfEpisodes.data(using: .utf8) {
-                do {
-                    if let array = try JSONSerialization.jsonObject(with: dataEpisodes, options: []) as? [[String: Any]] {
-                        episodeLinks = array.map { item -> EpisodeLink in
-                            EpisodeLink(
-                                number: item["number"] as? Int ?? 0,
-                                title: "",
-                                href: item["href"] as? String ?? "",
-                                duration: nil
-                            )
-                        }
-                    } else {
-                        Logger.shared.log("Failed to parse JSON of extractEpisodes", type: "Error")
-                    }
-                } catch {
-                    Logger.shared.log("JSON parsing error of extractEpisodes: \(error)", type: "Error")
+            episodesGroupQueue.sync {
+                guard !hasLeftEpisodesGroup else {
+                    Logger.shared.log("extractEpisodes: thenBlock called but group already left", type: "Debug")
+                    return
                 }
-            } else {
-                Logger.shared.log("Result is not a string of extractEpisodes", type: "Error")
+                hasLeftEpisodesGroup = true
+                
+                if let jsonOfEpisodes = result.toString(),
+                   let dataEpisodes = jsonOfEpisodes.data(using: .utf8) {
+                    do {
+                        if let array = try JSONSerialization.jsonObject(with: dataEpisodes, options: []) as? [[String: Any]] {
+                            episodeLinks = array.map { item -> EpisodeLink in
+                                EpisodeLink(
+                                    number: item["number"] as? Int ?? 0,
+                                    title: "",
+                                    href: item["href"] as? String ?? "",
+                                    duration: nil
+                                )
+                            }
+                        } else {
+                            Logger.shared.log("Failed to parse JSON of extractEpisodes", type: "Error")
+                        }
+                    } catch {
+                        Logger.shared.log("JSON parsing error of extractEpisodes: \(error)", type: "Error")
+                    }
+                } else {
+                    Logger.shared.log("Result is not a string of extractEpisodes", type: "Error")
+                }
+                dispatchGroup.leave()
             }
-            dispatchGroup.leave()
         }
         
         let catchBlockEpisodes: @convention(block) (JSValue) -> Void = { error in
             timeoutWorkItem.cancel()
-            Logger.shared.log("Promise rejected of extractEpisodes: \(String(describing: error.toString()))", type: "Error")
-            dispatchGroup.leave()
+            episodesGroupQueue.sync {
+                guard !hasLeftEpisodesGroup else {
+                    Logger.shared.log("extractEpisodes: catchBlock called but group already left", type: "Debug")
+                    return
+                }
+                hasLeftEpisodesGroup = true
+                
+                Logger.shared.log("Promise rejected of extractEpisodes: \(String(describing: error.toString()))", type: "Error")
+                dispatchGroup.leave()
+            }
         }
         
         let thenFunctionEpisodes = JSValue(object: thenBlockEpisodes, in: context)

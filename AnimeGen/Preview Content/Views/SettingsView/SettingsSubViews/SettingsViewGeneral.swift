@@ -336,12 +336,12 @@ struct SettingsViewGeneral: View {
                         .listStyle(.plain)
                         .frame(height: CGFloat(metadataProvidersOrder.count * 65))
                         .background(Color.clear)
-                        .padding(.bottom, 8)
                         
                         Text(NSLocalizedString("Drag to reorder", comment: ""))
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, -6)
                             .padding(.bottom, 8)
                     }
                     .environment(\.editMode, .constant(.active))
@@ -446,12 +446,12 @@ struct SettingsViewGeneral: View {
                         .listStyle(.plain)
                         .frame(height: CGFloat(librarySectionsOrder.count * 70))
                         .background(Color.clear)
-                        .padding(.bottom, 8)
                         
                         Text(NSLocalizedString("Drag to reorder sections", comment: ""))
                             .font(.caption)
                             .foregroundStyle(.gray)
                             .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.top, -6)
                             .padding(.bottom, 8)
                     }
                     .environment(\.editMode, .constant(.active))
