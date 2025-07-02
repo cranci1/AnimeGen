@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		132B28222E140DFE00BACE64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 132B278F2E140DFB00BACE64 /* Assets.xcassets */; };
 		132B282B2E140DFE00BACE64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27AF2E140DFC00BACE64 /* ContentView.swift */; };
-		132E238E2E144DAE0026E0E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F4F3442E14435F0065918C /* Preview Assets.xcassets */; };
 		1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */; };
 		13709B962E0410B7008BA1D4 /* SoraCore in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B952E0410B7008BA1D4 /* SoraCore */; };
 		13709B992E0410C7008BA1D4 /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B982E0410C7008BA1D4 /* Drops */; };
@@ -102,6 +101,7 @@
 		13F4F3B72E1443610065918C /* VTTSubtitlesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4F33F2E14435F0065918C /* VTTSubtitlesLoader.swift */; };
 		13F4F3B82E1443610065918C /* NormalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4F3412E14435F0065918C /* NormalPlayer.swift */; };
 		13F4F3B92E1443610065918C /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4F3422E14435F0065918C /* VideoPlayer.swift */; };
+		13F4F3BA2E1443610065918C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F4F3442E14435F0065918C /* Preview Assets.xcassets */; };
 		13F4F3BB2E1443610065918C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13F4F3462E14435F0065918C /* Localizable.strings */; };
 		13F4F3BC2E1443610065918C /* Anilist-Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4F3582E1443600065918C /* Anilist-Token.swift */; };
 		13F4F3BD2E1443610065918C /* Anilist-Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4F3592E1443600065918C /* Anilist-Login.swift */; };
@@ -802,7 +802,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				132E238E2E144DAE0026E0E2 /* Preview Assets.xcassets in Resources */,
+				13F4F3BA2E1443610065918C /* Preview Assets.xcassets in Resources */,
 				13F4F3BB2E1443610065918C /* Localizable.strings in Resources */,
 				132B28222E140DFE00BACE64 /* Assets.xcassets in Resources */,
 			);
