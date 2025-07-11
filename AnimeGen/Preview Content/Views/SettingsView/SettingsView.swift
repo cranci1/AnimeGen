@@ -127,11 +127,10 @@ fileprivate struct ModulePreviewRow: View {
 }
 
 struct SettingsView: View {
-    let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "ALPHA"
     @Environment(\.colorScheme) var colorScheme
     @StateObject var settings = Settings()
     @EnvironmentObject var moduleManager: ModuleManager
-
+    
     @State private var isNavigationActive = false
     
     var body: some View {
@@ -253,7 +252,7 @@ struct SettingsView: View {
                                 SettingsNavigationRow(icon: "info.circle", titleKey: "About Sora")
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://github.com/cranci1/Sora")!) {
                                 HStack {
                                     Image("Github Icon")
@@ -275,7 +274,7 @@ struct SettingsView: View {
                                 .padding(.vertical, 12)
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://discord.gg/x7hppDWFDZ")!) {
                                 HStack {
                                     Image("Discord Icon")
@@ -297,7 +296,7 @@ struct SettingsView: View {
                                 .padding(.vertical, 12)
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://github.com/cranci1/Sora/issues")!) {
                                 SettingsNavigationRow(
                                     icon: "exclamationmark.circle.fill",
@@ -307,7 +306,7 @@ struct SettingsView: View {
                                 )
                             }
                             Divider().padding(.horizontal, 16)
-
+                            
                             Link(destination: URL(string: "https://github.com/cranci1/Sora/blob/dev/LICENSE")!) {
                                 SettingsNavigationRow(
                                     icon: "doc.text.fill",
@@ -335,8 +334,8 @@ struct SettingsView: View {
                         )
                         .padding(.horizontal, 20)
                     }
-
-                    Text("Sora \(version) by cranci1")
+                    
+                    Text("Sora 1.0.1 by cranci1")
                         .font(.footnote)
                         .foregroundStyle(.gray)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -454,6 +453,8 @@ class Settings: ObservableObject {
             languageCode = "nn"
         case "Kazakh":
             languageCode = "kk"
+        case "Mongolian":
+            languageCode = "mn"
         case "Swedish":
             languageCode = "sv"
         case "Italian":

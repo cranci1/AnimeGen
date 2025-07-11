@@ -113,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1310DDA22E20FFEE009166E2 /* mn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mn; path = mn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		132B275C2E140DFB00BACE64 /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		132B275E2E140DFB00BACE64 /* ReaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
 		132B27602E140DFB00BACE64 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -779,6 +780,7 @@
 				bos,
 				bs,
 				it,
+				mn,
 			);
 			mainGroup = 1341C6E42E040D7F00B498FA;
 			packageReferences = (
@@ -932,6 +934,7 @@
 				132B279D2E140DFC00BACE64 /* nl */,
 				132B279E2E140DFC00BACE64 /* nn */,
 				132B279F2E140DFC00BACE64 /* bos */,
+				1310DDA22E20FFEE009166E2 /* mn */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
