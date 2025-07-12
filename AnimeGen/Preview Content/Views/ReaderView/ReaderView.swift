@@ -31,7 +31,7 @@ struct ReaderView: View {
     let chapterHref: String
     let chapterTitle: String
     let chapters: [[String: Any]]
-    let mediaTitle: String 
+    let mediaTitle: String
     let chapterNumber: Int
     
     @State private var htmlContent: String = ""
@@ -54,6 +54,9 @@ struct ReaderView: View {
     @Environment(\.dismiss) private var dismiss
 
     @StateObject private var navigator = ChapterNavigator.shared
+    
+    // Status bar control
+    @State private var statusBarHidden = false
     
     private let fontOptions = [
         ("-apple-system", "System"),
@@ -150,6 +153,8 @@ struct ReaderView: View {
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.6)) {
                                 isHeaderVisible.toggle()
+                                statusBarHidden = !isHeaderVisible
+                                setStatusBarHidden(!isHeaderVisible)
                                 if !isHeaderVisible {
                                     isSettingsExpanded = false
                                 }
@@ -157,40 +162,42 @@ struct ReaderView: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                                    HTMLView(
-                    htmlContent: htmlContent,
-                    fontSize: fontSize,
-                    fontFamily: selectedFont,
-                    fontWeight: fontWeight,
-                    textAlignment: textAlignment,
-                    lineSpacing: lineSpacing,
-                    margin: margin,
-                    isAutoScrolling: $isAutoScrolling,
-                    autoScrollSpeed: autoScrollSpeed,
-                    colorPreset: colorPresets[selectedColorPreset],
-                    chapterHref: chapterHref,
-                    onProgressChanged: { progress in
-                        self.readingProgress = progress
-                        
-                        if Date().timeIntervalSince(self.lastProgressUpdate) > 2.0 {
-                            self.updateReadingProgress(progress: progress)
-                            self.lastProgressUpdate = Date()
-                            Logger.shared.log("Progress updated to \(progress)", type: "Debug")
+                    HTMLView(
+                        htmlContent: htmlContent,
+                        fontSize: fontSize,
+                        fontFamily: selectedFont,
+                        fontWeight: fontWeight,
+                        textAlignment: textAlignment,
+                        lineSpacing: lineSpacing,
+                        margin: margin,
+                        isAutoScrolling: $isAutoScrolling,
+                        autoScrollSpeed: autoScrollSpeed,
+                        colorPreset: colorPresets[selectedColorPreset],
+                        chapterHref: chapterHref,
+                        onProgressChanged: { progress in
+                            self.readingProgress = progress
+                            
+                            if Date().timeIntervalSince(self.lastProgressUpdate) > 2.0 {
+                                self.updateReadingProgress(progress: progress)
+                                self.lastProgressUpdate = Date()
+                                Logger.shared.log("Progress updated to \(progress)", type: "Debug")
+                            }
                         }
-                    }
-                )
+                    )
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding(.horizontal)
                     .simultaneousGesture(TapGesture().onEnded {
                         withAnimation(.easeInOut(duration: 0.6)) {
                             isHeaderVisible.toggle()
+                            statusBarHidden = !isHeaderVisible
+                            setStatusBarHidden(!isHeaderVisible)
                             if !isHeaderVisible {
                                 isSettingsExpanded = false
                             }
                         }
                     })
                 }
-                .padding(.top, isHeaderVisible ? 0 : (UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first?.windows.first?.safeAreaInsets.top ?? 0))
+                .padding(.top, UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first?.windows.first?.safeAreaInsets.top ?? 0)
             }
             
             headerView
@@ -198,12 +205,12 @@ struct ReaderView: View {
                 .offset(y: isHeaderVisible ? 0 : -100)
                 .allowsHitTesting(isHeaderVisible)
                 .animation(.easeInOut(duration: 0.6), value: isHeaderVisible)
-                .zIndex(1) 
+                .zIndex(1)
             
             if isHeaderVisible {
             footerView
                     .transition(.move(edge: .bottom))
-                    .zIndex(2) 
+                    .zIndex(2)
             }
         }
         .navigationBarHidden(true)
@@ -216,11 +223,20 @@ struct ReaderView: View {
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                let window = windowScene.windows.first,
                let navigationController = window.rootViewController?.children.first as? UINavigationController {
-                navigationController.interactivePopGestureRecognizer?.isEnabled = false
+                navigationController.interactivePopGestureRecognizer?.isEnabled = true
+                navigationController.interactivePopGestureRecognizer?.delegate = nil
             }
             
             NotificationCenter.default.post(name: .hideTabBar, object: nil)
             UserDefaults.standard.set(true, forKey: "isReaderActive")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    isHeaderVisible = false
+                    statusBarHidden = true
+                    setStatusBarHidden(true)
+                }
+            }
         }
         .onDisappear {
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -261,8 +277,8 @@ struct ReaderView: View {
                 }
             } else {
                 if !htmlContent.isEmpty {
-                    let validHtmlContent = (!htmlContent.isEmpty && 
-                                          !htmlContent.contains("undefined") && 
+                    let validHtmlContent = (!htmlContent.isEmpty &&
+                                          !htmlContent.contains("undefined") &&
                                           htmlContent.count > 50) ? htmlContent : nil
                     
                     if validHtmlContent == nil {
@@ -286,19 +302,31 @@ struct ReaderView: View {
                 }
             }
             UserDefaults.standard.set(false, forKey: "isReaderActive")
+            setStatusBarHidden(false)
         }
         
         .task {
             do {
                 ensureModuleLoaded()
-                let isOffline = !(NetworkMonitor.shared.isConnected)
-                if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: chapterHref), 
-                   !cachedContent.isEmpty && 
-                   !cachedContent.contains("undefined") && 
+                
+                let isConnected = await NetworkMonitor.shared.ensureNetworkStatusInitialized()
+                let isOffline = !isConnected
+                
+                if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: chapterHref),
+                   !cachedContent.isEmpty &&
+                   !cachedContent.contains("undefined") &&
                    cachedContent.count > 50 {
                     Logger.shared.log("Using cached HTML content for \(chapterHref)", type: "Debug")
                     htmlContent = cachedContent
                     isLoading = false
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            isHeaderVisible = false
+                            statusBarHidden = true
+                            setStatusBarHidden(true)
+                        }
+                    }
                 } else if isOffline {
                     let offlineError = NSError(domain: "Sora", code: -1009, userInfo: [NSLocalizedDescriptionKey: "No network connection."])
                     self.error = offlineError
@@ -330,6 +358,14 @@ struct ReaderView: View {
                     if !content.isEmpty && !content.contains("undefined") && content.count >= 50 {
                         htmlContent = content
                         isLoading = false
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                isHeaderVisible = false
+                                statusBarHidden = true
+                                setStatusBarHidden(true)
+                            }
+                        }
                         
                         if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: chapterHref),
                            cachedContent.isEmpty || cachedContent.contains("undefined") || cachedContent.count < 50 {
@@ -367,6 +403,7 @@ struct ReaderView: View {
                 }
             }
         }
+        .statusBar(hidden: statusBarHidden)
     }
     
     private func stopAutoScroll() {
@@ -383,12 +420,13 @@ struct ReaderView: View {
                         dismiss()
                     }) {
                         Image(systemName: "chevron.left")
-                            .font(.system(size: 20, weight: .bold))
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(currentTheme.text)
                             .padding(12)
                             .background(currentTheme.background.opacity(0.8))
                             .clipShape(Circle())
                             .circularGradientOutline()
+                            .frame(width: 44, height: 44)
                     }
                     .padding(.leading)
                     
@@ -397,6 +435,7 @@ struct ReaderView: View {
                         .foregroundColor(currentTheme.text)
                         .lineLimit(1)
                         .truncationMode(.tail)
+                        .padding(.trailing, 100)
                     
                     Spacer()
 
@@ -421,12 +460,13 @@ struct ReaderView: View {
                         goToNextChapter()
                     }) {
                         Image(systemName: "forward.end.fill")
-                            .font(.system(size: 14, weight: .bold))
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(currentTheme.text)
-                            .padding(8)
+                            .padding(12)
                             .background(currentTheme.background.opacity(0.8))
                             .clipShape(Circle())
                             .circularGradientOutline()
+                            .frame(width: 44, height: 44)
                     }
                     .opacity(isHeaderVisible ? 1 : 0)
                     .offset(y: isHeaderVisible ? 0 : -100)
@@ -438,20 +478,21 @@ struct ReaderView: View {
                         }
                     }) {
                         Image(systemName: "ellipsis")
-                            .font(.system(size: 18, weight: .bold))
+                            .font(.system(size: 16, weight: .bold))
                             .foregroundColor(currentTheme.text)
                             .padding(12)
                             .background(currentTheme.background.opacity(0.8))
                             .clipShape(Circle())
                             .circularGradientOutline()
+                            .frame(width: 44, height: 44)
                             .rotationEffect(.degrees(isSettingsExpanded ? 90 : 0))
                     }
                     .opacity(isHeaderVisible ? 1 : 0)
                     .offset(y: isHeaderVisible ? 0 : -100)
                     .animation(.easeInOut(duration: 0.6), value: isHeaderVisible)
                 }
+                .padding(.trailing, 8)
             }
-            .padding(.trailing, 8)
             .padding(.top, (UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first?.windows.first?.safeAreaInsets.top ?? 0))
             .padding(.bottom, 30)
             .background(ProgressiveBlurView())
@@ -581,6 +622,7 @@ struct ReaderView: View {
                                     .background(currentTheme.background.opacity(0.8))
                                     .clipShape(Circle())
                                     .circularGradientOutline()
+                                    .frame(width: 44, height: 44)
                                     .rotationEffect(.degrees(-90))
                             }
                             
@@ -628,6 +670,8 @@ struct ReaderView: View {
                             }
                         }
                         .padding(.top, 80)
+                        .padding(.trailing, 8)
+                        .frame(width: 60, alignment: .trailing)
                         .transition(.opacity)
                     }
                 }, alignment: .topTrailing
@@ -642,43 +686,77 @@ struct ReaderView: View {
         VStack {
             Spacer()
             
-            HStack(spacing: 20) {
-                Spacer()
-                Button(action: {
-                    isAutoScrolling.toggle()
-                }) {
-                    Image(systemName: isAutoScrolling ? "pause.fill" : "play.fill")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(isAutoScrolling ? .red : currentTheme.text)
-                        .padding(12)
-                        .background(currentTheme.background.opacity(0.8))
-                        .clipShape(Circle())
-                        .circularGradientOutline()
-                }
-                .contextMenu {
-                    VStack {
-                        Text("Auto Scroll Speed")
-                            .font(.headline)
-                            .padding(.bottom, 8)
-                        
-                        Slider(value: $autoScrollSpeed, in: 0.2...3.0, step: 0.1) {
-                            Text("Speed")
-                        }
-                        .padding(.horizontal)
-                        
-                        Text("Speed: \(String(format: "%.1f", autoScrollSpeed))x")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .padding(.top, 4)
+            VStack(spacing: 0) {
+                HStack(spacing: 20) {
+                    Spacer()
+                    Button(action: {
+                        isAutoScrolling.toggle()
+                    }) {
+                        Image(systemName: isAutoScrolling ? "pause.fill" : "play.fill")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(isAutoScrolling ? .red : currentTheme.text)
+                            .padding(12)
+                            .background(currentTheme.background.opacity(0.8))
+                            .clipShape(Circle())
+                            .circularGradientOutline()
                     }
-                    .padding()
+                    .contextMenu {
+                        VStack {
+                            Text("Auto Scroll Speed")
+                                .font(.headline)
+                                .padding(.bottom, 8)
+                            
+                            Slider(value: $autoScrollSpeed, in: 0.2...3.0, step: 0.1) {
+                                Text("Speed")
+                            }
+                            .padding(.horizontal)
+                            
+                            Text("Speed: \(String(format: "%.1f", autoScrollSpeed))x")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .padding(.top, 4)
+                        }
+                        .padding()
+                    }
                 }
+                .padding(.horizontal, 20)
+                .padding(.top, 12)
+                
+                
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        Rectangle()
+                            .fill(currentTheme.text.opacity(0.2))
+                            .frame(height: 4)
+                        
+                        Rectangle()
+                            .fill(Color.accentColor)
+                            .frame(width: max(0, min(CGFloat(readingProgress) * geometry.size.width, geometry.size.width)), height: 4)
+                        
+                        Circle()
+                            .fill(Color.accentColor)
+                            .frame(width: 16, height: 16)
+                            .shadow(color: Color.black.opacity(0.3), radius: 2, x: 0, y: 1)
+                            .offset(x: max(0, min(CGFloat(readingProgress) * geometry.size.width, geometry.size.width)) - 8)
+                    }
+                    .cornerRadius(2)
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { value in
+                                let percentage = min(max(value.location.x / geometry.size.width, 0), 1)
+                                scrollToPosition(percentage)
+                            }
+                    )
+                }
+                .frame(height: 24)
+                .padding(.horizontal, 20)
+                .padding(.top, 8)
+                .padding(.bottom, (UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first?.windows.first?.safeAreaInsets.bottom ?? 0) + 16)
+                
+                .frame(maxWidth: .infinity)
+                .background(ProgressiveBlurView())
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
-            .padding(.bottom, (UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first?.windows.first?.safeAreaInsets.bottom ?? 0) + 20)
-            .frame(maxWidth: .infinity)
-            .background(ProgressiveBlurView())
             .opacity(isHeaderVisible ? 1 : 0)
             .offset(y: isHeaderVisible ? 0 : 100)
             .animation(.easeInOut(duration: 0.6), value: isHeaderVisible)
@@ -838,7 +916,7 @@ struct ReaderView: View {
         
         UserDefaults.standard.set(imageUrl, forKey: "novelImageUrl_\(moduleId)_\(novelTitle)")
         
-        var progress = UserDefaults.standard.double(forKey: "readingProgress_\(chapterHref)") 
+        var progress = UserDefaults.standard.double(forKey: "readingProgress_\(chapterHref)")
         
         if progress < 0.01 {
             progress = 0.01
@@ -846,8 +924,8 @@ struct ReaderView: View {
         
         Logger.shared.log("Saving continue reading item: title=\(novelTitle), chapter=\(chapterTitle), number=\(currentChapterNumber), href=\(chapterHref), progress=\(progress), imageUrl=\(imageUrl)", type: "Debug")
         
-        let validHtmlContent = (!htmlContent.isEmpty && 
-                               !htmlContent.contains("undefined") && 
+        let validHtmlContent = (!htmlContent.isEmpty &&
+                               !htmlContent.contains("undefined") &&
                                htmlContent.count > 50) ? htmlContent : nil
         
         if validHtmlContent == nil && !htmlContent.isEmpty {
@@ -858,7 +936,7 @@ struct ReaderView: View {
             mediaTitle: novelTitle,
             chapterTitle: chapterTitle,
             chapterNumber: currentChapterNumber,
-            imageUrl: imageUrl, 
+            imageUrl: imageUrl,
             href: chapterHref,
             moduleId: moduleId,
             progress: progress,
@@ -919,8 +997,8 @@ struct ReaderView: View {
         
         Logger.shared.log("Updating reading progress: \(roundedProgress) for \(chapterHref), title: \(novelTitle), image: \(imageUrl)", type: "Debug")
         
-        let validHtmlContent = (!htmlContent.isEmpty && 
-                               !htmlContent.contains("undefined") && 
+        let validHtmlContent = (!htmlContent.isEmpty &&
+                               !htmlContent.contains("undefined") &&
                                htmlContent.count > 50) ? htmlContent : nil
         
         if validHtmlContent == nil && !htmlContent.isEmpty {
@@ -944,7 +1022,7 @@ struct ReaderView: View {
                 mediaTitle: novelTitle,
                 chapterTitle: chapterTitle,
                 chapterNumber: currentChapterNumber,
-                imageUrl: imageUrl, 
+                imageUrl: imageUrl,
                 href: chapterHref,
                 moduleId: moduleId,
                 progress: roundedProgress,
@@ -955,6 +1033,56 @@ struct ReaderView: View {
             
             ContinueReadingManager.shared.save(item: item, htmlContent: validHtmlContent)
         }
+    }
+    
+    private func setStatusBarHidden(_ hidden: Bool) {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let windows = windowScene.windows
+            windows.forEach { window in
+                let viewController = window.rootViewController
+                viewController?.setNeedsStatusBarAppearanceUpdate()
+            }
+        }
+    }
+    
+    private func scrollToPosition(_ percentage: CGFloat) {
+        readingProgress = Double(percentage)
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first,
+           let rootVC = window.rootViewController {
+            let script = """
+            (function() {
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPosition = scrollHeight * \(percentage);
+                window.scrollTo({
+                    top: scrollPosition,
+                    behavior: 'auto'
+                });
+                return scrollPosition;
+            })();
+            """
+            
+            findWebView(in: rootVC.view)?.evaluateJavaScript(script, completionHandler: { _, error in
+                if let error = error {
+                    Logger.shared.log("Error scrolling to position: \(error)", type: "Error")
+                }
+            })
+        }
+    }
+    
+    private func findWebView(in view: UIView) -> WKWebView? {
+        if let webView = view as? WKWebView {
+            return webView
+        }
+        
+        for subview in view.subviews {
+            if let webView = findWebView(in: subview) {
+                return webView
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -1048,8 +1176,8 @@ struct HTMLView: UIViewRepresentable {
         func startAutoScroll(webView: WKWebView) {
             stopAutoScroll()
             
-            scrollTimer = Timer.scheduledTimer(withTimeInterval: 0.016, repeats: true) { _ in 
-                let scrollAmount = self.parent.autoScrollSpeed * 0.5 
+            scrollTimer = Timer.scheduledTimer(withTimeInterval: 0.016, repeats: true) { _ in
+                let scrollAmount = self.parent.autoScrollSpeed * 0.5
                 
                 webView.evaluateJavaScript("window.scrollBy(0, \(scrollAmount));") { _, error in
                     if let error = error {
@@ -1218,6 +1346,7 @@ struct HTMLView: UIViewRepresentable {
                         line-height: \(lineSpacing);
                         text-align: \(textAlignment);
                         padding: \(margin)px;
+                        padding-top: calc(\(margin)px + 20px); /* Add extra padding at the top */
                         margin: 0;
                         color: \(colorPreset.text);
                         background-color: \(colorPreset.background);
