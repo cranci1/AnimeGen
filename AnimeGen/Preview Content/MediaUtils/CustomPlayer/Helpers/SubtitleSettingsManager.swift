@@ -7,6 +7,10 @@
 
 import UIKit
 
+extension Notification.Name {
+    static let subtitleSettingsDidChange = Notification.Name("subtitleSettingsDidChange")
+}
+
 struct SubtitleSettings: Codable {
     var enabled: Bool = true
     var foregroundColor: String = "white"
@@ -33,6 +37,7 @@ class SubtitleSettingsManager {
         set {
             if let data = try? JSONEncoder().encode(newValue) {
                 UserDefaults.standard.set(data, forKey: userDefaultsKey)
+                NotificationCenter.default.post(name: .subtitleSettingsDidChange, object: nil)
             }
         }
     }

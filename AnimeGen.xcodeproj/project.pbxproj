@@ -18,8 +18,6 @@
 		132B28032E140DFE00BACE64 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27692E140DFB00BACE64 /* CircularProgressBar.swift */; };
 		132B28042E140DFE00BACE64 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B276A2E140DFB00BACE64 /* EpisodeCell.swift */; };
 		132B28052E140DFE00BACE64 /* ChapterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B276C2E140DFB00BACE64 /* ChapterCell.swift */; };
-		132B28062E140DFE00BACE64 /* TMDBMatchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B276E2E140DFB00BACE64 /* TMDBMatchPopupView.swift */; };
-		132B28072E140DFE00BACE64 /* AnilistMatchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B276F2E140DFB00BACE64 /* AnilistMatchPopupView.swift */; };
 		132B28082E140DFE00BACE64 /* ContinueReadingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27712E140DFB00BACE64 /* ContinueReadingSection.swift */; };
 		132B28092E140DFE00BACE64 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27722E140DFB00BACE64 /* LibraryManager.swift */; };
 		132B280A2E140DFE00BACE64 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27732E140DFB00BACE64 /* LibraryView.swift */; };
@@ -104,6 +102,8 @@
 		132B285C2E140DFE00BACE64 /* NormalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27F72E140DFE00BACE64 /* NormalPlayer.swift */; };
 		132B285D2E140DFE00BACE64 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27F82E140DFE00BACE64 /* VideoPlayer.swift */; };
 		1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */; };
+		1345F5F52E25607800C80AAB /* AnilistMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F32E25607800C80AAB /* AnilistMatchView.swift */; };
+		1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F42E25607800C80AAB /* TMDBMatchView.swift */; };
 		1358D11C2E0413E1000832DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1358D11B2E0413E1000832DE /* Preview Assets.xcassets */; };
 		13709B962E0410B7008BA1D4 /* SoraCore in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B952E0410B7008BA1D4 /* SoraCore */; };
 		13709B992E0410C7008BA1D4 /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B982E0410C7008BA1D4 /* Drops */; };
@@ -125,8 +125,6 @@
 		132B27692E140DFB00BACE64 /* CircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		132B276A2E140DFB00BACE64 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		132B276C2E140DFB00BACE64 /* ChapterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterCell.swift; sourceTree = "<group>"; };
-		132B276E2E140DFB00BACE64 /* TMDBMatchPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMatchPopupView.swift; sourceTree = "<group>"; };
-		132B276F2E140DFB00BACE64 /* AnilistMatchPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnilistMatchPopupView.swift; sourceTree = "<group>"; };
 		132B27712E140DFB00BACE64 /* ContinueReadingSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinueReadingSection.swift; sourceTree = "<group>"; };
 		132B27722E140DFB00BACE64 /* LibraryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		132B27732E140DFB00BACE64 /* LibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
@@ -226,6 +224,8 @@
 		132B27F82E140DFE00BACE64 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		1341C6ED2E040D7F00B498FA /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeGenApp.swift; sourceTree = "<group>"; };
+		1345F5F32E25607800C80AAB /* AnilistMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnilistMatchView.swift; sourceTree = "<group>"; };
+		1345F5F42E25607800C80AAB /* TMDBMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMatchView.swift; sourceTree = "<group>"; };
 		1358D11B2E0413E1000832DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		137099BC2E040E0E008BA1D4 /* AnimeGen.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,7 +287,6 @@
 				132B27672E140DFB00BACE64 /* MediaInfoView.swift */,
 				132B27682E140DFB00BACE64 /* EpisodeCell */,
 				132B276B2E140DFB00BACE64 /* ChapterCell */,
-				132B276D2E140DFB00BACE64 /* CustomMatching */,
 			);
 			path = MediaInfoView;
 			sourceTree = "<group>";
@@ -304,18 +303,10 @@
 		132B276B2E140DFB00BACE64 /* ChapterCell */ = {
 			isa = PBXGroup;
 			children = (
+				1345F5F22E25607800C80AAB /* Matching */,
 				132B276C2E140DFB00BACE64 /* ChapterCell.swift */,
 			);
 			path = ChapterCell;
-			sourceTree = "<group>";
-		};
-		132B276D2E140DFB00BACE64 /* CustomMatching */ = {
-			isa = PBXGroup;
-			children = (
-				132B276E2E140DFB00BACE64 /* TMDBMatchPopupView.swift */,
-				132B276F2E140DFB00BACE64 /* AnilistMatchPopupView.swift */,
-			);
-			path = CustomMatching;
 			sourceTree = "<group>";
 		};
 		132B27702E140DFB00BACE64 /* LibraryView */ = {
@@ -709,6 +700,16 @@
 			path = AnimeGen;
 			sourceTree = "<group>";
 		};
+		1345F5F22E25607800C80AAB /* Matching */ = {
+			isa = PBXGroup;
+			children = (
+				1345F5F32E25607800C80AAB /* AnilistMatchView.swift */,
+				1345F5F42E25607800C80AAB /* TMDBMatchView.swift */,
+			);
+			name = Matching;
+			path = "AnimeGen/Preview Content/Views/MediaInfoView/Matching";
+			sourceTree = SOURCE_ROOT;
+		};
 		1358D11A2E0413E0000832DE /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -836,7 +837,6 @@
 				132B28522E140DFE00BACE64 /* ContinueWatchingItem.swift in Sources */,
 				132B28422E140DFE00BACE64 /* JSController+Downloader.swift in Sources */,
 				132B280E2E140DFE00BACE64 /* BookmarksDetailView.swift in Sources */,
-				132B28062E140DFE00BACE64 /* TMDBMatchPopupView.swift in Sources */,
 				132B28192E140DFE00BACE64 /* SettingsViewAbout.swift in Sources */,
 				132B283C2E140DFE00BACE64 /* UserDefaults.swift in Sources */,
 				132B28502E140DFE00BACE64 /* DeviceScaleModifier.swift in Sources */,
@@ -853,7 +853,6 @@
 				132B28592E140DFE00BACE64 /* MusicProgressSlider.swift in Sources */,
 				132B28382E140DFE00BACE64 /* finTopView.swift in Sources */,
 				132B283A2E140DFE00BACE64 /* URL.swift in Sources */,
-				132B28072E140DFE00BACE64 /* AnilistMatchPopupView.swift in Sources */,
 				132B28412E140DFE00BACE64 /* JSController-Streams.swift in Sources */,
 				132B284F2E140DFE00BACE64 /* Analytics.swift in Sources */,
 				132B28252E140DFE00BACE64 /* Anilist-Login.swift in Sources */,
@@ -861,6 +860,7 @@
 				132B27FC2E140DFE00BACE64 /* SearchView.swift in Sources */,
 				132B283B2E140DFE00BACE64 /* String.swift in Sources */,
 				132B28122E140DFE00BACE64 /* CollectionDetailView.swift in Sources */,
+				1345F5F52E25607800C80AAB /* AnilistMatchView.swift in Sources */,
 				132B28212E140DFE00BACE64 /* DownloadView.swift in Sources */,
 				132B28512E140DFE00BACE64 /* VideoWatchingActivity.swift in Sources */,
 				132B28582E140DFE00BACE64 /* Double+Extension.swift in Sources */,
@@ -871,6 +871,7 @@
 				132B285D2E140DFE00BACE64 /* VideoPlayer.swift in Sources */,
 				132B28462E140DFE00BACE64 /* JSController-Novel.swift in Sources */,
 				1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */,
+				1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */,
 				132B28152E140DFE00BACE64 /* SettingsView.swift in Sources */,
 				132B281E2E140DFE00BACE64 /* SettingsViewPlayer.swift in Sources */,
 				132B282B2E140DFE00BACE64 /* ContentView.swift in Sources */,

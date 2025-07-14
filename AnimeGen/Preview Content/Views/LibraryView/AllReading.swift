@@ -5,13 +5,14 @@
 //  Created by paul on 26/06/25.
 //
 
-import SwiftUI
+import UIKit
 import NukeUI
+import SwiftUI
 
 struct AllReadingView: View {
     @Environment(\.dismiss) private var dismiss
-
-
+    
+    
     @State private var continueReadingItems: [ContinueReadingItem] = []
     @State private var isRefreshing: Bool = false
     @State private var sortOption: SortOption = .dateAdded
@@ -204,10 +205,10 @@ struct AllReadingView: View {
                     } else {
                         ForEach(filteredAndSortedItems) { item in
                             FullWidthContinueReadingCell(
-                                item: item, 
+                                item: item,
                                 markAsRead: {
                                     markContinueReadingItemAsRead(item: item)
-                                }, 
+                                },
                                 removeItem: {
                                     removeContinueReadingItem(item: item)
                                 },
@@ -335,18 +336,12 @@ struct FullWidthContinueReadingCell: View {
                     }
                 }
             } else {
-                NavigationLink(destination: ReaderView(
-                    moduleId: item.moduleId,
-                    chapterHref: item.href,
-                    chapterTitle: item.chapterTitle,
-                    mediaTitle: item.mediaTitle,
-                    chapterNumber: item.chapterNumber
-                )) {
+                Button(action: {
+                    presentReaderView()
+                }) {
                     cellContent
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    UserDefaults.standard.set(true, forKey: "navigatingToReaderView")
-                })
+                .buttonStyle(PlainButtonStyle())
             }
         }
         .contextMenu {
@@ -445,4 +440,38 @@ struct FullWidthContinueReadingCell: View {
         }
         .frame(height: 157.03)
     }
-} 
+    
+    private func presentReaderView() {
+        UserDefaults.standard.set(true, forKey: "navigatingToReaderView")
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            let topVC = findTopViewController.findViewController(rootVC)
+            
+            if topVC is UIHostingController<ReaderView> {
+                Logger.shared.log("ReaderView is already presented, skipping presentation", type: "Debug")
+                return
+            }
+        }
+        
+        let readerView = ReaderView(
+            moduleId: item.moduleId,
+            chapterHref: item.href,
+            chapterTitle: item.chapterTitle,
+            chapters: [],
+            mediaTitle: item.mediaTitle,
+            chapterNumber: item.chapterNumber
+        )
+        
+        let hostingController = UIHostingController(rootView: readerView)
+        hostingController.modalPresentationStyle = .overFullScreen
+        hostingController.modalTransitionStyle = .crossDissolve
+        
+        hostingController.isModalInPresentation = true
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            findTopViewController.findViewController(rootVC).present(hostingController, animated: true)
+        }
+    }
+}

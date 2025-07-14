@@ -14,7 +14,7 @@ struct ContinueReadingItem: Identifiable, Codable {
     let chapterNumber: Int
     let imageUrl: String
     let href: String
-    let moduleId: String
+    let moduleId: UUID
     let progress: Double
     let totalChapters: Int
     let lastReadDate: Date
@@ -27,7 +27,7 @@ struct ContinueReadingItem: Identifiable, Codable {
         chapterNumber: Int,
         imageUrl: String,
         href: String,
-        moduleId: String,
+        moduleId: UUID,
         progress: Double = 0.0,
         totalChapters: Int = 0,
         lastReadDate: Date = Date(),

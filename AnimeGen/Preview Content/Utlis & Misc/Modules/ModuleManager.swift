@@ -9,6 +9,8 @@ import Foundation
 
 @MainActor
 class ModuleManager: ObservableObject {
+    static let shared = ModuleManager()
+    
     @Published var modules: [ScrapingModule] = []
     @Published var selectedModuleChanged = false
     
@@ -206,9 +208,17 @@ class ModuleManager: ObservableObject {
     }
     
     func refreshModules() async {
-        for (index, module) in modules.enumerated() {
+        let modulesCopy = modules
+        var updatedModules: [(Int, ScrapingModule)] = []
+        
+        for (index, module) in modulesCopy.enumerated() {
             do {
-                let (metadataData, _) = try await URLSession.custom.data(from: URL(string: module.metadataUrl)!)
+                guard let metadataUrl = URL(string: module.metadataUrl) else {
+                    Logger.shared.log("Invalid metadata URL for module: \(module.metadata.sourceName)", type: "Error")
+                    continue
+                }
+                
+                let (metadataData, _) = try await URLSession.custom.data(from: metadataUrl)
                 let newMetadata = try JSONDecoder().decode(ModuleMetadata.self, from: metadataData)
                 
                 if newMetadata.version != module.metadata.version {
@@ -232,14 +242,22 @@ class ModuleManager: ObservableObject {
                         isActive: module.isActive
                     )
                     
-                    self.modules[index] = updatedModule
-                    self.saveModules()
-                    
-                    Logger.shared.log("Updated module: \(module.metadata.sourceName) to version \(newMetadata.version)")
+                    updatedModules.append((index, updatedModule))
+                    Logger.shared.log("Prepared update for module: \(module.metadata.sourceName) to version \(newMetadata.version)")
                 }
             } catch {
                 Logger.shared.log("Failed to refresh module: \(module.metadata.sourceName) - \(error.localizedDescription)")
             }
+        }
+        
+        if !updatedModules.isEmpty {
+            for (index, updatedModule) in updatedModules {
+                if index < modules.count {
+                    modules[index] = updatedModule
+                }
+            }
+            saveModules()
+            Logger.shared.log("Successfully updated \(updatedModules.count) modules")
         }
     }
 }

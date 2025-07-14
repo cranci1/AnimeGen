@@ -5,8 +5,9 @@
 //  Created by paul on 26/06/25.
 //
 
-import SwiftUI
+import UIKit
 import NukeUI
+import SwiftUI
 
 struct ContinueReadingSection: View {
     @Binding var items: [ContinueReadingItem]
@@ -67,14 +68,9 @@ struct ContinueReadingCell: View {
     }
     
     var body: some View {
-        NavigationLink(destination: ReaderView(
-            moduleId: item.moduleId,
-            chapterHref: item.href,
-            chapterTitle: item.chapterTitle,
-            chapters: [],
-            mediaTitle: item.mediaTitle,
-            chapterNumber: item.chapterNumber
-        )) {
+        Button(action: {
+            presentReaderView()
+        }) {
             ZStack {
                 LazyImage(url: imageURL) { state in
                     if let image = state.imageContainer?.image {
@@ -176,6 +172,40 @@ struct ContinueReadingCell: View {
             print("Image URL: \(item.imageUrl)")
             print("Chapter: \(item.chapterNumber)")
             print("Progress: \(item.progress)")
+        }
+    }
+    
+    private func presentReaderView() {
+        UserDefaults.standard.set(true, forKey: "navigatingToReaderView")
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            let topVC = findTopViewController.findViewController(rootVC)
+            
+            if topVC is UIHostingController<ReaderView> {
+                Logger.shared.log("ReaderView is already presented, skipping presentation", type: "Debug")
+                return
+            }
+        }
+        
+        let readerView = ReaderView(
+            moduleId: item.moduleId,
+            chapterHref: item.href,
+            chapterTitle: item.chapterTitle,
+            chapters: [],
+            mediaTitle: item.mediaTitle,
+            chapterNumber: item.chapterNumber
+        )
+        
+        let hostingController = UIHostingController(rootView: readerView)
+        hostingController.modalPresentationStyle = .overFullScreen
+        hostingController.modalTransitionStyle = .crossDissolve
+        
+        hostingController.isModalInPresentation = true
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            findTopViewController.findViewController(rootVC).present(hostingController, animated: true)
         }
     }
 }

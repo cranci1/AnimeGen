@@ -10,7 +10,7 @@ import WebKit
 
 class ChapterNavigator: ObservableObject {
     static let shared = ChapterNavigator()
-    @Published var currentChapter: (moduleId: String, href: String, title: String, chapters: [[String: Any]], mediaTitle: String, chapterNumber: Int)? = nil
+    @Published var currentChapter: (moduleId: UUID, href: String, title: String, chapters: [[String: Any]], mediaTitle: String, chapterNumber: Int)? = nil
 }
 
 extension UserDefaults {
@@ -27,7 +27,7 @@ extension UserDefaults {
 }
 
 struct ReaderView: View {
-    let moduleId: String
+    let moduleId: UUID
     let chapterHref: String
     let chapterTitle: String
     let chapters: [[String: Any]]
@@ -52,10 +52,8 @@ struct ReaderView: View {
     @State private var readingProgress: Double = 0.0
     @State private var lastProgressUpdate: Date = Date()
     @Environment(\.dismiss) private var dismiss
-
-    @StateObject private var navigator = ChapterNavigator.shared
     
-    // Status bar control
+    @StateObject private var navigator = ChapterNavigator.shared
     @State private var statusBarHidden = false
     
     private let fontOptions = [
@@ -96,7 +94,7 @@ struct ReaderView: View {
         )
     }
     
-    init(moduleId: String, chapterHref: String, chapterTitle: String, chapters: [[String: Any]] = [], mediaTitle: String = "Unknown Novel", chapterNumber: Int = 1) {
+    init(moduleId: UUID, chapterHref: String, chapterTitle: String, chapters: [[String: Any]] = [], mediaTitle: String = "Unknown Novel", chapterNumber: Int = 1) {
         self.moduleId = moduleId
         self.chapterHref = chapterHref
         self.chapterTitle = chapterTitle
@@ -114,7 +112,7 @@ struct ReaderView: View {
     }
     
     private func ensureModuleLoaded() {
-        if let module = ModuleManager().modules.first(where: { $0.id.uuidString == moduleId }) {
+        if let module = ModuleManager().modules.first(where: { $0.id == moduleId }) {
             do {
                 let moduleContent = try ModuleManager().getModuleContent(module)
                 JSController.shared.loadScript(moduleContent)
@@ -124,8 +122,6 @@ struct ReaderView: View {
             }
         }
     }
-    
-
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -161,7 +157,7 @@ struct ReaderView: View {
                             }
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-
+                    
                     HTMLView(
                         htmlContent: htmlContent,
                         fontSize: fontSize,
@@ -208,7 +204,7 @@ struct ReaderView: View {
                 .zIndex(1)
             
             if isHeaderVisible {
-            footerView
+                footerView
                     .transition(.move(edge: .bottom))
                     .zIndex(2)
             }
@@ -229,6 +225,8 @@ struct ReaderView: View {
             
             NotificationCenter.default.post(name: .hideTabBar, object: nil)
             UserDefaults.standard.set(true, forKey: "isReaderActive")
+            
+            loadContent()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 withAnimation(.easeInOut(duration: 0.6)) {
@@ -266,11 +264,11 @@ struct ReaderView: View {
                             mediaTitle: next.mediaTitle,
                             chapterNumber: next.chapterNumber
                         )
-
                         
                         let hostingController = UIHostingController(rootView: nextReader)
-                        hostingController.modalPresentationStyle = .fullScreen
+                        hostingController.modalPresentationStyle = .overFullScreen
                         hostingController.modalTransitionStyle = .crossDissolve
+                        hostingController.isModalInPresentation = true
                         
                         findTopViewController.findViewController(rootVC).present(hostingController, animated: true)
                     }
@@ -278,8 +276,8 @@ struct ReaderView: View {
             } else {
                 if !htmlContent.isEmpty {
                     let validHtmlContent = (!htmlContent.isEmpty &&
-                                          !htmlContent.contains("undefined") &&
-                                          htmlContent.count > 50) ? htmlContent : nil
+                                            !htmlContent.contains("undefined") &&
+                                            htmlContent.count > 50) ? htmlContent : nil
                     
                     if validHtmlContent == nil {
                         Logger.shared.log("Not caching HTML content on disappear as it appears invalid", type: "Warning")
@@ -304,106 +302,119 @@ struct ReaderView: View {
             UserDefaults.standard.set(false, forKey: "isReaderActive")
             setStatusBarHidden(false)
         }
+        .statusBar(hidden: statusBarHidden)
+    }
+    
+    @MainActor
+    private func loadContent() {
+        do {
+            ensureModuleLoaded()
+            
+            if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: self.chapterHref),
+               !cachedContent.isEmpty &&
+                !cachedContent.contains("undefined") &&
+                cachedContent.count > 50 {
+                
+                Logger.shared.log("Using cached HTML content for \(self.chapterHref)", type: "Debug")
+                self.htmlContent = cachedContent
+                self.isLoading = false
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        self.isHeaderVisible = false
+                        self.statusBarHidden = true
+                        self.setStatusBarHidden(true)
+                    }
+                }
+            } else {
+                Logger.shared.log("No valid cached content found, fetching new content for \(self.chapterHref)", type: "Debug")
+                fetchContentWithRetries(attempts: 0, maxAttempts: 3)
+            }
+        } catch {
+            self.error = error
+            self.isLoading = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DropManager.shared.showDrop(
+                    title: "Error Loading Content",
+                    subtitle: error.localizedDescription,
+                    duration: 2.0,
+                    icon: UIImage(systemName: "exclamationmark.triangle")
+                )
+            }
+        }
+    }
+    
+    private func fetchContentWithRetries(attempts: Int, maxAttempts: Int, lastError: Error? = nil) {
+        guard attempts < maxAttempts else {
+            if let error = lastError {
+                self.error = error
+            } else {
+                self.error = JSError.emptyContent
+            }
+            self.isLoading = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DropManager.shared.showDrop(
+                    title: "Error Loading Content",
+                    subtitle: self.error?.localizedDescription ?? "Failed to load content",
+                    duration: 2.0,
+                    icon: UIImage(systemName: "exclamationmark.triangle")
+                )
+            }
+            return
+        }
         
-        .task {
-            do {
-                ensureModuleLoaded()
+        JSController.shared.extractText(moduleId: moduleId, href: chapterHref) { result in
+            switch result {
+            case .success(let content):
+                if content.isEmpty || content.contains("undefined") || content.count < 50 {
+                    Logger.shared.log("Received invalid content on attempt \(attempts + 1), retrying...", type: "Warning")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.fetchContentWithRetries(attempts: attempts + 1, maxAttempts: maxAttempts, lastError: JSError.emptyContent)
+                    }
+                    return
+                }
                 
-                let isConnected = await NetworkMonitor.shared.ensureNetworkStatusInitialized()
-                let isOffline = !isConnected
-                
-                if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: chapterHref),
-                   !cachedContent.isEmpty &&
-                   !cachedContent.contains("undefined") &&
-                   cachedContent.count > 50 {
-                    Logger.shared.log("Using cached HTML content for \(chapterHref)", type: "Debug")
-                    htmlContent = cachedContent
-                    isLoading = false
+                DispatchQueue.main.async {
+                    self.htmlContent = content
+                    self.isLoading = false
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            isHeaderVisible = false
-                            statusBarHidden = true
-                            setStatusBarHidden(true)
+                            self.isHeaderVisible = false
+                            self.statusBarHidden = true
+                            self.setStatusBarHidden(true)
                         }
-                    }
-                } else if isOffline {
-                    let offlineError = NSError(domain: "Sora", code: -1009, userInfo: [NSLocalizedDescriptionKey: "No network connection."])
-                    self.error = offlineError
-                    isLoading = false
-                    return
-                } else {
-                    Logger.shared.log("Fetching HTML content from network for \(chapterHref)", type: "Debug")
-                    
-                    var content = ""
-                    var attempts = 0
-                    var lastError: Error? = nil
-                    
-                    while attempts < 3 && (content.isEmpty || content.contains("undefined") || content.count < 50) {
-                        do {
-                            attempts += 1
-                            content = try await JSController.shared.extractText(moduleId: moduleId, href: chapterHref)
-
-                            if content.isEmpty || content.contains("undefined") || content.count < 50 {
-                                Logger.shared.log("Received invalid content on attempt \(attempts), retrying...", type: "Warning")
-                                try await Task.sleep(nanoseconds: 500_000_000)
-                            }
-                        } catch {
-                            lastError = error
-                            Logger.shared.log("Error fetching content on attempt \(attempts): \(error.localizedDescription)", type: "Error")
-                            try await Task.sleep(nanoseconds: 500_000_000)
-                        }
-                    }
-                    
-                    if !content.isEmpty && !content.contains("undefined") && content.count >= 50 {
-                        htmlContent = content
-                        isLoading = false
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            withAnimation(.easeInOut(duration: 0.3)) {
-                                isHeaderVisible = false
-                                statusBarHidden = true
-                                setStatusBarHidden(true)
-                            }
-                        }
-                        
-                        if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: chapterHref),
-                           cachedContent.isEmpty || cachedContent.contains("undefined") || cachedContent.count < 50 {
-                            let item = ContinueReadingItem(
-                                mediaTitle: mediaTitle,
-                                chapterTitle: chapterTitle,
-                                chapterNumber: chapterNumber,
-                                imageUrl: UserDefaults.standard.string(forKey: "novelImageUrl_\(moduleId)_\(mediaTitle)") ?? "",
-                                href: chapterHref,
-                                moduleId: moduleId,
-                                progress: readingProgress,
-                                totalChapters: chapters.count,
-                                lastReadDate: Date(),
-                                cachedHtml: content
-                            )
-                            ContinueReadingManager.shared.save(item: item, htmlContent: content)
-                        }
-                    } else if let lastError = lastError {
-                        throw lastError
-                    } else {
-                        throw JSError.emptyContent
                     }
                 }
-            } catch {
-                self.error = error
-                isLoading = false
+                
+                if let cachedContent = ContinueReadingManager.shared.getCachedHtml(for: self.chapterHref),
+                   cachedContent.isEmpty || cachedContent.contains("undefined") || cachedContent.count < 50 {
+                    let item = ContinueReadingItem(
+                        mediaTitle: self.mediaTitle,
+                        chapterTitle: self.chapterTitle,
+                        chapterNumber: self.chapterNumber,
+                        imageUrl: UserDefaults.standard.string(forKey: "novelImageUrl_\(self.moduleId)_\(self.mediaTitle)") ?? "",
+                        href: self.chapterHref,
+                        moduleId: self.moduleId,
+                        progress: self.readingProgress,
+                        totalChapters: self.chapters.count,
+                        lastReadDate: Date(),
+                        cachedHtml: content
+                    )
+                    ContinueReadingManager.shared.save(item: item, htmlContent: content)
+                }
+                
+            case .failure(let error):
+                Logger.shared.log("Error fetching content on attempt \(attempts + 1): \(error.localizedDescription)", type: "Error")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    DropManager.shared.showDrop(
-                        title: "Error Loading Content",
-                        subtitle: error.localizedDescription,
-                        duration: 2.0,
-                        icon: UIImage(systemName: "exclamationmark.triangle")
-                    )
+                    self.fetchContentWithRetries(attempts: attempts + 1, maxAttempts: maxAttempts, lastError: error)
                 }
             }
         }
-        .statusBar(hidden: statusBarHidden)
     }
     
     private func stopAutoScroll() {
@@ -417,7 +428,7 @@ struct ReaderView: View {
             ZStack(alignment: .top) {
                 HStack {
                     Button(action: {
-                        dismiss()
+                        dismissReaderView()
                     }) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 16, weight: .bold))
@@ -438,7 +449,7 @@ struct ReaderView: View {
                         .padding(.trailing, 100)
                     
                     Spacer()
-
+                    
                     Color.clear
                         .frame(width: 44, height: 44)
                         .padding(.trailing)
@@ -453,7 +464,7 @@ struct ReaderView: View {
                         isSettingsExpanded = false
                     }
                 }
-
+                
                 HStack {
                     Spacer()
                     Button(action: {
@@ -781,6 +792,18 @@ struct ReaderView: View {
             .circularGradientOutline()
     }
     
+    private func dismissReaderView() {
+        dismiss()
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            let topVC = findTopViewController.findViewController(rootVC)
+            if topVC is UIHostingController<ReaderView> {
+                topVC.dismiss(animated: true)
+            }
+        }
+    }
+    
     private func goToNextChapter() {
         guard let currentIndex = chapters.firstIndex(where: { $0["href"] as? String == chapterHref }),
               currentIndex + 1 < chapters.count else {
@@ -925,8 +948,8 @@ struct ReaderView: View {
         Logger.shared.log("Saving continue reading item: title=\(novelTitle), chapter=\(chapterTitle), number=\(currentChapterNumber), href=\(chapterHref), progress=\(progress), imageUrl=\(imageUrl)", type: "Debug")
         
         let validHtmlContent = (!htmlContent.isEmpty &&
-                               !htmlContent.contains("undefined") &&
-                               htmlContent.count > 50) ? htmlContent : nil
+                                !htmlContent.contains("undefined") &&
+                                htmlContent.count > 50) ? htmlContent : nil
         
         if validHtmlContent == nil && !htmlContent.isEmpty {
             Logger.shared.log("Not caching HTML content as it appears invalid", type: "Warning")
@@ -953,7 +976,7 @@ struct ReaderView: View {
         
         UserDefaults.standard.set(roundedProgress, forKey: "readingProgress_\(chapterHref)")
         
-        var novelTitle = self.mediaTitle
+        let novelTitle = self.mediaTitle
         var currentChapterNumber = 1
         var imageUrl = ""
         
@@ -998,8 +1021,8 @@ struct ReaderView: View {
         Logger.shared.log("Updating reading progress: \(roundedProgress) for \(chapterHref), title: \(novelTitle), image: \(imageUrl)", type: "Debug")
         
         let validHtmlContent = (!htmlContent.isEmpty &&
-                               !htmlContent.contains("undefined") &&
-                               htmlContent.count > 50) ? htmlContent : nil
+                                !htmlContent.contains("undefined") &&
+                                htmlContent.count > 50) ? htmlContent : nil
         
         if validHtmlContent == nil && !htmlContent.isEmpty {
             Logger.shared.log("Not caching HTML content as it appears invalid", type: "Warning")
@@ -1150,6 +1173,16 @@ struct HTMLView: UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            Logger.shared.log("WebView finished loading navigation", type: "Debug")
+            
+            webView.evaluateJavaScript("document.body.innerText.length") { result, error in
+                if let textLength = result as? Int {
+                    Logger.shared.log("WebView loaded content with text length: \(textLength)", type: "Debug")
+                } else {
+                    Logger.shared.log("WebView error checking content length: \(error?.localizedDescription ?? "Unknown error")", type: "Error")
+                }
+            }
+            
             if let href = parent.chapterHref {
                 let savedPosition = UserDefaults.standard.double(forKey: "scrollPosition_\(href)")
                 if savedPosition > 0.01 {
@@ -1165,6 +1198,14 @@ struct HTMLView: UIViewRepresentable {
             }
             
             startProgressTracking(webView: webView)
+        }
+        
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            Logger.shared.log("WebView navigation failed: \(error.localizedDescription)", type: "Error")
+        }
+        
+        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+            Logger.shared.log("WebView provisional navigation failed: \(error.localizedDescription)", type: "Error")
         }
         
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -1214,9 +1255,25 @@ struct HTMLView: UIViewRepresentable {
             }
             
             let script = """
-            document.addEventListener('scroll', function() {
-                window.webkit.messageHandlers.scrollHandler.postMessage('scroll');
-            }, { passive: true });
+            (function() {
+                let lastUpdate = 0;
+                const throttleInterval = 16;
+                
+                function updateProgress() {
+                    const now = Date.now();
+                    if (now - lastUpdate >= throttleInterval) {
+                        window.webkit.messageHandlers.scrollHandler.postMessage('scroll');
+                        lastUpdate = now;
+                    }
+                    requestAnimationFrame(updateProgress);
+                }
+                
+                requestAnimationFrame(updateProgress);
+                
+                document.addEventListener('scroll', function() {
+                    requestAnimationFrame(updateProgress);
+                }, { passive: true });
+            })();
             """
             
             let userScript = WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
@@ -1285,7 +1342,7 @@ struct HTMLView: UIViewRepresentable {
             }
         }
     }
-
+    
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.backgroundColor = .clear
@@ -1319,8 +1376,11 @@ struct HTMLView: UIViewRepresentable {
         }
         
         guard !htmlContent.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            Logger.shared.log("HTMLView: Empty HTML content, skipping update", type: "Warning")
             return
         }
+        
+        Logger.shared.log("HTMLView: Updating with content length: \(htmlContent.count)", type: "Debug")
         
         let contentChanged = coordinator.lastHtmlContent != htmlContent
         let fontSizeChanged = coordinator.lastFontSize != fontSize
@@ -1332,7 +1392,7 @@ struct HTMLView: UIViewRepresentable {
         let colorChanged = coordinator.lastColorPreset != colorPreset.name
         
         if contentChanged || fontSizeChanged || fontFamilyChanged || fontWeightChanged ||
-           alignmentChanged || lineSpacingChanged || marginChanged || colorChanged {
+            alignmentChanged || lineSpacingChanged || marginChanged || colorChanged {
             let htmlTemplate = """
             <!DOCTYPE html>
             <html>

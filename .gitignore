@@ -1,3 +1,17 @@
 # .gitignore
 build/
 AnimeGen/Secrets2.swift
+AnimeGen/.DS_Store
+AnimeGen/Localization/.DS_Store
+AnimeGen/MediaUtils/.DS_Store
+AnimeGen/MediaUtils/CustomPlayer/.DS_Store
+AnimeGen/Preview Content/.DS_Store
+AnimeGen/Preview Content/Localization/.DS_Store
+AnimeGen/Preview Content/MediaUtils/.DS_Store
+AnimeGen/Preview Content/MediaUtils/CustomPlayer/.DS_Store
+AnimeGen/Preview Content/Utlis & Misc/.DS_Store
+AnimeGen/Preview Content/Views/.DS_Store
+AnimeGen/Preview Content/Views/MediaInfoView/.DS_Store
+AnimeGen/Views/.DS_Store
+AnimeGen/Views/MediaInfoView/.DS_Store
+AnimeGen/Views/SettingsView/.DS_Store

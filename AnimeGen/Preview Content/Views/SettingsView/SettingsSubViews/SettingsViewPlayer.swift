@@ -304,6 +304,29 @@ struct SettingsViewPlayer: View {
                     )
                 }
                 
+                SettingsSection(title: NSLocalizedString("Progress bar Marker Color", comment: "")) {
+                    ColorPicker(NSLocalizedString("Segments Color", comment: ""), selection: Binding(
+                        get: {
+                            if let data = UserDefaults.standard.data(forKey: "segmentsColorData"),
+                               let uiColor = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? UIColor {
+                                return Color(uiColor)
+                            }
+                            return .yellow
+                        },
+                        set: { newColor in
+                            let uiColor = UIColor(newColor)
+                            if let data = try? NSKeyedArchiver.archivedData(
+                                withRootObject: uiColor,
+                                requiringSecureCoding: false
+                            ) {
+                                UserDefaults.standard.set(data, forKey: "segmentsColorData")
+                            }
+                        }
+                    ))
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                }
+                
                 SettingsSection(
                     title: NSLocalizedString("Skip Settings", comment: ""),
                     footer: NSLocalizedString("Double tapping the screen on it's sides will skip with the short tap setting.", comment: "")
@@ -439,12 +462,26 @@ struct SubtitleSettingsSection: View {
                 title: NSLocalizedString("Bottom Padding", comment: ""),
                 value: $bottomPadding,
                 range: 0...50,
-                step: 1,
-                showDivider: false
+                step: 1
             )
             .onChange(of: bottomPadding) { newValue in
                 SubtitleSettingsManager.shared.update { settings in
                     settings.bottomPadding = CGFloat(newValue)
+                }
+            }
+            
+            SettingsStepperRow(
+                icon: "clock",
+                title: NSLocalizedString("Subtitle Delay", comment: ""),
+                value: $subtitleDelay,
+                range: -10...10,
+                step: 0.1,
+                formatter: { String(format: "%.1fs", $0) },
+                showDivider: false
+            )
+            .onChange(of: subtitleDelay) { newValue in
+                SubtitleSettingsManager.shared.update { settings in
+                    settings.subtitleDelay = newValue
                 }
             }
         }

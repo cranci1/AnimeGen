@@ -88,16 +88,14 @@ class VTTSubtitlesLoader: ObservableObject {
             }
             
             let startTime = parseTimecode(times[0].trimmingCharacters(in: .whitespaces))
-            let adjustedStartTime = max(startTime - 0.5, 0)
             let endTime = parseTimecode(times[1].trimmingCharacters(in: .whitespaces))
-            let adjusteEndTime = max(endTime - 0.5, 0)
             index += 1
             var cueText = ""
             while index < lines.count && !lines[index].trimmingCharacters(in: .whitespaces).isEmpty {
                 cueText += lines[index] + "\n"
                 index += 1
             }
-            cues.append(SubtitleCue(startTime: adjustedStartTime, endTime: adjusteEndTime, text: cueText.trimmingCharacters(in: .whitespacesAndNewlines)))
+            cues.append(SubtitleCue(startTime: startTime, endTime: endTime, text: cueText.trimmingCharacters(in: .whitespacesAndNewlines)))
         }
         return cues
     }
@@ -118,9 +116,7 @@ class VTTSubtitlesLoader: ObservableObject {
             guard times.count >= 2 else { continue }
             
             let startTime = parseSRTTimecode(times[0].trimmingCharacters(in: .whitespaces))
-            let adjustedStartTime = max(startTime - 0.5, 0)
             let endTime = parseSRTTimecode(times[1].trimmingCharacters(in: .whitespaces))
-            let adjustedEndTime = max(endTime - 0.5, 0)
             
             var textLines = [String]()
             if lines.count > 2 {
@@ -128,7 +124,7 @@ class VTTSubtitlesLoader: ObservableObject {
             }
             let text = textLines.joined(separator: "\n")
             
-            cues.append(SubtitleCue(startTime: adjustedStartTime, endTime: adjustedEndTime, text: text))
+            cues.append(SubtitleCue(startTime: startTime, endTime: endTime, text: text))
         }
         
         return cues

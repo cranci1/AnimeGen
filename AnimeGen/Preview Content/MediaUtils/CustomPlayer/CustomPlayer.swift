@@ -43,6 +43,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     var updateTimer: Timer?
     var originalRate: Float = 1.0
     var holdGesture: UILongPressGestureRecognizer?
+    var controlsInactivityTimer: Timer?
     
     var isPlaying = true
     var currentTimeVal: Double = 0.0
@@ -631,6 +632,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidChange), name: .AVPlayerItemNewAccessLogEntry, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(subtitleSettingsDidChange), name: .subtitleSettingsDidChange, object: nil)
         skip85Button?.isHidden = !isSkip85Visible
         if !isSkip85Visible {
             skip85Button?.alpha = 0.0
@@ -675,6 +677,9 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         
         inactivityTimer?.invalidate()
         inactivityTimer = nil
+        
+        controlsInactivityTimer?.invalidate()
+        controlsInactivityTimer = nil
         
         loadedTimeRangesObservation?.invalidate()
         loadedTimeRangesObservation = nil
@@ -775,6 +780,15 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
                     self.view.layoutIfNeeded()
                 }
             }
+        }
+    }
+    
+    @objc private func subtitleSettingsDidChange() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.loadSubtitleSettings()
+            self.updateSubtitleLabelAppearance()
+            self.updateSubtitleLabelConstraints()
         }
     }
     
@@ -910,6 +924,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
             height: 33,
             onEditingChanged: { editing in
                 if editing {
+                    self.resetControlsInactivityTimer()
                     self.isSliderEditing = true
                     
                     self.wasPlayingBeforeSeek = (self.player.timeControlStatus == .playing)
@@ -992,9 +1007,10 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     private func createCircularBlurBackground(size: CGFloat) -> UIView {
-        let blurEffect = UIBlurEffect(style: .systemMaterial)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.alpha = 0.7
         blurView.layer.cornerRadius = size / 2
         blurView.clipsToBounds = true
         
@@ -1027,6 +1043,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     
     @objc private func handleTwoFingerTapPause(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .ended {
+            resetControlsInactivityTimer()
             togglePlayPause()
         }
     }
@@ -1300,6 +1317,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     
     func volumeSlider() {
         let container = VolumeSliderContainer(volumeVM: self.volumeViewModel) { newVal in
+            self.resetControlsInactivityTimer()
             if let sysSlider = self.systemVolumeSlider {
                 sysSlider.value = Float(newVal)
             }
@@ -1381,9 +1399,10 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         holdSpeedIndicator.setTitleColor(.white, for: .normal)
         holdSpeedIndicator.alpha = 0.0
         
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.alpha = 0.7
         blurView.layer.cornerRadius = 21
         blurView.clipsToBounds = true
         
@@ -1731,7 +1750,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     private func setupQualityButton() {
-        let image = UIImage(systemName: "tv", withConfiguration: bottomControlsCfg)
+        let image = UIImage(systemName: "4k.tv", withConfiguration: bottomControlsCfg)
         
         qualityButton = UIButton(type: .system)
         qualityButton.setImage(image, for: .normal)
@@ -2061,17 +2080,41 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         }
         
         if isControlsVisible {
+            startControlsInactivityTimer()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.setupControlButtonsContainer()
                 self.updateSkipButtonsVisibility()
             }
         } else {
+            stopControlsInactivityTimer()
             updateSkipButtonsVisibility()
+        }
+    }
+    
+    private func startControlsInactivityTimer() {
+        stopControlsInactivityTimer()
+        controlsInactivityTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { [weak self] _ in
+            guard let self = self else { return }
+            if self.isControlsVisible {
+                self.toggleControls()
+            }
+        }
+    }
+    
+    private func stopControlsInactivityTimer() {
+        controlsInactivityTimer?.invalidate()
+        controlsInactivityTimer = nil
+    }
+    
+    private func resetControlsInactivityTimer() {
+        if isControlsVisible {
+            startControlsInactivityTimer()
         }
     }
     
     @objc func seekBackwardLongPress(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
+            resetControlsInactivityTimer()
             let holdValue = UserDefaults.standard.double(forKey: "skipIncrementHold")
             let finalSkip = holdValue > 0 ? holdValue : 30
             currentTimeVal = max(currentTimeVal - finalSkip, 0)
@@ -2084,6 +2127,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     
     @objc func seekForwardLongPress(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
+            resetControlsInactivityTimer()
             let holdValue = UserDefaults.standard.double(forKey: "skipIncrementHold")
             let finalSkip = holdValue > 0 ? holdValue : 30
             currentTimeVal = min(currentTimeVal + finalSkip, duration)
@@ -2095,6 +2139,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc func seekBackward() {
+        resetControlsInactivityTimer()
         let skipValue = UserDefaults.standard.double(forKey: "skipIncrement")
         let finalSkip = skipValue > 0 ? skipValue : 10
         
@@ -2106,6 +2151,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc func seekForward() {
+        resetControlsInactivityTimer()
         let skipValue = UserDefaults.standard.double(forKey: "skipIncrement")
         
         let finalSkip = skipValue > 0 ? skipValue : 10
@@ -2117,6 +2163,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+        resetControlsInactivityTimer()
         let tapLocation = gesture.location(in: view)
         if tapLocation.x < view.bounds.width / 2 {
             seekBackward()
@@ -2134,6 +2181,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc func togglePlayPause() {
+        resetControlsInactivityTimer()
         if isPlaying {
             currentPlaybackSpeed = player.rate
             player.pause()
@@ -2173,6 +2221,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc private func lockTapped() {
+        resetControlsInactivityTimer()
         controlsLocked.toggle()
         
         isControlsVisible = !controlsLocked
@@ -2234,6 +2283,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc private func skipIntro() {
+        resetControlsInactivityTimer()
         if let range = skipIntervals.op {
             player.seek(to: range.end)
             skipIntroDismissedInSession = true
@@ -2252,6 +2302,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc private func skipOutro() {
+        resetControlsInactivityTimer()
         if let range = skipIntervals.ed {
             player.seek(to: range.end)
             skipOutroDismissedInSession = true
@@ -2292,11 +2343,13 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     }
     
     @objc func skip85Tapped() {
+        resetControlsInactivityTimer()
         currentTimeVal = min(currentTimeVal + 85, duration)
         player.seek(to: CMTime(seconds: currentTimeVal, preferredTimescale: 600))
     }
     
     @objc private func dimTapped() {
+        resetControlsInactivityTimer()
         isDimmed.toggle()
         dimButtonTimer?.invalidate()
         UIView.animate(withDuration: 0.25) {
@@ -3024,6 +3077,8 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         let translation = gesture.translation(in: view)
         
         switch gesture.state {
+        case .began:
+            resetControlsInactivityTimer()
         case .ended:
             if translation.y > 100 {
                 dismiss(animated: true, completion: nil)
@@ -3543,7 +3598,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         NSLayoutConstraint.activate([
             pipButton.centerYAnchor.constraint(equalTo: dimButton.centerYAnchor),
             pipButton.trailingAnchor.constraint(equalTo: dimButton.leadingAnchor, constant: -8),
-            pipButton.widthAnchor.constraint(equalToConstant: 24),  
+            pipButton.widthAnchor.constraint(equalToConstant: 30),  
             pipButton.heightAnchor.constraint(equalToConstant: 24), 
             airplayButton.centerYAnchor.constraint(equalTo: pipButton.centerYAnchor),
             airplayButton.trailingAnchor.constraint(equalTo: pipButton.leadingAnchor, constant: -4),
@@ -3761,8 +3816,9 @@ class GradientBlurButton: UIButton {
     }
     
     private func setupBlurAndGradient() {
-        let blur = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+        let blur = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
         blur.isUserInteractionEnabled = false
+        blur.alpha = 0.7
         blur.layer.cornerRadius = 21
         blur.clipsToBounds = true
         blur.translatesAutoresizingMaskIntoConstraints = false

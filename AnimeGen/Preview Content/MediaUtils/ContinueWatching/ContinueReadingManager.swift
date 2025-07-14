@@ -272,4 +272,4 @@ class ContinueReadingManager {
         }
         return nil
     }
-} 
+}
