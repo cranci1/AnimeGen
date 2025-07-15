@@ -105,6 +105,7 @@
 		1345F5F52E25607800C80AAB /* AnilistMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F32E25607800C80AAB /* AnilistMatchView.swift */; };
 		1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F42E25607800C80AAB /* TMDBMatchView.swift */; };
 		1358D11C2E0413E1000832DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1358D11B2E0413E1000832DE /* Preview Assets.xcassets */; };
+		135CBC1E2E26B8570069FE31 /* DownloadPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */; };
 		13709B962E0410B7008BA1D4 /* SoraCore in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B952E0410B7008BA1D4 /* SoraCore */; };
 		13709B992E0410C7008BA1D4 /* Drops in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B982E0410C7008BA1D4 /* Drops */; };
 		13709B9C2E0410FA008BA1D4 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B9B2E0410FA008BA1D4 /* Nuke */; };
@@ -227,6 +228,7 @@
 		1345F5F32E25607800C80AAB /* AnilistMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnilistMatchView.swift; sourceTree = "<group>"; };
 		1345F5F42E25607800C80AAB /* TMDBMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMatchView.swift; sourceTree = "<group>"; };
 		1358D11B2E0413E1000832DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPersistence.swift; sourceTree = "<group>"; };
 		137099BC2E040E0E008BA1D4 /* AnimeGen.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -563,6 +565,7 @@
 		132B27D82E140DFD00BACE64 /* DownloadUtils */ = {
 			isa = PBXGroup;
 			children = (
+				135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */,
 				132B27D92E140DFD00BACE64 /* DownloadModels.swift */,
 				132B27DA2E140DFD00BACE64 /* M3U8StreamExtractor.swift */,
 				132B27DB2E140DFD00BACE64 /* DownloadManager.swift */,
@@ -898,6 +901,7 @@
 				132B28472E140DFE00BACE64 /* JSController.swift in Sources */,
 				132B285A2E140DFE00BACE64 /* SubtitleSettingsManager.swift in Sources */,
 				132B28392E140DFE00BACE64 /* URLSession.swift in Sources */,
+				135CBC1E2E26B8570069FE31 /* DownloadPersistence.swift in Sources */,
 				132B28322E140DFE00BACE64 /* Shimmer.swift in Sources */,
 				132B28022E140DFE00BACE64 /* MediaInfoView.swift in Sources */,
 				132B280C2E140DFE00BACE64 /* AllReading.swift in Sources */,
