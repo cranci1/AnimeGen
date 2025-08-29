@@ -13,6 +13,7 @@ struct EpisodeCell: View {
     let episodeIndex: Int
     let episode: String
     let episodeID: Int
+    let malID: Int?
     let progress: Double
     let itemID: Int
     let totalEpisodes: Int?
@@ -22,6 +23,9 @@ struct EpisodeCell: View {
     let showPosterURL: String?
     let tmdbID: Int?
     let seasonNumber: Int?
+    
+    //receives the set of filler episode numbers (from MediaInfoView)
+    let fillerEpisodes: Set<Int>?
     
     let isMultiSelectMode: Bool
     let isSelected: Bool
@@ -45,6 +49,7 @@ struct EpisodeCell: View {
     @State private var dragState: DragState = .inactive
     
     @State private var retryAttempts: Int = 0
+        private var malIDFromParent: Int? { malID }
     private let maxRetryAttempts: Int = 3
     private let initialBackoffDelay: TimeInterval = 1.0
     
@@ -53,10 +58,14 @@ struct EpisodeCell: View {
     @Environment(\.colorScheme) private var colorScheme
     @AppStorage("selectedAppearance") private var selectedAppearance: Appearance = .system
     
+    // Filler state (derived from passed-in fillerEpisodes)
+    @State private var isFiller: Bool = false
+    
     init(
         episodeIndex: Int,
         episode: String,
         episodeID: Int,
+        malID: Int? = nil,
         progress: Double,
         itemID: Int,
         totalEpisodes: Int? = nil,
@@ -70,11 +79,14 @@ struct EpisodeCell: View {
         onTap: @escaping (String) -> Void,
         onMarkAllPrevious: @escaping () -> Void,
         tmdbID: Int? = nil,
-        seasonNumber: Int? = nil
+        seasonNumber: Int? = nil,
+        fillerEpisodes: Set<Int>? = nil
     ) {
+    
         self.episodeIndex = episodeIndex
         self.episode = episode
         self.episodeID = episodeID
+        self.malID = malID
         self.progress = progress
         self.itemID = itemID
         self.totalEpisodes = totalEpisodes
@@ -88,7 +100,7 @@ struct EpisodeCell: View {
         self.onMarkAllPrevious = onMarkAllPrevious
         self.tmdbID = tmdbID
         self.seasonNumber = seasonNumber
-        
+        self.fillerEpisodes = fillerEpisodes
         
         let isLightMode = (UserDefaults.standard.string(forKey: "selectedAppearance") == "light") ||
         ((UserDefaults.standard.string(forKey: "selectedAppearance") == "system") &&
@@ -107,14 +119,28 @@ struct EpisodeCell: View {
             
             episodeCellContent
         }
-        .onAppear { setupOnAppear() }
-        .onDisappear { activeDownloadTask = nil }
+        .onAppear {
+            setupOnAppear()
+            // set filler state based on passed-in set (if available)
+            let epNum = episodeID + 1
+            if let set = fillerEpisodes {
+                self.isFiller = set.contains(epNum)
+            }
+        }
         .onChange(of: progress) { _ in updateProgress() }
         .onChange(of: itemID) { _ in handleItemIDChange() }
         .onChange(of: tmdbID) { _ in
             isLoading = true
             retryAttempts = 0
             fetchEpisodeDetails()
+        }
+        .onChange(of: fillerEpisodes) { newValue in
+            let epNum = episodeID + 1
+            if let set = newValue {
+                self.isFiller = set.contains(epNum)
+            } else {
+                self.isFiller = false
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadProgressChanged"))) { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -221,8 +247,27 @@ private extension EpisodeCell {
     
     var episodeInfo: some View {
         VStack(alignment: .leading) {
-            Text("Episode \(episodeID + 1)")
-                .font(.system(size: 15))
+            HStack(spacing: 8) {
+                Text("Episode \(episodeID + 1)")
+                    .font(.system(size: 15))
+                    .foregroundColor(.primary)
+                
+                if isFiller {
+                    Text("Filler")
+                        .font(.system(size: 12, weight: .semibold))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            Capsule()
+                                .fill(Color.red.opacity(colorScheme == .dark ? 0.20 : 0.10))
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(Color.red.opacity(0.24), lineWidth: 0.6)
+                        )
+                        .foregroundColor(.red)
+                }
+            }
             
             if !episodeTitle.isEmpty {
                 Text(episodeTitle)
@@ -658,7 +703,10 @@ private extension EpisodeCell {
             season: 1,
             episode: episodeID + 1,
             subtitleURL: subtitleURL,
-            showPosterURL: showPosterImageURL
+            showPosterURL: showPosterImageURL,
+            aniListID: itemID,
+            malID: malIDFromParent,
+            isFiller: isFiller
         ) { success, message in
             if success {
                 Logger.shared.log("Started download for Episode \(self.episodeID + 1): \(self.episode)", type: "Download")
@@ -932,6 +980,7 @@ private extension EpisodeCell {
             }
         }.resume()
     }
+
     
     func handleFetchFailure(error: Error) {
         Logger.shared.log("Episode details fetch error: \(error.localizedDescription)", type: "Error")
@@ -1025,5 +1074,3 @@ private struct AsyncImageView: View {
             .cornerRadius(8)
     }
 }
-
-

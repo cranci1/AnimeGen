@@ -20,6 +20,7 @@ struct SearchView: View {
     @AppStorage("selectedModuleId") private var selectedModuleId: String?
     @AppStorage("mediaColumnsPortrait") private var mediaColumnsPortrait: Int = 2
     @AppStorage("mediaColumnsLandscape") private var mediaColumnsLandscape: Int = 4
+    @AppStorage("useNativeTabBar") private var useNativeTabBar: Bool = false
     
     @StateObject private var jsController = JSController.shared
     @EnvironmentObject var moduleManager: ModuleManager
@@ -46,7 +47,7 @@ struct SearchView: View {
     
     private var selectedModule: ScrapingModule? {
         guard let id = selectedModuleId else { return nil }
-        return moduleManager.modules.first { $0.id.uuidString == id }
+        return moduleManager.availableModules.first { $0.id.uuidString == id }
     }
     
     private let columns = [
@@ -74,51 +75,64 @@ struct SearchView: View {
     }
     
     private var mainContent: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(LocalizedStringKey("Search"))
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(LocalizedStringKey("Search"))
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    Spacer()
+                    
+                    ModuleSelectorMenu(
+                        selectedModule: selectedModule,
+                        moduleGroups: getModuleLanguageGroups(),
+                        modulesByLanguage: getModulesByLanguage(),
+                        selectedModuleId: selectedModuleId,
+                        onModuleSelected: { moduleId in
+                            selectedModuleId = moduleId
+                        }
+                    )
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
                 
-                Spacer()
+                if useNativeTabBar {
+                    SearchBar(text: $searchQuery, isSearching: $isSearching)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 10)
+                }
                 
-                ModuleSelectorMenu(
-                    selectedModule: selectedModule,
-                    moduleGroups: getModuleLanguageGroups(),
-                    modulesByLanguage: getModulesByLanguage(),
-                    selectedModuleId: selectedModuleId,
-                    onModuleSelected: { moduleId in
-                        selectedModuleId = moduleId
-                    }
-                )
-            }
-            .padding(.horizontal, 20)
-            .padding(.top, 20)
-            
-            ScrollView(showsIndicators: false) {
-                SearchContent(
-                    selectedModule: selectedModule,
-                    searchQuery: searchQuery,
-                    searchHistory: searchHistory,
-                    searchItems: searchItems,
-                    isSearching: isSearching,
-                    hasNoResults: hasNoResults,
-                    columns: columns,
-                    columnsCount: columnsCount,
-                    cellWidth: cellWidth,
-                    onHistoryItemSelected: { query in
-                        searchQuery = query
-                        searchDebounceTimer?.invalidate()
-                        
+                ScrollView(showsIndicators: false) {
+                    SearchContent(
+                        selectedModule: selectedModule,
+                        searchQuery: searchQuery,
+                        searchHistory: searchHistory,
+                        searchItems: searchItems,
+                        isSearching: isSearching,
+                        hasNoResults: hasNoResults,
+                        columns: columns,
+                        columnsCount: columnsCount,
+                        cellWidth: cellWidth,
+                        onHistoryItemSelected: { query in
+                            searchQuery = query
+                            searchDebounceTimer?.invalidate()
+                            
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            NotificationCenter.default.post(name: .tabBarSearchQueryUpdated, object: nil, userInfo: ["searchQuery": query])
+                            
+                            performSearch()
+                        },
+                        onHistoryItemDeleted: { index in
+                            removeFromHistory(at: index)
+                        },
+                        onClearHistory: clearSearchHistory
+                    )
+                }
+                .scrollViewBottomPadding()
+                .simultaneousGesture(
+                    DragGesture().onChanged { _ in
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                        NotificationCenter.default.post(name: .tabBarSearchQueryUpdated, object: nil, userInfo: ["searchQuery": query])
-                        
-                        performSearch()
-                    },
-                    onHistoryItemDeleted: { index in
-                        removeFromHistory(at: index)
-                    },
-                    onClearHistory: clearSearchHistory
+                    }
                 )
             }
             .scrollViewBottomPadding()
@@ -128,8 +142,6 @@ struct SearchView: View {
                 }
             )
         }
-        .navigationBarHidden(true)
-    }
     
     var body: some View {
         Group {
@@ -198,8 +210,8 @@ struct SearchView: View {
         }
         .onChange(of: moduleManager.selectedModuleChanged) { _ in
             if moduleManager.selectedModuleChanged {
-                if selectedModuleId == nil && !moduleManager.modules.isEmpty {
-                    selectedModuleId = moduleManager.modules[0].id.uuidString
+                if selectedModuleId == nil && !moduleManager.availableModules.isEmpty {
+                    selectedModuleId = moduleManager.availableModules[0].id.uuidString
                 }
                 moduleManager.selectedModuleChanged = false
             }
@@ -328,7 +340,7 @@ struct SearchView: View {
     private func getModulesByLanguage() -> [String: [ScrapingModule]] {
         var result = [String: [ScrapingModule]]()
         
-        for module in moduleManager.modules {
+        for module in moduleManager.availableModules {
             let language = cleanLanguageName(module.metadata.language)
             if result[language] == nil {
                 result[language] = [module]
@@ -346,51 +358,5 @@ struct SearchView: View {
     
     private func getModulesForLanguage(_ language: String) -> [ScrapingModule] {
         return getModulesByLanguage()[language] ?? []
-    }
-}
-
-
-struct SearchBar: View {
-    @State private var debounceTimer: Timer?
-    @Binding var text: String
-    @Binding var isFocused: Bool
-    var onSearchButtonClicked: () -> Void
-    
-    var body: some View {
-        HStack {
-            TextField(LocalizedStringKey("Search..."), text: $text, onEditingChanged: { isEditing in
-                isFocused = isEditing
-            }, onCommit: onSearchButtonClicked)
-                .padding(7)
-                .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .onChange(of: text) { newValue in
-                    debounceTimer?.invalidate()
-                    if !newValue.isEmpty {
-                        debounceTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-                            onSearchButtonClicked()
-                        }
-                    }
-                }
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.secondary)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 8)
-                        
-                        if !text.isEmpty {
-                            Button(action: {
-                                self.text = ""
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.secondary)
-                                    .padding(.trailing, 8)
-                            }
-                        }
-                    }
-                )
-        }
     }
 }

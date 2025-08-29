@@ -330,7 +330,8 @@ struct TabBar: View {
             .frame(width: tabWidth)
             .opacity(isActive ? 1 : 0.5)
             .scaleEffect(scale)
-        return icon
+        
+        icon
             .contentShape(Rectangle())
             .simultaneousGesture(
                 TapGesture()

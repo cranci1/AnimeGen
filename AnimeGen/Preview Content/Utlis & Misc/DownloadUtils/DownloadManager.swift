@@ -21,25 +21,40 @@ class DownloadManager: NSObject, ObservableObject {
     
     override init() {
         super.init()
-        initializeDownloadSession()
+        Task {
+            await initializeDownloadSession()
+        }
         loadLocalContent()
     }
     
-    private func initializeDownloadSession() {
+    private func initializeDownloadSession() async {
 #if targetEnvironment(simulator)
         Logger.shared.log("Download Sessions are not available on Simulator", type: "Error")
 #else
-        let configuration = URLSessionConfiguration.background(withIdentifier: "hls-downloader")
-        
-        assetDownloadURLSession = AVAssetDownloadURLSession(
-            configuration: configuration,
-            assetDownloadDelegate: self,
-            delegateQueue: .main
-        )
+        await MainActor.run {
+            let configuration = URLSessionConfiguration.background(withIdentifier: "hls-downloader")
+            
+            assetDownloadURLSession = AVAssetDownloadURLSession(
+                configuration: configuration,
+                assetDownloadDelegate: self,
+                delegateQueue: .main
+            )
+        }
 #endif
     }
     
     func downloadAsset(from url: URL, headers: [String: String]? = nil, subtitleURL: URL? = nil) {
+        guard assetDownloadURLSession != nil else {
+            Logger.shared.log("Download session not initialized yet, retrying...", type: "Warning")
+            Task {
+                await initializeDownloadSession()
+                await MainActor.run {
+                    self.downloadAsset(from: url, headers: headers, subtitleURL: subtitleURL)
+                }
+            }
+            return
+        }
+        
         if let headers = headers {
             activeDownloadHeaders[url] = headers
         }

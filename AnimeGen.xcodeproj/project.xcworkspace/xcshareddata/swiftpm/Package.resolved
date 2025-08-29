@@ -35,6 +35,14 @@
         "branch" : "main",
         "revision" : "50ddc160fd606e9708adefc1d9fc7003b574446b"
       }
+    },
+    {
+      "identity" : "soradecryption",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cranci1/SoraDecryption",
+      "state" : {
+        "revision" : "9a6d45b6d5d7d0974e1ae5404517c340c0b6db32"
+      }
     }
   ],
   "version" : 2

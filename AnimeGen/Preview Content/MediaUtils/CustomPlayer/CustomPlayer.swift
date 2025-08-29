@@ -254,11 +254,15 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
     private var isMenuOpen = false
     private var menuProtectionTimer: Timer?
     
+    let episodeTitle: String
+    
     init(module: ScrapingModule,
          urlString: String,
          fullUrl: String,
          title: String,
          episodeNumber: Int,
+         episodeTitle: String,
+         seasonNumber: Int,
          onWatchNext: @escaping () -> Void,
          subtitlesURL: String?,
          aniListID: Int,
@@ -271,6 +275,8 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         self.titleText = title
         self.episodeNumber = episodeNumber
         self.episodeImageUrl = episodeImageUrl
+        self.episodeTitle = episodeTitle
+        self.seasonNumber = seasonNumber
         self.onWatchNext = onWatchNext
         self.subtitlesURL = subtitlesURL
         self.aniListID = aniListID
@@ -294,6 +300,8 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
             }
             
             asset = AVURLAsset(url: url)
+            // Try to load OP/ED skip sidecar for local files
+            self.loadLocalSkipSidecar(for: url)
         } else {
             Logger.shared.log("Loading remote URL: \(url.absoluteString)", type: "Debug")
             var request = URLRequest(url: url)
@@ -1257,9 +1265,14 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         titleContainer.translatesAutoresizingMaskIntoConstraints = false
         titleContainer.backgroundColor = .clear
         controlsContainerView.addSubview(titleContainer) 
-        
         episodeNumberLabel = UILabel()
-        episodeNumberLabel.text = "Episode \(episodeNumber)"
+        let hasTitle = !episodeTitle.isEmpty
+        let isSingleSeason = (seasonNumber == 1 || seasonNumber == nil)
+        let episodePart = "E\(episodeNumber)"
+        let seasonPart = isSingleSeason ? "" : "S\(seasonNumber ?? 1)"
+        let colon = hasTitle ? ":" : ""
+        let main = [seasonPart, episodePart].filter { !$0.isEmpty }.joined()
+        episodeNumberLabel.text = hasTitle ? "\(main)\(colon) \(episodeTitle)" : main
         episodeNumberLabel.textColor = UIColor(white: 1.0, alpha: 0.6)
         episodeNumberLabel.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         episodeNumberLabel.textAlignment = .left
@@ -1946,7 +1959,9 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
                         aniListID: self.aniListID,
                         module: self.module,
                         headers: self.headers,
-                        totalEpisodes: self.totalEpisodes
+                        totalEpisodes: self.totalEpisodes,
+                        episodeTitle: self.episodeTitle,
+                        seasonNumber: self.seasonNumber
                     )
                     ContinueWatchingManager.shared.save(item: item)
                 }
@@ -2635,6 +2650,8 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
             }
             
             asset = AVURLAsset(url: url)
+            // Try to load OP/ED skip sidecar for local files
+            self.loadLocalSkipSidecar(for: url)
         } else {
             Logger.shared.log("Switching to remote URL: \(url.absoluteString)", type: "Debug")
             var request = URLRequest(url: url)
@@ -3849,5 +3866,50 @@ class GradientBlurButton: UIButton {
     override func removeFromSuperview() {
         cleanupVisualEffects()
         super.removeFromSuperview()
+    }
+}
+
+
+    /// Load OP/ED skip data from a simple sidecar JSON saved next to the local video (if present)
+extension CustomMediaPlayerViewController {
+
+    private struct SkipSidecar: Decodable {
+        struct Interval: Decodable {
+            let start_time: Double
+            let end_time: Double
+        }
+        struct Result: Decodable {
+            let interval: Interval
+            let skip_type: String
+        }
+        let results: [Result]
+    }
+
+    func loadLocalSkipSidecar(for fileURL: URL) {
+        let sidecarURL = fileURL.deletingPathExtension().appendingPathExtension("skip.json")
+        do {
+            let data = try Data(contentsOf: sidecarURL)
+            let model = try JSONDecoder().decode(SkipSidecar.self, from: data)
+            for r in model.results {
+                let range = CMTimeRange(
+                    start: CMTime(seconds: r.interval.start_time, preferredTimescale: 600),
+                    end:   CMTime(seconds: r.interval.end_time,   preferredTimescale: 600)
+                )
+                switch r.skip_type.lowercased() {
+                case "op":
+                    self.skipIntervals.op = range
+                case "ed":
+                    self.skipIntervals.ed = range
+                default:
+                    break
+                }
+            }
+            if self.duration > 0 {
+                self.updateSegments()
+                self.updateSkipButtonsVisibility()
+            }
+        } catch {
+            print("[Player] No local skip sidecar found or failed to load: \(error.localizedDescription)")
+        }
     }
 }

@@ -30,7 +30,7 @@ enum VideoQualityPreference: String, CaseIterable {
             }
         }
         
-        let preferredIndex = qualityPriority.firstIndex(of: preferred) ?? qualityPriority.count
+        _ = qualityPriority.firstIndex(of: preferred) ?? qualityPriority.count
         
         for i in 0..<qualityPriority.count {
             let candidate = qualityPriority[i]

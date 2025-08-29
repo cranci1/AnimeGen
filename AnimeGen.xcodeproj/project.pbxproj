@@ -101,6 +101,11 @@
 		132B285B2E140DFE00BACE64 /* VTTSubtitlesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27F52E140DFE00BACE64 /* VTTSubtitlesLoader.swift */; };
 		132B285C2E140DFE00BACE64 /* NormalPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27F72E140DFE00BACE64 /* NormalPlayer.swift */; };
 		132B285D2E140DFE00BACE64 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B27F82E140DFE00BACE64 /* VideoPlayer.swift */; };
+		132ED5E12E622D5B00FDF68A /* SettingsViewLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E02E622D5B00FDF68A /* SettingsViewLibrary.swift */; };
+		132ED5E32E622D6400FDF68A /* OrphanedDownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E22E622D6400FDF68A /* OrphanedDownloadsView.swift */; };
+		132ED5E52E622DB100FDF68A /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E42E622DB100FDF68A /* LocalizationManager.swift */; };
+		132ED5E72E622DB800FDF68A /* Bundle+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E62E622DB800FDF68A /* Bundle+Language.swift */; };
+		132ED5EA2E622F3600FDF68A /* SoraDecryption in Frameworks */ = {isa = PBXBuildFile; productRef = 132ED5E92E622F3600FDF68A /* SoraDecryption */; };
 		1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */; };
 		1345F5F52E25607800C80AAB /* AnilistMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F32E25607800C80AAB /* AnilistMatchView.swift */; };
 		1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F42E25607800C80AAB /* TMDBMatchView.swift */; };
@@ -223,6 +228,10 @@
 		132B27F52E140DFE00BACE64 /* VTTSubtitlesLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VTTSubtitlesLoader.swift; sourceTree = "<group>"; };
 		132B27F72E140DFE00BACE64 /* NormalPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalPlayer.swift; sourceTree = "<group>"; };
 		132B27F82E140DFE00BACE64 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		132ED5E02E622D5B00FDF68A /* SettingsViewLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewLibrary.swift; sourceTree = "<group>"; };
+		132ED5E22E622D6400FDF68A /* OrphanedDownloadsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrphanedDownloadsView.swift; sourceTree = "<group>"; };
+		132ED5E42E622DB100FDF68A /* LocalizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		132ED5E62E622DB800FDF68A /* Bundle+Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Language.swift"; sourceTree = "<group>"; };
 		1341C6ED2E040D7F00B498FA /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeGenApp.swift; sourceTree = "<group>"; };
 		1345F5F32E25607800C80AAB /* AnilistMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnilistMatchView.swift; sourceTree = "<group>"; };
@@ -239,6 +248,7 @@
 			files = (
 				13709B9C2E0410FA008BA1D4 /* Nuke in Frameworks */,
 				13709BA12E041114008BA1D4 /* MarqueeLabel in Frameworks */,
+				132ED5EA2E622F3600FDF68A /* SoraDecryption in Frameworks */,
 				13709B962E0410B7008BA1D4 /* SoraCore in Frameworks */,
 				13709B992E0410C7008BA1D4 /* Drops in Frameworks */,
 				13709B9E2E0410FA008BA1D4 /* NukeUI in Frameworks */,
@@ -351,6 +361,8 @@
 		132B27832E140DFB00BACE64 /* SettingsSubViews */ = {
 			isa = PBXGroup;
 			children = (
+				132ED5E22E622D6400FDF68A /* OrphanedDownloadsView.swift */,
+				132ED5E02E622D5B00FDF68A /* SettingsViewLibrary.swift */,
 				132B27842E140DFB00BACE64 /* SettingsViewBackup.swift */,
 				132B27852E140DFB00BACE64 /* SettingsViewGeneral.swift */,
 				132B27862E140DFB00BACE64 /* SettingsViewAbout.swift */,
@@ -525,6 +537,8 @@
 		132B27C32E140DFD00BACE64 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				132ED5E62E622DB800FDF68A /* Bundle+Language.swift */,
+				132ED5E42E622DB100FDF68A /* LocalizationManager.swift */,
 				132B27C42E140DFD00BACE64 /* View.swift */,
 				132B27C52E140DFD00BACE64 /* JavaScriptCore+Extensions.swift */,
 				132B27C62E140DFD00BACE64 /* finTopView.swift */,
@@ -743,6 +757,7 @@
 				13709B9B2E0410FA008BA1D4 /* Nuke */,
 				13709B9D2E0410FA008BA1D4 /* NukeUI */,
 				13709BA02E041114008BA1D4 /* MarqueeLabel */,
+				132ED5E92E622F3600FDF68A /* SoraDecryption */,
 			);
 			productName = AnimeGen;
 			productReference = 1341C6ED2E040D7F00B498FA /* AnimeGen.app */;
@@ -792,6 +807,7 @@
 				13709B972E0410C7008BA1D4 /* XCRemoteSwiftPackageReference "Drops" */,
 				13709B9A2E0410FA008BA1D4 /* XCRemoteSwiftPackageReference "Nuke" */,
 				13709B9F2E041114008BA1D4 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
+				132ED5E82E622F3500FDF68A /* XCRemoteSwiftPackageReference "SoraDecryption" */,
 			);
 			productRefGroup = 1341C6EE2E040D7F00B498FA /* Products */;
 			projectDirPath = "";
@@ -829,6 +845,7 @@
 				132B28052E140DFE00BACE64 /* ChapterCell.swift in Sources */,
 				132B281C2E140DFE00BACE64 /* SettingsViewDownloads.swift in Sources */,
 				132B28372E140DFE00BACE64 /* JavaScriptCore+Extensions.swift in Sources */,
+				132ED5E32E622D6400FDF68A /* OrphanedDownloadsView.swift in Sources */,
 				132B28352E140DFE00BACE64 /* TabItem.swift in Sources */,
 				132B28312E140DFE00BACE64 /* SkeletonCell.swift in Sources */,
 				132B28532E140DFE00BACE64 /* ContinueReadingManager.swift in Sources */,
@@ -850,6 +867,7 @@
 				132B28002E140DFE00BACE64 /* SearchComponents.swift in Sources */,
 				132B28292E140DFE00BACE64 /* TraktPushUpdates.swift in Sources */,
 				132B282A2E140DFE00BACE64 /* TMDB-FetchID.swift in Sources */,
+				132ED5E12E622D5B00FDF68A /* SettingsViewLibrary.swift in Sources */,
 				132B280B2E140DFE00BACE64 /* AllWatching.swift in Sources */,
 				132B27FD2E140DFE00BACE64 /* SearchResultsGrid.swift in Sources */,
 				132B28542E140DFE00BACE64 /* ContinueReadingItem.swift in Sources */,
@@ -873,11 +891,13 @@
 				132B28442E140DFE00BACE64 /* JSController-HeaderManager.swift in Sources */,
 				132B285D2E140DFE00BACE64 /* VideoPlayer.swift in Sources */,
 				132B28462E140DFE00BACE64 /* JSController-Novel.swift in Sources */,
+				132ED5E52E622DB100FDF68A /* LocalizationManager.swift in Sources */,
 				1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */,
 				1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */,
 				132B28152E140DFE00BACE64 /* SettingsView.swift in Sources */,
 				132B281E2E140DFE00BACE64 /* SettingsViewPlayer.swift in Sources */,
 				132B282B2E140DFE00BACE64 /* ContentView.swift in Sources */,
+				132ED5E72E622DB800FDF68A /* Bundle+Language.swift in Sources */,
 				132B27FF2E140DFE00BACE64 /* SearchViewComponents.swift in Sources */,
 				132B285C2E140DFE00BACE64 /* NormalPlayer.swift in Sources */,
 				132B28362E140DFE00BACE64 /* View.swift in Sources */,
@@ -1160,6 +1180,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		132ED5E82E622F3500FDF68A /* XCRemoteSwiftPackageReference "SoraDecryption" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cranci1/SoraDecryption";
+			requirement = {
+				kind = revision;
+				revision = 9a6d45b6d5d7d0974e1ae5404517c340c0b6db32;
+			};
+		};
 		13709B942E0410B7008BA1D4 /* XCRemoteSwiftPackageReference "SoraCore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cranci1/SoraCore";
@@ -1195,6 +1223,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		132ED5E92E622F3600FDF68A /* SoraDecryption */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 132ED5E82E622F3500FDF68A /* XCRemoteSwiftPackageReference "SoraDecryption" */;
+			productName = SoraDecryption;
+		};
 		13709B952E0410B7008BA1D4 /* SoraCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 13709B942E0410B7008BA1D4 /* XCRemoteSwiftPackageReference "SoraCore" */;

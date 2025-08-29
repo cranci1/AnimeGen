@@ -90,7 +90,6 @@ struct ContentView: View {
         ) { _ in
             lastHideTime = Date()
             tabBarVisible = false
-            Logger.shared.log("Tab bar hidden", type: "Debug")
         }
         
         NotificationCenter.default.addObserver(
@@ -101,9 +100,6 @@ struct ContentView: View {
             let timeSinceHide = Date().timeIntervalSince(lastHideTime)
             if timeSinceHide > 0.2 {
                 tabBarVisible = true
-                Logger.shared.log("Tab bar shown after \(timeSinceHide) seconds", type: "Debug")
-            } else {
-                Logger.shared.log("Tab bar show request ignored, only \(timeSinceHide) seconds since hide", type: "Debug")
             }
         }
     }

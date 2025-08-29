@@ -233,7 +233,8 @@ struct DownloadView: View {
             multiStream: nil,
             multiSubs: nil,
             type: nil,
-            novel: false
+            novel: false,
+            encrypted: false
         )
         
         let dummyModule = ScrapingModule(
@@ -248,7 +249,31 @@ struct DownloadView: View {
             fullUrl: asset.originalURL.absoluteString,
             title: asset.metadata?.showTitle ?? asset.name,
             episodeNumber: asset.metadata?.episode ?? 0,
-            onWatchNext: {},
+            episodeTitle: asset.metadata?.episodeTitle ?? "",
+            seasonNumber: asset.metadata?.seasonNumber ?? 1,
+            onWatchNext: {
+                let showTitle = asset.metadata?.showTitle ?? asset.name
+                let seasonNumber = asset.metadata?.seasonNumber
+                let currentEp = asset.metadata?.episode ?? 0
+                let next = jsController.savedAssets
+                    .filter { a in
+                        let aTitle = a.metadata?.showTitle ?? a.name
+                        let sameTitle = (aTitle == showTitle)
+                        let sameSeason = (seasonNumber == nil) || (a.metadata?.seasonNumber == seasonNumber)
+                        return sameTitle && sameSeason && (a.metadata?.episode ?? 0) > currentEp
+                    }
+                    .sorted { (a, b) in
+                        let ae = a.metadata?.episode ?? 0
+                        let be = b.metadata?.episode ?? 0
+                        return ae < be
+                    }
+                    .first
+                if let next = next {
+                    DispatchQueue.main.async {
+                        self.playAsset(next)
+                    }
+                }
+            },
             subtitlesURL: asset.localSubtitleURL?.absoluteString,
             aniListID: 0,
             totalEpisodes: asset.metadata?.episode ?? 0,
@@ -987,6 +1012,7 @@ struct EnhancedShowEpisodesView: View {
     @EnvironmentObject var jsController: JSController
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.dismiss) private var dismiss
+    private var fillerBadgeOpacity: Double { colorScheme == .dark ? 0.18 : 0.12 }
     
     @State private var episodeSortOption: EpisodeSortOption = .episodeOrder
     @State private var showFullSynopsis = false
@@ -1306,6 +1332,8 @@ struct EnhancedEpisodeRow: View {
         }
     }
     
+    @Environment(\.colorScheme) private var colorScheme
+    private var fillerBadgeOpacity: Double { colorScheme == .dark ? 0.18 : 0.12 }
     var body: some View {
         ZStack {
             actionButtonsBackground
@@ -1366,8 +1394,22 @@ struct EnhancedEpisodeRow: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             
             VStack(alignment: .leading) {
-                Text("Episode \(asset.metadata?.episode ?? 0)")
-                    .font(.system(size: 15))
+                HStack(spacing: 8) {
+                    Text("Episode \(asset.metadata?.episode ?? 0)")
+                        .font(.system(size: 15))
+                    if asset.metadata?.isFiller == true {
+                        Text("Filler")
+                            .font(.system(size: 12, weight: .semibold))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.red.opacity(fillerBadgeOpacity), in: Capsule())
+                            .overlay(
+                                Capsule()
+                                    .stroke(Color.red.opacity(0.24), lineWidth: 0.6)
+                            )
+                            .foregroundColor(.red)
+                    }
+                }
                 if let title = asset.metadata?.title {
                     Text(title)
                         .font(.system(size: 13))

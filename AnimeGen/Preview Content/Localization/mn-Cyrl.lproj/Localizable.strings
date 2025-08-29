@@ -465,12 +465,3 @@ Sora ба cranci1 нь AniList эсвэл Trakt-тэй ямар ч хамаар�
 "Recent searches" = "Саяхны хайлт";
 "Collections" = "Цуглуулгууд";
 "Continue Reading" = "Унших үргэлжлүүлэх";
-
-"Total Orphaned File Size" = "Орхигдсон файлуудын нийт хэмжээ";
-"Total Orphaned Files" = "Орхигдсон файлуудын нийт тоо";
-
-"Orphaned Downloads" = "Орхигдсон таталтууд";
-"No orphaned files found." = "Орхигдсон файл олдсонгүй.";
-"Delete All Orphaned Files" = "Бүх орхигдсон файлуудыг устгах";
-"Delete Selected Files?" = "Сонгосон файлуудыг устгах уу?";
-"Are you sure you want to delete the selected orphaned files? This action cannot be undone." = "Сонгосон орхигдсон файлуудыг устгахдаа итгэлтэй байна уу? Энэ үйлдлийг буцаах боломжгүй.";

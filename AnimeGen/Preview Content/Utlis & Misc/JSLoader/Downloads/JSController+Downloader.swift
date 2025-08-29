@@ -20,10 +20,13 @@ struct DownloadRequest {
     let episode: Int?
     let subtitleURL: URL?
     let showPosterURL: URL?
+    let aniListID: Int?
+    let malID: Int?
+    let isFiller: Bool?
     
     init(url: URL, headers: [String: String], title: String? = nil, imageURL: URL? = nil, 
          isEpisode: Bool = false, showTitle: String? = nil, season: Int? = nil, 
-         episode: Int? = nil, subtitleURL: URL? = nil, showPosterURL: URL? = nil) {
+         episode: Int? = nil, subtitleURL: URL? = nil, showPosterURL: URL? = nil, aniListID: Int? = nil, malID: Int? = nil, isFiller: Bool? = nil) {
         self.url = url
         self.headers = headers
         self.title = title
@@ -34,6 +37,9 @@ struct DownloadRequest {
         self.episode = episode
         self.subtitleURL = subtitleURL
         self.showPosterURL = showPosterURL
+        self.aniListID = aniListID
+        self.malID = malID
+        self.isFiller = isFiller
     }
 }
 
@@ -55,12 +61,15 @@ extension JSController {
                                 imageURL: URL? = nil, isEpisode: Bool = false, 
                                 showTitle: String? = nil, season: Int? = nil, episode: Int? = nil,
                                 subtitleURL: URL? = nil, showPosterURL: URL? = nil,
+                                aniListID: Int? = nil, malID: Int? = nil, isFiller: Bool? = nil,
                                 completionHandler: ((Bool, String) -> Void)? = nil) {
+
         
         let request = DownloadRequest(
             url: url, headers: headers, title: title, imageURL: imageURL,
             isEpisode: isEpisode, showTitle: showTitle, season: season, 
-            episode: episode, subtitleURL: subtitleURL, showPosterURL: showPosterURL
+            episode: episode, subtitleURL: subtitleURL, showPosterURL: showPosterURL,
+            aniListID: aniListID, malID: malID, isFiller: isFiller
         )
         
         logDownloadStart(request: request)
@@ -93,11 +102,19 @@ extension JSController {
                 
                 if let qualityURL = URL(string: selectedQuality.url) {
                     let qualityRequest = DownloadRequest(
-                        url: qualityURL, headers: request.headers, title: request.title,
-                        imageURL: request.imageURL, isEpisode: request.isEpisode, 
-                        showTitle: request.showTitle, season: request.season,
-                        episode: request.episode, subtitleURL: request.subtitleURL,
-                        showPosterURL: request.showPosterURL
+                        url: qualityURL,
+                        headers: request.headers,
+                        title: request.title,
+                        imageURL: request.imageURL,
+                        isEpisode: request.isEpisode,
+                        showTitle: request.showTitle,
+                        season: request.season,
+                        episode: request.episode,
+                        subtitleURL: request.subtitleURL,
+                        showPosterURL: request.showPosterURL,
+                        aniListID: request.aniListID,
+                        malID: request.malID,
+                        isFiller: request.isFiller
                     )
                     self.downloadWithOriginalMethod(request: qualityRequest, completionHandler: completionHandler)
                 } else {
@@ -122,15 +139,17 @@ extension JSController {
     
     
     func downloadMP4(url: URL, headers: [String: String], title: String? = nil, 
-                   imageURL: URL? = nil, isEpisode: Bool = false, 
-                   showTitle: String? = nil, season: Int? = nil, episode: Int? = nil,
-                   subtitleURL: URL? = nil, showPosterURL: URL? = nil,
-                   completionHandler: ((Bool, String) -> Void)? = nil) {
+                    imageURL: URL? = nil, isEpisode: Bool = false, showTitle: String? = nil,
+                    season: Int? = nil, episode: Int? = nil, subtitleURL: URL? = nil,
+                    showPosterURL: URL? = nil, aniListID: Int? = nil, malID: Int? = nil, isFiller: Bool? = nil,
+                    completionHandler: ((Bool, String) -> Void)? = nil) {
+
         
         let request = DownloadRequest(
             url: url, headers: headers, title: title, imageURL: imageURL,
             isEpisode: isEpisode, showTitle: showTitle, season: season,
-            episode: episode, subtitleURL: subtitleURL, showPosterURL: showPosterURL
+            episode: episode, subtitleURL: subtitleURL, showPosterURL: showPosterURL,
+            aniListID: aniListID, malID: malID, isFiller: isFiller
         )
         
         downloadMP4(request: request, completionHandler: completionHandler)
@@ -143,7 +162,15 @@ extension JSController {
         }
         
         guard let downloadSession = downloadURLSession else {
-            completionHandler?(false, "Download session not available")
+            Logger.shared.log("Download session not initialized, initializing and retrying...", type: "Warning")
+            Task {
+                await MainActor.run {
+                    self.initializeDownloadSession()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.downloadMP4(request: request, completionHandler: completionHandler)
+                    }
+                }
+            }
             return
         }
         
@@ -352,7 +379,10 @@ extension JSController {
             showTitle: request.showTitle,
             season: request.season,
             episode: request.episode,
-            showPosterURL: request.showPosterURL ?? request.imageURL
+            showPosterURL: request.showPosterURL ?? request.imageURL,
+            episodeTitle: nil,
+            seasonNumber: nil,
+            isFiller: request.isFiller
         )
     }
     
@@ -373,7 +403,10 @@ extension JSController {
             subtitleURL: request.subtitleURL,
             asset: asset,
             headers: request.headers,
-            module: nil
+            module: nil,
+            aniListID: request.aniListID,
+            malID: request.malID,
+            isFiller: request.isFiller
         )
     }
     
@@ -400,6 +433,9 @@ extension JSController {
             episode: request.episode,
             subtitleURL: request.subtitleURL,
             showPosterURL: request.showPosterURL,
+            aniListID: request.aniListID,
+            malID: request.malID,
+            isFiller: request.isFiller,
             completionHandler: completionHandler
         )
     }

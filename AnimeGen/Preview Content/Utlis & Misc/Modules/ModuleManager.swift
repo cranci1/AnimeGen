@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SoraDecryption
 
 @MainActor
 class ModuleManager: ObservableObject {
@@ -16,6 +17,35 @@ class ModuleManager: ObservableObject {
     
     private let fileManager = FileManager.default
     private let modulesFileName = "modules.json"
+    
+    // Encrypted modules setting - default to true (enabled)
+    var encryptedModulesEnabled: Bool {
+        UserDefaults.standard.object(forKey: "encryptedModulesEnabled") as? Bool ?? true
+    }
+    
+    func setEncryptedModulesEnabled(_ enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: "encryptedModulesEnabled")
+        Logger.shared.log("Encrypted modules \(enabled ? "enabled" : "disabled")", type: "Info")
+        
+        // Trigger a refresh of the modules list to update availability
+        DispatchQueue.main.async {
+            self.objectWillChange.send()
+        }
+    }
+    
+    // Check if a module is available based on encryption settings
+    func isModuleAvailable(_ module: ScrapingModule) -> Bool {
+        let isEncrypted = module.metadata.encrypted ?? false
+        if isEncrypted && !encryptedModulesEnabled {
+            return false
+        }
+        return true
+    }
+    
+    // Get only available modules based on encryption settings
+    var availableModules: [ScrapingModule] {
+        return modules.filter { isModuleAvailable($0) }
+    }
     
     init() {
         let url = getModulesFilePath()
@@ -106,7 +136,7 @@ class ModuleManager: ObservableObject {
     }
     
     func checkJSModuleFiles() async {
-        Logger.shared.log("Checking JS module files...", type: "Info")
+        Logger.shared.log("Checking module files...", type: "Info")
         var missingCount = 0
         
         for module in modules {
@@ -119,26 +149,34 @@ class ModuleManager: ObservableObject {
                         continue
                     }
                     
-                    Logger.shared.log("Downloading missing JS file for: \(module.metadata.sourceName)", type: "Info")
+                    let isEncrypted = module.metadata.encrypted ?? false
+                    Logger.shared.log("Downloading missing module file for: \(module.metadata.sourceName) (encrypted: \(isEncrypted))", type: "Info")
                     
                     let (scriptData, _) = try await URLSession.custom.data(from: scriptUrl)
-                    guard let jsContent = String(data: scriptData, encoding: .utf8) else {
-                        Logger.shared.log("Invalid script encoding for module: \(module.metadata.sourceName)", type: "Error")
-                        continue
-                    }
                     
-                    try jsContent.write(to: localUrl, atomically: true, encoding: .utf8)
-                    Logger.shared.log("Successfully downloaded JS file for module: \(module.metadata.sourceName)")
+                    if isEncrypted {
+                        // For encrypted modules, save the raw data directly
+                        try scriptData.write(to: localUrl)
+                        Logger.shared.log("Successfully downloaded encrypted module file for: \(module.metadata.sourceName)")
+                    } else {
+                        // For non-encrypted modules, convert to string and save
+                        guard let jsContent = String(data: scriptData, encoding: .utf8) else {
+                            Logger.shared.log("Invalid script encoding for module: \(module.metadata.sourceName)", type: "Error")
+                            continue
+                        }
+                        try jsContent.write(to: localUrl, atomically: true, encoding: .utf8)
+                        Logger.shared.log("Successfully downloaded module file for: \(module.metadata.sourceName)")
+                    }
                 } catch {
-                    Logger.shared.log("Failed to download JS file for module: \(module.metadata.sourceName) - \(error.localizedDescription)", type: "Error")
+                    Logger.shared.log("Failed to download module file for: \(module.metadata.sourceName) - \(error.localizedDescription)", type: "Error")
                 }
             }
         }
         
         if missingCount > 0 {
-            Logger.shared.log("Downloaded \(missingCount) missing module JS files", type: "Info")
+            Logger.shared.log("Downloaded \(missingCount) missing module files", type: "Info")
         } else {
-            Logger.shared.log("All module JS files are present", type: "Info")
+            Logger.shared.log("All module files are present", type: "Info")
         }
     }
     
@@ -167,13 +205,25 @@ class ModuleManager: ObservableObject {
         }
         
         let (scriptData, _) = try await URLSession.custom.data(from: scriptUrl)
-        guard let jsContent = String(data: scriptData, encoding: .utf8) else {
-            throw NSError(domain: "Invalid script encoding", code: -1)
-        }
         
-        let fileName = "\(UUID().uuidString).js"
+        // Determine file extension based on encrypted flag
+        let isEncrypted = metadata.encrypted ?? false
+        let fileExtension = isEncrypted ? "sora" : "js"
+        let fileName = "\(UUID().uuidString).\(fileExtension)"
         let localUrl = getDocumentsDirectory().appendingPathComponent(fileName)
-        try jsContent.write(to: localUrl, atomically: true, encoding: .utf8)
+        
+        if isEncrypted {
+            // For encrypted modules, save the raw binary data
+            try scriptData.write(to: localUrl)
+            Logger.shared.log("Saved encrypted module: \(metadata.sourceName)")
+        } else {
+            // For non-encrypted modules, convert to string and save
+            guard let jsContent = String(data: scriptData, encoding: .utf8) else {
+                throw NSError(domain: "Invalid script encoding", code: -1)
+            }
+            try jsContent.write(to: localUrl, atomically: true, encoding: .utf8)
+            Logger.shared.log("Saved unencrypted module: \(metadata.sourceName)")
+        }
         
         let module = ScrapingModule(
             metadata: metadata,
@@ -185,7 +235,7 @@ class ModuleManager: ObservableObject {
             self.modules.append(module)
             self.saveModules()
             self.selectedModuleChanged = true
-            Logger.shared.log("Added module: \(module.metadata.sourceName)")
+            Logger.shared.log("Added module: \(module.metadata.sourceName) (encrypted: \(isEncrypted))")
         }
         
         return module
@@ -204,7 +254,49 @@ class ModuleManager: ObservableObject {
     
     func getModuleContent(_ module: ScrapingModule) throws -> String {
         let localUrl = getDocumentsDirectory().appendingPathComponent(module.localPath)
-        return try String(contentsOf: localUrl, encoding: .utf8)
+        
+        guard FileManager.default.fileExists(atPath: localUrl.path) else {
+            Logger.shared.log("Module file not found at path: \(localUrl.path)", type: "Error")
+            throw NSError(domain: "Module file not found", code: -1, userInfo: [NSLocalizedDescriptionKey: "Module file not found at \(localUrl.path)"])
+        }
+        
+        let isEncrypted = module.metadata.encrypted ?? false
+        Logger.shared.log("Loading module content for: \(module.metadata.sourceName) (encrypted: \(isEncrypted))", type: "Info")
+        
+        if isEncrypted {
+            // Check if encrypted modules are enabled
+            guard encryptedModulesEnabled else {
+                Logger.shared.log("Encrypted modules are disabled, cannot load: \(module.metadata.sourceName)", type: "Error")
+                throw NSError(domain: "Encrypted modules disabled", code: -1, userInfo: [NSLocalizedDescriptionKey: "Encrypted modules are disabled in settings"])
+            }
+            
+            Logger.shared.log("Attempting to decrypt module: \(module.metadata.sourceName)", type: "Info")
+            do {
+                let encryptedData = try Data(contentsOf: localUrl)
+                Logger.shared.log("Loaded encrypted data, size: \(encryptedData.count) bytes", type: "Info")
+                
+                guard let decryptedContent = SoraDecryption.decryptToString(data: encryptedData) else {
+                    Logger.shared.log("SoraDecryption.decryptToString returned nil for module: \(module.metadata.sourceName)", type: "Error")
+                    throw NSError(domain: "Failed to decrypt module content", code: -1, userInfo: [NSLocalizedDescriptionKey: "Decryption returned nil"])
+                }
+                
+                Logger.shared.log("Successfully decrypted module: \(module.metadata.sourceName), content length: \(decryptedContent.count)", type: "Info")
+                return decryptedContent
+            } catch {
+                Logger.shared.log("Failed to decrypt module: \(module.metadata.sourceName) - \(error.localizedDescription)", type: "Error")
+                throw NSError(domain: "Failed to decrypt module content", code: -1, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
+            }
+        } else {
+            Logger.shared.log("Loading unencrypted module: \(module.metadata.sourceName)", type: "Info")
+            do {
+                let rawContent = try String(contentsOf: localUrl, encoding: .utf8)
+                Logger.shared.log("Successfully loaded unencrypted module: \(module.metadata.sourceName), content length: \(rawContent.count)", type: "Info")
+                return rawContent
+            } catch {
+                Logger.shared.log("Failed to load unencrypted module: \(module.metadata.sourceName) - \(error.localizedDescription)", type: "Error")
+                throw error
+            }
+        }
     }
     
     func refreshModules() async {
@@ -227,23 +319,50 @@ class ModuleManager: ObservableObject {
                     }
                     
                     let (scriptData, _) = try await URLSession.custom.data(from: scriptUrl)
-                    guard let jsContent = String(data: scriptData, encoding: .utf8) else {
-                        throw NSError(domain: "Invalid script encoding", code: -1)
+                    
+                    // Check if encryption status changed
+                    let oldIsEncrypted = module.metadata.encrypted ?? false
+                    let newIsEncrypted = newMetadata.encrypted ?? false
+                    
+                    var newLocalPath = module.localPath
+                    
+                    // If encryption status changed, create new file with correct extension
+                    if oldIsEncrypted != newIsEncrypted {
+                        // Delete old file
+                        let oldLocalUrl = getDocumentsDirectory().appendingPathComponent(module.localPath)
+                        try? fileManager.removeItem(at: oldLocalUrl)
+                        
+                        // Create new file with correct extension
+                        let fileExtension = newIsEncrypted ? "sora" : "js"
+                        let fileName = "\(module.id.uuidString).\(fileExtension)"
+                        newLocalPath = fileName
                     }
                     
-                    let localUrl = getDocumentsDirectory().appendingPathComponent(module.localPath)
-                    try jsContent.write(to: localUrl, atomically: true, encoding: .utf8)
+                    let localUrl = getDocumentsDirectory().appendingPathComponent(newLocalPath)
+                    
+                    if newIsEncrypted {
+                        // For encrypted modules, save the raw binary data
+                        try scriptData.write(to: localUrl)
+                        Logger.shared.log("Updated encrypted module: \(module.metadata.sourceName)")
+                    } else {
+                        // For non-encrypted modules, convert to string and save
+                        guard let jsContent = String(data: scriptData, encoding: .utf8) else {
+                            throw NSError(domain: "Invalid script encoding", code: -1)
+                        }
+                        try jsContent.write(to: localUrl, atomically: true, encoding: .utf8)
+                        Logger.shared.log("Updated unencrypted module: \(module.metadata.sourceName)")
+                    }
                     
                     let updatedModule = ScrapingModule(
                         id: module.id,
                         metadata: newMetadata,
-                        localPath: module.localPath,
+                        localPath: newLocalPath,
                         metadataUrl: module.metadataUrl,
                         isActive: module.isActive
                     )
                     
                     updatedModules.append((index, updatedModule))
-                    Logger.shared.log("Prepared update for module: \(module.metadata.sourceName) to version \(newMetadata.version)")
+                    Logger.shared.log("Prepared update for module: \(module.metadata.sourceName) to version \(newMetadata.version) (encrypted: \(newIsEncrypted))")
                 }
             } catch {
                 Logger.shared.log("Failed to refresh module: \(module.metadata.sourceName) - \(error.localizedDescription)")

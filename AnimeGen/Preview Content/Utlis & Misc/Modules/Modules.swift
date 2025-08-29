@@ -25,6 +25,7 @@ struct ModuleMetadata: Codable, Hashable {
     let multiSubs: Bool?
     let type: String?
     let novel: Bool?
+    let encrypted: Bool?
 
     struct Author: Codable, Hashable {
         let name: String
