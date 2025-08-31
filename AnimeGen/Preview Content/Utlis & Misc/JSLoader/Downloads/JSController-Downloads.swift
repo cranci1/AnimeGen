@@ -66,8 +66,6 @@ extension JSController {
                 }
             }
         #endif
-
-        loadSavedAssets()
     }
     
     /// Sets up JavaScript download function if needed

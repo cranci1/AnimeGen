@@ -1184,8 +1184,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cranci1/SoraDecryption";
 			requirement = {
-				kind = revision;
-				revision = 9a6d45b6d5d7d0974e1ae5404517c340c0b6db32;
+				branch = main;
+				kind = branch;
 			};
 		};
 		13709B942E0410B7008BA1D4 /* XCRemoteSwiftPackageReference "SoraCore" */ = {

@@ -38,6 +38,7 @@ class JSController: NSObject, ObservableObject {
         self.context = JSContext()
         super.init()
         setupContext()
+        initializeDownloadSession()
         loadSavedAssets()
     }
     
