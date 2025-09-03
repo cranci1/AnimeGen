@@ -116,6 +116,7 @@
 		13709B9C2E0410FA008BA1D4 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B9B2E0410FA008BA1D4 /* Nuke */; };
 		13709B9E2E0410FA008BA1D4 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B9D2E0410FA008BA1D4 /* NukeUI */; };
 		13709BA12E041114008BA1D4 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 13709BA02E041114008BA1D4 /* MarqueeLabel */; };
+		13E681782E6825F600635F80 /* JSController-NetworkFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E681772E6825F600635F80 /* JSController-NetworkFetch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -239,6 +240,7 @@
 		1358D11B2E0413E1000832DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPersistence.swift; sourceTree = "<group>"; };
 		137099BC2E040E0E008BA1D4 /* AnimeGen.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
+		13E681772E6825F600635F80 /* JSController-NetworkFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSController-NetworkFetch.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +557,7 @@
 		132B27CD2E140DFD00BACE64 /* JSLoader */ = {
 			isa = PBXGroup;
 			children = (
+				13E681772E6825F600635F80 /* JSController-NetworkFetch.swift */,
 				132B27CE2E140DFD00BACE64 /* JSController-Search.swift */,
 				132B27CF2E140DFD00BACE64 /* JSController-Details.swift */,
 				132B27D02E140DFD00BACE64 /* JSController-Streams.swift */,
@@ -902,6 +905,7 @@
 				132B285C2E140DFE00BACE64 /* NormalPlayer.swift in Sources */,
 				132B28362E140DFE00BACE64 /* View.swift in Sources */,
 				132B27FB2E140DFE00BACE64 /* ReaderView.swift in Sources */,
+				13E681782E6825F600635F80 /* JSController-NetworkFetch.swift in Sources */,
 				132B281A2E140DFE00BACE64 /* SettingsViewLogger.swift in Sources */,
 				132B28282E140DFE00BACE64 /* Trakt-Login.swift in Sources */,
 				132B28112E140DFE00BACE64 /* CollectionPickerView.swift in Sources */,

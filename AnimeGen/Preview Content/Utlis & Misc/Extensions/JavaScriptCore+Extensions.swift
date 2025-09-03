@@ -388,6 +388,7 @@ extension JSContext {
         setupConsoleLogging()
         setupNativeFetch()
         setupFetchV2()
+        setupNetworkFetch()
         setupBase64Functions()
         setupScrapingUtilities()
     }

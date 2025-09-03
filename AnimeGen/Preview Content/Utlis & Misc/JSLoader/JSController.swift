@@ -10,7 +10,6 @@ import SwiftUI
 import Foundation
 import AVFoundation
 import JavaScriptCore
-import SoraDecryption
 
 typealias Module = ScrapingModule
 

@@ -18,7 +18,6 @@ class ModuleManager: ObservableObject {
     private let fileManager = FileManager.default
     private let modulesFileName = "modules.json"
     
-    // Encrypted modules setting - default to true (enabled)
     var encryptedModulesEnabled: Bool {
         UserDefaults.standard.object(forKey: "encryptedModulesEnabled") as? Bool ?? true
     }
@@ -27,13 +26,11 @@ class ModuleManager: ObservableObject {
         UserDefaults.standard.set(enabled, forKey: "encryptedModulesEnabled")
         Logger.shared.log("Encrypted modules \(enabled ? "enabled" : "disabled")", type: "Info")
         
-        // Trigger a refresh of the modules list to update availability
         DispatchQueue.main.async {
             self.objectWillChange.send()
         }
     }
     
-    // Check if a module is available based on encryption settings
     func isModuleAvailable(_ module: ScrapingModule) -> Bool {
         let isEncrypted = module.metadata.encrypted ?? false
         if isEncrypted && !encryptedModulesEnabled {
@@ -42,7 +39,6 @@ class ModuleManager: ObservableObject {
         return true
     }
     
-    // Get only available modules based on encryption settings
     var availableModules: [ScrapingModule] {
         return modules.filter { isModuleAvailable($0) }
     }
@@ -206,18 +202,15 @@ class ModuleManager: ObservableObject {
         
         let (scriptData, _) = try await URLSession.custom.data(from: scriptUrl)
         
-        // Determine file extension based on encrypted flag
         let isEncrypted = metadata.encrypted ?? false
         let fileExtension = isEncrypted ? "sora" : "js"
         let fileName = "\(UUID().uuidString).\(fileExtension)"
         let localUrl = getDocumentsDirectory().appendingPathComponent(fileName)
         
         if isEncrypted {
-            // For encrypted modules, save the raw binary data
             try scriptData.write(to: localUrl)
             Logger.shared.log("Saved encrypted module: \(metadata.sourceName)")
         } else {
-            // For non-encrypted modules, convert to string and save
             guard let jsContent = String(data: scriptData, encoding: .utf8) else {
                 throw NSError(domain: "Invalid script encoding", code: -1)
             }
@@ -261,20 +254,15 @@ class ModuleManager: ObservableObject {
         }
         
         let isEncrypted = module.metadata.encrypted ?? false
-        Logger.shared.log("Loading module content for: \(module.metadata.sourceName) (encrypted: \(isEncrypted))", type: "Info")
         
         if isEncrypted {
-            // Check if encrypted modules are enabled
             guard encryptedModulesEnabled else {
                 Logger.shared.log("Encrypted modules are disabled, cannot load: \(module.metadata.sourceName)", type: "Error")
                 throw NSError(domain: "Encrypted modules disabled", code: -1, userInfo: [NSLocalizedDescriptionKey: "Encrypted modules are disabled in settings"])
             }
             
-            Logger.shared.log("Attempting to decrypt module: \(module.metadata.sourceName)", type: "Info")
             do {
                 let encryptedData = try Data(contentsOf: localUrl)
-                Logger.shared.log("Loaded encrypted data, size: \(encryptedData.count) bytes", type: "Info")
-                
                 guard let decryptedContent = SoraDecryption.decryptToString(data: encryptedData) else {
                     Logger.shared.log("SoraDecryption.decryptToString returned nil for module: \(module.metadata.sourceName)", type: "Error")
                     throw NSError(domain: "Failed to decrypt module content", code: -1, userInfo: [NSLocalizedDescriptionKey: "Decryption returned nil"])
@@ -287,7 +275,6 @@ class ModuleManager: ObservableObject {
                 throw NSError(domain: "Failed to decrypt module content", code: -1, userInfo: [NSLocalizedDescriptionKey: error.localizedDescription])
             }
         } else {
-            Logger.shared.log("Loading unencrypted module: \(module.metadata.sourceName)", type: "Info")
             do {
                 let rawContent = try String(contentsOf: localUrl, encoding: .utf8)
                 Logger.shared.log("Successfully loaded unencrypted module: \(module.metadata.sourceName), content length: \(rawContent.count)", type: "Info")
@@ -320,19 +307,15 @@ class ModuleManager: ObservableObject {
                     
                     let (scriptData, _) = try await URLSession.custom.data(from: scriptUrl)
                     
-                    // Check if encryption status changed
                     let oldIsEncrypted = module.metadata.encrypted ?? false
                     let newIsEncrypted = newMetadata.encrypted ?? false
                     
                     var newLocalPath = module.localPath
                     
-                    // If encryption status changed, create new file with correct extension
                     if oldIsEncrypted != newIsEncrypted {
-                        // Delete old file
                         let oldLocalUrl = getDocumentsDirectory().appendingPathComponent(module.localPath)
                         try? fileManager.removeItem(at: oldLocalUrl)
                         
-                        // Create new file with correct extension
                         let fileExtension = newIsEncrypted ? "sora" : "js"
                         let fileName = "\(module.id.uuidString).\(fileExtension)"
                         newLocalPath = fileName
@@ -341,11 +324,9 @@ class ModuleManager: ObservableObject {
                     let localUrl = getDocumentsDirectory().appendingPathComponent(newLocalPath)
                     
                     if newIsEncrypted {
-                        // For encrypted modules, save the raw binary data
                         try scriptData.write(to: localUrl)
                         Logger.shared.log("Updated encrypted module: \(module.metadata.sourceName)")
                     } else {
-                        // For non-encrypted modules, convert to string and save
                         guard let jsContent = String(data: scriptData, encoding: .utf8) else {
                             throw NSError(domain: "Invalid script encoding", code: -1)
                         }
