@@ -233,8 +233,7 @@ struct DownloadView: View {
             multiStream: nil,
             multiSubs: nil,
             type: nil,
-            novel: false,
-            encrypted: false
+            novel: false
         )
         
         let dummyModule = ScrapingModule(

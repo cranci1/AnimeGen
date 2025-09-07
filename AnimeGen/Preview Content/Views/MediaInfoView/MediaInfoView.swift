@@ -713,7 +713,8 @@ struct MediaInfoView: View {
             tmdbID: tmdbID,
             seasonNumber: season,
             fillerEpisodes: jikanFillerSet
-        ).disabled(isFetchingEpisode)
+        )
+        .disabled(isFetchingEpisode)
     }
     
     @ViewBuilder

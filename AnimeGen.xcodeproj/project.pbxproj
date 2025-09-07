@@ -105,7 +105,6 @@
 		132ED5E32E622D6400FDF68A /* OrphanedDownloadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E22E622D6400FDF68A /* OrphanedDownloadsView.swift */; };
 		132ED5E52E622DB100FDF68A /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E42E622DB100FDF68A /* LocalizationManager.swift */; };
 		132ED5E72E622DB800FDF68A /* Bundle+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132ED5E62E622DB800FDF68A /* Bundle+Language.swift */; };
-		132ED5EA2E622F3600FDF68A /* SoraDecryption in Frameworks */ = {isa = PBXBuildFile; productRef = 132ED5E92E622F3600FDF68A /* SoraDecryption */; };
 		1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */; };
 		1345F5F52E25607800C80AAB /* AnilistMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F32E25607800C80AAB /* AnilistMatchView.swift */; };
 		1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F42E25607800C80AAB /* TMDBMatchView.swift */; };
@@ -240,6 +239,8 @@
 		1358D11B2E0413E1000832DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPersistence.swift; sourceTree = "<group>"; };
 		137099BC2E040E0E008BA1D4 /* AnimeGen.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
+		13BB1AE42E6E0B6200D2A812 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		13BB1AE52E6E0B6900D2A812 /* as */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = as; path = as.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13E681772E6825F600635F80 /* JSController-NetworkFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSController-NetworkFetch.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,7 +251,6 @@
 			files = (
 				13709B9C2E0410FA008BA1D4 /* Nuke in Frameworks */,
 				13709BA12E041114008BA1D4 /* MarqueeLabel in Frameworks */,
-				132ED5EA2E622F3600FDF68A /* SoraDecryption in Frameworks */,
 				13709B962E0410B7008BA1D4 /* SoraCore in Frameworks */,
 				13709B992E0410C7008BA1D4 /* Drops in Frameworks */,
 				13709B9E2E0410FA008BA1D4 /* NukeUI in Frameworks */,
@@ -760,7 +760,6 @@
 				13709B9B2E0410FA008BA1D4 /* Nuke */,
 				13709B9D2E0410FA008BA1D4 /* NukeUI */,
 				13709BA02E041114008BA1D4 /* MarqueeLabel */,
-				132ED5E92E622F3600FDF68A /* SoraDecryption */,
 			);
 			productName = AnimeGen;
 			productReference = 1341C6ED2E040D7F00B498FA /* AnimeGen.app */;
@@ -803,6 +802,8 @@
 				bs,
 				it,
 				mn,
+				hi,
+				as,
 			);
 			mainGroup = 1341C6E42E040D7F00B498FA;
 			packageReferences = (
@@ -810,7 +811,6 @@
 				13709B972E0410C7008BA1D4 /* XCRemoteSwiftPackageReference "Drops" */,
 				13709B9A2E0410FA008BA1D4 /* XCRemoteSwiftPackageReference "Nuke" */,
 				13709B9F2E041114008BA1D4 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
-				132ED5E82E622F3500FDF68A /* XCRemoteSwiftPackageReference "SoraDecryption" */,
 			);
 			productRefGroup = 1341C6EE2E040D7F00B498FA /* Products */;
 			projectDirPath = "";
@@ -964,6 +964,8 @@
 				132B279E2E140DFC00BACE64 /* nn */,
 				132B279F2E140DFC00BACE64 /* bos */,
 				1310DDA22E20FFEE009166E2 /* mn */,
+				13BB1AE42E6E0B6200D2A812 /* hi */,
+				13BB1AE52E6E0B6900D2A812 /* as */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1184,14 +1186,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		132ED5E82E622F3500FDF68A /* XCRemoteSwiftPackageReference "SoraDecryption" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cranci1/SoraDecryption";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		13709B942E0410B7008BA1D4 /* XCRemoteSwiftPackageReference "SoraCore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cranci1/SoraCore";
@@ -1227,11 +1221,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		132ED5E92E622F3600FDF68A /* SoraDecryption */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 132ED5E82E622F3500FDF68A /* XCRemoteSwiftPackageReference "SoraDecryption" */;
-			productName = SoraDecryption;
-		};
 		13709B952E0410B7008BA1D4 /* SoraCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 13709B942E0410B7008BA1D4 /* XCRemoteSwiftPackageReference "SoraCore" */;

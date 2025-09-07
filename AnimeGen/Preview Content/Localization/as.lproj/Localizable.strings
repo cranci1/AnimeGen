@@ -1,0 +1,406 @@
+/* General */
+"About" = "এবাউট";
+"About Sora" = "ছ’ৰাৰ এবাউট";
+"Active" = "সক্ৰিয়";
+"Active Downloads" = "সক্ৰিয় ডাউনলোডসমূহ";
+"Actively downloading media can be tracked from here." = "সক্ৰিয়ভাৱে ডাউনলোড হোৱা মিডিয়া ইয়াৰ পৰা ট্ৰেক কৰিব পাৰি।";
+"Add Module" = "মডিউল যোগ কৰক";
+"Adjust the number of media items per row in portrait and landscape modes." = "প’ৰ্ট্ৰেইট আৰু লেণ্ডস্কেপ ম’ডত প্ৰতি শাৰীত মিডিয়া আইটেমৰ সংখ্যা সামঞ্জস্য কৰক।";
+"Advanced" = "এডভান্সড";
+"AKA Sulfur" = "একেএ ছালফাৰ";
+"All Bookmarks" = "সকলো বুকমাৰ্কসমূহ";
+"All Watching" = "সকলো চোৱা";
+"Also known as Sulfur" = "ছালফাৰ নামেৰেও জনা যায়";
+"AniList" = "এনিলিষ্ট";
+"AniList ID" = "এনিলিষ্ট আইডি";
+"AniList Match" = "এনিলিষ্ট মিল";
+"AniList.co" = "এনিলিষ্ট.ক’";
+"Anonymous data is collected to improve the app. No personal information is collected. This can be disabled at any time." = "এপ উন্নত কৰিবলৈ বেনামী তথ্য সংগ্ৰহ কৰা হয়। কোনো ব্যক্তিগত তথ্য সংগ্ৰহ কৰা নহয়। এইটো যিকোনো সময়ত ডিজেবল কৰিব পাৰি।";
+"App Info" = "এপৰ তথ্য";
+"App Language" = "এপৰ ভাষা";
+"App Storage" = "এপৰ ষ্ট’ৰেজ";
+"Appearance" = "চেহেৰা";
+/* Alerts and Actions */
+"Are you sure you want to clear all cached data? This will help free up storage space." = "আপুনি সকলো কেশ্ব কৰা তথ্য মচি পেলাবলৈ নিশ্চিত নেকি? ই ষ্ট’ৰেজৰ ঠাই মুক্ত কৰাত সহায় কৰিব।";
+"Are you sure you want to delete '%@'?" = "আপুনি '%@' ডিলিট কৰিবলৈ নিশ্চিত নেকি?";
+"Are you sure you want to delete all %1$d episodes in '%2$@'?" = "আপুনি '%2$@'ত থকা সকলো %1$d এপিচ’ড ডিলিট কৰিবলৈ নিশ্চিত নেকি?";
+"Are you sure you want to delete all downloaded assets? You can choose to clear only the library while preserving the downloaded files for future use." = "আপুনি সকলো ডাউনলোড কৰা সম্পদ ডিলিট কৰিবলৈ নিশ্চিত নেকি? আপুনি ভৱিষ্যতৰ ব্যৱহাৰৰ বাবে ডাউনলোড কৰা ফাইলসমূহ সংৰক্ষণ কৰি কেৱল লাইব্ৰেৰী মচি পেলাবলৈ বাছি ল’ব পাৰে।";
+"Are you sure you want to erase all app data? This action cannot be undone." = "আপুনি সকলো এপৰ তথ্য মচি পেলাবলৈ নিশ্চিত নেকি? এই কাৰ্য পূৰ্বৱত কৰিব নোৱাৰি।";
+/* Features */
+"Background Enabled" = "বেকগ্ৰাউণ্ড এনেবল কৰা হৈছে";
+"Bookmark items for an easier access later." = "পিছত সহজে প্ৰৱেশৰ বাবে আইটেমসমূহ বুকমাৰ্ক কৰক।";
+"Bookmarks" = "বুকমাৰ্কসমূহ";
+"Bottom Padding" = "তলৰ পেডিং";
+"Cancel" = "কেনছেল";
+"Cellular Quality" = "চেলুলাৰ কোৱালিটি";
+"Check out some community modules here!" = "ইয়াত কিছুমান কমিউনিটি মডিউল চাওক!";
+"Choose preferred video resolution for WiFi and cellular connections. Higher resolutions use more data but provide better quality. If the exact quality isn't available, the closest option will be selected automatically.\n\nNote: Not all video sources and players support quality selection. This feature works best with HLS streams using the Sora player." = "ৱাই-ফাই আৰু চেলুলাৰ সংযোগৰ বাবে পছন্দৰ ভিডিঅ’ ৰিজ’লিউশ্যন বাছক। উচ্চ ৰিজ’লিউশ্যনে অধিক তথ্য ব্যৱহাৰ কৰে কিন্তু উন্নত কোৱালিটি প্ৰদান কৰে। যদি সঠিক কোৱালিটি উপলব্ধ নহয়, তেন্তে নিকটতম বিকল্প স্বয়ংক্ৰিয়ভাৱে নিৰ্বাচিত হ’ব।\n\nটোকা: সকলো ভিডিঅ’ ছ’ৰ্চ আৰু প্লেয়াৰে কোৱালিটি নিৰ্বাচন সমৰ্থন নকৰে। এই ফিচাৰ ছ’ৰা প্লেয়াৰৰ সৈতে এইচএলএছ ষ্ট্ৰীমৰ ক্ষেত্ৰত সৰ্বোত্তম কাম কৰে।";
+"Clear" = "মচক";
+"Clear All Downloads" = "সকলো ডাউনলোড মচক";
+"Clear Cache" = "কেশ্ব মচক";
+"Clear Library Only" = "কেৱল লাইব্ৰেৰী মচক";
+"Clear Logs" = "লগ মচক";
+"Click the plus button to add a module!" = "মডিউল যোগ কৰিবলৈ প্লাছ বাটনত ক্লিক কৰক!";
+"Continue Watching" = "চোৱা অব্যাহত ৰাখক";
+"Continue Watching Episode %d" = "এপিচ’ড %d চোৱা অব্যাহত ৰাখক";
+"Contributors" = "কণ্ট্ৰিবিউটৰসমূহ";
+"Copied to Clipboard" = "ক্লিপব’ৰ্ডত কপি কৰা হ’ল";
+"Copy to Clipboard" = "ক্লিপব’ৰ্ডত কপি কৰক";
+"Copy URL" = "ইউআৰএল কপি কৰক";
+"Collections" = "কলেকশ্যনসমূহ";
+"No Collections" = "কোনো কলেকশ্যন নাই";
+"Create a collection to organize your bookmarks" = "আপোনাৰ বুকমাৰ্কসমূহ সংগঠিত কৰিবলৈ এটা কলেকশ্যন তৈয়াৰ কৰক";
+/* Episodes */
+"%lld Episodes" = "%lld এপিচ’ডসমূহ";
+"%lld of %lld" = "%1$lldৰ %2$lld";
+"%lld-%lld" = "%1$lld-%2$lld";
+"%lld%% seen" = "%lld%% দেখা হৈছে";
+"Episode %lld" = "এপিচ’ড %lld";
+"Episodes" = "এপিচ’ডসমূহ";
+"Episodes might not be available yet or there could be an issue with the source." = "এপিচ’ডসমূহ এতিয়াও উপলব্ধ নহ’বও পাৰে বা ছ’ৰ্চৰ সৈতে কিবা সমস্যা হ’ব পাৰে।";
+"Episodes Range" = "এপিচ’ডৰ পৰিসৰ";
+/* System */
+"cranci1" = "ক্ৰেন্সি১";
+"Dark" = "ডাৰ্ক";
+"DATA & LOGS" = "তথ্য আৰু লগসমূহ";
+"Debug" = "ডিবাগ";
+"Debugging and troubleshooting." = "ডিবাগিং আৰু সমস্যা সমাধান।";
+/* Actions */
+"Delete" = "ডিলিট";
+"Delete All" = "সকলো ডিলিট";
+"Delete All Downloads" = "সকলো ডাউনলোড ডিলিট";
+"Delete All Episodes" = "সকলো এপিচ’ড ডিলিট";
+"Delete Download" = "ডাউনলোড ডিলিট";
+"Delete Episode" = "এপিচ’ড ডিলিট";
+/* Player */
+"Double Tap to Seek" = "চিক কৰিবলৈ দুবাৰ টেপ কৰক";
+"Double tapping the screen on it's sides will skip with the short tap setting." = "পৰ্দাৰ কাষত দুবাৰ টেপ কৰিলে চুটি টেপ ছেটিংৰ সৈতে এৰি যাব।";
+/* Downloads */
+"Download" = "ডাউনলোড";
+"Download Episode" = "এপিচ’ড ডাউনলোড";
+"Download Summary" = "ডাউনলোডৰ সাৰাংশ";
+"Download This Episode" = "এই এপিচ’ড ডাউনলোড কৰক";
+"Downloaded" = "ডাউনলোড কৰা হৈছে";
+"Downloaded Shows" = "ডাউনলোড কৰা শ্ব’সমূহ";
+"Downloading" = "ডাউনলোড হৈ আছে";
+"Downloads" = "ডাউনলোডসমূহ";
+/* Settings */
+"Enable Analytics" = "এনালিটিক্স এনেবল কৰক";
+"Enable Subtitles" = "ছাবটাইটেল এনেবল কৰক";
+/* Data Management */
+"Erase" = "মচক";
+"Erase all App Data" = "সকলো এপৰ তথ্য মচক";
+"Erase App Data" = "এপৰ তথ্য মচক";
+/* Errors */
+"Error" = "ত্ৰুটি";
+"Error Fetching Results" = "ফলাফল প্ৰাপ্ত কৰাত ত্ৰুটি";
+"Errors and critical issues." = "ত্ৰুটি আৰু গুৰুতৰ সমস্যাসমূহ।";
+"Failed to load contributors" = "কণ্ট্ৰিবিউটৰ লোড কৰাত বিফল";
+/* Features */
+"Fetch Episode metadata" = "এপিচ’ড মেটাডাটা প্ৰাপ্ত কৰক";
+"Files Downloaded" = "ফাইলসমূহ ডাউনলোড কৰা হৈছে";
+"Font Size" = "ফণ্টৰ আকাৰ";
+/* Interface */
+"Force Landscape" = "ফ’ৰ্চ লেণ্ডস্কেপ";
+"General" = "জেনেৰেল";
+"General events and activities." = "জেনেৰেল ইভেণ্ট আৰু কাৰ্যকলাপসমূহ।";
+"General Preferences" = "জেনেৰেল পছন্দসমূহ";
+"Hide Splash Screen" = "স্প্লেশ স্ক্ৰীন লুকুৱাওক";
+"Use Native Tab Bar" = "নেটিভ টেব বাৰ ব্যৱহাৰ কৰক";
+"HLS video downloading." = "এইচএলএছ ভিডিঅ’ ডাউনলোডিং।";
+"Hold Speed" = "হোল্ড স্পীড";
+/* Info */
+"Info" = "ইনফ’";
+"INFOS" = "ইনফ’সমূহ";
+"Installed Modules" = "ইনষ্টল কৰা মডিউলসমূহ";
+"Interface" = "ইণ্টাৰফেচ";
+/* Social */
+"Join the Discord" = "ডিস্কৰ্ডত যোগদান কৰক";
+/* Layout */
+"Landscape Columns" = "লেণ্ডস্কেপ কলামসমূহ";
+"Language" = "ভাষা";
+"LESS" = "কম";
+/* Library */
+"Library" = "লাইব্ৰেৰী";
+"License (GPLv3.0)" = "লাইচেন্স (জিপিএলভি৩.০)";
+"Light" = "লাইট";
+/* Loading States */
+"Loading Episode %lld..." = "এপিচ’ড %lld লোড হৈ আছে...";
+"Loading logs..." = "লগসমূহ লোড হৈ আছে...";
+"Loading module information..." = "মডিউলৰ তথ্য লোড হৈ আছে...";
+"Loading Stream" = "ষ্ট্ৰীম লোড হৈ আছে";
+/* Logging */
+"Log Debug Info" = "ডিবাগ ইনফ’ লগ কৰক";
+"Log Filters" = "লগ ফিল্টাৰসমূহ";
+"Log In with AniList" = "এনিলিষ্টৰ সৈতে লগইন কৰক";
+"Log In with Trakt" = "ট্ৰাক্টৰ সৈতে লগইন কৰক";
+"Log Out from AniList" = "এনিলিষ্টৰ পৰা লগআউট কৰক";
+"Log Out from Trakt" = "ট্ৰাক্টৰ পৰা লগআউট কৰক";
+"Log Types" = "লগৰ প্ৰকাৰসমূহ";
+"Logged in as" = "ইয়াৰ দ্বাৰা লগইন কৰা হৈছে";
+"Logged in as " = "ইয়াৰ দ্বাৰা লগইন কৰা হৈছে ";
+/* Logs and Settings */
+"Logs" = "লগসমূহ";
+"Long press Skip" = "দীঘলীয়া প্ৰেছৰ সৈতে এৰি যাওক";
+"MAIN" = "মেইন ছেটিং";
+"Main Developer" = "মুখ্য ডেভেলপাৰ";
+"MAIN SETTINGS" = "মেইন ছেটিংসমূহ";
+/* Media Actions */
+"Mark All Previous Watched" = "পূৰ্বৰ সকলো দেখা বুলি চিহ্নিত কৰক";
+"Mark as Watched" = "দেখা বুলি চিহ্নিত কৰক";
+"Mark Episode as Watched" = "এপিচ’ড দেখা বুলি চিহ্নিত কৰক";
+"Mark Previous Episodes as Watched" = "পূৰ্বৰ এপিচ’ডসমূহ দেখা বুলি চিহ্নিত কৰক";
+"Mark watched" = "দেখা চিহ্নিত কৰক";
+"Match with AniList" = "এনিলিষ্টৰ সৈতে মিলাওক";
+"Match with TMDB" = "টিএমডিবিৰ সৈতে মিলাওক";
+"Matched ID: %lld" = "মিলোৱা আইডি: %lld";
+"Matched with: %@" = "ইয়াৰ সৈতে মিলোৱা হৈছে: %@";
+"Max Concurrent Downloads" = "সৰ্বাধিক সমকালীন ডাউনলোডসমূহ";
+/* Media Interface */
+"Media Grid Layout" = "মিডিয়া গ্ৰিড লেআউট";
+"Media Player" = "মিডিয়া প্লেয়াৰ";
+"Media View" = "মিডিয়া ভিউ";
+"Metadata Provider" = "মেটাডাটা প্ৰদানকাৰী";
+"Metadata Providers Order" = "মেটাডাটা প্ৰদানকাৰীৰ ক্ৰম";
+"Module Removed" = "মডিউল আঁতৰোৱা হৈছে";
+"Modules" = "মডিউলসমূহ";
+/* Headers */
+"MODULES" = "মডিউলসমূহ";
+"MORE" = "অধিক";
+/* Status Messages */
+"No Active Downloads" = "কোনো সক্ৰিয় ডাউনলোড নাই";
+"No AniList matches found" = "কোনো এনিলিষ্ট মিল পোৱা নগ’ল";
+"No Data Available" = "কোনো তথ্য উপলব্ধ নাই";
+"No Downloads" = "কোনো ডাউনলোড নাই";
+"No episodes available" = "কোনো এপিচ’ড উপলব্ধ নাই";
+"No Episodes Available" = "কোনো এপিচ’ড উপলব্ধ নাই";
+"No items to continue watching." = "চোৱা অব্যাহত ৰাখিবলৈ কোনো আইটেম নাই।";
+"No matches found" = "কোনো মিল পোৱা নগ’ল";
+"No Module Selected" = "কোনো মডিউল নিৰ্বাচিত হোৱা নাই";
+"No Modules" = "কোনো মডিউল নাই";
+"No Results Found" = "কোনো ফলাফল পোৱা নগ’ল";
+"No Search Results Found" = "কোনো চাৰ্চ ফলাফল পোৱা নগ’ল";
+"Nothing to Continue Watching" = "চোৱা অব্যাহত ৰাখিবলৈ একো নাই";
+/* Notes and Messages */
+"Note that the modules will be replaced only if there is a different version string inside the JSON file." = "টোকা কৰক যে মডিউলসমূহ কেৱল তেতিয়াহে প্ৰতিস্থাপন কৰা হ’ব যদি জেচন ফাইলত এটা ভিন্ন ভাৰ্চন ষ্ট্ৰিং থাকে।";
+/* Actions */
+"OK" = "ঠিক আছে";
+"Open Community Library" = "কমিউনিটি লাইব্ৰেৰী খোলক";
+/* External Services */
+"Open in AniList" = "এনিলিষ্টত খোলক";
+"Original Poster" = "অৰিজিনেল প’ষ্টাৰ";
+/* Playback */
+"Paused" = "পজ কৰা হৈছে";
+"Play" = "প্লে";
+"Player" = "প্লেয়াৰ";
+/* System Messages */
+"Please restart the app to apply the language change." = "ভাষা পৰিৱৰ্তন প্ৰয়োগ কৰিবলৈ এপ পুনৰাৰম্ভ কৰক।";
+"Please select a module from settings" = "ছেটিংসমূহৰ পৰা এটা মডিউল নিৰ্বাচন কৰক";
+/* Interface */
+"Portrait Columns" = "প’ৰ্ট্ৰেইট কলামসমূহ";
+"Progress bar Marker Color" = "প্ৰগ্ৰেছ বাৰ মাৰ্কাৰৰ ৰং";
+"Provider: %@" = "প্ৰদানকাৰী: %@";
+/* Queue */
+"Queue" = "কিউ";
+"Queued" = "কিউ কৰা হৈছে";
+/* Content */
+"Recently watched content will appear here." = "শেহতীয়াকৈ দেখা বিষয়বস্তু ইয়াত দেখা যাব।";
+/* Settings */
+"Refresh Modules on Launch" = "লঞ্চত মডিউলসমূহ ৰিফ্ৰেশ কৰক";
+"Refresh Storage Info" = "ষ্ট’ৰেজ তথ্য ৰিফ্ৰেশ কৰক";
+"Remember Playback speed" = "প্লেবেকৰ গতি মনত ৰাখক";
+/* Actions */
+"Remove" = "আঁতৰাওক";
+"Remove All Cache" = "সকলো কেশ্ব আঁতৰাওক";
+/* File Management */
+"Remove All Documents" = "সকলো ডকুমেণ্ট আঁতৰাওক";
+"Remove Documents" = "ডকুমেণ্ট আঁতৰাওক";
+"Remove Downloaded Media" = "ডাউনলোড কৰা মিডিয়া আঁতৰাওক";
+"Remove Downloads" = "ডাউনলোডসমূহ আঁতৰাওক";
+"Remove from Bookmarks" = "বুকমাৰ্কসমূহৰ পৰা আঁতৰাওক";
+"Remove Item" = "আইটেম আঁতৰাওক";
+/* Support */
+"Report an Issue" = "এটা সমস্যা ৰিপ’ৰ্ট কৰক";
+/* Reset Options */
+"Reset" = "ৰিছেট";
+"Reset AniList ID" = "এনিলিষ্ট আইডি ৰিছেট";
+"Reset Episode Progress" = "এপিচ’ডৰ প্ৰগ্ৰেছ ৰিছেট";
+"Reset progress" = "প্ৰগ্ৰেছ ৰিছেট";
+"Reset Progress" = "প্ৰগ্ৰেছ ৰিছেট";
+/* System */
+"Restart Required" = "পুনৰাৰম্ভৰ প্ৰয়োজন";
+"Running Sora %@ - cranci1" = "ছ’ৰা %@ - ক্ৰেন্সি১ চলি আছে";
+/* Actions */
+"Save" = "ছেভ";
+"Search" = "চাৰ্চ";
+/* Search */
+"Search downloads" = "ডাউনলোডসমূহ চাৰ্চ কৰক";
+"Search for something..." = "কিবা এটাৰ বাবে চাৰ্চ কৰক...";
+"Search..." = "চাৰ্চ...";
+/* Content */
+"Season %d" = "ছিজন %d";
+"Season %lld" = "ছিজন %lld";
+"Segments Color" = "ছেগমেণ্টৰ ৰং";
+/* Modules */
+"Select Module" = "মডিউল নিৰ্বাচন কৰক";
+"Set Custom AniList ID" = "কাষ্টম এনিলিষ্ট আইডি ছেট কৰক";
+/* Interface */
+"Settings" = "ছেটিংসমূহ";
+"Shadow" = "ছাঁ";
+"Show More (%lld more characters)" = "অধিক দেখুৱাওক (%lld অধিক আখৰ)";
+"Show PiP Button" = "পিআইপি বাটন দেখুৱাওক";
+"Show Skip 85s Button" = "৮৫ ছেকেণ্ড এৰি যোৱা বাটন দেখুৱাওক";
+"Show Skip Intro / Outro Buttons" = "ইনট্ৰ’ / আউট্ৰ’ এৰি যোৱা বাটন দেখুৱাওক";
+"Shows" = "শ্ব’সমূহ";
+"Size (%@)" = "আকাৰ (%@)";
+"Skip Settings" = "এৰি যোৱাৰ ছেটিংসমূহ";
+/* Player Features */
+"Some features are limited to the Sora and Default player, such as ForceLandscape, holdSpeed and custom time skip increments." = "কিছুমান ফিচাৰ ছ’ৰা আৰু ডিফল্ট প্লেয়াৰৰ মাজত সীমিত, যেনে ফ’ৰ্চলেণ্ডস্কেপ, হোল্ডস্পীড আৰু কাষ্টম সময় এৰি যোৱাৰ ইনক্ৰিমেণ্ট।";
+/* App Info */
+"Sora" = "ছ’ৰা";
+"Sora %@ by cranci1" = "ক্ৰেন্সি১ৰ দ্বাৰা ছ’ৰা %@";
+"Sora and cranci1 are not affiliated with AniList or Trakt in any way.\n\nAlso note that progress updates may not be 100% accurate." = "ছ’ৰা আৰু ক্ৰেন্সি১ৰ এনিলিষ্ট বা ট্ৰাক্টৰ সৈতে কোনো ধৰণৰ সম্পৰ্ক নাই।\n\nইয়াৰ উপৰিও লক্ষ্য কৰক যে প্ৰগ্ৰেছ আপডেট ১০০% সঠিক নহ’বও পাৰে।";
+"Sora GitHub Repository" = "ছ’ৰা গিটহাব ৰিপ’জিটৰী";
+"Sora/Sulfur will always remain free with no ADs!" = "ছ’ৰা/ছালফাৰ সদায় বিজ্ঞাপনবিহীনভাৱে বিনামূলীয়া হৈ থাকিব!";
+/* Interface */
+"Sort" = "চৰ্ট";
+"Speed Settings" = "গতিৰ ছেটিংসমূহ";
+/* Playback */
+"Start Watching" = "চোৱা আৰম্ভ কৰক";
+"Start Watching Episode %d" = "এপিচ’ড %d চোৱা আৰম্ভ কৰক";
+"Storage Used" = "ব্যৱহৃত ষ্ট’ৰেজ";
+"Stream" = "ষ্ট্ৰীম";
+"Streaming and video playback." = "ষ্ট্ৰীমিং আৰু ভিডিঅ’ প্লেবেক।";
+/* Subtitles */
+"Subtitle Color" = "ছাবটাইটেলৰ ৰং";
+"Subtitle Settings" = "ছাবটাইটেলৰ ছেটিংসমূহ";
+/* Sync */
+"Sync anime progress" = "এনিমেৰ প্ৰগ্ৰেছ ছিঙ্ক কৰক";
+"Sync TV shows progress" = "টিভি শ্ব’ৰ প্ৰগ্ৰেছ ছিঙ্ক কৰক";
+/* System */
+"System" = "চিষ্টেম";
+/* Instructions */
+"Tap a title to override the current match." = "বৰ্তমানৰ মিল ওভাৰৰাইড কৰিবলৈ এটা টাইটেলত টেপ কৰক।";
+"Tap Skip" = "এৰি যাওক টেপ কৰক";
+"Tap to manage your modules" = "আপোনাৰ মডিউলসমূহ মেনেজ কৰিবলৈ টেপ কৰক";
+"Tap to select a module" = "এটা মডিউল নিৰ্বাচন কৰিবলৈ টেপ কৰক";
+/* App Information */
+"The app cache helps the app load images faster.\n\nClearing the Documents folder will delete all downloaded modules.\n\nDo not erase App Data unless you understand the consequences — it may cause the app to malfunction." = "এপৰ কেশ্ব এপক ছবিসমূহ দ্ৰুতভাৱে লোড কৰাত সহায় কৰে।\n\nডকুমেণ্ট ফ’ল্ডাৰ মচিলে সকলো ডাউনলোড কৰা মডিউল ডিলিট হ’ব।\n\nএপৰ তথ্য মচিব নালাগে যদিহে আপুনি পৰিণতিসমূহ নুবুজে — ইয়াৰ ফলত এপৰ অপাৰেশ্যনত সমস্যা হ’ব পাৰে।";
+"The episode range controls how many episodes appear on each page. Episodes are grouped into sets (like 1–25, 26–50, and so on), allowing you to navigate through them more easily.\n\nFor episode metadata, it refers to the episode thumbnail and title, since sometimes it can contain spoilers." = "এপিচ’ডৰ পৰিসৰে নিয়ন্ত্ৰণ কৰে প্ৰতিটো পৃষ্ঠাত কিমান এপিচ’ড দেখা যায়। এপিচ’ডসমূহ ছেটত ভাগ কৰা হয় (যেনে ১-২৫, ২৬-৫০, আৰু তাৰ পিছত), যাৰ ফলত সিহঁতৰ মাজেৰে নেভিগেট কৰাটো সহজ হয়।\n\nএপিচ’ড মেটাডাটাৰ ক্ষেত্ৰত, ই এপিচ’ডৰ থাম্বনেইল আৰু টাইটেলক বুজায়, যিহেতু কেতিয়াবা ইয়াত স্প’ইলাৰ থাকিব পাৰে।";
+"The module provided only a single episode, this is most likely a movie, so we decided to make separate screens for these cases." = "মডিউলে কেৱল এটা এপিচ’ড প্ৰদান কৰিছে, এইটো সম্ভৱত এখন মুভি, গতিকে আমি এই ক্ষেত্ৰসমূহৰ বাবে পৃথক স্ক্ৰীন তৈয়াৰ কৰাৰ সিদ্ধান্ত লৈছো।";
+/* Interface */
+"Thumbnails Width" = "থাম্বনেইলৰ প্ৰস্থ";
+"TMDB Match" = "টিএমডিবি মিল";
+"Trackers" = "ট্ৰেকাৰসমূহ";
+"Trakt" = "ট্ৰাক্ট";
+"Trakt.tv" = "ট্ৰাক্ট.টিভি";
+/* Search */
+"Try different keywords" = "ভিন্ন কীৱৰ্ড চেষ্টা কৰক";
+"Try different search terms" = "ভিন্ন চাৰ্চ টাৰ্ম চেষ্টা কৰক";
+/* Player Controls */
+"Two Finger Hold for Pause" = "পজৰ বাবে দুআঙুল ধৰি ৰাখক";
+"Unable to fetch matches. Please try again later." = "মিল প্ৰাপ্ত কৰিবলৈ অক্ষম। অনুগ্ৰহ কৰি পিছত পুনৰ চেষ্টা কৰক।";
+"Use TMDB Poster Image" = "টিএমডিবি প’ষ্টাৰ ছবি ব্যৱহাৰ কৰক";
+/* Version */
+"v%@" = "v%@";
+"Video Player" = "ভিডিঅ’ প্লেয়াৰ";
+/* Video Settings */
+"Video Quality Preferences" = "ভিডিঅ’ কোৱালিটি পছন্দসমূহ";
+"View All" = "সকলো চাওক";
+"Watched" = "দেখা হৈছে";
+"Why am I not seeing any episodes?" = "মই কিয় কোনো এপিচ’ড দেখা নাই?";
+"WiFi Quality" = "ৱাই-ফাই কোৱালিটি";
+/* User Status */
+"You are not logged in" = "আপুনি লগইন কৰা নাই";
+"You have no items saved." = "আপোনাৰ কোনো আইটেম ছেভ কৰা নাই।";
+"Your downloaded episodes will appear here" = "আপোনাৰ ডাউনলোড কৰা এপিচ’ডসমূহ ইয়াত দেখা যাব";
+"Your recently watched content will appear here" = "আপোনাৰ শেহতীয়াকৈ দেখা বিষয়বস্তু ইয়াত দেখা যাব";
+/* Download Settings */
+"Download Settings" = "ডাউনলোড ছেটিংসমূহ";
+"Max concurrent downloads controls how many episodes can download simultaneously. Higher values may use more bandwidth and device resources." = "সৰ্বাধিক সমকালীন ডাউনলোডে নিয়ন্ত্ৰণ কৰে কিমান এপিচ’ড একেলগে ডাউনলোড হ’ব পাৰে। উচ্চ মানে অধিক বেণ্ডউইডথ আৰু ডিভাইচৰ সম্পদ ব্যৱহাৰ কৰিব পাৰে।";
+"Quality" = "কোৱালিটি";
+"Max Concurrent Downloads" = "সৰ্বাধিক সমকালীন ডাউনলোডসমূহ";
+"Allow Cellular Downloads" = "চেলুলাৰ ডাউনলোডৰ অনুমতি দিয়ক";
+"Quality Information" = "কোৱালিটিৰ তথ্য";
+"Maximum Quality Available" = "সৰ্বাধিক উপলব্ধ কোৱালিটি";
+/* Storage */
+"Storage Management" = "ষ্ট’ৰেজ মেনেজমেণ্ট";
+"Storage Used" = "ব্যৱহৃত ষ্ট’ৰেজ";
+"Library cleared successfully" = "লাইব্ৰেৰী সফলভাৱে মচা হৈছে";
+"All downloads deleted successfully" = "সকলো ডাউনলোড সফলভাৱে ডিলিট কৰা হৈছে";
+/* TabView */
+"LibraryTab" = "লাইব্ৰেৰী";
+"DownloadsTab" = "ডাউনলোডসমূহ";
+"SettingsTab" = "ছেটিংসমূহ";
+"SearchTab" = "চাৰ্চ";
+/* New additions */
+"Recent searches" = "শেহতীয়া চাৰ্চসমূহ";
+"me frfr" = "মোৰ প্ৰকৃততে";
+"Data" = "তথ্য";
+"All Reading" = "সকলো পঢ়া";
+"No Reading History" = "কোনো পঢ়াৰ ইতিহাস নাই";
+"Books you're reading will appear here" = "আপুনি পঢ়ি থকা কিতাপসমূহ ইয়াত দেখা যাব";
+"All Watching" = "সকলো চোৱা";
+"Continue Reading" = "পঢ়া অব্যাহত ৰাখক";
+"Nothing to Continue Reading" = "পঢ়া অব্যাহত ৰাখিবলৈ একো নাই";
+"Your recently read novels will appear here" = "আপোনাৰ শেহতীয়াকৈ পঢ়া উপন্যাসসমূহ ইয়াত দেখা যাব";
+"No Bookmarks" = "কোনো বুকমাৰ্ক নাই";
+"Add bookmarks to this collection" = "এই কলেকশ্যনত বুকমাৰ্কসমূহ যোগ কৰক";
+"items" = "আইটেমসমূহ";
+"Chapter %d" = "চেপ্টাৰ %d";
+"Episode %d" = "এপিচ’ড %d";
+"%d%%" = "%d%%";
+"%d%% seen" = "%d%% দেখা হৈছে";
+"DownloadCountFormat" = "%dৰ %d";
+"Error loading chapter" = "চেপ্টাৰ লোড কৰাত ত্ৰুটি";
+"Font Size: %dpt" = "ফণ্টৰ আকাৰ: %dpt";
+"Line Spacing: %.1f" = "লাইনৰ মধ্যবৰ্তী স্থান: %.1f";
+"Line Spacing" = "লাইনৰ মধ্যবৰ্তী স্থান";
+"Margin: %dpx" = "মাৰ্জিন: %dpx";
+"Margin" = "মাৰ্জিন";
+"Auto Scroll Speed" = "অটো স্ক্ৰলৰ গতি";
+"Speed" = "গতি";
+"Speed: %.1fx" = "গতি: %.1fx";
+"Matched %@: %@" = "মিলোৱা %@: %@";
+"Enter the AniList ID for this series" = "এই শৃংখলাৰ বাবে এনিলিষ্ট আইডি প্ৰৱেশ কৰক";
+/* New additions */
+"Create Collection" = "কলেকশ্যন তৈয়াৰ কৰক";
+"Collection Name" = "কলেকশ্যনৰ নাম";
+"Rename Collection" = "কলেকশ্যনৰ নাম সলনি কৰক";
+"Rename" = "নাম সলনি কৰক";
+"All Reading" = "সকলো পঢ়া";
+"Recently Added" = "শেহতীয়াকৈ যোগ কৰা";
+"Novel Title" = "উপন্যাসৰ টাইটেল";
+"Read Progress" = "পঢ়াৰ প্ৰগ্ৰেছ";
+"Date Created" = "তৈয়াৰৰ তাৰিখ";
+"Name" = "নাম";
+"Item Count" = "আইটেমৰ সংখ্যা";
+"Date Added" = "যোগ কৰা তাৰিখ";
+"Title" = "টাইটেল";
+"Source" = "ছ’ৰ্চ";
+"Search reading..." = "পঢ়া চাৰ্চ কৰক...";
+"Search collections..." = "কলেকশ্যনসমূহ চাৰ্চ কৰক...";
+"Search bookmarks..." = "বুকমাৰ্কসমূহ চাৰ্চ কৰক...";
+"%d items" = "%d আইটেমসমূহ";
+"Fetching Data" = "তথ্য প্ৰাপ্ত কৰা হৈ আছে";
+"Please wait while fetching." = "প্ৰাপ্ত কৰাৰ সময়ত অপেক্ষা কৰক।";
+"Start Reading" = "পঢ়া আৰম্ভ কৰক";
+"Chapters" = "চেপ্টাৰসমূহ";
+"Completed" = "সম্পূৰ্ণ";
+"Drag to reorder" = "পুনৰ ক্ৰমত ৰাখিবলৈ টানক";
+"Drag to reorder sections" = "ছেকশ্যনসমূহ পুনৰ ক্ৰমত ৰাখিবলৈ টানক";
+"Library View" = "লাইব্ৰেৰী ভিউ";
+"Customize the sections shown in your library. You can reorder sections or disable them completely." = "আপোনাৰ লাইব্ৰেৰীত দেখুওৱা ছেকশ্যনসমূহ কাষ্টমাইজ কৰক। আপুনি ছেকশ্যনসমূহ পুনৰ ক্ৰমত ৰাখিব পাৰে বা সম্পূৰ্ণৰূপে ডিজেবল কৰিব পাৰে।";
+"Library Sections Order" = "লাইব্ৰেৰী ছেকশ্যনৰ ক্ৰম";
+"Completion Percentage" = "সম্পূৰ্ণতাৰ শতাংশ";
+"Some features are limited to the Sora and Default player, such as ForceLandscape, holdSpeed and custom time skip increments.\n\nThe completion percentage setting determines at what point before the end of a video the app will mark it as completed on AniList and Trakt." = "কিছুমান ফিচাৰ ছ’ৰা আৰু ডিফল্ট প্লেয়াৰৰ মাজত সীমিত, যেনে ফ’ৰ্চলেণ্ডস্কেপ, হোল্ডস্পীড আৰু কাষ্টম সময় এৰি যোৱাৰ ইনক্ৰিমেণ্ট।\n\nসম্পূৰ্ণতাৰ শতাংশ ছেটিংয়ে নিৰ্ধাৰণ কৰে যে ভিডিঅ’ৰ শেষৰ আগত কোন বিন্দুত এপে ইয়াক এনিলিষ্ট আৰু ট্ৰাক্টত সম্পূৰ্ণ বুলি চিহ্নিত কৰিব।";
+"The app cache helps the app load images faster.\n\nClearing the Documents folder will delete all downloaded modules.\n\nErasing the App Data will clears all your settings and data of the app." = "এপৰ কেশ্ব এপক ছবিসমূহ দ্ৰুতভাৱে লোড কৰাত সহায় কৰে।\n\nডকুমেণ্ট ফ’ল্ডাৰ মচিলে সকলো ডাউনলোড কৰা মডিউল ডিলিট হ’ব।\n\nএপৰ তথ্য মচিলে আপোনাৰ সকলো ছেটিং আৰু তথ্য মচি পেলাব।";
+"Translators" = "অনুবাদকসমূহ";
+"Paste URL" = "ইউআৰএল পেষ্ট কৰক";
+"Total Orphaned File Size" = "মুঠ এতিম ফাইলৰ আকাৰ";
+"Total Orphaned Files" = "মুঠ এতিম ফাইলসমূহ";
+"Orphaned Downloads" = "এতিম ডাউনলোডসমূহ";
+"No orphaned files found." = "কোনো এতিম ফাইল পোৱা নগ’ল।";
+"Delete All Orphaned Files" = "সকলো এতিম ফাইল ডিলিট কৰক";
+"Delete Selected Files?" = "নিৰ্বাচিত ফাইলসমূহ ডিলিট কৰিবনে?";
+"Are you sure you want to delete the selected orphaned files? This action cannot be undone." = "আপুনি নিৰ্বাচিত এতিম ফাইলসমূহ ডিলিট কৰিবলৈ নিশ্চিত নেকি? এই কাৰ্য পূৰ্বৱত কৰিব নোৱাৰি।";

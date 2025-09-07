@@ -47,7 +47,7 @@ struct SearchView: View {
     
     private var selectedModule: ScrapingModule? {
         guard let id = selectedModuleId else { return nil }
-        return moduleManager.availableModules.first { $0.id.uuidString == id }
+        return moduleManager.modules.first { $0.id.uuidString == id }
     }
     
     private let columns = [
@@ -210,8 +210,8 @@ struct SearchView: View {
         }
         .onChange(of: moduleManager.selectedModuleChanged) { _ in
             if moduleManager.selectedModuleChanged {
-                if selectedModuleId == nil && !moduleManager.availableModules.isEmpty {
-                    selectedModuleId = moduleManager.availableModules[0].id.uuidString
+                if selectedModuleId == nil && !moduleManager.modules.isEmpty {
+                    selectedModuleId = moduleManager.modules[0].id.uuidString
                 }
                 moduleManager.selectedModuleChanged = false
             }
@@ -340,7 +340,7 @@ struct SearchView: View {
     private func getModulesByLanguage() -> [String: [ScrapingModule]] {
         var result = [String: [ScrapingModule]]()
         
-        for module in moduleManager.availableModules {
+        for module in moduleManager.modules {
             let language = cleanLanguageName(module.metadata.language)
             if result[language] == nil {
                 result[language] = [module]

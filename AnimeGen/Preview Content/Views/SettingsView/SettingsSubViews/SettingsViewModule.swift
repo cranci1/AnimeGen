@@ -103,7 +103,6 @@ fileprivate struct ModuleListItemView: View {
     let selectedModuleId: String?
     let onDelete: () -> Void
     let onSelect: () -> Void
-    @EnvironmentObject var moduleManager: ModuleManager
     
     var body: some View {
         VStack(spacing: 0) {
@@ -130,24 +129,6 @@ fileprivate struct ModuleListItemView: View {
                         Text("v\(module.metadata.version)")
                             .font(.caption)
                             .foregroundStyle(.gray)
-                        
-                        if let isEncrypted = module.metadata.encrypted, isEncrypted {
-                            HStack(spacing: 2) {
-                                Image(systemName: "lock.shield.fill")
-                                    .font(.caption2)
-                                    .foregroundStyle(moduleManager.encryptedModulesEnabled ? .green : .red)
-                            }
-                            .padding(.horizontal, 4)
-                            .padding(.vertical, 1)
-                            .background(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill((moduleManager.encryptedModulesEnabled ? Color.green : Color.red).opacity(0.1))
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 4)
-                                            .stroke(moduleManager.encryptedModulesEnabled ? .green : .red, lineWidth: 0.5)
-                                    )
-                            )
-                        }
                     }
                     
                     HStack(spacing: 8) {
@@ -162,41 +143,19 @@ fileprivate struct ModuleListItemView: View {
                         Text(module.metadata.language)
                             .font(.caption)
                             .foregroundStyle(.gray)
-                        
-                        if let isEncrypted = module.metadata.encrypted, isEncrypted, !moduleManager.encryptedModulesEnabled {
-                            Text("•")
-                                .font(.caption)
-                                .foregroundStyle(.gray)
-                            
-                            Text("DISABLED")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.red)
-                        }
                     }
                 }
                 
                 Spacer()
                 
                 if module.id.uuidString == selectedModuleId {
-                    if let isEncrypted = module.metadata.encrypted, isEncrypted, !moduleManager.encryptedModulesEnabled {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundStyle(.orange)
-                            .frame(width: 20, height: 20)
-                    } else {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundStyle(Color.accentColor)
-                            .frame(width: 20, height: 20)
-                    }
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(Color.accentColor)
+                        .frame(width: 20, height: 20)
                 }
             }
             .contentShape(Rectangle())
-            .onTapGesture(perform: {
-                if moduleManager.isModuleAvailable(module) {
-                    onSelect()
-                }
-            })
-            .opacity(moduleManager.isModuleAvailable(module) ? 1.0 : 0.6)
+            .onTapGesture(perform: onSelect)
             .contextMenu {
                 Button(action: {
                     UIPasteboard.general.string = module.metadataUrl
@@ -233,7 +192,6 @@ struct SettingsViewModule: View {
     @EnvironmentObject var moduleManager: ModuleManager
     @AppStorage("didReceiveDefaultPageLink") private var didReceiveDefaultPageLink: Bool = false
     @AppStorage("refreshModulesOnLaunch") private var refreshModulesOnLaunch: Bool = true
-    @AppStorage("encryptedModulesEnabled") private var encryptedModulesEnabled: Bool = true
     
     @State private var errorMessage: String?
     @State private var isLoading = false
@@ -298,21 +256,8 @@ struct SettingsViewModule: View {
                 
                 SettingsSection(
                     title: NSLocalizedString("Module Settings", comment: ""),
-                    footer: NSLocalizedString("Note that the modules will be replaced only if there is a different version string inside the JSON file. Encrypted modules require decryption to load and function properly.", comment: "")
+                    footer: NSLocalizedString("Note that the modules will be replaced only if there is a different version string inside the JSON file.", comment: "")
                 ) {
-                    SettingsToggleRow(
-                        icon: "lock.shield",
-                        title: NSLocalizedString("Enable Encrypted Modules", comment: ""),
-                        isOn: Binding(
-                            get: { encryptedModulesEnabled },
-                            set: { newValue in
-                                encryptedModulesEnabled = newValue
-                                moduleManager.setEncryptedModulesEnabled(newValue)
-                            }
-                        ),
-                        showDivider: true
-                    )
-                    
                     SettingsToggleRow(
                         icon: "arrow.clockwise",
                         title: NSLocalizedString("Refresh Modules on Launch", comment: ""),

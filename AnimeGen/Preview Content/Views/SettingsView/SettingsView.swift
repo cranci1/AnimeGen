@@ -51,7 +51,7 @@ fileprivate struct ModulePreviewRow: View {
     
     private var selectedModule: ScrapingModule? {
         guard let id = selectedModuleId else { return nil }
-        return moduleManager.availableModules.first { $0.id.uuidString == id }
+        return moduleManager.modules.first { $0.id.uuidString == id }
     }
     
     var body: some View {

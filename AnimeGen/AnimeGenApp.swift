@@ -20,6 +20,7 @@ struct AnimeGenApp: App {
             UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = userAccentColor
         }
         clearTmpFolder()
+        clearSoraFilesFromDocuments()
         
         TraktToken.checkAuthenticationStatus { isAuthenticated in
             if isAuthenticated {
@@ -129,6 +130,41 @@ struct AnimeGenApp: App {
             }
         } catch {
             Logger.shared.log("Failed to clear tmp folder: \(error.localizedDescription)", type: "Error")
+        }
+    }
+    
+    private func clearSoraFilesFromDocuments() {
+        let fileManager = FileManager.default
+        
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            Logger.shared.log("Failed to get Documents directory path", type: "Error")
+            return
+        }
+        
+        do {
+            let documentContents = try fileManager.contentsOfDirectory(
+                at: documentsURL,
+                includingPropertiesForKeys: [.isRegularFileKey],
+                options: [.skipsHiddenFiles]
+            )
+            
+            let soraFiles = documentContents.filter { $0.pathExtension.lowercased() == "sora" }
+            
+            for soraFile in soraFiles {
+                do {
+                    try fileManager.removeItem(at: soraFile)
+                    Logger.shared.log("Removed .sora file: \(soraFile.lastPathComponent)")
+                } catch {
+                    Logger.shared.log("Failed to remove .sora file \(soraFile.lastPathComponent): \(error.localizedDescription)", type: "Error")
+                }
+            }
+            
+            if !soraFiles.isEmpty {
+                Logger.shared.log("Cleared \(soraFiles.count) .sora file(s) from Documents folder")
+            }
+            
+        } catch {
+            Logger.shared.log("Failed to scan Documents folder for .sora files: \(error.localizedDescription)", type: "Error")
         }
     }
 }
