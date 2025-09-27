@@ -12,7 +12,7 @@ import MediaPlayer
 import AVFoundation
 import MarqueeLabel
 
-class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDelegate {
+class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDelegate, AVPlayerViewControllerDelegate {
     private var airplayButton: AVRoutePickerView!
     let module: ScrapingModule
     let streamURL: String
@@ -68,17 +68,6 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         return UserDefaults.standard.bool(forKey: "doubleTapSeekEnabled")
     }
     
-    private var isPipAutoEnabled: Bool {
-        UserDefaults.standard.bool(forKey: "pipAutoEnabled")
-    }
-    
-    private var isPipButtonVisible: Bool {
-        if UserDefaults.standard.object(forKey: "pipButtonVisible") == nil {
-            return true
-        }
-        return UserDefaults.standard.bool(forKey: "pipButtonVisible")
-    }
-    
     private var isAutoplayEnabled: Bool {
         if UserDefaults.standard.object(forKey: "autoplayNext") == nil {
             return true
@@ -86,7 +75,6 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         return UserDefaults.standard.bool(forKey: "autoplayNext")
     }
     private var pipController: AVPictureInPictureController?
-    private var pipButton: UIButton!
     
     var portraitButtonVisibleConstraints: [NSLayoutConstraint] = []
     var portraitButtonHiddenConstraints: [NSLayoutConstraint] = []
@@ -191,7 +179,6 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
             skip85Button,
             controlButtonsContainer,
             volumeSliderHostingView,
-            pipButton,
             airplayButton,
             timeBatteryContainer,
             endTimeIcon,
@@ -211,7 +198,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         
         views.append(contentsOf: view.subviews.filter {
             $0 is UIVisualEffectView ||
-            ($0.layer.cornerRadius > 0 && $0 != dismissButton && $0 != lockButton && $0 != dimButton && $0 != pipButton && $0 != holdSpeedIndicator && $0 != volumeSliderHostingView)
+            ($0.layer.cornerRadius > 0 && $0 != dismissButton && $0 != lockButton && $0 != dimButton && $0 != holdSpeedIndicator && $0 != volumeSliderHostingView)
         })
         
         return views
@@ -484,8 +471,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
             name: .AVPlayerItemDidPlayToEndTime,
             object: player.currentItem
         )
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(startPipIfNeeded), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     private func setupTopRowLayout() {
@@ -501,7 +487,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         view.addSubview(capsuleContainer)
         capsuleContainer.alpha = isControlsVisible ? 1.0 : 0.0
         
-        let buttons: [UIView] = [airplayButton, pipButton, lockButton, dimButton]
+        let buttons: [UIView] = [airplayButton, lockButton, dimButton]
         for btn in buttons {
             btn.removeFromSuperview()
             capsuleContainer.addSubview(btn)
@@ -733,7 +719,6 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         skipIntroButton?.removeFromSuperview()
         skipOutroButton?.removeFromSuperview()
         skip85Button?.removeFromSuperview()
-        pipButton?.removeFromSuperview()
         airplayButton?.removeFromSuperview()
         menuButton?.removeFromSuperview()
         speedButton?.removeFromSuperview()
@@ -812,6 +797,8 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         playerViewController = AVPlayerViewController()
         playerViewController.player = player
         playerViewController.showsPlaybackControls = false
+        playerViewController.delegate = self
+        
         addChild(playerViewController)
         if playerViewController.view.superview == nil {
             view.addSubview(playerViewController.view)
@@ -2210,29 +2197,23 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         }
     }
     
-    @objc private func pipButtonTapped(_ sender: UIButton) {
-        Logger.shared.log("PiP button tapped", type: "Debug")
-        guard let pip = pipController else {
-            Logger.shared.log("PiP controller is nil", type: "Error")
-            return
-        }
-        Logger.shared.log("PiP controller found, isActive: \(pip.isPictureInPictureActive)", type: "Debug")
-        if pip.isPictureInPictureActive {
-            pip.stopPictureInPicture()
-            Logger.shared.log("Stopping PiP", type: "Debug")
-        } else {
-            pip.startPictureInPicture()
-            Logger.shared.log("Starting PiP", type: "Debug")
-        }
-    }
-    
     @objc private func startPipIfNeeded() {
-        guard isPipAutoEnabled,
-              let pip = pipController,
-              !pip.isPictureInPictureActive else {
+        guard let pipController = pipController else {
+            Logger.shared.log("PiP controller not available", type: "Error")
             return
         }
-        pip.startPictureInPicture()
+        
+        guard AVPictureInPictureController.isPictureInPictureSupported() else {
+            Logger.shared.log("PiP not supported on this device", type: "Error")
+            return
+        }
+        
+        guard !pipController.isPictureInPictureActive else {
+            Logger.shared.log("PiP already active", type: "Debug")
+            return
+        }
+        
+        pipController.startPictureInPicture()
     }
     
     @objc private func lockTapped() {
@@ -3584,48 +3565,21 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
         
         playerViewController.allowsPictureInPicturePlayback = true
         
-        let playerLayerContainer = UIView()
-        playerLayerContainer.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(playerLayerContainer, at: 0)
-        
-        NSLayoutConstraint.activate([
-            playerLayerContainer.topAnchor.constraint(equalTo: view.topAnchor),
-            playerLayerContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            playerLayerContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            playerLayerContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = playerLayerContainer.bounds
-        playerLayer.videoGravity = .resizeAspect
-        playerLayerContainer.layer.addSublayer(playerLayer)
-        
-        pipController = AVPictureInPictureController(playerLayer: playerLayer)
+        if let playerLayer = playerViewController.view.layer.sublayers?.first(where: { $0 is AVPlayerLayer }) as? AVPlayerLayer {
+            pipController = AVPictureInPictureController(playerLayer: playerLayer)
+        } else {
+            pipController = AVPictureInPictureController(playerLayer: AVPlayerLayer(player: player))
+        }
         pipController?.delegate = self
         
-        let Image = UIImage(systemName: "pip", withConfiguration: cfg)
-        pipButton = UIButton(type: .system)
-        pipButton.setImage(Image, for: .normal)
-        pipButton.tintColor = .white
-        pipButton.addTarget(self, action: #selector(pipButtonTapped(_:)), for: .touchUpInside)
-        
-        controlsContainerView.addSubview(pipButton)
-        pipButton.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            pipButton.centerYAnchor.constraint(equalTo: dimButton.centerYAnchor),
-            pipButton.trailingAnchor.constraint(equalTo: dimButton.leadingAnchor, constant: -8),
-            pipButton.widthAnchor.constraint(equalToConstant: 30),  
-            pipButton.heightAnchor.constraint(equalToConstant: 24), 
-            airplayButton.centerYAnchor.constraint(equalTo: pipButton.centerYAnchor),
-            airplayButton.trailingAnchor.constraint(equalTo: pipButton.leadingAnchor, constant: -4),
+            airplayButton.centerYAnchor.constraint(equalTo: dimButton.centerYAnchor),
+            airplayButton.trailingAnchor.constraint(equalTo: dimButton.leadingAnchor, constant: -8),
             airplayButton.widthAnchor.constraint(equalToConstant: 24),
             airplayButton.heightAnchor.constraint(equalToConstant: 24)
         ])
         
-        pipButton.isHidden = !isPipButtonVisible
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(startPipIfNeeded), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startPipIfNeeded), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func updateMarqueeConstraints() {
@@ -3717,15 +3671,39 @@ class GradientOverlayButton: UIButton {
 
 extension CustomMediaPlayerViewController: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerWillStartPictureInPicture(_ pipController: AVPictureInPictureController) {
-        pipButton.alpha = 0.5
+        // PiP will start
     }
     
     func pictureInPictureControllerDidStopPictureInPicture(_ pipController: AVPictureInPictureController) {
-        pipButton.alpha = 1.0
+        // PiP did stop
     }
     
     func pictureInPictureController(_ pipController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
         Logger.shared.log("PiP failed to start: \(error.localizedDescription)", type: "Error")
+    }
+}
+
+// MARK: - AVPlayerViewControllerDelegate
+extension CustomMediaPlayerViewController {
+    func playerViewController(_ playerViewController: AVPlayerViewController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        let windowScene = UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .compactMap { $0 as? UIWindowScene }
+            .first
+        
+        let window = windowScene?.windows.first(where: { $0.isKeyWindow })
+        
+        if let topVC = window?.rootViewController?.topmostViewController() {
+            if topVC != self {
+                topVC.present(self, animated: true) {
+                    completionHandler(true)
+                }
+            } else {
+                completionHandler(true)
+            }
+        } else {
+            completionHandler(false)
+        }
     }
 }
 
@@ -3911,5 +3889,23 @@ extension CustomMediaPlayerViewController {
         } catch {
             print("[Player] No local skip sidecar found or failed to load: \(error.localizedDescription)")
         }
+    }
+}
+
+extension UIViewController {
+    func topmostViewController() -> UIViewController {
+        if let presented = self.presentedViewController {
+            return presented.topmostViewController()
+        }
+        
+        if let navigation = self as? UINavigationController {
+            return navigation.visibleViewController?.topmostViewController() ?? navigation
+        }
+        
+        if let tabBar = self as? UITabBarController {
+            return tabBar.selectedViewController?.topmostViewController() ?? tabBar
+        }
+        
+        return self
     }
 }

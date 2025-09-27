@@ -214,6 +214,14 @@ struct MediaInfoView: View {
                     selectedRange = ranges.first ?? 0..<episodeChunkSize
                 }
                 UserDefaults.standard.set(newValue, forKey: selectedSeasonKey)
+                
+                if let provider = activeProvider {
+                    if provider == "TMDB" {
+                        fetchTMDBPosterImageAndSet()
+                    } else if provider == "AniList" {
+                        fetchAniListPosterImageAndSet()
+                    }
+                }
             }
             .onChange(of: selectedChapterRange) { newValue in
                 UserDefaults.standard.set(newValue.lowerBound, forKey: selectedChapterRangeKey)
@@ -623,7 +631,7 @@ struct MediaInfoView: View {
             sourceButton
             menuButton
         }
-        if isGroupedBySeasons || episodeLinks.count > episodeChunkSize {
+        if isGroupedBySeasons || (!isGroupedBySeasons && episodeLinks.count > episodeChunkSize) {
             HStack {
                 if isGroupedBySeasons {
                     seasonSelectorStyled
@@ -631,7 +639,7 @@ struct MediaInfoView: View {
                     Spacer(minLength: 0)
                 }
                 Spacer()
-                if episodeLinks.count > episodeChunkSize {
+                if !isGroupedBySeasons && episodeLinks.count > episodeChunkSize {
                     rangeSelectorStyled
                         .padding(.trailing, 4)
                 }

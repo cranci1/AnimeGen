@@ -204,7 +204,6 @@ struct SettingsViewPlayer: View {
     @AppStorage("skip85Visible") private var skip85Visible: Bool = true
     @AppStorage("doubleTapSeekEnabled") private var doubleTapSeekEnabled: Bool = false
     @AppStorage("skipIntroOutroVisible") private var skipIntroOutroVisible: Bool = true
-    @AppStorage("pipButtonVisible") private var pipButtonVisible: Bool = true
     @AppStorage("autoplayNext") private var autoplayNext: Bool = true
     
     @AppStorage("videoQualityWiFi") private var wifiQuality: String = VideoQualityPreference.defaultWiFiPreference.rawValue
@@ -238,13 +237,6 @@ struct SettingsViewPlayer: View {
                         icon: "hand.tap",
                         title: NSLocalizedString("Two Finger Hold for Pause", comment: ""),
                         isOn: $holdForPauseEnabled,
-                        showDivider: true
-                    )
-                    
-                    SettingsToggleRow(
-                        icon: "pip",
-                        title: NSLocalizedString("Show PiP Button", comment: ""),
-                        isOn: $pipButtonVisible,
                         showDivider: true
                     )
                     
