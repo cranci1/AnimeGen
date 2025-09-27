@@ -18,6 +18,8 @@
 		1384245F2D7713E5002FEC32 /* nekos-api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1384245E2D7713E5002FEC32 /* nekos-api.swift */; };
 		138424612D7714CF002FEC32 /* nekos-life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424602D7714CF002FEC32 /* nekos-life.swift */; };
 		138424632D77158E002FEC32 /* nekos-best.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424622D77158E002FEC32 /* nekos-best.swift */; };
+		138424642D77158E002FEC33 /* image-only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424652D77158E002FEC33 /* image-only.swift */; };
+		138424662D77158E002FEC34 /* gif-only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138424672D77158E002FEC34 /* gif-only.swift */; };
 		13F385302D462C14006B6FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F3852F2D462C14006B6FA6 /* AppDelegate.swift */; };
 		13F385322D462C14006B6FA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385312D462C14006B6FA6 /* SceneDelegate.swift */; };
 		13F385342D462C14006B6FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F385332D462C14006B6FA6 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 		1384245E2D7713E5002FEC32 /* nekos-api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-api.swift"; sourceTree = "<group>"; };
 		138424602D7714CF002FEC32 /* nekos-life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-life.swift"; sourceTree = "<group>"; };
 		138424622D77158E002FEC32 /* nekos-best.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "nekos-best.swift"; sourceTree = "<group>"; };
+		138424652D77158E002FEC33 /* image-only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "image-only.swift"; sourceTree = "<group>"; };
+		138424672D77158E002FEC34 /* gif-only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "gif-only.swift"; sourceTree = "<group>"; };
 		13F3852C2D462C14006B6FA6 /* AnimeGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F3852F2D462C14006B6FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F385312D462C14006B6FA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				1384245E2D7713E5002FEC32 /* nekos-api.swift */,
 				138424622D77158E002FEC32 /* nekos-best.swift */,
 				138424602D7714CF002FEC32 /* nekos-life.swift */,
+				138424652D77158E002FEC33 /* image-only.swift */,
+				138424672D77158E002FEC34 /* gif-only.swift */,
 				138424562D771210002FEC32 /* purr.swift */,
 			);
 			path = Sources;
@@ -213,6 +219,8 @@
 				1384245B2D771210002FEC32 /* purr.swift in Sources */,
 				138424592D771210002FEC32 /* waifu-im.swift in Sources */,
 				1384245A2D771210002FEC32 /* pic-re.swift in Sources */,
+				138424642D77158E002FEC33 /* image-only.swift in Sources */,
+				138424662D77158E002FEC34 /* gif-only.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

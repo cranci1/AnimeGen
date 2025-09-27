@@ -20,6 +20,8 @@ enum ImageSource: String {
     case nekosApi = "nekosApi"
     case nekosBest = "nekosBest"
     case nekosLife = "nekosLife"
+    case imageOnly = "Image-only"
+    case gifOnly = "Gif-only"
 }
 
 class ViewController: UIViewController {
@@ -65,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     func createSourceMenu() -> UIMenu {
-        let sources: [ImageSource] = [.waifuIm, .picRe, .waifupics, .purr, .nekosMoe, .nekoBot, .nekosApi, .nekosBest, .nekosLife]
+        let sources: [ImageSource] = [.waifuIm, .picRe, .waifupics, .purr, .nekosMoe, .nekoBot, .nekosApi, .nekosBest, .nekosLife, .imageOnly, .gifOnly]
         
         let actions = sources.map { source in
             UIAction(title: source.rawValue, state: (currentSource == source) ? .on : .off) { [weak self] _ in
@@ -102,6 +104,10 @@ class ViewController: UIViewController {
                 self.fetchImageFromNekosBest()
             case .nekosLife:
                 self.fetchImageFromNekosLife()
+            case .imageOnly:
+                self.fetchImageFromImageOnly()
+            case .gifOnly:
+                self.fetchImageFromGifOnly()
             }
         }
     }
