@@ -24,7 +24,6 @@ struct EpisodeCell: View {
     let tmdbID: Int?
     let seasonNumber: Int?
     
-    //receives the set of filler episode numbers (from MediaInfoView)
     let fillerEpisodes: Set<Int>?
     
     let isMultiSelectMode: Bool
@@ -47,9 +46,10 @@ struct EpisodeCell: View {
     @State private var isShowingActions: Bool = false
     @State private var actionButtonWidth: CGFloat = 60
     @State private var dragState: DragState = .inactive
+    @State private var dragStart: CGPoint?
     
     @State private var retryAttempts: Int = 0
-        private var malIDFromParent: Int? { malID }
+    private var malIDFromParent: Int? { malID }
     private let maxRetryAttempts: Int = 3
     private let initialBackoffDelay: TimeInterval = 1.0
     
@@ -57,8 +57,8 @@ struct EpisodeCell: View {
     @EnvironmentObject var moduleManager: ModuleManager
     @Environment(\.colorScheme) private var colorScheme
     @AppStorage("selectedAppearance") private var selectedAppearance: Appearance = .system
+    @AppStorage("remainingTimePercentage") private var remainingTimePercentage: Double = 90.0
     
-    // Filler state (derived from passed-in fillerEpisodes)
     @State private var isFiller: Bool = false
     
     init(
@@ -82,7 +82,7 @@ struct EpisodeCell: View {
         seasonNumber: Int? = nil,
         fillerEpisodes: Set<Int>? = nil
     ) {
-    
+        
         self.episodeIndex = episodeIndex
         self.episode = episode
         self.episodeID = episodeID
@@ -114,54 +114,48 @@ struct EpisodeCell: View {
     }
     
     var body: some View {
-        ZStack {
-            actionButtonsBackground
-            
-            episodeCellContent
-        }
-        .onAppear {
-            setupOnAppear()
-            // set filler state based on passed-in set (if available)
-            let epNum = episodeID + 1
-            if let set = fillerEpisodes {
-                self.isFiller = set.contains(epNum)
+        episodeCellContent
+            .onAppear {
+                setupOnAppear()
+                let epNum = episodeID + 1
+                if let set = fillerEpisodes {
+                    self.isFiller = set.contains(epNum)
+                }
             }
-        }
-        .onChange(of: progress) { _ in updateProgress() }
-        .onChange(of: itemID) { _ in handleItemIDChange() }
-        .onChange(of: tmdbID) { _ in
-            isLoading = true
-            retryAttempts = 0
-            fetchEpisodeDetails()
-        }
-        .onChange(of: fillerEpisodes) { newValue in
-            let epNum = episodeID + 1
-            if let set = newValue {
-                self.isFiller = set.contains(epNum)
-            } else {
-                self.isFiller = false
+            .onChange(of: progress) { _ in updateProgress() }
+            .onChange(of: itemID) { _ in handleItemIDChange() }
+            .onChange(of: tmdbID) { _ in
+                isLoading = true
+                retryAttempts = 0
+                fetchEpisodeDetails()
             }
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadProgressChanged"))) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            .onChange(of: fillerEpisodes) { newValue in
+                let epNum = episodeID + 1
+                if let set = newValue {
+                    self.isFiller = set.contains(epNum)
+                } else {
+                    self.isFiller = false
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadProgressChanged"))) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    updateDownloadStatus()
+                    updateProgress()
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadStatusChanged"))) { _ in
                 updateDownloadStatus()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadCompleted"))) { _ in
+                updateDownloadStatus()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("episodeProgressChanged"))) { _ in
                 updateProgress()
             }
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadStatusChanged"))) { _ in
-            updateDownloadStatus()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("downloadCompleted"))) { _ in
-            updateDownloadStatus()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("episodeProgressChanged"))) { _ in
-            updateProgress()
-        }
     }
 }
 
 private extension EpisodeCell {
-    
     var actionButtonsBackground: some View {
         HStack {
             Spacer()
@@ -171,39 +165,85 @@ private extension EpisodeCell {
     }
     
     var episodeCellContent: some View {
-        HStack {
-            episodeThumbnail
-            episodeInfo
-            Spacer()
-            if case .downloaded = downloadStatus {
-                downloadedIndicator
-                    .padding(.trailing, 8)
+        ZStack {
+            HStack {
+                episodeThumbnail
+                episodeInfo
+                Spacer()
+                if case .downloaded = downloadStatus {
+                    downloadedIndicator
+                        .padding(.trailing, 8)
+                }
+                CircularProgressBar(progress: currentProgress)
+                    .frame(width: 40, height: 40)
+                    .padding(.trailing, 4)
             }
-            CircularProgressBar(progress: currentProgress)
-                .frame(width: 40, height: 40)
-                .padding(.trailing, 4)
+            .contentShape(Rectangle())
+            .padding(.horizontal, 8)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity)
+            .background(cellBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .offset(x: swipeOffset + dragState.translation.width)
+            .zIndex(1)
+            .scaleEffect(dragState.isActive ? 0.98 : 1.0)
+            .animation(.spring(response: 0.4, dampingFraction: 0.8), value: swipeOffset)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: dragState.isActive)
+            .contextMenu { contextMenuContent }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 20, coordinateSpace: .local)
+                    .onChanged { value in
+                        let translation = value.translation
+                        if abs(translation.width) > abs(translation.height) * 2.0 && abs(translation.width) > 30 {
+                            handleDragChanged(value)
+                        }
+                    }
+                    .onEnded { value in
+                        let translation = value.translation
+                        if abs(translation.width) > abs(translation.height) * 2.0 && abs(translation.width) > 30 {
+                            handleDragEnded(value)
+                        } else {
+                            dragStart = nil
+                            dragState = .inactive
+                        }
+                    }
+            )
+            .onTapGesture {
+                handleTap()
+            }
+
+            actionButtonsBackground
         }
         .contentShape(Rectangle())
-        .padding(.horizontal, 8)
-        .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
-        .background(cellBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 15))
-        .offset(x: swipeOffset + dragState.translation.width)
-        .zIndex(1)
-        .scaleEffect(dragState.isActive ? 0.98 : 1.0)
-        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: swipeOffset)
-        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: dragState.isActive)
         .contextMenu { contextMenuContent }
-        .simultaneousGesture(
-            DragGesture(coordinateSpace: .local)
-                .onChanged { value in
-                    handleDragChanged(value)
+        .swipeActions(edge: .trailing) {
+            Button(action: { downloadEpisode() }) {
+                Label("Download", systemImage: "arrow.down.circle")
+            }
+            .tint(.blue)
+            
+            if progress <= remainingTimePercentage {
+                Button(action: { markAsWatched() }) {
+                    Label("Watched", systemImage: "checkmark.circle")
                 }
-                .onEnded { value in
-                    handleDragEnded(value)
+                .tint(.green)
+            }
+            
+            if progress != 0 {
+                Button(action: { resetProgress() }) {
+                    Label("Reset", systemImage: "arrow.counterclockwise")
                 }
-        )
+                .tint(.orange)
+            }
+            
+            if episodeIndex > 0 {
+                Button(action: { onMarkAllPrevious() }) {
+                    Label("All Prev", systemImage: "checkmark.circle.fill")
+                }
+                .tint(.purple)
+            }
+        }
         .onTapGesture { handleTap() }
     }
     
@@ -285,7 +325,7 @@ private extension EpisodeCell {
     
     var contextMenuContent: some View {
         Group {
-            if progress <= 0.9 {
+            if progress <= remainingTimePercentage {
                 Button(action: markAsWatched) {
                     Label("Mark Episode as Watched", systemImage: "checkmark.circle")
                 }
@@ -320,7 +360,7 @@ private extension EpisodeCell {
                 closeActionsAndPerform { downloadEpisode() }
             }
             
-            if progress <= 0.9 {
+            if progress >= (remainingTimePercentage / 100.0) {
                 ActionButton(
                     icon: "checkmark.circle",
                     label: "Watched",
@@ -470,7 +510,7 @@ private extension EpisodeCell {
     func calculateMaxSwipeDistance() -> CGFloat {
         var buttonCount = 1
         
-        if progress <= 0.9 { buttonCount += 1 }
+        if progress >= (remainingTimePercentage / 100.0) { buttonCount += 1 }
         if progress != 0 { buttonCount += 1 }
         if episodeIndex > 0 { buttonCount += 1 }
         
@@ -495,7 +535,9 @@ private extension EpisodeCell {
             action()
         }
     }
-    
+}
+
+private extension EpisodeCell {
     func markAsWatched() {
         let defaults = UserDefaults.standard
         let totalTime = 1000.0
@@ -520,7 +562,6 @@ private extension EpisodeCell {
             }
         }
     }
-
     
     func resetProgress() {
         let userDefaults = UserDefaults.standard
@@ -980,7 +1021,6 @@ private extension EpisodeCell {
             }
         }.resume()
     }
-
     
     func handleFetchFailure(error: Error) {
         Logger.shared.log("Episode details fetch error: \(error.localizedDescription)", type: "Error")

@@ -12,6 +12,15 @@ struct SubtitleCue: Identifiable {
     let startTime: Double
     let endTime: Double
     let text: String
+    let lines: [String]
+    
+    init(startTime: Double, endTime: Double, text: String) {
+        self.startTime = startTime
+        self.endTime = endTime
+        self.text = text
+        let rawLines = text.components(separatedBy: .newlines)
+        self.lines = rawLines.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+    }
 }
 
 class VTTSubtitlesLoader: ObservableObject {
@@ -26,7 +35,7 @@ class VTTSubtitlesLoader: ObservableObject {
     func load(from urlString: String) {
         guard let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        URLSession.custom.dataTask(with: url) { data, response, error in
             guard let responseData = data,
                   let subtitleContent = String(data: responseData, encoding: .utf8),
                   !subtitleContent.isEmpty,
@@ -37,7 +46,8 @@ class VTTSubtitlesLoader: ObservableObject {
                 return
             }
             
-            let detectedFormat = self.determineSubtitleFormat(from: url)
+            let trimmed = subtitleContent.trimmingCharacters(in: .whitespacesAndNewlines)
+            let detectedFormat: SubtitleFormat = trimmed.contains("WEBVTT") ? .vtt : .srt
             
             DispatchQueue.main.async {
                 switch detectedFormat {
@@ -46,7 +56,7 @@ class VTTSubtitlesLoader: ObservableObject {
                 case .srt:
                     self.cues = self.parseSRT(content: subtitleContent)
                 case .unknown:
-                    if subtitleContent.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("WEBVTT") {
+                    if trimmed.contains("WEBVTT") {
                         self.cues = self.parseVTT(content: subtitleContent)
                     } else {
                         self.cues = self.parseSRT(content: subtitleContent)
@@ -54,18 +64,6 @@ class VTTSubtitlesLoader: ObservableObject {
                 }
             }
         }.resume()
-    }
-    
-    private func determineSubtitleFormat(from url: URL) -> SubtitleFormat {
-        let fileExtension = url.pathExtension.lowercased()
-        switch fileExtension {
-        case "vtt", "webvtt":
-            return .vtt
-        case "srt":
-            return .srt
-        default:
-            return .unknown
-        }
     }
     
     private func parseVTT(content: String) -> [SubtitleCue] {

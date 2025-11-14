@@ -33,14 +33,11 @@ struct MediaInfoView: View {
     @State private var tmdbID: Int?
     @State private var tmdbType: TMDBFetcher.MediaType? = nil
     @State private var currentFetchTask: Task<Void, Never>? = nil
-
-    // Jikan filler set for this media (passed down to EpisodeCell)
+    
     @State private var jikanFillerSet: Set<Int>? = nil
-
-    // Static/shared Jikan cache & progress guards (one cache for the app to avoid duplicate/expensive fetches)
     private static var jikanCache: [Int: (fetchedAt: Date, episodes: [JikanEpisode])] = [:]
     private static let jikanCacheQueue = DispatchQueue(label: "sora.jikan.cache.queue", attributes: .concurrent)
-    private static let jikanCacheTTL: TimeInterval = 60 * 60 * 24 * 7 // 1 week
+    private static let jikanCacheTTL: TimeInterval = 60 * 60 * 24 * 7
     private static var inProgressMALIDs: Set<Int> = []
     private static let inProgressQueue = DispatchQueue(label: "sora.jikan.inprogress.queue")
     
@@ -199,7 +196,7 @@ struct MediaInfoView: View {
             .ignoresSafeArea(.container, edges: .top)
             .onAppear {
                 setupViewOnAppear()
-
+                
                 NotificationCenter.default.post(name: .hideTabBar, object: nil)
                 UserDefaults.standard.set(true, forKey: "isMediaInfoActive")
             }
@@ -297,37 +294,15 @@ struct MediaInfoView: View {
                 contentContainer
             }
         }
-        .onAppear {
-            UIScrollView.appearance().bounces = false
-        }
     }
     
     @ViewBuilder
     private var heroImageSection: some View {
-        LazyImage(url: URL(string: imageUrl)) { state in
-            if let uiImage = state.imageContainer?.image {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: UIScreen.main.bounds.width, height: 700)
-                    .clipped()
-            } else {
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color.gray.opacity(0.2),
-                                Color.gray.opacity(0.3),
-                                Color.gray.opacity(0.2)
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: UIScreen.main.bounds.width, height: 700)
-                    .clipped()
-            }
-        }
+        StretchyHeaderView(
+            backdropURL: imageUrl,
+            headerHeight: 700,
+            minHeaderHeight: 400
+        )
     }
     
     @ViewBuilder
@@ -580,7 +555,7 @@ struct MediaInfoView: View {
         let seasons = groupedEpisodes()
         if seasons.count > 1 {
             Menu {
-                ForEach(0..<seasons.count, id: \.self) { index in
+                ForEach(0..<seasons.count, id: \..self) { index in
                     Button(action: { selectedSeason = index }) {
                         Text(String(format: NSLocalizedString("Season %d", comment: ""), index + 1))
                     }
@@ -602,7 +577,7 @@ struct MediaInfoView: View {
     @ViewBuilder
     private var rangeSelectorStyled: some View {
         Menu {
-            ForEach(episodeRanges, id: \.self) { range in
+            ForEach(generateRanges(), id: \..self) { range in
                 Button(action: { selectedRange = range }) {
                     Text("\(range.lowerBound + 1)-\(range.upperBound)")
                 }
@@ -661,12 +636,10 @@ struct MediaInfoView: View {
     
     @ViewBuilder
     private var flatEpisodeList: some View {
-        ScrollView {
-            VStack(spacing: 15) {
-                ForEach(currentEpisodeList.indices.filter { selectedRange.contains($0) }, id: \.self) { i in
-                    let ep = currentEpisodeList[i]
-                    createEpisodeCell(episode: ep, index: i, season: isGroupedBySeasons ? selectedSeason + 1 : 1)
-                }
+        VStack(spacing: 15) {
+            ForEach(episodeLinks.indices.filter { selectedRange.contains($0) }, id: \.self) { i in
+                let ep = episodeLinks[i]
+                createEpisodeCell(episode: ep, index: i, season: 1)
             }
         }
     }
@@ -675,12 +648,9 @@ struct MediaInfoView: View {
     private var seasonsEpisodeList: some View {
         let seasons = groupedEpisodes()
         if !seasons.isEmpty, selectedSeason < seasons.count {
-            ScrollView {
-                VStack(spacing: 15) {
-                    ForEach(seasons[selectedSeason].indices.filter { selectedRange.contains($0) }, id: \.self) { i in
-                        let ep = seasons[selectedSeason][i]
-                        createEpisodeCell(episode: ep, index: i, season: selectedSeason + 1)
-                    }
+            VStack(spacing: 15) {
+                ForEach(seasons[selectedSeason]) { ep in
+                    createEpisodeCell(episode: ep, index: selectedSeason, season: selectedSeason + 1)
                 }
             }
         } else {
@@ -764,7 +734,7 @@ struct MediaInfoView: View {
             }
             
             LazyVStack(spacing: 15) {
-                ForEach(chapters.indices.filter { selectedChapterRange.contains($0) }, id: \.self) { i in
+                ForEach(chapters.indices.filter { selectedChapterRange.contains($0) }, id: \..self) { i in
                     let chapter = chapters[i]
                     let _ = refreshTrigger
                     if let href = chapter["href"] as? String,
@@ -818,7 +788,7 @@ struct MediaInfoView: View {
     @ViewBuilder
     private var chapterRangeSelectorStyled: some View {
         Menu {
-            ForEach(generateChapterRanges(), id: \.self) { range in
+            ForEach(generateChapterRanges(), id: \..self) { range in
                 Button(action: { selectedChapterRange = range }) {
                     Text("\(range.lowerBound + 1)-\(range.upperBound)")
                 }
@@ -891,14 +861,14 @@ struct MediaInfoView: View {
             AnilistMatchPopupView(seriesTitle: title) { id, title, malId in
                 handleAniListMatch(selectedID: id)
                 matchedTitle = title
-
+                
                 if let malId = malId, malId != 0 {
                     matchedMalID = malId
                 } else {
                     fetchMalIDFromAniList(anilistID: id) { fetchedMalID in
                         matchedMalID = fetchedMalID
                     }
-                }     
+                }
                 fetchMetadataIDIfNeeded()
             }
         }
@@ -1677,7 +1647,7 @@ struct MediaInfoView: View {
                     Logger.shared.log("Successfully fetched AniList ID: \(id)", type: "Debug")
                     self.fetchMalIDFromAniList(anilistID: id) { fetchedMalID in
                         self.matchedMalID = fetchedMalID
-                    }      
+                    }
                 case .failure(let error):
                     Logger.shared.log("Failed to fetch AniList ID: \(error)", type: "Debug")
                 }
@@ -1750,37 +1720,38 @@ struct MediaInfoView: View {
     }
     
     func fetchMalIDFromAniList(anilistID: Int, completion: @escaping (Int?) -> Void) {
-    let query = """
-    query {
-      Media(id: \(anilistID)) {
-        idMal
-      }
-    }
-    """
-    guard let url = URL(string: "https://graphql.anilist.co") else {
-        completion(nil)
-        return
-    }
-
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.httpBody = try? JSONSerialization.data(withJSONObject: ["query": query])
-
-    URLSession.shared.dataTask(with: request) { data, _, _ in
-        var malID: Int? = nil
-        if let data = data,
-           let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-           let dataDict = json["data"] as? [String: Any],
-           let media = dataDict["Media"] as? [String: Any],
-           let idMal = media["idMal"] as? Int {
-            malID = idMal
+        let query = """
+        query {
+        Media(id: \(anilistID)) {
+            idMal
         }
-        DispatchQueue.main.async {
-            completion(malID)
         }
-    }.resume()
-}
+        """
+        guard let url = URL(string: "https://graphql.anilist.co") else {
+            completion(nil)
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: ["query": query])
+        
+        URLSession.custom.dataTask(with: request) { data, _, _ in
+            var malID: Int? = nil
+            if let data = data,
+               let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+               let dataDict = json["data"] as? [String: Any],
+               let media = dataDict["Media"] as? [String: Any],
+               let idMal = media["idMal"] as? Int {
+                malID = idMal
+            }
+            DispatchQueue.main.async {
+                completion(malID)
+            }
+        }.resume()
+    }
+    
     private func fetchTMDBPosterImageAndSet() {
         guard let tmdbID = tmdbID, let tmdbType = tmdbType else { return }
         let apiType = tmdbType.rawValue
@@ -1829,27 +1800,43 @@ struct MediaInfoView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 guard self.activeFetchID == fetchID else { return }
                 
-                if let sources = result.sources, !sources.isEmpty {
-                    if sources.count > 1 {
-                        self.showStreamSelectionAlert(sources: sources, fullURL: href, subtitles: result.subtitles?.first, fetchID: fetchID)
-                    } else if let streamUrl = sources[0]["streamUrl"] as? String {
-                        let headers = sources[0]["headers"] as? [String: String]
-                        self.playStream(url: streamUrl, fullURL: href, subtitles: result.subtitles?.first, headers: headers, fetchID: fetchID)
-                    } else {
-                        self.handleStreamFailure(error: nil)
-                    }
-                } else if let streams = result.streams, !streams.isEmpty {
-                    if streams.count > 1 {
-                        self.showStreamSelectionAlert(sources: streams, fullURL: href, subtitles: result.subtitles?.first, fetchID: fetchID)
-                    } else {
-                        self.playStream(url: streams[0], fullURL: href, subtitles: result.subtitles?.first, fetchID: fetchID)
-                    }
-                } else {
-                    self.handleStreamFailure(error: nil)
-                }
+                let hasSubtitleOptions = !(result.subtitles?.isEmpty ?? true)
                 
-                DispatchQueue.main.async {
-                    self.isFetchingEpisode = false
+                self.selectStream(sources: result.sources, streams: result.streams, fetchID: fetchID) { option in
+                    guard self.activeFetchID == fetchID else { return }
+                    
+                    self.resolveSubtitleSelection(
+                        subtitles: result.subtitles,
+                        defaultSubtitle: option.subtitle,
+                        fetchID: fetchID
+                    ) { selectedSubtitle in
+                        guard self.activeFetchID == fetchID else { return }
+                        
+                        DispatchQueue.main.async {
+                            self.isFetchingEpisode = false
+                        }
+                        
+                        let subtitleToUse: String?
+                        if let selectedSubtitle {
+                            subtitleToUse = selectedSubtitle
+                        } else if hasSubtitleOptions {
+                            subtitleToUse = nil
+                        } else {
+                            subtitleToUse = option.subtitle
+                        }
+                        self.playStream(
+                            url: option.url,
+                            fullURL: href,
+                            subtitles: subtitleToUse,
+                            headers: option.headers,
+                            fetchID: fetchID
+                        )
+                    }
+                } failure: {
+                    self.handleStreamFailure(error: nil)
+                    DispatchQueue.main.async {
+                        self.isFetchingEpisode = false
+                    }
                 }
             }
         }
@@ -1889,65 +1876,176 @@ struct MediaInfoView: View {
         }
     }
     
-    func showStreamSelectionAlert(sources: [Any], fullURL: String, subtitles: String? = nil, fetchID: UUID) {
-        guard self.activeFetchID == fetchID else { return }
+    private struct StreamOption {
+        let title: String
+        let url: String
+        let headers: [String:String]?
+        let subtitle: String?
+    }
+    
+    private func selectStream(
+        sources: [[String: Any]]?,
+        streams: [String]?,
+        fetchID: UUID,
+        completion: @escaping (StreamOption) -> Void,
+        failure: @escaping () -> Void
+    ) {
+        var options: [StreamOption] = []
         
-        self.isFetchingEpisode = false
-        self.showLoadingAlert = false
+        if let sources = sources, !sources.isEmpty {
+            options = streamOptions(fromSources: sources)
+        } else if let streams = streams, !streams.isEmpty {
+            options = streamOptions(fromStrings: streams)
+        }
+        
+        guard !options.isEmpty else {
+            failure()
+            return
+        }
+        
+        if options.count == 1 {
+            completion(options[0])
+        } else {
+            presentStreamSelectionAlert(options: options, fetchID: fetchID, completion: completion)
+        }
+    }
+    
+    private func presentStreamSelectionAlert(options: [StreamOption], fetchID: UUID, completion: @escaping (StreamOption) -> Void) {
+        guard self.activeFetchID == fetchID else { return }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             guard self.activeFetchID == fetchID else { return }
             
+            self.isFetchingEpisode = false
+            self.showLoadingAlert = false
+            
             let alert = UIAlertController(title: "Select Server", message: "Choose a server to play from", preferredStyle: .actionSheet)
             
-            var index = 0
-            var streamIndex = 1
-            
-            while index < sources.count {
-                var title: String = ""
-                var streamUrl: String = ""
-                var headers: [String:String]? = nil
-                
-                if let sources = sources as? [String] {
-                    if index + 1 < sources.count {
-                        if !sources[index].lowercased().contains("http") {
-                            title = sources[index]
-                            streamUrl = sources[index + 1]
-                            index += 2
-                        } else {
-                            title = "Stream \(streamIndex)"
-                            streamUrl = sources[index]
-                            index += 1
-                        }
-                    } else {
-                        title = "Stream \(streamIndex)"
-                        streamUrl = sources[index]
-                        index += 1
-                    }
-                } else if let sources = sources as? [[String: Any]] {
-                    if let currTitle = sources[index]["title"] as? String {
-                        title = currTitle
-                        streamUrl = (sources[index]["streamUrl"] as? String) ?? ""
-                    } else {
-                        title = "Stream \(streamIndex)"
-                        streamUrl = (sources[index]["streamUrl"] as? String)!
-                    }
-                    headers = sources[index]["headers"] as? [String:String] ?? [:]
-                    index += 1
-                }
-                
-                alert.addAction(UIAlertAction(title: title, style: .default) { _ in
+            for option in options {
+                alert.addAction(UIAlertAction(title: option.title, style: .default) { _ in
                     guard self.activeFetchID == fetchID else { return }
-                    self.playStream(url: streamUrl, fullURL: fullURL, subtitles: subtitles, headers: headers, fetchID: fetchID)
+                    completion(option)
                 })
-                
-                streamIndex += 1
             }
             
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             
             self.presentAlert(alert)
         }
+    }
+    
+    private func streamOptions(fromSources sources: [[String: Any]]) -> [StreamOption] {
+        var options: [StreamOption] = []
+        
+        for (idx, source) in sources.enumerated() {
+            guard let rawUrl = source["streamUrl"] as? String ?? source["url"] as? String, !rawUrl.isEmpty else { continue }
+            let title = (source["title"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+            let headers = source["headers"] as? [String:String]
+            let subtitle = source["subtitle"] as? String
+            let option = StreamOption(
+                title: title?.isEmpty == false ? title! : "Stream \(idx + 1)",
+                url: rawUrl,
+                headers: headers,
+                subtitle: subtitle
+            )
+            options.append(option)
+        }
+        
+        return options
+    }
+    
+    private func streamOptions(fromStrings strings: [String]) -> [StreamOption] {
+        var options: [StreamOption] = []
+        var index = 0
+        var unnamedCount = 1
+        
+        while index < strings.count {
+            let entry = strings[index]
+            if isURL(entry) {
+                options.append(StreamOption(title: "Stream \(unnamedCount)", url: entry, headers: nil, subtitle: nil))
+                unnamedCount += 1
+                index += 1
+            } else {
+                let nextIndex = index + 1
+                if nextIndex < strings.count, isURL(strings[nextIndex]) {
+                    options.append(StreamOption(title: entry, url: strings[nextIndex], headers: nil, subtitle: nil))
+                    index += 2
+                } else {
+                    index += 1
+                }
+            }
+        }
+        
+        return options
+    }
+    
+    private func resolveSubtitleSelection(subtitles: [String]?, defaultSubtitle: String?, fetchID: UUID, completion: @escaping (String?) -> Void) {
+        guard let subtitles = subtitles, !subtitles.isEmpty else {
+            completion(defaultSubtitle)
+            return
+        }
+        let options = subtitleOptions(from: subtitles)
+        guard !options.isEmpty else {
+            completion(defaultSubtitle)
+            return
+        }
+        if options.count == 1 {
+            completion(options[0].url)
+            return
+        }
+        DispatchQueue.main.async {
+            self.isFetchingEpisode = false
+        }
+        presentSubtitleSelectionAlert(options: options, fetchID: fetchID, completion: completion)
+    }
+    
+    private func presentSubtitleSelectionAlert(options: [(title: String, url: String)], fetchID: UUID, completion: @escaping (String?) -> Void) {
+        DispatchQueue.main.async {
+            guard self.activeFetchID == fetchID else {
+                completion(nil)
+                return
+            }
+            let alert = UIAlertController(title: "Select Subtitle", message: "Choose a subtitle track", preferredStyle: .actionSheet)
+            for option in options {
+                alert.addAction(UIAlertAction(title: option.title, style: .default) { _ in
+                    guard self.activeFetchID == fetchID else { return }
+                    completion(option.url)
+                })
+            }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+                completion(nil)
+            })
+            self.presentAlert(alert)
+        }
+    }
+    
+    private func subtitleOptions(from subtitles: [String]) -> [(title: String, url: String)] {
+        var options: [(String, String)] = []
+        var index = 0
+        var fallbackIndex = 1
+        while index < subtitles.count {
+            let entry = subtitles[index]
+            if isURL(entry) {
+                options.append(("Subtitle \(fallbackIndex)", entry))
+                fallbackIndex += 1
+                index += 1
+            } else {
+                let nextIndex = index + 1
+                if nextIndex < subtitles.count, isURL(subtitles[nextIndex]) {
+                    options.append((entry, subtitles[nextIndex]))
+                    fallbackIndex += 1
+                    index += 2
+                } else {
+                    index += 1
+                }
+            }
+        }
+        return options
+    }
+    
+    private func isURL(_ value: String) -> Bool {
+        let lowercased = value.lowercased()
+        return lowercased.hasPrefix("http://") || lowercased.hasPrefix("https://")
     }
     
     func playStream(url: String, fullURL: String, subtitles: String? = nil, headers: [String:String]? = nil, fetchID: UUID) {
@@ -2305,14 +2403,8 @@ struct MediaInfoView: View {
             completion(nil as EpisodeMetadataInfo?)
             return
         }
-        fetchEpisodeMetadataFromNetwork(anilistId: anilistId, episodeNumber: episode.number) { info in
-            if let info = info, let enTitle = info.title["en"] {
-                DispatchQueue.main.async {
-                    episodeTitleCache[episode.number] = enTitle
-                }
-            }
-            completion(info)
-        }
+        
+        fetchEpisodeMetadataFromNetwork(anilistId: anilistId, episodeNumber: episode.number, completion: completion)
     }
     
     private func fetchEpisodeMetadataFromNetwork(anilistId: Int, episodeNumber: Int, completion: @escaping (EpisodeMetadataInfo?) -> Void) {
@@ -2508,7 +2600,7 @@ struct MediaInfoView: View {
         }
         return ""
     }
-
+    
     // MARK: - Updated Jikan Filler Implementation
     private struct JikanResponse: Decodable {
         let data: [JikanEpisode]
@@ -2518,19 +2610,18 @@ struct MediaInfoView: View {
         let mal_id: Int
         let filler: Bool
     }
-
+    
     private func fetchJikanFillerInfoIfNeeded() {
         guard jikanFillerSet == nil else { return }
         fetchJikanFillerInfo()
     }
-
+    
     private func fetchJikanFillerInfo() {
         guard let malID = matchedMalID ?? itemID else {
             Logger.shared.log("MAL ID not available for filler info", type: "Debug")
             return
         }
-
-        // Check cache first
+        
         var cachedEpisodes: [JikanEpisode]? = nil
         Self.jikanCacheQueue.sync {
             if let entry = Self.jikanCache[malID], Date().timeIntervalSince(entry.fetchedAt) < Self.jikanCacheTTL {
@@ -2544,7 +2635,6 @@ struct MediaInfoView: View {
             return
         }
         
-        // Prevent duplicate requests
         var shouldFetch = false
         Self.inProgressQueue.sync {
             if !Self.inProgressMALIDs.contains(malID) {
@@ -2560,16 +2650,13 @@ struct MediaInfoView: View {
         
         Logger.shared.log("Fetching filler info for MAL ID: \(malID)", type: "Debug")
         
-        // Fetch all pages
         fetchAllJikanPages(malID: malID) { episodes in
-            // Update cache
             if let episodes = episodes {
                 Logger.shared.log("Successfully fetched filler info for MAL ID: \(malID)", type: "Debug")
                 Self.jikanCacheQueue.async(flags: .barrier) {
                     Self.jikanCache[malID] = (Date(), episodes)
                 }
                 
-                // Update UI
                 DispatchQueue.main.async {
                     self.updateFillerSet(episodes: episodes)
                 }
@@ -2577,7 +2664,6 @@ struct MediaInfoView: View {
                 Logger.shared.log("Failed to fetch filler info for MAL ID: \(malID)", type: "Error")
             }
             
-            // Remove from in-progress set
             Self.inProgressQueue.async {
                 Self.inProgressMALIDs.remove(malID)
             }
@@ -2589,9 +2675,8 @@ struct MediaInfoView: View {
         var currentPage = 1
         let perPage = 100
         var nextAllowedTime = DispatchTime.now()
-
+        
         func fetchPage() {
-            // Throttle to <= 3 req/sec (Jikan limit)
             let now = DispatchTime.now()
             let delay: Double
             if now < nextAllowedTime {
@@ -2602,57 +2687,55 @@ struct MediaInfoView: View {
             }
             DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
                 nextAllowedTime = DispatchTime.now() + .milliseconds(350)
-
-            let url = URL(string: "https://api.jikan.moe/v4/anime/\(malID)/episodes?page=\(currentPage)&limit=\(perPage)")!
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                // Handle transient errors and Jikan rate-limits with minimal backoff/retry.
-                let http = response as? HTTPURLResponse
-                let status = http?.statusCode ?? 0
                 
-                // Simple per-page retry counter stored via associated closure capture
-                struct RetryCounter { static var attempts: [Int: Int] = [:] }
-                let key = currentPage
-                let attempts = RetryCounter.attempts[key] ?? 0
-
-                let shouldRetry: Bool = (error != nil) || (status == 429) || (status >= 500)
-                if shouldRetry && attempts < 5 {
-                    let retryAfterSeconds: Double = {
-                        if status == 429, let ra = http?.value(forHTTPHeaderField: "Retry-After"), let v = Double(ra) { return min(v, 5.0) }
-                        return min(pow(1.5, Double(attempts)) , 5.0)
-                    }()
-                    RetryCounter.attempts[key] = attempts + 1
-                    Logger.shared.log("Jikan page \(currentPage) retry \(attempts+1) after \(retryAfterSeconds)s (status=\(status), error=\(error?.localizedDescription ?? "nil"))", type: "Debug")
-                    DispatchQueue.global().asyncAfter(deadline: .now() + retryAfterSeconds) {
-                        fetchPage()
+                let url = URL(string: "https://api.jikan.moe/v4/anime/\(malID)/episodes?page=\(currentPage)&limit=\(perPage)")!
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    let http = response as? HTTPURLResponse
+                    let status = http?.statusCode ?? 0
+                    
+                    struct RetryCounter { static var attempts: [Int: Int] = [:] }
+                    let key = currentPage
+                    let attempts = RetryCounter.attempts[key] ?? 0
+                    
+                    let shouldRetry: Bool = (error != nil) || (status == 429) || (status >= 500)
+                    if shouldRetry && attempts < 5 {
+                        let retryAfterSeconds: Double = {
+                            if status == 429, let ra = http?.value(forHTTPHeaderField: "Retry-After"), let v = Double(ra) { return min(v, 5.0) }
+                            return min(pow(1.5, Double(attempts)) , 5.0)
+                        }()
+                        RetryCounter.attempts[key] = attempts + 1
+                        Logger.shared.log("Jikan page \(currentPage) retry \(attempts+1) after \(retryAfterSeconds)s (status=\(status), error=\(error?.localizedDescription ?? "nil"))", type: "Debug")
+                        DispatchQueue.global().asyncAfter(deadline: .now() + retryAfterSeconds) {
+                            fetchPage()
+                        }
+                        return
                     }
-                    return
-                }
-
-                guard let data = data, error == nil, (200..<300).contains(status) || status == 0 else {
-                    Logger.shared.log("Jikan API request failed for page \(currentPage): status=\(status), error=\(error?.localizedDescription ?? "Unknown")", type: "Error")
-                    completion(nil)
-                    return
-                }
-
-                do {
-                    let response = try JSONDecoder().decode(JikanResponse.self, from: data)
-                    allEpisodes.append(contentsOf: response.data)
-                    if response.data.count == perPage {
-                        currentPage += 1
-                        fetchPage()
-                    } else {
-                        completion(allEpisodes)
+                    
+                    guard let data = data, error == nil, (200..<300).contains(status) || status == 0 else {
+                        Logger.shared.log("Jikan API request failed for page \(currentPage): status=\(status), error=\(error?.localizedDescription ?? "Unknown")", type: "Error")
+                        completion(nil)
+                        return
                     }
-                } catch {
-                    Logger.shared.log("Failed to parse Jikan response: \(error)", type: "Error")
-                    completion(nil)
-                }
-            }.resume()
-        
+                    
+                    do {
+                        let response = try JSONDecoder().decode(JikanResponse.self, from: data)
+                        allEpisodes.append(contentsOf: response.data)
+                        if response.data.count == perPage {
+                            currentPage += 1
+                            fetchPage()
+                        } else {
+                            completion(allEpisodes)
+                        }
+                    } catch {
+                        Logger.shared.log("Failed to parse Jikan response: \(error)", type: "Error")
+                        completion(nil)
+                    }
+                }.resume()
+                
             }
         }
         fetchPage()
-    }                
+    }
     
     private func updateFillerSet(episodes: [JikanEpisode]) {
         let fillerNumbers = Set(episodes.filter { $0.filler }.map { $0.mal_id })

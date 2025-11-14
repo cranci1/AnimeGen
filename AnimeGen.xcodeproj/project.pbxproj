@@ -115,6 +115,7 @@
 		13709B9C2E0410FA008BA1D4 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B9B2E0410FA008BA1D4 /* Nuke */; };
 		13709B9E2E0410FA008BA1D4 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B9D2E0410FA008BA1D4 /* NukeUI */; };
 		13709BA12E041114008BA1D4 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 13709BA02E041114008BA1D4 /* MarqueeLabel */; };
+		138C89592EC79215008038D1 /* StretchyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138C89582EC79214008038D1 /* StretchyHeader.swift */; };
 		13E681782E6825F600635F80 /* JSController-NetworkFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E681772E6825F600635F80 /* JSController-NetworkFetch.swift */; };
 /* End PBXBuildFile section */
 
@@ -239,6 +240,7 @@
 		1358D11B2E0413E1000832DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPersistence.swift; sourceTree = "<group>"; };
 		137099BC2E040E0E008BA1D4 /* AnimeGen.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
+		138C89582EC79214008038D1 /* StretchyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchyHeader.swift; sourceTree = "<group>"; };
 		13BB1AE42E6E0B6200D2A812 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13BB1AE52E6E0B6900D2A812 /* as */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = as; path = as.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13E681772E6825F600635F80 /* JSController-NetworkFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSController-NetworkFetch.swift"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		132B27662E140DFB00BACE64 /* MediaInfoView */ = {
 			isa = PBXGroup;
 			children = (
+				138C89572EC79214008038D1 /* Header */,
 				132B27672E140DFB00BACE64 /* MediaInfoView.swift */,
 				132B27682E140DFB00BACE64 /* EpisodeCell */,
 				132B276B2E140DFB00BACE64 /* ChapterCell */,
@@ -738,6 +741,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		138C89572EC79214008038D1 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				138C89582EC79214008038D1 /* StretchyHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -907,6 +918,7 @@
 				132B27FB2E140DFE00BACE64 /* ReaderView.swift in Sources */,
 				13E681782E6825F600635F80 /* JSController-NetworkFetch.swift in Sources */,
 				132B281A2E140DFE00BACE64 /* SettingsViewLogger.swift in Sources */,
+				138C89592EC79215008038D1 /* StretchyHeader.swift in Sources */,
 				132B28282E140DFE00BACE64 /* Trakt-Login.swift in Sources */,
 				132B28112E140DFE00BACE64 /* CollectionPickerView.swift in Sources */,
 				132B280F2E140DFE00BACE64 /* BookmarkGridView.swift in Sources */,
