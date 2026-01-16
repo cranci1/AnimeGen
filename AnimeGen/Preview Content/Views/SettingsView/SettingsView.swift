@@ -343,7 +343,7 @@ struct SettingsView: View {
                         .padding(.horizontal, 20)
                     }
                     
-                    Text("Sora 1.0.1 by cranci1")
+                    Text("Sora 1.2.0 by cranci1")
                         .font(.footnote)
                         .foregroundStyle(.gray)
                         .frame(maxWidth: .infinity, alignment: .center)

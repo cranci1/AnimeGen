@@ -37,27 +37,28 @@ struct DownloadView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
-                Spacer()
-                    .frame(height: 20)
-                CustomDownloadHeader(
-                    selectedTab: $selectedTab,
-                    searchText: $searchText,
-                    isSearchActive: $isSearchActive,
-                    sortOption: $sortOption,
-                    showSortMenu: selectedTab == 1 && !jsController.savedAssets.isEmpty
-                )
-                
+            Group {
                 if selectedTab == 0 {
                     activeDownloadsView
-                        .transition(.opacity)
                 } else {
                     downloadedContentView
-                        .transition(.opacity)
                 }
             }
-            .animation(.easeInOut(duration: 0.2), value: selectedTab)
+            .safeAreaInset(edge: .top) {
+                VStack(spacing: 0) {
+                    CustomDownloadHeader(
+                        selectedTab: $selectedTab,
+                        searchText: $searchText,
+                        isSearchActive: $isSearchActive,
+                        sortOption: $sortOption,
+                        showSortMenu: selectedTab == 1 && !jsController.savedAssets.isEmpty
+                    )
+                    Divider()
+                }
+                .background(.ultraThinMaterial)
+            }
             .navigationBarHidden(true)
+            .animation(.easeInOut(duration: 0.2), value: selectedTab)
             .alert(NSLocalizedString("Delete Download", comment: ""), isPresented: $showDeleteAlert) {
                 Button(NSLocalizedString("Delete", comment: ""), role: .destructive) {
                     if let asset = assetToDelete {
@@ -117,7 +118,7 @@ struct DownloadView: View {
                             totalEpisodes: filteredAndSortedAssets.count,
                             totalSize: filteredAndSortedAssets.reduce(0) { $0 + $1.fileSize }
                         )
-                        
+
                         DownloadedSection(
                             groups: groupedAssets,
                             onDelete: { asset in
@@ -129,6 +130,12 @@ struct DownloadView: View {
                     }
                     .padding(.top, 20)
                     .scrollViewBottomPadding()
+                }
+                .onAppear {
+                    UIScrollView.appearance().bounces = false
+                }
+                .onDisappear {
+                    UIScrollView.appearance().bounces = true
                 }
             }
         }
@@ -1043,6 +1050,7 @@ struct EnhancedShowEpisodesView: View {
     
     var body: some View {
         ZStack {
+            heroImageSection
             mainScrollView
                 .navigationBarHidden(true)
                 .ignoresSafeArea(.container, edges: .top)
@@ -1050,12 +1058,12 @@ struct EnhancedShowEpisodesView: View {
         }
         .onAppear {
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-               let window = windowScene.windows.first,
-               let navigationController = window.rootViewController?.children.first as? UINavigationController {
+                let window = windowScene.windows.first,
+                let navigationController = window.rootViewController?.children.first as? UINavigationController {
                 navigationController.interactivePopGestureRecognizer?.isEnabled = true
                 navigationController.interactivePopGestureRecognizer?.delegate = nil
             }
-            
+
             NotificationCenter.default.post(name: .hideTabBar, object: nil)
         }
         .onDisappear {
@@ -1091,10 +1099,7 @@ struct EnhancedShowEpisodesView: View {
     @ViewBuilder
     private var mainScrollView: some View {
         ScrollView(showsIndicators: false) {
-            ZStack(alignment: .top) {
-                heroImageSection
-                contentContainer
-            }
+            contentContainer
         }
         .onAppear {
             UIScrollView.appearance().bounces = false
@@ -1103,22 +1108,24 @@ struct EnhancedShowEpisodesView: View {
     
     @ViewBuilder
     private var heroImageSection: some View {
-        Group {
-            if let posterURL = group.posterURL {
-                LazyImage(url: posterURL) { @MainActor state in
-                    if let uiImage = state.imageContainer?.image {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: UIScreen.main.bounds.width, height: 700)
-                            .clipped()
-                    } else {
-                        placeholderGradient
-                    }
+        if let posterURL = group.posterURL {
+            LazyImage(url: posterURL) { state in
+                if let uiImage = state.imageContainer?.image {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    placeholderGradient
                 }
-            } else {
-                placeholderGradient
             }
+            .ignoresSafeArea(.all)
+            .frame(maxWidth: .infinity, maxHeight: 400)
+            .clipped()
+        } else {
+            placeholderGradient
+                .ignoresSafeArea(.all)
+                .frame(maxWidth: .infinity, maxHeight: 400)
+                .clipped()
         }
     }
     
@@ -1135,8 +1142,6 @@ struct EnhancedShowEpisodesView: View {
                     endPoint: .bottomTrailing
                 )
             )
-            .frame(width: UIScreen.main.bounds.width, height: 700)
-            .clipped()
     }
     
     @ViewBuilder
@@ -1318,55 +1323,15 @@ struct EnhancedEpisodeRow: View {
     let showDivider: Bool
     let onPlay: (DownloadedAsset) -> Void
     let onDelete: (DownloadedAsset) -> Void
-    @State private var swipeOffset: CGFloat = 0
-    @State private var isShowingActions: Bool = false
-    @State private var dragState = DragState.inactive
-    
-    struct DragState {
-        var translation: CGSize
-        var isActive: Bool
-        
-        static var inactive: DragState {
-            DragState(translation: .zero, isActive: false)
-        }
-    }
-    
+
     @Environment(\.colorScheme) private var colorScheme
     private var fillerBadgeOpacity: Double { colorScheme == .dark ? 0.18 : 0.12 }
     var body: some View {
-        ZStack {
-            actionButtonsBackground
-            episodeCellContent
-        }
-    }
-    
-    private var actionButtonsBackground: some View {
-        HStack {
-            Spacer()
-            Button(action: {
-                onDelete(asset)
-            }) {
-                VStack(spacing: 4) {
-                    Image(systemName: "trash.fill")
-                        .font(.title2)
-                        .foregroundColor(.red)
-                    Text("Delete")
-                        .font(.caption)
-                        .foregroundColor(.red)
-                }
-                .frame(width: 60)
-            }
-            .frame(height: 76)
-        }
-        .zIndex(0)
-    }
-    
-    private var episodeCellContent: some View {
         HStack {
             // Thumbnail
             Group {
                 if let backdropURL = asset.metadata?.backdropURL ?? asset.metadata?.posterURL {
-                    LazyImage(url: backdropURL) { @MainActor state in
+                    LazyImage(url: backdropURL) { state in
                         if let uiImage = state.imageContainer?.image {
                             Image(uiImage: uiImage)
                                 .resizable()
@@ -1391,7 +1356,7 @@ struct EnhancedEpisodeRow: View {
             }
             .frame(width: 100, height: 56)
             .clipShape(RoundedRectangle(cornerRadius: 8))
-            
+
             VStack(alignment: .leading) {
                 HStack(spacing: 8) {
                     Text("Episode \(asset.metadata?.episode ?? 0)")
@@ -1416,9 +1381,9 @@ struct EnhancedEpisodeRow: View {
                         .lineLimit(1)
                 }
             }
-            
+
             Spacer()
-            
+
             CircularProgressBar(progress: 0.0)
                 .frame(width: 40, height: 40)
                 .padding(.trailing, 4)
@@ -1429,23 +1394,18 @@ struct EnhancedEpisodeRow: View {
         .frame(maxWidth: .infinity)
         .background(cellBackground)
         .clipShape(RoundedRectangle(cornerRadius: 15))
-        .offset(x: swipeOffset + dragState.translation.width)
-        .zIndex(1)
-        .scaleEffect(dragState.isActive ? 0.98 : 1.0)
-        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: swipeOffset)
-        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: dragState.isActive)
-        .simultaneousGesture(
-            DragGesture(coordinateSpace: .local)
-                .onChanged { value in
-                    handleDragChanged(value)
-                }
-                .onEnded { value in
-                    handleDragEnded(value)
-                }
-        )
-        .onTapGesture { handleTap() }
+        .swipeActions(edge: .trailing) {
+            Button(role: .destructive, action: {
+                onDelete(asset)
+            }) {
+                Label("Delete", systemImage: "trash.fill")
+            }
+        }
+        .onTapGesture {
+            onPlay(asset)
+        }
     }
-    
+
     private var cellBackground: some View {
         RoundedRectangle(cornerRadius: 15)
             .fill(Color(UIColor.systemBackground))
@@ -1467,78 +1427,6 @@ struct EnhancedEpisodeRow: View {
                         lineWidth: 0.5
                     )
             )
-    }
-    
-    private func handleDragChanged(_ value: DragGesture.Value) {
-        let translation = value.translation
-        let velocity = value.velocity
-        
-        let isHorizontalGesture = abs(translation.width) > abs(translation.height)
-        let hasSignificantHorizontalMovement = abs(translation.width) > 10
-        
-        if isHorizontalGesture && hasSignificantHorizontalMovement {
-            dragState = .inactive
-            
-            let proposedOffset = swipeOffset + translation.width
-            let maxSwipe: CGFloat = 60 // Only one button
-            
-            if translation.width < 0 {
-                let newOffset = max(proposedOffset, -maxSwipe)
-                if proposedOffset < -maxSwipe {
-                    let resistance = abs(proposedOffset + maxSwipe) * 0.15
-                    swipeOffset = -maxSwipe - resistance
-                } else {
-                    swipeOffset = newOffset
-                }
-            } else if isShowingActions {
-                swipeOffset = min(max(proposedOffset, -maxSwipe), maxSwipe * 0.2)
-            }
-        } else if !hasSignificantHorizontalMovement {
-            dragState = .inactive
-        }
-    }
-    
-    private func handleDragEnded(_ value: DragGesture.Value) {
-        let translation = value.translation
-        let velocity = value.velocity
-        
-        dragState = .inactive
-        
-        let isHorizontalGesture = abs(translation.width) > abs(translation.height)
-        let hasSignificantHorizontalMovement = abs(translation.width) > 10
-        
-        if isHorizontalGesture && hasSignificantHorizontalMovement {
-            let maxSwipe: CGFloat = 60
-            let threshold = maxSwipe * 0.3
-            let velocityThreshold: CGFloat = 500
-            
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                if translation.width < -threshold || velocity.width < -velocityThreshold {
-                    swipeOffset = -maxSwipe
-                    isShowingActions = true
-                } else if translation.width > threshold || velocity.width > velocityThreshold {
-                    swipeOffset = 0
-                    isShowingActions = false
-                } else {
-                    swipeOffset = isShowingActions ? -maxSwipe : 0
-                }
-            }
-        } else {
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-                swipeOffset = isShowingActions ? -60 : 0
-            }
-        }
-    }
-    
-    private func handleTap() {
-        if isShowingActions {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
-                swipeOffset = 0
-                isShowingActions = false
-            }
-        } else {
-            onPlay(asset)
-        }
     }
 }
 
