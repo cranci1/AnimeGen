@@ -23,7 +23,7 @@ class TMDBFetcher {
         let results: [TMDBResult]
     }
     
-     let apiKey = "738b4edd0a156cc126dc4a4b8aea4aca"
+    let apiKey = "738b4edd0a156cc126dc4a4b8aea4aca"
     private let session = URLSession.custom
     
     func fetchBestMatchID(for title: String, completion: @escaping (Int?, MediaType?) -> Void) {
@@ -100,5 +100,30 @@ class TMDBFetcher {
             }
         }
         return dist[a.count][b.count]
+    }
+    
+    func fetchExternalIDs(for id: Int, type: MediaType, completion: @escaping (String?) -> Void) {
+        let urlString = "https://api.themoviedb.org/3/\(type.rawValue)/\(id)/external_ids?api_key=\(apiKey)"
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            return
+        }
+        
+        session.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
+                completion(nil)
+                return
+            }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let imdbId = json["imdb_id"] as? String {
+                    completion(imdbId)
+                } else {
+                    completion(nil)
+                }
+            } catch {
+                completion(nil)
+            }
+        }.resume()
     }
 }

@@ -40,7 +40,6 @@ class IntroDBFetcher {
 
             let httpResponse = response as? HTTPURLResponse
             if httpResponse?.statusCode == 404 {
-                // No intro data available
                 completion(nil)
                 return
             }
@@ -49,7 +48,6 @@ class IntroDBFetcher {
                 let intro = try JSONDecoder().decode(IntroResponse.self, from: data)
                 completion(intro)
             } catch {
-                // Try to decode as error response
                 if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                     Logger.shared.log("IntroDB error: \(errorResponse.error)", type: "Debug")
                 }

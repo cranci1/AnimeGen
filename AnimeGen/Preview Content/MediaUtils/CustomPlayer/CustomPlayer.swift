@@ -1748,7 +1748,7 @@ class CustomMediaPlayerViewController: UIViewController, UIGestureRecognizerDele
                 )
 
                 DispatchQueue.main.async {
-                    self.skipIntervals.op = range  // Use op for intro
+                    self.skipIntervals.op = range
                     if self.duration > 0 {
                         self.updateSegments()
                     }
