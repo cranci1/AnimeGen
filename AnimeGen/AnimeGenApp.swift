@@ -2,13 +2,13 @@
 //  AnimeGenApp.swift
 //  AnimeGen
 //
-//  Created by Francesco on 19/06/25.
+//  Created by Francesco on 06/01/25.
 //
 
 import SwiftUI
 
 @main
-struct AnimeGenApp: App {
+struct SoraApp: App {
     @StateObject private var settings = Settings()
     @StateObject private var moduleManager = ModuleManager()
     @StateObject private var libraryManager = LibraryManager()
@@ -18,16 +18,6 @@ struct AnimeGenApp: App {
     init() {
         if let userAccentColor = UserDefaults.standard.color(forKey: "accentColor") {
             UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = userAccentColor
-        }
-        clearTmpFolder()
-        clearSoraFilesFromDocuments()
-        
-        TraktToken.checkAuthenticationStatus { isAuthenticated in
-            if isAuthenticated {
-                Logger.shared.log("Trakt authentication is valid")
-            } else {
-                Logger.shared.log("Trakt authentication required", type: "Error")
-            }
         }
     }
     
@@ -52,6 +42,38 @@ struct AnimeGenApp: App {
                 Task {
                     if UserDefaults.standard.bool(forKey: "refreshModulesOnLaunch") {
                         await moduleManager.refreshModules()
+                    }
+                }
+                
+                _ = LocalizationManager.shared
+                
+                if let languages = UserDefaults.standard.object(forKey: "AppleLanguages") as? [String],
+                   let primaryLanguage = languages.first,
+                   primaryLanguage == "mn" || primaryLanguage == "mn-Cyrl" {
+                    Logger.shared.log("App initialized with Mongolian language: \(primaryLanguage)", type: "Debug")
+                    
+                    if let path = Bundle.main.path(forResource: "mn", ofType: "lproj"),
+                       let bundle = Bundle(path: path) {
+                        let testKey = "About"
+                        let testString = bundle.localizedString(forKey: testKey, value: nil, table: nil)
+                        Logger.shared.log("Test Mongolian string for '\(testKey)': \(testString)", type: "Debug")
+                    } else {
+                        Logger.shared.log("Failed to load Mongolian bundle", type: "Error")
+                    }
+                }
+                
+                Task {
+                    await Self.clearTmpFolder()
+                    await MainActor.run {
+                        jsController.initializeDownloadSession()
+                    }
+                    
+                    TraktToken.checkAuthenticationStatus { isAuthenticated in
+                        if isAuthenticated {
+                            Logger.shared.log("Trakt authentication is valid", type: "Debug")
+                        } else {
+                            Logger.shared.log("Trakt authentication required", type: "Debug")
+                        }
                     }
                 }
             }
@@ -106,7 +128,7 @@ struct AnimeGenApp: App {
         }
     }
     
-    private func clearTmpFolder() {
+    private static func clearTmpFolder() async {
         let fileManager = FileManager.default
         let tmpDirectory = NSTemporaryDirectory()
         
@@ -114,57 +136,16 @@ struct AnimeGenApp: App {
             let tmpURL = URL(fileURLWithPath: tmpDirectory)
             let tmpContents = try fileManager.contentsOfDirectory(at: tmpURL, includingPropertiesForKeys: nil)
             
-            for url in tmpContents {
-                try fileManager.removeItem(at: url)
-            }
-            
-            let parentURL = tmpURL.deletingLastPathComponent()
-            let parentContents = try fileManager.contentsOfDirectory(at: parentURL, includingPropertiesForKeys: [.isDirectoryKey])
-            for url in parentContents {
-                if url.lastPathComponent.hasPrefix("com.apple.UserManagedAssets") {
-                    var isDir: ObjCBool = false
-                    if fileManager.fileExists(atPath: url.path, isDirectory: &isDir), isDir.boolValue {
-                        try fileManager.removeItem(at: url)
+            try await withThrowingTaskGroup(of: Void.self) { group in
+                for url in tmpContents {
+                    group.addTask {
+                        try FileManager.default.removeItem(at: url)
                     }
                 }
+                try await group.waitForAll()
             }
         } catch {
             Logger.shared.log("Failed to clear tmp folder: \(error.localizedDescription)", type: "Error")
-        }
-    }
-    
-    private func clearSoraFilesFromDocuments() {
-        let fileManager = FileManager.default
-        
-        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            Logger.shared.log("Failed to get Documents directory path", type: "Error")
-            return
-        }
-        
-        do {
-            let documentContents = try fileManager.contentsOfDirectory(
-                at: documentsURL,
-                includingPropertiesForKeys: [.isRegularFileKey],
-                options: [.skipsHiddenFiles]
-            )
-            
-            let soraFiles = documentContents.filter { $0.pathExtension.lowercased() == "sora" }
-            
-            for soraFile in soraFiles {
-                do {
-                    try fileManager.removeItem(at: soraFile)
-                    Logger.shared.log("Removed .sora file: \(soraFile.lastPathComponent)")
-                } catch {
-                    Logger.shared.log("Failed to remove .sora file \(soraFile.lastPathComponent): \(error.localizedDescription)", type: "Error")
-                }
-            }
-            
-            if !soraFiles.isEmpty {
-                Logger.shared.log("Cleared \(soraFiles.count) .sora file(s) from Documents folder")
-            }
-            
-        } catch {
-            Logger.shared.log("Failed to scan Documents folder for .sora files: \(error.localizedDescription)", type: "Error")
         }
     }
 }

@@ -1050,7 +1050,6 @@ struct EnhancedShowEpisodesView: View {
     
     var body: some View {
         ZStack {
-            heroImageSection
             mainScrollView
                 .navigationBarHidden(true)
                 .ignoresSafeArea(.container, edges: .top)
@@ -1084,7 +1083,7 @@ struct EnhancedShowEpisodesView: View {
                         .font(.system(size: 24))
                         .foregroundColor(.primary)
                         .padding(12)
-                        .background(Color.gray.opacity(0.2))
+                        .background(Color(.systemBackground).opacity(0.8))
                         .clipShape(Circle())
                         .circularGradientOutline()
                 }
@@ -1099,7 +1098,10 @@ struct EnhancedShowEpisodesView: View {
     @ViewBuilder
     private var mainScrollView: some View {
         ScrollView(showsIndicators: false) {
-            contentContainer
+            ZStack(alignment: .top) {
+                heroImageSection
+                contentContainer
+            }
         }
         .onAppear {
             UIScrollView.appearance().bounces = false
@@ -1108,25 +1110,11 @@ struct EnhancedShowEpisodesView: View {
     
     @ViewBuilder
     private var heroImageSection: some View {
-        if let posterURL = group.posterURL {
-            LazyImage(url: posterURL) { state in
-                if let uiImage = state.imageContainer?.image {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } else {
-                    placeholderGradient
-                }
-            }
-            .ignoresSafeArea(.all)
-            .frame(maxWidth: .infinity, maxHeight: 400)
-            .clipped()
-        } else {
-            placeholderGradient
-                .ignoresSafeArea(.all)
-                .frame(maxWidth: .infinity, maxHeight: 400)
-                .clipped()
-        }
+        StretchyHeaderView(
+            backdropURL: group.posterURL?.absoluteString,
+            headerHeight: 700,
+            minHeaderHeight: 400
+        )
     }
     
     private var placeholderGradient: some View {

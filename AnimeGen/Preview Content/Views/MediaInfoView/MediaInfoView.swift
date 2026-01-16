@@ -2474,59 +2474,74 @@ struct MediaInfoView: View {
     
     private func downloadAllEpisodes() {
         bulkTask = Task {
-            await MainActor.run {
-                isBulkDownloading = true
-                bulkDownloadProgress = "Starting bulk download..."
-            }
-
-            let originalLimit = jsController.maxConcurrentDownloads
-            jsController.updateMaxConcurrentDownloads(Int.max)
-
-            let episodesToDownload = getEpisodesToDownload()
-            let total = episodesToDownload.count
-
-            if total == 0 {
+            do {
+                let jsContent = try moduleManager.getModuleContent(module)
+                
                 await MainActor.run {
-                    jsController.updateMaxConcurrentDownloads(originalLimit)
+                    isBulkDownloading = true
+                    bulkDownloadProgress = "Starting bulk download..."
+                    jsController.loadScript(jsContent)
+                }
+
+                let episodesToDownload = getEpisodesToDownload()
+                let total = episodesToDownload.count
+
+                if total == 0 {
+                    await MainActor.run {
+                        isBulkDownloading = false
+                        bulkDownloadProgress = ""
+                    }
+                    return
+                }
+
+                var completed = 0
+                let maxConcurrentStreamFetches = 3
+
+                await withTaskGroup(of: Bool.self) { group in
+                    for i in 0..<total {
+                        if i >= maxConcurrentStreamFetches {
+                            _ = await group.next()
+                            completed += 1
+                            await MainActor.run {
+                                bulkDownloadProgress = "Prepared \(completed)/\(total) episodes"
+                            }
+                        }
+                        
+                        let (ep, season) = episodesToDownload[i]
+                        group.addTask {
+                            return await self.downloadEpisodeIfNeeded(ep, season: season)
+                        }
+                    }
+
+                    for await _ in group {
+                        do {
+                            try Task.checkCancellation()
+                            completed += 1
+                            await MainActor.run {
+                                bulkDownloadProgress = "Prepared \(completed)/\(total) episodes"
+                            }
+                        } catch {
+                            break
+                        }
+                    }
+                }
+
+                await MainActor.run {
+                    isBulkDownloading = false
+                    bulkDownloadProgress = ""
+                    DropManager.shared.showDrop(
+                        title: "Bulk downloading started",
+                        subtitle: "\(total) episodes queued",
+                        duration: 2.0,
+                        icon: UIImage(systemName: "checkmark.circle")
+                    )
+                }
+            } catch {
+                Logger.shared.log("Bulk download failed to load script: \(error)", type: "Error")
+                await MainActor.run {
                     isBulkDownloading = false
                     bulkDownloadProgress = ""
                 }
-                return
-            }
-
-            var completed = 0
-
-            await withTaskGroup(of: Bool.self) { group in
-                for (ep, season) in episodesToDownload {
-                    group.addTask {
-                        await self.downloadEpisodeIfNeeded(ep, season: season)
-                    }
-                }
-
-                for await success in group {
-                    do {
-                        try Task.checkCancellation()
-                        await MainActor.run {
-                            completed += 1
-                            bulkDownloadProgress = "Downloaded \(completed)/\(total) episodes"
-                        }
-                    } catch {
-                        break
-                    }
-                }
-            }
-
-            jsController.updateMaxConcurrentDownloads(originalLimit)
-
-            await MainActor.run {
-                isBulkDownloading = false
-                bulkDownloadProgress = ""
-                DropManager.shared.showDrop(
-                    title: "Bulk downloading started",
-                    subtitle: "",
-                    duration: 2.0,
-                    icon: UIImage(systemName: "checkmark.circle")
-                )
             }
         }
     }
@@ -2561,15 +2576,8 @@ struct MediaInfoView: View {
     }
 
     private func downloadEpisodeForBulk(_ ep: EpisodeLink, season: Int, completion: @escaping (Bool) -> Void) {
-        Task {
-            do {
-                let jsContent = try moduleManager.getModuleContent(module)
-                jsController.loadScript(jsContent)
-                tryNextDownloadMethodForBulk(episode: ep, season: season, methodIndex: 0, completion: completion)
-            } catch {
-                completion(false)
-            }
-        }
+        // No need to reload script here as it's handled in downloadAllEpisodes
+        tryNextDownloadMethodForBulk(episode: ep, season: season, methodIndex: 0, completion: completion)
     }
 
     private func tryNextDownloadMethodForBulk(episode: EpisodeLink, season: Int, methodIndex: Int, completion: @escaping (Bool) -> Void) {
