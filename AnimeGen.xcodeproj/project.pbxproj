@@ -108,6 +108,7 @@
 		1341C6F12E040D7F00B498FA /* AnimeGenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */; };
 		1345F5F52E25607800C80AAB /* AnilistMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F32E25607800C80AAB /* AnilistMatchView.swift */; };
 		1345F5F62E25607800C80AAB /* TMDBMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1345F5F42E25607800C80AAB /* TMDBMatchView.swift */; };
+		1348E93A2F1A8A5A00FC3904 /* IntroDB-FetchIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1348E9392F1A8A5A00FC3904 /* IntroDB-FetchIntro.swift */; };
 		1358D11C2E0413E1000832DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1358D11B2E0413E1000832DE /* Preview Assets.xcassets */; };
 		135CBC1E2E26B8570069FE31 /* DownloadPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */; };
 		13709B962E0410B7008BA1D4 /* SoraCore in Frameworks */ = {isa = PBXBuildFile; productRef = 13709B952E0410B7008BA1D4 /* SoraCore */; };
@@ -237,6 +238,7 @@
 		1341C6F02E040D7F00B498FA /* AnimeGenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeGenApp.swift; sourceTree = "<group>"; };
 		1345F5F32E25607800C80AAB /* AnilistMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnilistMatchView.swift; sourceTree = "<group>"; };
 		1345F5F42E25607800C80AAB /* TMDBMatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBMatchView.swift; sourceTree = "<group>"; };
+		1348E9392F1A8A5A00FC3904 /* IntroDB-FetchIntro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IntroDB-FetchIntro.swift"; sourceTree = "<group>"; };
 		1358D11B2E0413E1000832DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		135CBC1D2E26B8570069FE31 /* DownloadPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPersistence.swift; sourceTree = "<group>"; };
 		137099BC2E040E0E008BA1D4 /* AnimeGen.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnimeGen.entitlements; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 		132B27AD2E140DFC00BACE64 /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				1348E9392F1A8A5A00FC3904 /* IntroDB-FetchIntro.swift */,
 				132B27AE2E140DFC00BACE64 /* TMDB-FetchID.swift */,
 			);
 			path = TMDB;
@@ -949,6 +952,7 @@
 				132B280A2E140DFE00BACE64 /* LibraryView.swift in Sources */,
 				132B28482E140DFE00BACE64 /* DownloadModels.swift in Sources */,
 				132B28142E140DFE00BACE64 /* BookmarkGridItemView.swift in Sources */,
+				1348E93A2F1A8A5A00FC3904 /* IntroDB-FetchIntro.swift in Sources */,
 				132B28332E140DFE00BACE64 /* DropManager.swift in Sources */,
 				132B28042E140DFE00BACE64 /* EpisodeCell.swift in Sources */,
 				132B28092E140DFE00BACE64 /* LibraryManager.swift in Sources */,
