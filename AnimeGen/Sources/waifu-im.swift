@@ -2,53 +2,61 @@
 //  waifu-im.swift
 //  AnimeGen
 //
-//  Created by Francesco on 23/02/25.
-//
 
-import UIKit
+import Foundation
 
-extension ViewController {
-    func fetchImageFromWaifuIm() {
-        let url = URL(string: "https://api.waifu.im/search?is_nsfw=false")!
+struct WaifuImResponse: Decodable {
+    struct ImageItem: Decodable {
+        let url: String
+        let signature: String?
+        let extension_name: String?
+        let artist: ArtistInfo?
         
-        let task = URLSession.custom.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error fetching waifu.im image: \(error)")
-                self.showErrorAlert(message: "Failed to load image from waifu.im")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received from waifu.im")
-                self.showErrorAlert(message: "No data received from waifu.im")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let images = json["images"] as? [[String: Any]],
-                   let firstImage = images.first,
-                   let imageUrlString = firstImage["url"] as? String,
-                   let imageUrl = URL(string: imageUrlString) {
-                    DispatchQueue.main.async {
-                        self.loadImage(from: imageUrl)
-                    }
-                } else {
-                    print("Error parsing waifu.im JSON")
-                    self.showErrorAlert(message: "Error parsing waifu.im JSON")
-                    self.activityIndicator.stopAnimating()
-                }
-            } catch {
-                print("Error decoding waifu.im JSON: \(error)")
-                self.showErrorAlert(message: "Error decoding waifu.im JSON")
-                self.activityIndicator.stopAnimating()
-            }
+        struct ArtistInfo: Decodable {
+            let name: String?
+            let patreon: String?
+            let pixiv: String?
+            let twitter: String?
+        }
+    }
+    let images: [ImageItem]
+}
+
+enum WaifuImAPI {
+    static func fetch() async throws -> AnimeArtItem {
+        guard let url = URL(string: "https://api.waifu.im/search?included_tags=waifu") else {
+            throw URLError(.badURL)
         }
         
-        task.resume()
+        var request = URLRequest(url: url)
+        request.setValue("AnimeGen/3.1 (iOS)", forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let (data, response) = try await URLSession.custom.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            throw NSError(
+                domain: "WaifuImAPI",
+                code: (response as? HTTPURLResponse)?.statusCode ?? 503,
+                userInfo: [NSLocalizedDescriptionKey: "Waifu.im server is currently under maintenance (Cloudflare protection)."]
+            )
+        }
+        
+        let decoded = try JSONDecoder().decode(WaifuImResponse.self, from: data)
+        guard let first = decoded.images.first, let imageURL = URL(string: first.url) else {
+            throw URLError(.cannotParseResponse)
+        }
+        
+        return AnimeArtItem(
+            imageURL: imageURL,
+            source: .waifuIm,
+            category: "Waifu",
+            artistName: first.artist?.name,
+            artistURL: first.artist?.pixiv.flatMap(URL.init(string:)) ?? first.artist?.twitter.flatMap(URL.init(string:)),
+            sourceURL: imageURL,
+            tags: ["waifu", "waifu.im"],
+            isGIF: imageURL.pathExtension.lowercased() == "gif"
+        )
     }
 }
+
+

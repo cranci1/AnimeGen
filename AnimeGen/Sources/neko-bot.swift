@@ -2,63 +2,54 @@
 //  neko-bot.swift
 //  AnimeGen
 //
-//  Created by Francesco on 04/03/25.
-//
 
-import UIKit
+import Foundation
 
-extension ViewController {
-    func fetchImageFromNekoBot() {
-        let baseURL = URL(string: "https://nekobot.xyz/api/image?type=")!
-        
-        let categories = ["neko", "coffee", "food", "kemonomimi"]
-        let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
-        let randomCategory = categories[randomIndex]
-        
-        guard let url = URL(string: "\(baseURL)\(randomCategory)") else {
-            print("Invalid URL")
-            return
+struct NekoBotResponse: Decodable {
+    let success: Bool
+    let message: String
+}
+
+enum NekoBotAPI {
+    static let portraitCategories = ["neko", "kemonomimi"]
+    static let actionCategories = ["coffee", "food"]
+    
+    static func fetch(orientation: OrientationMode = .any) async throws -> AnimeArtItem {
+        let category: String
+        switch orientation {
+        case .vertical:
+            category = portraitCategories.randomElement() ?? "neko"
+        case .horizontal:
+            category = actionCategories.randomElement() ?? "food"
+        case .any:
+            let all = portraitCategories + actionCategories
+            category = all.randomElement() ?? "neko"
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        let task = URLSession.custom.dataTask(with: request) { [weak self] (data, response, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error fetching image from nekobot: \(error)")
-                self.showErrorAlert(message: "Failed to load image from nekobot")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received from nekobot")
-                self.showErrorAlert(message: "No data received from nekobot")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-                   let fileURLString = json["message"] as? String,
-                   let fileURL = URL(string: fileURLString) {
-                    DispatchQueue.main.async {
-                        self.loadImage(from: fileURL)
-                    }
-                } else {
-                    print("Error parsing nekobot JSON")
-                    self.showErrorAlert(message: "Error parsing nekobot JSON")
-                    self.activityIndicator.stopAnimating()
-                }
-            } catch {
-                print("Error decoding nekobot JSON: \(error)")
-                self.showErrorAlert(message: "Error decoding nekobot JSON")
-                self.activityIndicator.stopAnimating()
-            }
+        guard let url = URL(string: "https://nekobot.xyz/api/image?type=\(category)") else {
+            throw URLError(.badURL)
         }
         
-        task.resume()
+        let (data, response) = try await URLSession.custom.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let decoded = try JSONDecoder().decode(NekoBotResponse.self, from: data)
+        guard decoded.success, let imageURL = URL(string: decoded.message) else {
+            throw URLError(.cannotParseResponse)
+        }
+        
+        return AnimeArtItem(
+            imageURL: imageURL,
+            source: .nekoBot,
+            category: category.capitalized,
+            artistName: nil,
+            artistURL: nil,
+            sourceURL: nil,
+            tags: [category, "nekobot"],
+            isGIF: imageURL.pathExtension.lowercased() == "gif"
+        )
     }
 }
+

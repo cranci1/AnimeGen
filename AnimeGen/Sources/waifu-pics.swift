@@ -1,61 +1,72 @@
-//
-//  waifu-pics.swift
-//  AnimeGen
-//
-//  Created by Francesco on 04/03/25.
-//
+import Foundation
 
-import UIKit
+struct OtakuGifResponse: Decodable {
+    let url: String
+}
 
-extension ViewController {
-    func fetchImageFromWaifuPics() {
-        let baseURL = URL(string: "https://api.waifu.pics/sfw/")!
-        
-        let categories = ["waifu", "neko", "shinobu", "cuddle", "hug", "kiss", "lick", "pat", "bonk", "blush", "smile", "nom", "bite", "glomp", "slap", "kick", "happy", "poke", "dance"]
-        let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
-        let randomCategory = categories[randomIndex]
-        
-        guard let url = URL(string: "\(baseURL)\(randomCategory)") else {
-            print("Invalid URL")
-            return
+enum WaifuPicsAPI {
+    static let reactions = [
+        "hug", "kiss", "pat", "cuddle", "dance", "slap", 
+        "poke", "smile", "blush", "wink", "happy", "cry", "pout", "smug"
+    ]
+    
+    static let waifuCategories = [
+        "waifu", "neko", "shinobu", "megumin", "cuddle", "hug",
+        "kiss", "pat", "smug", "blush", "smile", "wave", "dance", "happy"
+    ]
+    
+    static func fetch(orientation: OrientationMode = .any) async throws -> AnimeArtItem {
+        if orientation == .vertical {
+            let cat = waifuCategories.randomElement() ?? "waifu"
+            guard let url = URL(string: "https://api.waifu.pics/sfw/\(cat)") else {
+                throw URLError(.badURL)
+            }
+            let (data, response) = try await URLSession.custom.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                throw URLError(.badServerResponse)
+            }
+            struct WaifuPicsResp: Decodable {
+                let url: String
+            }
+            let decoded = try JSONDecoder().decode(WaifuPicsResp.self, from: data)
+            guard let imageURL = URL(string: decoded.url) else {
+                throw URLError(.cannotParseResponse)
+            }
+            let isGif = decoded.url.lowercased().hasSuffix(".gif")
+            return AnimeArtItem(
+                imageURL: imageURL,
+                source: .waifupics,
+                category: cat.capitalized + (isGif ? " GIF" : " Art"),
+                artistName: nil,
+                artistURL: nil,
+                sourceURL: nil,
+                tags: [cat, isGif ? "gif" : "anime"],
+                isGIF: isGif
+            )
+        } else {
+            let reaction = reactions.randomElement() ?? "hug"
+            guard let url = URL(string: "https://api.otakugifs.xyz/gif?reaction=\(reaction)") else {
+                throw URLError(.badURL)
+            }
+            let (data, response) = try await URLSession.custom.data(from: url)
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                throw URLError(.badServerResponse)
+            }
+            let decoded = try JSONDecoder().decode(OtakuGifResponse.self, from: data)
+            guard let imageURL = URL(string: decoded.url) else {
+                throw URLError(.cannotParseResponse)
+            }
+            return AnimeArtItem(
+                imageURL: imageURL,
+                source: .waifupics,
+                category: reaction.capitalized + " GIF",
+                artistName: nil,
+                artistURL: nil,
+                sourceURL: nil,
+                tags: [reaction, "gif", "animation"],
+                isGIF: true
+            )
         }
-        
-        let task = URLSession.custom.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error fetching waifu.pics image: \(error)")
-                self.showErrorAlert(message: "Failed to load image from waifu.pics")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received from waifu.pics")
-                self.showErrorAlert(message: "No data received from waifu.pics")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-                   let fileURLString = json["url"] as? String,
-                   let fileURL = URL(string: fileURLString) {
-                    DispatchQueue.main.async {
-                        self.loadImage(from: fileURL)
-                    }
-                } else {
-                    print("Error parsing waifu.pics JSON")
-                    self.showErrorAlert(message: "Error parsing waifu.pics JSON")
-                    self.activityIndicator.stopAnimating()
-                }
-            } catch {
-                print("Error decoding waifu.pics JSON: \(error)")
-                self.showErrorAlert(message: "Error decoding waifu.pics JSON")
-                self.activityIndicator.stopAnimating()
-            }
-        }
-        
-        task.resume()
     }
 }
+

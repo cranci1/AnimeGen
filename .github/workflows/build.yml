@@ -4,28 +4,57 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
-    name: Build IPA
-    runs-on: macOS-latest
+    name: Build iOS IPA
+    runs-on: macos-latest
     
     steps:
-    - name: Use Node.js 20
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
       
-    - name: Run ipabuild.sh
+    - name: Set Xcode Version
+      run: |
+        sudo xcode-select -s /Applications/Xcode.app
+        xcodebuild -version
+      
+    - name: Build IPA
       run: |
         chmod +x ipabuild.sh
-        ./ipabuild.sh
+        ./ipabuild.sh 2>&1 | tee build_output.log
+      shell: bash
       
-    - name: Upload IPA artifact
+    - name: Commit error log on failure
+      if: failure()
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        echo "=== COMPILER ERRORS ===" > compile_error.txt
+        grep -E "(: error:|fatal error:)" build_output.log -B 2 -A 5 >> compile_error.txt || tail -n 200 build_output.log >> compile_error.txt
+        git add compile_error.txt
+        git commit -m "ci: capture compiler error [skip ci]" || true
+        git push origin main || true
+      shell: bash
+
+    - name: Upload Build Log
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Build-Logs
+        path: build_output.log
+        if-no-files-found: ignore
+
+    - name: Upload IPA Artifact
       uses: actions/upload-artifact@v4
       with:
         name: AnimeGen-IPA
         path: build/AnimeGen.ipa
+        if-no-files-found: error
+        retention-days: 30

@@ -2,65 +2,63 @@
 //  nekos-best.swift
 //  AnimeGen
 //
-//  Created by Francesco on 04/03/25.
-//
 
-import UIKit
+import Foundation
 
-extension ViewController {
-    func fetchImageFromNekosBest() {
-        let baseURL = URL(string: "https://nekos.best/api/v2/")!
-        
-        let categories = ["neko", "waifu", "husbando", "kitsune", "lurk", "shoot", "sleep", "shrug", "stare", "wave", "poke", "smile", "peck", "wink", "blush", "smug", "tickle", "yeet", "think", "highfive", "feed", "bite", "bored", "nom", "yawn", "facepalm", "cuddle", "kick", "happy", "hug", "baka", "pat", "nod", "nope", "kiss", "dance", "punch", "handshake", "slap", "cry", "pout", "handhold", "thumbsup", "laugh"]
-        let randomIndex = Int(arc4random_uniform(UInt32(categories.count)))
-        let randomCategory = categories[randomIndex]
-        
-        guard let url = URL(string: "\(baseURL)\(randomCategory)") else {
-            print("Invalid URL")
-            return
+struct NekosBestResponse: Decodable {
+    struct ResultItem: Decodable {
+        let artist_name: String?
+        let artist_href: String?
+        let source_url: String?
+        let url: String
+    }
+    let results: [ResultItem]
+}
+
+enum NekosBestAPI {
+    static let portraitCategories = [
+        "neko", "waifu", "kitsune", "husbando"
+    ]
+    static let actionCategories = [
+        "hug", "kiss", "pat", "cuddle", "dance", "smile", "blush", "wink", "poke", "happy", "smug"
+    ]
+    
+    static func fetch(orientation: OrientationMode = .any) async throws -> AnimeArtItem {
+        let category: String
+        switch orientation {
+        case .vertical:
+            category = portraitCategories.randomElement() ?? "waifu"
+        case .horizontal:
+            category = actionCategories.randomElement() ?? "hug"
+        case .any:
+            let all = portraitCategories + actionCategories
+            category = all.randomElement() ?? "neko"
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        let task = URLSession.custom.dataTask(with: request) { [weak self] (data, response, error) in
-            guard let self = self else { return }
-            
-            if let error = error {
-                print("Error fetching image from nekos-best: \(error)")
-                self.showErrorAlert(message: "Failed to load image from nekos-best")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received from nekos-best")
-                self.showErrorAlert(message: "No data received from nekos-best")
-                self.activityIndicator.stopAnimating()
-                return
-            }
-            
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let images = json["results"] as? [[String: Any]],
-                   let firstImage = images.first,
-                   let imageUrlString = firstImage["url"] as? String,
-                   let imageUrl = URL(string: imageUrlString) {
-                    DispatchQueue.main.async {
-                        self.loadImage(from: imageUrl)
-                    }
-                } else {
-                    print("Error parsing nekos-best JSON")
-                    self.showErrorAlert(message: "Error parsing nekos-best JSON")
-                    self.activityIndicator.stopAnimating()
-                }
-            } catch {
-                print("Error decoding nekos-best JSON: \(error)")
-                self.showErrorAlert(message: "Error decoding nekos-best JSON")
-                self.activityIndicator.stopAnimating()
-            }
+        guard let url = URL(string: "https://nekos.best/api/v2/\(category)") else {
+            throw URLError(.badURL)
         }
         
-        task.resume()
+        let (data, response) = try await URLSession.custom.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let decoded = try JSONDecoder().decode(NekosBestResponse.self, from: data)
+        guard let first = decoded.results.first, let imageURL = URL(string: first.url) else {
+            throw URLError(.cannotParseResponse)
+        }
+        
+        return AnimeArtItem(
+            imageURL: imageURL,
+            source: .nekosBest,
+            category: category.capitalized,
+            artistName: first.artist_name,
+            artistURL: first.artist_href.flatMap(URL.init(string:)),
+            sourceURL: first.source_url.flatMap(URL.init(string:)),
+            tags: [category, "nekos.best"],
+            isGIF: imageURL.pathExtension.lowercased() == "gif"
+        )
     }
 }
+
